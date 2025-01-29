@@ -1,0 +1,1434 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+      "version": "1.0.0",
+      "title": "TTS (Text-to-Speech) and Avatar API",
+      "description": "This REST API provides resources for generating speech from text or pre-signed URLs. It is designed for various Text-to-Speech (TTS) and avatar use cases."
+  },
+  "servers": [
+      {
+          "url": "https://audio-video-api-stage.adobe.io",
+          "description": "Staging environment"
+      },
+      {
+          "url": "https://audio-video-api.adobe.io",
+          "description": "Production environment"
+      },
+      {
+          "url": "firefly-stage-eso85129.adobe.io",
+          "description": "Get Result API stage environment"
+      },
+      {
+          "url": "https://firefly-epv85369.adobe.io",
+          "description": "Get Result API production environment"
+      }
+  ],
+  "security": [
+      {
+          "AccessToken": [],
+          "X-Api-Key": []
+      }
+  ],
+  "paths": {
+      "/beta/generate-speech": {
+          "post": {
+              "summary": "Generate speech from text",
+              "description": "This endpoint generates speech from a transcript. You can provide the transcript either as plain text or a pre-signed URL. The response will include a job ID and a status URL for tracking the job.",
+              "operationId": "generate-speech",
+              "requestBody": {
+                  "description": "The request body contains the transcript used for generating speech.",
+                  "required": true,
+                  "content": {
+                      "application/json": {
+                          "schema": {
+                              "$ref": "#/components/schemas/TTSRequest"
+                          },
+                          "examples": {
+                              "TextInputForSpeechGeneration": {
+                                  "$ref": "#/components/examples/TextInputForSpeechGeneration"
+                              },
+                              "URLInputForSpeechGeneration": {
+                                  "$ref": "#/components/examples/URLInputForSpeechGeneration"
+                              }
+                          }
+                      }
+                  }
+              },
+              "responses": {
+                  "200": {
+                      "description": "The request has been accepted for processing.",
+                      "content": {
+                          "application/json": {
+                              "schema": {
+                                  "$ref": "#/components/schemas/SubmitAPIResponse"
+                              },
+                              "examples": {
+                                  "SubmitRequestResponse": {
+                                      "$ref": "#/components/examples/SubmitRequestResponse"
+                                  }
+                              }
+                          }
+                      }
+                  },
+                  "401": {
+                      "description": "Unauthorized - Authentication credentials were missing or incorrect.",
+                      "content": {
+                          "application/json": {
+                              "schema": {
+                                  "$ref": "#/components/schemas/FailerResponse"
+                              },
+                              "examples": {
+                                  "UnauthorizedAccessError": {
+                                      "$ref": "#/components/examples/UnauthorizedAccessError"
+                                  }
+                              }
+                          }
+                      }
+                  },
+                  "403": {
+                      "description": "Forbidden - The request is understood, but it has been refused or access is not allowed.",
+                      "content": {
+                          "application/json": {
+                              "schema": {
+                                  "$ref": "#/components/schemas/FailerResponse"
+                              },
+                              "examples": {
+                                  "ErrorBodyForbidden": {
+                                      "summary": "Example of a forbidden error",
+                                      "value": {
+                                          "error_code": "403220",
+                                          "message": "Token not allowed in the current context"
+                                      }
+                                  }
+                              }
+                          }
+                      }
+                  },
+                  "404": {
+                      "description": "Not Found - The requested resource could not be found.",
+                      "content": {
+                          "application/json": {
+                              "schema": {
+                                  "$ref": "#/components/schemas/FailerResponse"
+                              },
+                              "examples": {
+                                  "ErrorBodyResourceNotFound": {
+                                      "$ref": "#/components/examples/ErrorBodyResourceNotFound"
+                                  }
+                              }
+                          }
+                      }
+                  },
+                  "422": {
+                      "description": "Unprocessable Entity.",
+                      "content": {
+                          "application/json": {
+                              "schema": {
+                                  "$ref": "#/components/schemas/FailerResponse"
+                              },
+                              "examples": {
+                                  "InputFileTypeValidationErrorExample": {
+                                      "$ref": "#/components/examples/InputFileTypeValidationErrorExample"
+                                  },
+                                  "OutputConfigValidationErrorExample": {
+                                      "$ref": "#/components/examples/OutputConfigValidationErrorExample"
+                                  },
+                                  "InvalidTextForScriptErrorExample": {
+                                      "$ref": "#/components/examples/InvalidTextForScriptErrorExample"
+                                  },
+                                  "InvalidOrMissingLocaleCodeForScriptErrorExample": {
+                                      "$ref": "#/components/examples/InvalidOrMissingLocaleCodeForScriptErrorExample"
+                                  },
+                                  "InvalidMediaTypeURLErrorExample": {
+                                      "$ref": "#/components/examples/InvalidMediaTypeURLErrorExample"
+                                  },
+                                  "ErrorDownloadingFileFromURLErrorExample": {
+                                      "$ref": "#/components/examples/ErrorDownloadingFileFromURLErrorExample"
+                                  },
+                                  "CharacterLimitExceededErrorExample": {
+                                      "$ref": "#/components/examples/CharacterLimitExceededErrorExample"
+                                  },
+                                  "IncorrectOutputConfigForAvatarInputErrorExample": {
+                                      "$ref": "#/components/examples/IncorrectOutputConfigForAvatarInputErrorExample"
+                                  },
+                                  "UserBKSFailedErrorExample": {
+                                      "$ref": "#/components/examples/UserBKSFailedErrorExample"
+                                  },
+                                  "BothScriptAndAudioProvidedErrorExample": {
+                                      "$ref": "#/components/examples/BothScriptAndAudioProvidedErrorExample"
+                                  },
+                                  "AudioFieldMissingURLErrorExample": {
+                                      "$ref": "#/components/examples/AudioFieldMissingURLErrorExample"
+                                  },
+                                  "TextOrURLMissingErrorExample": {
+                                      "$ref": "#/components/examples/TextOrURLMissingErrorExample"
+                                  },
+                                  "BothScriptAndAudioMissingErrorExample": {
+                                      "$ref": "#/components/examples/BothScriptAndAudioMissingErrorExample"
+                                  },
+                                  "SourceNotPresentForScriptOrAudioErrorExample": {
+                                      "$ref": "#/components/examples/SourceNotPresentForScriptOrAudioErrorExample"
+                                  },
+                                  "InvalidOutputConfigForTTSWorkflowErrorExample": {
+                                      "$ref": "#/components/examples/InvalidOutputConfigForTTSWorkflowErrorExample"
+                                  },
+                                  "MissingOutputConfigErrorExample": {
+                                      "$ref": "#/components/examples/MissingOutputConfigErrorExample"
+                                  },
+                                  "UnsupportedVoiceIdErrorExample": {
+                                      "$ref": "#/components/examples/UnsupportedVoiceIdErrorExample"
+                                  },
+                                  "MissingVoiceIdErrorExample": {
+                                      "$ref": "#/components/examples/MissingVoiceIdErrorExample"
+                                  },
+                                  "InvalidTextFileURLErrorExample": {
+                                      "$ref": "#/components/examples/InvalidTextFileURLErrorExample"
+                                  }
+                              }
+                          }
+                      }
+                  },
+                  "429": {
+                      "description": "Too Many Requests - The user has sent too many requests in a given amount of time.",
+                      "content": {
+                          "application/json": {
+                              "schema": {
+                                  "$ref": "#/components/schemas/FailerResponse"
+                              },
+                              "examples": {
+                                  "ErrorBodyTooManyRequests": {
+                                      "$ref": "#/components/examples/ErrorBodyTooManyRequests"
+                                  }
+                              }
+                          }
+                      }
+                  }
+              }
+          }
+      },
+      "/beta/generate-avatar": {
+          "post": {
+              "summary": "Generate an avatar from text",
+              "description": "This endpoint generates an avatar from a transcript. You can provide the transcript either as plain text or a pre-signed URL. The response will include a job ID and a status URL for tracking the job.",
+              "operationId": "generate-avatar",
+              "requestBody": {
+                  "description": "The request body contains the transcript used for generating an avatar.",
+                  "required": true,
+                  "content": {
+                      "application/json": {
+                          "schema": {
+                              "$ref": "#/components/schemas/AvtaarRequest"
+                          },
+                          "examples": {
+                              "PlainTextInputForAvatarGeneration": {
+                                  "$ref": "#/components/examples/PlainTextInputForAvatarGeneration"
+                              },
+                              "PlainTextInputForAvatarGenerationUsingVideoBackground": {
+                                  "$ref": "#/components/examples/PlainTextInputForAvatarGenerationUsingVideoBackground"
+                              },
+                              "PlainTextInputForAvatarGenerationUsingImageBackground": {
+                                  "$ref": "#/components/examples/PlainTextInputForAvatarGenerationUsingImageBackground"
+                              },
+                              "URLTextInputForAvatarGeneration": {
+                                  "$ref": "#/components/examples/URLTextInputForAvatarGeneration"
+                              },
+                              "URLInputForAvatarGeneration": {
+                                  "$ref": "#/components/examples/URLInputForAvatarGeneration"
+                              }
+                          }
+                      }
+                  }
+              },
+              "responses": {
+                  "200": {
+                      "description": "The request has been accepted for processing.",
+                      "content": {
+                          "application/json": {
+                              "schema": {
+                                  "$ref": "#/components/schemas/SubmitAPIResponse"
+                              },
+                              "examples": {
+                                  "SubmitRequestResponse": {
+                                      "$ref": "#/components/examples/SubmitRequestResponse"
+                                  }
+                              }
+                          }
+                      }
+                  },
+                  "400": {
+                      "description": "Bad Request - The request was invalid or cannot be otherwise served.",
+                      "content": {
+                          "application/json": {
+                              "schema": {
+                                  "$ref": "#/components/schemas/FailerResponse"
+                              },
+                              "examples": {
+                                  "ErrorBodyBadRequest": {
+                                      "summary": "Example of a bad request error",
+                                      "value": {
+                                          "error_code": "400001",
+                                          "message": "Invalid request. Please check the input data."
+                                      }
+                                  }
+                              }
+                          }
+                      }
+                  },
+                  "401": {
+                      "description": "Unauthorized - Authentication credentials were missing or incorrect.",
+                      "content": {
+                          "application/json": {
+                              "schema": {
+                                  "$ref": "#/components/schemas/FailerResponse"
+                              },
+                              "examples": {
+                                  "UnauthorizedAccessError": {
+                                      "$ref": "#/components/examples/UnauthorizedAccessError"
+                                  }
+                              }
+                          }
+                      }
+                  },
+                  "404": {
+                      "description": "Not Found - The requested resource could not be found.",
+                      "content": {
+                          "application/json": {
+                              "schema": {
+                                  "$ref": "#/components/schemas/FailerResponse"
+                              },
+                              "examples": {
+                                  "ErrorBodyResourceNotFound": {
+                                      "$ref": "#/components/examples/ErrorBodyResourceNotFound"
+                                  }
+                              }
+                          }
+                      }
+                  },
+                  "422": {
+                      "description": "Unprocessable Entity.",
+                      "content": {
+                          "application/json": {
+                              "schema": {
+                                  "$ref": "#/components/schemas/FailerResponse"
+                              },
+                              "examples": {
+                                  "BackgroundUrlMissingErrorExample": {
+                                      "$ref": "#/components/examples/BackgroundUrlMissingErrorExample"
+                                  },
+                                  "IncorrectBackgroundUrlErrorExample": {
+                                      "$ref": "#/components/examples/IncorrectBackgroundUrlErrorExample"
+                                  },
+                                  "UnsupportedFileTypeForVideoBackgroundErrorExample": {
+                                      "$ref": "#/components/examples/UnsupportedFileTypeForVideoBackgroundErrorExample"
+                                  },
+                                  "UnsupportedFileTypeForImageBackgroundErrorExample": {
+                                      "$ref": "#/components/examples/UnsupportedFileTypeForImageBackgroundErrorExample"
+                                  },
+                                  "BackgroundTypeMissingErrorExample": {
+                                      "$ref": "#/components/examples/BackgroundTypeMissingErrorExample"
+                                  },
+                                  "AvatarIdMissingErrorExample": {
+                                      "$ref": "#/components/examples/AvatarIdMissingErrorExample"
+                                  },
+                                  "InvalidBackgroundUrlErrorExample": {
+                                      "$ref": "#/components/examples/InvalidBackgroundUrlErrorExample"
+                                  },
+                                  "BackgroundAssetResolutionErrorExample": {
+                                      "$ref": "#/components/examples/BackgroundAssetResolutionErrorExample"
+                                  },
+                                  "UnsupportedAvatarIdErrorExample": {
+                                      "$ref": "#/components/examples/UnsupportedAvatarIdErrorExample"
+                                  },
+                                  "BackgroundVideoShouldHaveAudioErrorExample": {
+                                      "$ref": "#/components/examples/BackgroundVideoShouldHaveAudioErrorExample"
+                                  },
+                                  "DurationMoreThanSupportedErrorExample": {
+                                      "$ref": "#/components/examples/DurationMoreThanSupportedErrorExample"
+                                  }
+                              }
+                          }
+                      }
+                  },
+                  "429": {
+                      "description": "Too Many Requests - The user has sent too many requests in a given amount of time.",
+                      "content": {
+                          "application/json": {
+                              "schema": {
+                                  "$ref": "#/components/schemas/FailerResponse"
+                              },
+                              "examples": {
+                                  "ErrorBodyTooManyRequests": {
+                                      "$ref": "#/components/examples/ErrorBodyTooManyRequests"
+                                  }
+                              }
+                          }
+                      }
+                  }
+              }
+          }
+      },
+      "/jobs/result/{jobId}": {
+          "get": {
+              "summary": "Get the status of a job",
+              "description": "Provides the status and result of an asynchronous TTS and Avatar job. <br></br> Use this endpoint with the stage environment URL for stage enviornment status and results.",
+              "operationId": "jobResult",
+              "servers": [
+                  {
+                      "url": "firefly-stage-eso85129.adobe.io",
+                      "description": "Stage environment"
+                  },
+                  {
+                      "url": "https://firefly-epv85369.adobe.io",
+                      "description": "Production environment"
+                  }
+              ],
+              "parameters": [
+                  {
+                      "name": "jobId",
+                      "in": "path",
+                      "description": "The job ID of an asynchronous TTS and Avatar job.",
+                      "required": true,
+                      "schema": {
+                          "type": "string"
+                      }
+                  }
+              ],
+              "responses": {
+                  "202": {
+                      "description": "The request has been accepted for processing.",
+                      "content": {
+                          "application/json": {
+                              "schema": {
+                                  "$ref": "#/components/schemas/SubmitAPIResponse"
+                              },
+                              "examples": {
+                                  "TTSubmitRequestResponse": {
+                                      "$ref": "#/components/examples/SubmitRequestResponse"
+                                  }
+                              }
+                          }
+                      }
+                  },
+                  "401": {
+                      "description": "Unauthorized - Authentication credentials were missing or incorrect.",
+                      "content": {
+                          "application/json": {
+                              "schema": {
+                                  "$ref": "#/components/schemas/FailerResponse"
+                              },
+                              "examples": {
+                                  "ErrorBodyUnauthorized": {
+                                      "summary": "Example of an unauthorized error",
+                                      "value": {
+                                          "error_code": "401013",
+                                          "message": "OAuth token is not valid"
+                                      }
+                                  }
+                              }
+                          }
+                      }
+                  },
+                  "403": {
+                      "description": "Forbidden - The request is understood, but it has been refused or access is not allowed.",
+                      "content": {
+                          "application/json": {
+                              "schema": {
+                                  "$ref": "#/components/schemas/FailerResponse"
+                              },
+                              "examples": {
+                                  "ErrorBodyForbidden": {
+                                      "summary": "Example of a forbidden error",
+                                      "value": {
+                                          "error_code": "403220",
+                                          "message": "Token not allowed in the current context"
+                                      }
+                                  }
+                              }
+                          }
+                      }
+                  },
+                  "404": {
+                      "description": "Not Found - The requested resource could not be found.",
+                      "content": {
+                          "application/json": {
+                              "schema": {
+                                  "$ref": "#/components/schemas/FailerResponse"
+                              },
+                              "examples": {
+                                  "ErrorBodyResourceNotFound": {
+                                      "summary": "Example of a resource not found error",
+                                      "value": {
+                                          "error_code": "404001",
+                                          "message": "The requested resource was not found."
+                                      }
+                                  }
+                              }
+                          }
+                      }
+                  },
+                  "429": {
+                      "description": "Too Many Requests - The user has sent too many requests in a given amount of time.",
+                      "content": {
+                          "application/json": {
+                              "schema": {
+                                  "$ref": "#/components/schemas/FailerResponse"
+                              },
+                              "examples": {
+                                  "ErrorBodyTooManyRequests": {
+                                      "$ref": "#/components/examples/ErrorBodyTooManyRequests"
+                                  }
+                              }
+                          }
+                      }
+                  },
+                  "500": {
+                      "description": "Internal Server Error - An error occurred on the server side.",
+                      "content": {
+                          "application/json": {
+                              "schema": {
+                                  "$ref": "#/components/schemas/FailerResponse"
+                              },
+                              "examples": {
+                                  "RunTimeErrorInAvatar": {
+                                      "$ref": "#/components/examples/RunTimeErrorInAvatarExample"
+                                  },
+                                  "ValidationFailureInLipsyncPipeline": {
+                                      "$ref": "#/components/examples/ValidationFailureInLipsyncPipelineExample"
+                                  },
+                                  "FailedInFFmpegWorker": {
+                                      "$ref": "#/components/examples/FailedInFFmpegWorkerExample"
+                                  },
+                                  "FailedWhilePollingForLipsync": {
+                                      "$ref": "#/components/examples/FailedWhilePollingForLipsyncExample"
+                                  },
+                                  "ErrorWhileTrimmingAvatarVideo": {
+                                      "$ref": "#/components/examples/ErrorWhileTrimmingAvatarVideoExample"
+                                  },
+                                  "ErrorWhileTrimmingAvatarAlphaVideo": {
+                                      "$ref": "#/components/examples/ErrorWhileTrimmingAvatarAlphaVideoExample"
+                                  },
+                                  "ErrorWhileDownloadingActorConfigFileFromS3": {
+                                      "$ref": "#/components/examples/ErrorWhileDownloadingActorConfigFileFromS3Example"
+                                  },
+                                  "CAISigningFailed": {
+                                      "$ref": "#/components/examples/CAISigningFailed"
+                                  },
+                                  "UnableToUploadOutput": {
+                                      "$ref": "#/components/examples/UnableToUploadOutput"
+                                  },
+                                  "RunTimeErrorInTTS": {
+                                      "$ref": "#/components/examples/RunTimeErrorInTTS"
+                                  },
+                                  "UnableToDownloadStockMedia": {
+                                      "$ref": "#/components/examples/UnableToDownloadStockMedia"
+                                  }
+                              }
+                          }
+                      }
+                  }
+              }
+          }
+      }
+  },
+  "components": {
+      "securitySchemes": {
+          "AccessToken": {
+              "type": "http",
+              "scheme": "bearer"
+          },
+          "X-Api-Key": {
+              "type": "apiKey",
+              "name": "x-api-key",
+              "in": "header"
+          }
+      },
+      "schemas": {
+          "SupportedLanguageCode": {
+              "type": "string",
+              "enum": [
+                  "en-US",
+                  "es-ES",
+                  "de-DE",
+                  "fr-FR",
+                  "pt-PT",
+                  "it-IT"
+              ],
+              "description": "The language code for the supported language desired in the result."
+          },
+          "SupportedAudioOutputAudioFormat": {
+              "type": "string",
+              "enum": [
+                  "audio/wav"
+              ],
+              "description": "The supported audio format for output."
+          },
+          "SupportedOutputVideoFormat": {
+              "type": "string",
+              "enum": [
+                  "video/mp4"
+              ],
+              "description": "The supported video format for background video for Avatar."
+          },
+          "SupportedBackgroundInputVideoFormat": {
+              "type": "string",
+              "enum": [
+                  "video/mp4",
+                  "video/mov"
+              ],
+              "description": "The supported video format for background video for Avatar."
+          },
+          "TTSRequest": {
+              "type": "object",
+              "oneOf": [
+                  {
+                      "$ref": "#/components/schemas/GenerateSpeechUsingPlainText"
+                  },
+                  {
+                      "$ref": "#/components/schemas/GenerateSpeechUsingPlainTextFile"
+                  }
+              ]
+          },
+          "GenerateSpeechUsingPlainText": {
+              "type": "object",
+              "properties": {
+                  "script": {
+                      "$ref": "#/components/schemas/TTSTextResource"
+                  },
+                  "voiceId": {
+                      "type": "string"
+                  },
+                  "output": {
+                      "type": "object",
+                      "properties": {
+                          "mediaType": {
+                              "$ref": "#/components/schemas/SupportedAudioOutputAudioFormat"
+                          }
+                      }
+                  }
+              }
+          },
+          "GenerateSpeechUsingPlainTextFile": {
+              "type": "object",
+              "properties": {
+                  "script": {
+                      "$ref": "#/components/schemas/URLSource",
+                      "localeCode": {
+                          "$ref": "#/components/schemas/SupportedLanguageCode"
+                      },
+                      "mediaType": {
+                          "type": "string",
+                          "enum": [
+                              "text/plain"
+                          ],
+                          "description": "The format of the Text-to-Speech text resource object."
+                      }
+                  },
+                  "voiceId": {
+                      "type": "string"
+                  },
+                  "output": {
+                      "type": "object",
+                      "properties": {
+                          "mediaType": {
+                              "$ref": "#/components/schemas/SupportedAudioOutputAudioFormat"
+                          }
+                      }
+                  }
+              }
+          },
+          "TTSTextResource": {
+              "type": "object",
+              "properties": {
+                  "source": {
+                      "type": "object",
+                      "properties": {
+                          "text": {
+                              "type": "string"
+                          }
+                      }
+                  },
+                  "localeCode": {
+                      "$ref": "#/components/schemas/SupportedLanguageCode"
+                  },
+                  "mediaType": {
+                      "type": "string",
+                      "enum": [
+                          "text/plain"
+                      ],
+                      "description": "The format of the Text-to-Speech text resource object."
+                  }
+              }
+          },
+          "AvtaarRequest": {
+              "type": "object",
+              "oneOf": [
+                  {
+                      "$ref": "#/components/schemas/GenerateAvatarUsingPlainText"
+                  },
+                  {
+                      "$ref": "#/components/schemas/GenerateAvatarUsingPlainTextFile"
+                  },
+                  {
+                      "$ref": "#/components/schemas/GenerateAvatarUsingAudioFile"
+                  },
+                  {
+                      "$ref": "#/components/schemas/GenerateAvatarUsingPlainTextWithImageBackground"
+                  },
+                  {
+                      "$ref": "#/components/schemas/GenerateAvatarUsingPlainTextWithVideoBackground"
+                  }
+              ]
+          },
+          "GenerateAvatarUsingPlainText": {
+              "type": "object",
+              "properties": {
+                  "script": {
+                      "type": "object",
+                      "$ref": "#/components/schemas/TTSTextResource"
+                  },
+                  "voiceId": {
+                      "type": "string"
+                  },
+                  "avatarId": {
+                      "type": "string"
+                  },
+                  "output": {
+                      "type": "object",
+                      "properties": {
+                          "mediaType": {
+                              "$ref": "#/components/schemas/SupportedOutputVideoFormat"
+                          }
+                      }
+                  }
+              }
+          },
+          "GenerateAvatarUsingPlainTextFile": {
+              "type": "object",
+              "properties": {
+                  "script": {
+                      "type": "object",
+                      "$ref": "#/components/schemas/URLSource"
+                  },
+                  "voiceId": {
+                      "type": "string"
+                  },
+                  "avatarId": {
+                      "type": "string"
+                  },
+                  "output": {
+                      "type": "object",
+                      "properties": {
+                          "mediaType": {
+                              "$ref": "#/components/schemas/SupportedOutputVideoFormat"
+                          }
+                      }
+                  }
+              }
+          },
+          "GenerateAvatarUsingAudioFile": {
+              "type": "object",
+              "properties": {
+                  "audio": {
+                      "$ref": "#/components/schemas/URLSource",
+                      "mediaType": {
+                          "type": "string",
+                          "enum": [
+                              "audio/wav"
+                          ]
+                      },
+                      "localeCode": {
+                          "type": "string"
+                      }
+                  },
+                  "avatarId": {
+                      "type": "string"
+                  },
+                  "output": {
+                      "type": "object",
+                      "properties": {
+                          "mediaType": {
+                              "$ref": "#/components/schemas/SupportedOutputVideoFormat"
+                          }
+                      }
+                  }
+              }
+          },
+          "GenerateAvatarUsingPlainTextWithImageBackground": {
+              "type": "object",
+              "properties": {
+                  "script": {
+                      "type": "object",
+                      "$ref": "#/components/schemas/TTSTextResource"
+                  },
+                  "voiceId": {
+                      "type": "string"
+                  },
+                  "avatarId": {
+                      "type": "string"
+                  },
+                  "output": {
+                      "type": "object",
+                      "properties": {
+                          "mediaType": {
+                              "$ref": "#/components/schemas/SupportedOutputVideoFormat"
+                          },
+                          "background": {
+                              "type": "object",
+                              "$ref": "#/components/schemas/URLSource",
+                              "properties": {
+                                  "type": {
+                                      "type": "string",
+                                      "description": "For avatar generation using video as background please use 'video' as type"
+                                  }
+                              }
+                          }
+                      }
+                  }
+              }
+          },
+          "GenerateAvatarUsingPlainTextWithVideoBackground": {
+              "type": "object",
+              "properties": {
+                  "script": {
+                      "type": "object",
+                      "$ref": "#/components/schemas/TTSTextResource"
+                  },
+                  "voiceId": {
+                      "type": "string"
+                  },
+                  "avatarId": {
+                      "type": "string"
+                  },
+                  "output": {
+                      "type": "object",
+                      "properties": {
+                          "mediaType": {
+                              "$ref": "#/components/schemas/SupportedOutputVideoFormat"
+                          },
+                          "background": {
+                              "type": "object",
+                              "$ref": "#/components/schemas/URLSource",
+                              "properties": {
+                                  "type": {
+                                      "type": "string",
+                                      "description": "For avatar generation using image as background please use 'image' as type"
+                                  }
+                              }
+                          }
+                      }
+                  }
+              }
+          },
+          "URLSource": {
+              "type": "object",
+              "properties": {
+                  "source": {
+                      "type": "object",
+                      "properties": {
+                          "url": {
+                              "type": "string",
+                              "format": "uri",
+                              "description": "The pre-signed URL pointing to the resource to be used for avatar/speech generation."
+                          }
+                      }
+                  }
+              }
+          },
+          "SubmitAPIResponse": {
+              "type": "object",
+              "properties": {
+                  "links": {
+                      "type": "object",
+                      "properties": {
+                          "cancel": {
+                              "type": "object",
+                              "properties": {
+                                  "href": {
+                                      "type": "string"
+                                  }
+                              }
+                          },
+                          "result": {
+                              "type": "object",
+                              "properties": {
+                                  "href": {
+                                      "type": "string"
+                                  }
+                              }
+                          }
+                      }
+                  }
+              }
+          },
+          "FailerResponse": {
+              "type": "object",
+              "properties": {
+                  "error_code": {
+                      "type": "string"
+                  },
+                  "message": {
+                      "type": "string"
+                  }
+              }
+          }
+      },
+      "examples": {
+          "SubmitRequestResponse": {
+              "summary": "Successful response with job details",
+              "value": {
+                  "links": {
+                      "cancel": {
+                          "href": "string"
+                      },
+                      "result": {
+                          "href": "string"
+                      }
+                  }
+              }
+          },
+          "TextInputForSpeechGeneration": {
+              "summary": "Generate speech using plain text.",
+              "value": {
+                  "script": {
+                      "source": {
+                          "text": "<plain text>"
+                      },
+                      "mediaType": "text/plain",
+                      "localeCode": "en-US"
+                  },
+                  "voiceId": "<voice id>",
+                  "output": {
+                      "mediaType": "audio/wav"
+                  }
+              }
+          },
+          "URLInputForSpeechGeneration": {
+              "summary": "Generate speech using a text file.",
+              "value": {
+                  "script": {
+                      "source": {
+                          "url": "<pre-signed url of text file>"
+                      },
+                      "mediaType": "text/plain",
+                      "localeCode": "en-US"
+                  },
+                  "voiceId": "<voice id>",
+                  "output": {
+                      "mediaType": "audio/wav"
+                  }
+              }
+          },
+          "PlainTextInputForAvatarGeneration": {
+              "summary": "Generate avatar using plain text",
+              "value": {
+                  "script": {
+                      "source": {
+                          "text": "<plain text>"
+                      },
+                      "mediaType": "text/plain",
+                      "localeCode": "en-US"
+                  },
+                  "voiceId": "<voice id>",
+                  "avatarId": "<avatar id>",
+                  "output": {
+                      "mediaType": "video/mp4"
+                  }
+              }
+          },
+          "PlainTextInputForAvatarGenerationUsingVideoBackground": {
+              "summary": "Generate avatar using plain text and video background",
+              "value": {
+                  "script": {
+                      "source": {
+                          "text": "<plain text>"
+                      },
+                      "mediaType": "text/plain",
+                      "localeCode": "en-US"
+                  },
+                  "voiceId": "<voice id>",
+                  "avatarId": "<avatar id>",
+                  "output": {
+                      "mediaType": "video/mp4",
+                      "background": {
+                          "type": "video",
+                          "source": {
+                              "url": "<pre-signed url of background video>"
+                          }
+                      }
+                  }
+              }
+          },
+          "PlainTextInputForAvatarGenerationUsingImageBackground": {
+              "summary": "Generate avatar using plain text and image background",
+              "value": {
+                  "script": {
+                      "source": {
+                          "text": "<plain text>"
+                      },
+                      "mediaType": "text/plain",
+                      "localeCode": "en-US"
+                  },
+                  "voiceId": "<voice id>",
+                  "avatarId": "<avatar id>",
+                  "output": {
+                      "mediaType": "video/mp4",
+                      "background": {
+                          "type": "image",
+                          "source": {
+                              "url": "<pre-signed url of background image>"
+                          }
+                      }
+                  }
+              }
+          },
+          "URLTextInputForAvatarGeneration": {
+              "summary": "Generate avatar using text file",
+              "value": {
+                  "script": {
+                      "source": {
+                          "url": "<pre-signed url of text file>"
+                      },
+                      "mediaType": "text/plain",
+                      "localeCode": "en-US"
+                  },
+                  "voiceId": "<voice id>",
+                  "avatarId": "<avatar id>",
+                  "output": {
+                      "mediaType": "video/mp4"
+                  }
+              }
+          },
+          "URLInputForAvatarGeneration": {
+              "summary": "Generate avatar using audio file",
+              "value": {
+                  "audio": {
+                      "source": {
+                          "url": "<pre-signed url of input audio>"
+                      },
+                      "mediaType": "audio/wav",
+                      "localeCode": "en-US"
+                  },
+                  "avatarId": "<avatar id>",
+                  "output": {
+                      "mediaType": "video/mp4"
+                  }
+              }
+          },
+          "UnauthorizedAccessError": {
+              "summary": "Invalid token",
+              "value": {
+                  "error_code": 401013,
+                  "message": "Oauth token is not valid"
+              }
+          },
+          "ErrorBodyResourceNotFound": {
+              "summary": "Example of a resource not found error",
+              "value": {
+                  "error_code": "unknown_job_id",
+                  "message": "The job id is unknown."
+              }
+          },
+          "ErrorBodyTooManyRequests": {
+              "summary": "Example of a too many requests error",
+              "value": {
+                  "error_code": "429011",
+                  "message": "Too Many Requests"
+              }
+          },
+          "InputFileTypeValidationErrorExample": {
+              "value": {
+                  "error_code": "validation_error",
+                  "message": "{\"status\": \"failed\", \"error_code\": 422001, \"message\": \"Input file format is not supported\"}"
+              }
+          },
+          "OutputConfigValidationErrorExample": {
+              "value": {
+                  "error_code": "validation_error",
+                  "message": {
+                      "status": "failed",
+                      "error_code": 422002,
+                      "message": "Requested format is not valid for the generated output"
+                  }
+              }
+          },
+          "InvalidTextForScriptErrorExample": {
+              "value": {
+                  "error_code": "validation_error",
+                  "message": {
+                      "status": "failed",
+                      "error_code": 422003,
+                      "message": "The provided 'text' is not valid"
+                  }
+              }
+          },
+          "InvalidOrMissingLocaleCodeForScriptErrorExample": {
+              "value": {
+                  "error_code": "validation_error",
+                  "message": {
+                      "status": "failed",
+                      "error_code": 422004,
+                      "message": "Invalid or missing 'localeCode' specified"
+                  }
+              }
+          },
+          "InvalidMediaTypeURLErrorExample": {
+              "value": {
+                  "error_code": "validation_error",
+                  "message": {
+                      "status": "failed",
+                      "error_code": 422005,
+                      "message": "Requested format is not valid for the source input"
+                  }
+              }
+          },
+          "ErrorDownloadingFileFromURLErrorExample": {
+              "value": {
+                  "error_code": "validation_error",
+                  "message": {
+                      "status": "failed",
+                      "error_code": 422006,
+                      "message": "Error while downloading file from URL"
+                  }
+              }
+          },
+          "CharacterLimitExceededErrorExample": {
+              "value": {
+                  "error_code": "validation_error",
+                  "message": {
+                      "status": "failed",
+                      "error_code": 422007,
+                      "message": "Input text has more than 7500 characters"
+                  }
+              }
+          },
+          "IncorrectOutputConfigForAvatarInputErrorExample": {
+              "value": {
+                  "error_code": "validation_error",
+                  "message": {
+                      "status": "failed",
+                      "error_code": 422008,
+                      "message": "Output file format is not valid"
+                  }
+              }
+          },
+          "UserBKSFailedErrorExample": {
+              "value": {
+                  "error_code": "validation_error",
+                  "message": {
+                      "status": "failed",
+                      "error_code": 422009,
+                      "message": "Unauthorised BKS authorization request"
+                  }
+              }
+          },
+          "BothScriptAndAudioProvidedErrorExample": {
+              "value": {
+                  "error_code": "validation_error",
+                  "message": {
+                      "status": "failed",
+                      "error_code": 422010,
+                      "message": "Must specify either script or audio, not both"
+                  }
+              }
+          },
+          "AudioFieldMissingURLErrorExample": {
+              "value": {
+                  "error_code": "validation_error",
+                  "message": {
+                      "status": "failed",
+                      "error_code": 422011,
+                      "message": "Invalid or missing 'url' specified in audio"
+                  }
+              }
+          },
+          "TextOrURLMissingErrorExample": {
+              "value": {
+                  "error_code": "validation_error",
+                  "message": {
+                      "status": "failed",
+                      "error_code": 422012,
+                      "message": "Provide non-empty text or URL in 'source'"
+                  }
+              }
+          },
+          "BothScriptAndAudioMissingErrorExample": {
+              "value": {
+                  "error_code": "validation_error",
+                  "message": {
+                      "status": "failed",
+                      "error_code": 422013,
+                      "message": "Must specify either script or audio"
+                  }
+              }
+          },
+          "SourceNotPresentForScriptOrAudioErrorExample": {
+              "value": {
+                  "error_code": "validation_error",
+                  "message": {
+                      "status": "failed",
+                      "error_code": 422014,
+                      "message": "Missing 'source' field"
+                  }
+              }
+          },
+          "InvalidOutputConfigForTTSWorkflowErrorExample": {
+              "value": {
+                  "error_code": "validation_error",
+                  "message": {
+                      "status": "failed",
+                      "error_code": 422015,
+                      "message": "Output config is not valid for this text-to-speech workflow"
+                  }
+              }
+          },
+          "MissingOutputConfigErrorExample": {
+              "value": {
+                  "error_code": "validation_error",
+                  "message": {
+                      "status": "failed",
+                      "error_code": 422017,
+                      "message": "Missing 'output' field"
+                  }
+              }
+          },
+          "UnsupportedVoiceIdErrorExample": {
+              "value": {
+                  "error_code": "validation_error",
+                  "message": {
+                      "status": "failed",
+                      "error_code": 422018,
+                      "message": "The requested 'voiceId' is not supported"
+                  }
+              }
+          },
+          "MissingVoiceIdErrorExample": {
+              "value": {
+                  "error_code": "validation_error",
+                  "message": {
+                      "status": "failed",
+                      "error_code": 422019,
+                      "message": "'voiceId' is required for this workflow"
+                  }
+              }
+          },
+          "InvalidTextFileURLErrorExample": {
+              "value": {
+                  "error_code": "validation_error",
+                  "message": {
+                      "status": "failed",
+                      "error_code": 422020,
+                      "message": "Invalid media 'url' for script"
+                  }
+              }
+          },
+          "BackgroundUrlMissingErrorExample": {
+              "value": {
+                  "error_code": "validation_error",
+                  "message": {
+                      "status": "failed",
+                      "error_code": 422021,
+                      "message": "Background URL must be specified for type 'video' or 'image'"
+                  }
+              }
+          },
+          "IncorrectBackgroundUrlErrorExample": {
+              "value": {
+                  "error_code": "validation_error",
+                  "message": {
+                      "status": "failed",
+                      "error_code": 422022,
+                      "message": "Error while downloading file from Background URL"
+                  }
+              }
+          },
+          "UnsupportedFileTypeForVideoBackgroundErrorExample": {
+              "value": {
+                  "error_code": "validation_error",
+                  "message": {
+                      "status": "failed",
+                      "error_code": 422023,
+                      "message": "Unsupported file type for background"
+                  }
+              }
+          },
+          "UnsupportedFileTypeForImageBackgroundErrorExample": {
+              "value": {
+                  "error_code": "validation_error",
+                  "message": {
+                      "status": "failed",
+                      "error_code": 422024,
+                      "message": "Unsupported file type for background"
+                  }
+              }
+          },
+          "BackgroundTypeMissingErrorExample": {
+              "value": {
+                  "error_code": "validation_error",
+                  "message": {
+                      "status": "failed",
+                      "error_code": 422025,
+                      "message": "Background type must be set to 'image' or 'video'"
+                  }
+              }
+          },
+          "AvatarIdMissingErrorExample": {
+              "value": {
+                  "error_code": "validation_error",
+                  "message": {
+                      "status": "failed",
+                      "error_code": 422026,
+                      "message": "AvatarId is required for this workflow"
+                  }
+              }
+          },
+          "InvalidBackgroundUrlErrorExample": {
+              "value": {
+                  "error_code": "validation_error",
+                  "message": {
+                      "status": "failed",
+                      "error_code": 422027,
+                      "message": "Invalid url specified in background for image or video type"
+                  }
+              }
+          },
+          "BackgroundAssetResolutionErrorExample": {
+              "value": {
+                  "error_code": "validation_error",
+                  "message": {
+                      "status": "failed",
+                      "error_code": 422028,
+                      "message": "Background asset should have the same resolution as avatar video, 1920:1080"
+                  }
+              }
+          },
+          "UnsupportedAvatarIdErrorExample": {
+              "value": {
+                  "error_code": "validation_error",
+                  "message": {
+                      "status": "failed",
+                      "error_code": 422029,
+                      "message": "The requested 'AvatarId' is not supported"
+                  }
+              }
+          },
+          "BackgroundVideoShouldHaveAudioErrorExample": {
+              "value": {
+                  "error_code": "validation_error",
+                  "message": {
+                      "status": "failed",
+                      "error_code": 422030,
+                      "message": "Background video should have audio"
+                  }
+              }
+          },
+          "DurationMoreThanSupportedErrorExample": {
+              "value": {
+                  "error_code": "validation_error",
+                  "message": {
+                      "status": "failed",
+                      "error_code": 422031,
+                      "message": "Provided audio duration is more than 30 mins. Currently, max supported avatar video is 30 mins"
+                  }
+              }
+          },
+          "RunTimeErrorInAvatarExample": {
+              "value": {
+                  "error_code": "runtime_error",
+                  "message": {
+                      "status": "failed",
+                      "error_code": 500006,
+                      "message": "Internal Server Error"
+                  }
+              }
+          },
+          "ValidationFailureInLipsyncPipelineExample": {
+              "value": {
+                  "error_code": "runtime_error",
+                  "message": {
+                      "status": "failed",
+                      "error_code": 500007,
+                      "message": "Internal Server Error"
+                  }
+              }
+          },
+          "FailedInFFmpegWorkerExample": {
+              "value": {
+                  "error_code": "runtime_error",
+                  "message": {
+                      "status": "failed",
+                      "error_code": 500008,
+                      "message": "Internal Server Error"
+                  }
+              }
+          },
+          "FailedWhilePollingForLipsyncExample": {
+              "value": {
+                  "error_code": "runtime_error",
+                  "message": {
+                      "status": "failed",
+                      "error_code": 500009,
+                      "message": "Internal Server Error"
+                  }
+              }
+          },
+          "ErrorWhileTrimmingAvatarVideoExample": {
+              "value": {
+                  "error_code": "runtime_error",
+                  "message": {
+                      "status": "failed",
+                      "error_code": 500010,
+                      "message": "Internal Server Error"
+                  }
+              }
+          },
+          "ErrorWhileTrimmingAvatarAlphaVideoExample": {
+              "value": {
+                  "error_code": "runtime_error",
+                  "message": {
+                      "status": "failed",
+                      "error_code": 500011,
+                      "message": "Internal Server Error"
+                  }
+              }
+          },
+          "ErrorWhileDownloadingActorConfigFileFromS3Example": {
+              "value": {
+                  "error_code": "runtime_error",
+                  "message": {
+                      "status": "failed",
+                      "error_code": 500012,
+                      "message": "Internal Server Error"
+                  }
+              }
+          },
+          "CAISigningFailed": {
+              "summary": "Example of a CAI signing failure",
+              "value": {
+                  "error_code": "500001",
+                  "message": "CAI signing failed. Internal Server Error."
+              }
+          },
+          "UnableToUploadOutput": {
+              "summary": "Example of an upload failure for output",
+              "value": {
+                  "error_code": "500002",
+                  "message": "Unable to upload the output. Internal Server Error."
+              }
+          },
+          "RunTimeErrorInTTS": {
+              "summary": "Example of a runtime error in TTS",
+              "value": {
+                  "error_code": "500003",
+                  "message": "Runtime error occurred in text-to-speech processing. Internal Server Error."
+              }
+          },
+          "UnableToDownloadStockMedia": {
+              "summary": "Example of a failure to download stock media",
+              "value": {
+                  "error_code": "500004",
+                  "message": "Unable to download stock media. Internal Server Error."
+              }
+          }
+      }
+  }
+}
