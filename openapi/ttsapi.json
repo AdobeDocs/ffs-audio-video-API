@@ -267,9 +267,6 @@
                 "TextInputForSpeechGeneration" : {
                   "$ref" : "#/components/examples/TextInputForSpeechGeneration"
                 },
-                "SSMLInputForSpeechGeneration" : {
-                  "$ref" : "#/components/examples/SSMLInputForSpeechGeneration"
-                },
                 "URLInputForSpeechGeneration" : {
                   "$ref" : "#/components/examples/URLInputForSpeechGeneration"
                 }
@@ -288,6 +285,21 @@
                 "examples" : {
                   "SubmitRequestResponse" : {
                     "$ref" : "#/components/examples/SubmitRequestResponse"
+                  }
+                }
+              }
+            }
+          },
+          "400" : {
+            "description" : "Bad Request",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/FailedResponse"
+                },
+                "examples" : {
+                  "BadRequestError" : {
+                    "$ref" : "#/components/examples/BadRequestError"
                   }
                 }
               }
@@ -544,9 +556,6 @@
                 "PlainTextInputForAvatarGeneration" : {
                   "$ref" : "#/components/examples/PlainTextInputForAvatarGeneration"
                 },
-                "SSMLTextInputForAvatarGeneration" : {
-                  "$ref" : "#/components/examples/SSMLTextInputForAvatarGeneration"
-                },
                 "PlainTextInputForAvatarGenerationUsingVideoBackground" : {
                   "$ref" : "#/components/examples/PlainTextInputForAvatarGenerationUsingVideoBackground"
                 },
@@ -577,6 +586,21 @@
                 "examples" : {
                   "SubmitRequestResponse" : {
                     "$ref" : "#/components/examples/SubmitRequestResponse"
+                  }
+                }
+              }
+            }
+          },
+          "400" : {
+            "description" : "Bad Request",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/FailedResponse"
+                },
+                "examples" : {
+                  "BadRequestError" : {
+                    "$ref" : "#/components/examples/BadRequestError"
                   }
                 }
               }
@@ -824,6 +848,9 @@
                   },
                   "IncorrectBackgroundUrlErrorExample" : {
                     "$ref" : "#/components/examples/IncorrectBackgroundUrlErrorExample"
+                  },
+                  "ScriptPromptUnsafe": {
+                    "$ref": "#/components/examples/ScriptPromptUnsafe"
                   }
                 }
               }
@@ -1099,7 +1126,7 @@
               },
               "mediaType" : {
                 "type" : "string",
-                "enum" : [ "text/plain", "application/ssml+xml" ],
+                "enum" : [ "text/plain" ],
                 "description" : "The format of the text resource."
               }
             },
@@ -1146,7 +1173,7 @@
               },
               "mediaType" : {
                 "type" : "string",
-                "enum" : [ "text/plain", "application/ssml+xml" ],
+                "enum" : [ "text/plain" ],
                 "description": "The format of the text resource."
               }
             },
@@ -1436,20 +1463,6 @@
           }
         }
       },
-      "SSMLInputForSpeechGeneration" : {
-        "summary" : "Generate speech using SSML text",
-        "value" : {
-          "script" : {
-            "text" : "<SSML text>",
-            "mediaType" : "application/ssml+xml",
-            "localeCode" : "en-US"
-          },
-          "voiceId" : "<voice id>",
-          "output" : {
-            "mediaType" : "audio/wav"
-          }
-        }
-      },
       "URLInputForSpeechGeneration" : {
         "summary" : "Generate speech using text file",
         "value" : {
@@ -1472,21 +1485,6 @@
           "script" : {
             "text" : "<plain text>",
             "mediaType" : "text/plain",
-            "localeCode" : "en-US"
-          },
-          "voiceId" : "<voice id>",
-          "avatarId" : "<avatar id>",
-          "output" : {
-            "mediaType" : "video/mp4"
-          }
-        }
-      },
-      "SSMLTextInputForAvatarGeneration" : {
-        "summary" : "Generate avatar using SSML text",
-        "value" : {
-          "script" : {
-            "text" : "<SSML text>",
-            "mediaType" : "application/ssml+xml",
             "localeCode" : "en-US"
           },
           "voiceId" : "<voice id>",
@@ -1590,6 +1588,13 @@
           }
         }
       },
+      "BadRequestError": {
+        "summary" : "Bad Request",
+        "value" : {
+          "error_code" : "invalid_json",
+          "message" : "Invalid request. Please check the input data."
+        }
+      },
       "UnauthorizedAccessError" : {
         "summary" : "Invalid token",
         "value" : {
@@ -1669,6 +1674,12 @@
         "value": {
           "error_code":"validation_error",
           "message": "Input contains unsupported characters. Please remove any Emojis or Symbols."
+        }
+      },
+      "ScriptPromptUnsafe": {
+        "value": {
+          "error_code":"validation_error",
+          "message": "The provided prompt is considered unsafe and it cannot be used to generate content."
         }
       },
       "UnknownJobId" : {
