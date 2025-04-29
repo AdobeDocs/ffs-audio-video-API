@@ -1809,7 +1809,7 @@
         }
       },
       "StatusAPIFailedDownloadErrorResponse": {
-        "summary": "Failed Input Download",
+        "summary": "Failed Stock Media Download",
         "value": {
           "jobId": "string",
           "status": "failed",
