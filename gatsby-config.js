@@ -57,12 +57,8 @@ module.exports = {
         header: true,
         pages: [
           {
-            title: 'Using the Avatar API',
-            path: '/guides/index.md'
-          },
-          {
             title: 'Using the TTS API',
-            path: '/guides/tts'
+            path: '/guides/index.md'
           }
         ]
       }

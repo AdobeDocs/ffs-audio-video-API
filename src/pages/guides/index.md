@@ -1,33 +1,22 @@
 ---
-title: Using the Avatar API
-description: Learn how to use the Avatar API to generate avatar videos.
+title: Getting started with TTS
+description: This page is a quickstart guide to using the TTS API.
 contributors:
   - https://github.com/BaskarMitrah
   - https://github.com/aeabreu-hub
 ---
 
-# Using the Avatar API
+# Using the Text to Speech API
 
-The Avatar API offers automated video creation using a digital avatar speaking from a provided transcript. This guide shows you how to get started using the asynchronous API.
+The **Text to Speech (TTS)** API address the need for automated speech audio creation at scale. This guide shows you how to get started with using this asynchronous API.
 
 ## Overview
 
-Using the Avatar API you can generate an Avatar video with a text prompt or audio input.
-Options with the endpoint allow you to:
+Using the Text to Speech (TTS) API, you can generate an audio output from a text prompt or text file input.
+Options with this API allow you to:
 
-- Select an avatar from a catalog of stock actors.
-- Select a voice from a catalog of stock voices.
-- Use your own voice file to create avatar videos.
-- Set your own image/video as a video background.
-
-The endpoint returns a response object like the one below. Use the `statusUrl` from the response to [check the job result](#check-the-status-of-a-job).
-
-```json
-{
-    "jobId": "986fc222-1118-4242-b326-eb9873e3982f",
-    "statusUrl": "https://audio-video-api.adobe.io/v1/status/{jobID}"
-}
-```
+1. Use a voice of your choice from a catalog of stock voices.
+2. Choose from a wide variety of voices across genders, age groups, and speaking styles.
 
 ## Prerequisites
 
@@ -42,46 +31,51 @@ You'll need:
 
 ## Quickstart
 
-Use the commands below to generate an Avatar video.
+In the cURL command below, be sure to update:
 
-In the cURL commands, be sure to update:
+- `Authorization` with the bearer token.
+- `x-api-key` as per the prerequisite.
+- `mediaType` as per input type.
+- `url` with the generated pre-signed URL.
+- `voiceId` specifies the unique ID of the voice to be used for speech generation. Users should [refer to the Voices List API](/api) to choose the appropriate voice ID.
 
--  `Authorization` with the bearer token.
--  `x-api-key` with the Client ID.
--  `mediaType` the correct input format.
--  `url` (where applicable) with the generated pre-signed URL.
--  `avatarId` with the unique ID of the avatar to be used for avatar generation. Users should [refer to the Avatars List API](/api) to choose the appropriate Avatar ID.
--  `voiceId` with the unique ID of the voice to be used for avatar generation. Users should [refer to the Voices List API](/api) to choose the appropriate Voice ID.
+The command returns a response object like the one below. Use the `statusUrl` from the response to [check the job result](#check-the-status-of-a-job).
 
-### Generate a video from plain text input
+```json
+{
+    "jobId": "986fc222-1118-4242-b326-eb9873e3982f",
+    "statusUrl": "https://audio-video-api.adobe.io/v1/status/{jobID}"
+}
+```
+
+### Generate a video from plain text prompt
 
 ```bash
-curl 'https://audio-video-api.adobe.io/v1/generate-avatar' \
-  -H 'Content-Type: application/json' \
-  -H 'Authorization: Bearer <Token>' \
-  -H 'x-api-key: <Client_ID>' \
-  --data-raw '{
+curl --location 'https://audio-video-api.adobe.io/v1/generate-speech' \
+-H 'Authorization: Bearer <Token>' \
+-H 'x-api-key: <Client_ID>' \
+-H 'Content-Type: application/json' \
+--data-raw '{
     "script": {
         "text": "<script text>",
         "mediaType": "text/plain",
         "localeCode": "en-US"
     },
     "voiceId": "<voice ID>",
-    "avatarId": "<avatar ID>",
     "output": {
-        "mediaType": "video/mp4"
+        "mediaType": "audio/wav"
     }
 }'
 ```
 
-### Generate a video from a text file input
+### Generate using a text file
 
 ```bash
-curl 'https://audio-video-api.adobe.io/v1/generate-avatar' \
-  -H 'Content-Type: application/json' \
-  -H 'Authorization: Bearer <Token>' \
-  -H 'x-api-key: <Client_ID>' \
-  --data-raw '{
+curl --location 'https://audio-video-api.adobe.io/v1/generate-speech' \
+-H 'Authorization: Bearer <Token>' \
+-H 'x-api-key: <Client_ID>' \
+-H 'Content-Type: application/json' \
+--data-raw '{
     "script": {
         "source": {
             "url": "<pre-signed URL of text file>"
@@ -90,106 +84,21 @@ curl 'https://audio-video-api.adobe.io/v1/generate-avatar' \
         "localeCode": "en-US"
     },
     "voiceId": "<voice ID>",
-    "avatarId": "<avatar ID>",
     "output": {
-        "mediaType": "video/mp4"
+        "mediaType": "audio/wav"
     }
 }'
-```
-
-### Generate a video from an audio file input
-
-```bash
-curl 'https://audio-video-api.adobe.io/v1/generate-avatar' \
-  -H 'Content-Type: application/json' \
-  -H 'Authorization: Bearer <Token>' \
-  -H 'x-api-key: <Client_ID>' \
-  --data-raw '{
-    "audio": {
-        "source": {
-            "url": "<pre-signed URL of input audio>"
-        },
-        "mediaType": "audio/wav",
-        "localeCode": "en-US"
-    },
-    "avatarId": "<avatar ID>",
-    "output": {
-        "mediaType": "video/mp4"
-    }
-}'  
-```
-
-### Use a custom background
-
-Change the background of the Avatar video by providing a pre-signed URL of a video or image, or opt for a transparent or color background to use as a replacement.
-
-<InlineAlert slots="header,text" />
-
-NOTE
-
-[Refer to the Technical Usage notes](/getting_started/usage/) to understand the supported formats, aspect ratio, etc. for video and image backgrounds.
-
-#### Generate a video from text input with a video background
-
-```bash
-curl 'https://audio-video-api.adobe.io/v1/generate-avatar' \
-  -H 'Content-Type: application/json' \
-  -H 'Authorization: Bearer <Token>' \
-  -H 'x-api-key: <Client_ID>' \
-  --data-raw '{
-    "script": {
-        "text": "<script text>",
-        "mediaType": "text/plain",
-        "localeCode": "en-US"
-    },
-    "voiceId": "<voice ID>",
-    "avatarId": "<avatar ID>",
-    "output": {
-        "mediaType": "video/mp4",
-        "background": {
-            "type": "video",
-            "source": {
-                "url": "<pre-signed URL of background video>"
-            }
-        }
-    }
-}'  
-```
-
-#### Generate a video from text input with a image background
-
-```bash
-curl 'https://audio-video-api.adobe.io/v1/generate-avatar' \
-  -H 'Content-Type: application/json' \
-  -H 'Authorization: Bearer <Token>' \
-  -H 'x-api-key: <Client_ID>' \
-  --data-raw '{
-    "script": {
-        "text": "<script text>",
-        "mediaType": "text/plain",
-        "localeCode": "en-US"
-    },
-    "voiceId": "<voice ID>",
-    "avatarId": "<avatar ID>",
-    "output": {
-        "mediaType": "video/mp4",
-        "background": {
-            "type": "image",
-            "source": {
-                "url": "<pre-signed URL of background image>"
-            }
-        }
-    }
-}'  
 ```
 
 ### Check the status of a job
 
 Use the GET Result API to see the status of a job. In the command below, update:
 
-- `statusUrl` with the URL returned in the response of the Avatar API call.
-- `Authorization` with the bearer token.
-- `x-api-key` with the Client ID.
+- `statusUrl`
+- `Authorization`
+- `x-api-key`
+
+The `statusUrl` is returned in the response of the TTS API call.
 
 ```bash
 curl --location '<statusUrl>' \
@@ -197,9 +106,9 @@ curl --location '<statusUrl>' \
   -H 'x-api-key: <Client_ID>' 
 ```
 
-**Sample Avatar API response**
+**Sample TTS API response**
 
-```bash
+```json
 {
     "jobId": "986fc222-1118-4242-b326-eb9873e3982f",
     "status": "succeeded",
@@ -209,7 +118,7 @@ curl --location '<statusUrl>' \
 }
 ```
 
-Use the `url` to download the generated video.
+The `url` can be used to download the generated audio for the input.
 
 ### Verify with Content Credentials
 
