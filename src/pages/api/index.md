@@ -5,4 +5,4 @@ contributors:
   - https://github.com/BaskarMitrah
 ---
 
-<RedoclyAPIBlock src="/audio-video-firefly-services/openapi/ttsapi.json" />
+<RedoclyAPIBlock src="/audio-video-firefly-services/openapi/ttsapi.json" scrollYOffset={64} />
