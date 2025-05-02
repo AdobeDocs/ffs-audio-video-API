@@ -10,7 +10,7 @@ contributors:
 
 This document has details about what's currently supported, limitations, and workarounds for the Audio/Video APIs to help developers optimize their API implementations and understand service boundaries.
 
-## Text-to-Speech API notes
+## Text-to-Speech API usage
 
 Here's the technical usage information for the Text-to-Speech API.
 
@@ -48,7 +48,7 @@ These are the current rate limits for API requests:
 
 You may encounter a `HTTP 429 "Too Many Requests"` error if usage exceeds either the per minute or per day limits. We recommend using the `retry-after` header to determine the number of seconds you should wait before trying again.
 
-## Reframe API notes
+## Reframe API usage
 
 ### Supported media properties
 
