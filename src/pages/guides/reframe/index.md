@@ -12,7 +12,7 @@ This quickstart page provides ready-to-use cURL commands and instructions for th
 ## Before you start
 
 - You'll need a valid access token and client ID. See the [Authentication Guide](../getting_started/index.md) for details.
-- Upload your media files (audio or video) to [your storage location and generate a pre-signed URL](../getting_started/storage_solutions.md).
+- Upload your media files (audio or video) to [your storage location and generate a pre-signed URL](../../getting_started/storage_solutions/index.md).
 
 ## Use reframing and scene edit detection
 

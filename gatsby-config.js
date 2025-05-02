@@ -59,6 +59,10 @@ module.exports = {
           {
             title: 'Using the TTS API',
             path: '/guides/index.md'
+          },
+          {
+            title: 'Using the Reframe API',
+            path: '/guides/reframe.md'
           }
         ]
       }
