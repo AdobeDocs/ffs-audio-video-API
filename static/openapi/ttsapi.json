@@ -2,17 +2,23 @@
   "openapi": "3.1.0",
   "info": {
     "version": "1.0.0",
-    "title": "TTS (Text-to-Speech) API",
-    "description": "This REST API provides resources for generating speech from text or pre-signed URLs."
+    "title": "Firefly Services Audio/Video API",
+    "description": "This REST API provides resources to use Firefly Services AI for audio and video generation and processing."
   },
+  "tags": [
+    {
+      "name": "Text-to-speech",
+      "description": "Endpoints for text-to-speech operations."
+    },
+    {
+      "name": "Reframe",
+      "description": "Endpoints for video reframing."
+    }
+  ],
   "servers": [
     {
       "url": "https://audio-video-api.adobe.io/v1",
       "description": "Production environment - GA"
-    },
-    {
-      "url": "https://audio-video-api-stage.adobe.io/v1",
-      "description": "Staging environment - GA"
     }
   ],
   "security": [
@@ -24,6 +30,7 @@
   "paths": {
     "/voices": {
       "get": {
+        "tags": ["Text-to-speech"],
         "summary": "Get available voices",
         "description": "This endpoint provides the list of all available voices for the user's enterprise.",
         "operationId": "voices",
@@ -114,6 +121,7 @@
     },
     "/generate-speech": {
       "post": {
+        "tags": ["Text-to-speech"],
         "summary": "Generate speech from text",
         "description": "This endpoint generates speech from a transcript. You can provide the transcript either as plain text or a pre-signed URL. The response will include a job ID and a status URL for tracking the job.",
         "operationId": "generate-speech",
@@ -497,6 +505,274 @@
                 "examples": {
                   "RunTimeError": {
                     "$ref": "#/components/examples/RunTimeError"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/reframe": {
+      "post": {
+        "tags": ["Reframe"],
+        "summary": "Reframe input video",
+        "description": "This endpoint enables you to reframe the input media. You can provide video input through a pre-signed URL to generate reframed output video.",
+        "operationId": "generate-reframed-video",
+        "requestBody": {
+          "description": "Generate reframed video request body.",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "properties": {
+                  "video": {
+                    "type": "object",
+                    "properties": {
+                      "source": {
+                        "type": "object",
+                        "properties": {
+                          "url": {
+                            "type": "string",
+                            "format": "uri",
+                            "description": "The pre-signed URL pointing to the input source."
+                          }
+                        },
+                        "required": [
+                          "url"
+                        ],
+                        "description": "Details of the source including a pre-signed URL."
+                      },
+                      "mediaType": {
+                        "type": "string",
+                        "enum": [
+                          "video/mp4",
+                          "video/quicktime"
+                        ],
+                        "description": "Supported video media types."
+                      }
+                    },
+                    "required": [
+                      "source",
+                      "mediaType"
+                    ],
+                    "description": "Video Input details for Generate reframed video request."
+                  },
+                  "sceneEditDetection": {
+                    "type": "boolean",
+                    "description": "Apply Scene Edit Detection before reframing.",
+                    "default": true
+                  },
+                  "overlays": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/Overlay"
+                    },
+                    "description": "Configuration details for generating the reframed video."
+                  },
+                  "outputConfig": {
+                    "type": "object",
+                    "properties": {
+                      "aspectRatios": {
+                        "type": "array",
+                        "items": {
+                          "type": "string",
+                          "format": "numerator:denominator"
+                        },
+                        "description": "A list of aspect ratios for the output video."
+                      }
+                    },
+                    "required": [
+                      "aspectRatios"
+                    ],
+                    "description": "Configuration details for generating the reframed video."
+                  }
+                },
+                "required": [
+                  "video",
+                  "outputConfig"
+                ],
+                "type": "object"
+              },
+              "examples": {
+                "ReframedVideoInputRequestPayload": {
+                  "summary": "Video input to generate Reframed video output",
+                  "value": {
+                    "video": {
+                      "source": {
+                        "url": "<pre-signed url for downloading the video input>"
+                      },
+                      "mediaType": "video/mp4"
+                    },
+                    "sceneEditDetection": true,
+                    "overlays": [
+                      {
+                        "mediaType": "image/gif",
+                        "source": {
+                          "url": "pre-signed url for downloading the overlay input>"
+                        },
+                        "startTime": "00:00:05:00",
+                        "duration": "00:00:05:00",
+                        "scale": {
+                          "width": 500,
+                          "height": 500
+                        },
+                        "position": {
+                          "anchorPoint": "top_left",
+                          "offsetX": 500,
+                          "offsetY": 500
+                        },
+                        "repeat": "loop"
+                      }
+                    ],
+                    "outputConfig": {
+                      "aspectRatios": [
+                        "1:1",
+                        "9:16",
+                        "4:5"
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "202": {
+            "description": "Accepted",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "description": "Response indicating that the reframed video job has been successfully submitted.",
+                  "properties": {
+                    "jobId": {
+                      "type": "string",
+                      "description": "The unique identifier for the job."
+                    },
+                    "statusUrl": {
+                      "type": "string",
+                      "description": "The URL to monitor the status of the job."
+                    }
+                  },
+                  "required": [
+                    "jobId",
+                    "statusUrl"
+                  ],
+                  "type": "object"
+                },
+                "examples": {
+                  "GenerateReframedVideoResponse": {
+                    "summary": "Response for Successful Job Submission",
+                    "value": {
+                      "jobId": "<jobId>",
+                      "statusUrl": "https://<baseUrl>/v1/status/<jobId>"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GenerateReframedVideoJobErrorBody"
+                },
+                "examples": {
+                  "ErrorBodyBadRequest": {
+                    "$ref": "#/components/examples/ErrorBodyBadRequest"
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GenerateReframedVideoJobErrorBody"
+                },
+                "examples": {
+                  "ErrorBodyUnauthorized": {
+                    "$ref": "#/components/examples/ErrorBodyUnauthorized"
+                  }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GenerateReframedVideoJobErrorBody"
+                },
+                "examples": {
+                  "ErrorBodyForbidden": {
+                    "$ref": "#/components/examples/ErrorBodyForbidden"
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Resource not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GenerateReframedVideoJobErrorBody"
+                },
+                "examples": {
+                  "ErrorBodyResourceNotFound": {
+                    "$ref": "#/components/examples/ErrorBodyResourceNotFound"
+                  }
+                }
+              }
+            }
+          },
+          "405": {
+            "description": "Method Not Allowed",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GenerateReframedVideoJobErrorBody"
+                },
+                "examples": {
+                  "ErrorBodyMethodNotAllowed": {
+                    "$ref": "#/components/examples/ErrorBodyMethodNotAllowed"
+                  }
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Too many requests",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GenerateReframedVideoJobErrorBody"
+                },
+                "examples": {
+                  "ErrorBodyTooManyRequests": {
+                    "$ref": "#/components/examples/ErrorBodyTooManyRequests"
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GenerateReframedVideoJobErrorBody"
+                },
+                "examples": {
+                  "ErrorBodyInternalServerError": {
+                    "$ref": "#/components/examples/ErrorBodyInternalServerError"
                   }
                 }
               }
@@ -1067,6 +1343,127 @@
             "type": "string"
           }
         }
+      },
+      "Overlay": {
+        "type": "object",
+        "properties": {
+          "mediaType": {
+            "type": "string",
+            "enum": [
+              "image/gif",
+              "image/png",
+              "image/jpeg"
+            ],
+            "description": "The media type of the overlay."
+          },
+          "source": {
+            "type": "object",
+            "properties": {
+              "url": {
+                "type": "string",
+                "format": "uri",
+                "description": "The pre-signed URL pointing to the overlay source."
+              }
+            },
+            "required": [
+              "url"
+            ],
+            "description": "Details of the source including a pre-signed URL."
+          },
+          "startTime": {
+            "type": "string",
+            "format": "timecode",
+            "description": "The start time of the overlay in the video."
+          },
+          "duration": {
+            "type": "string",
+            "format": "timecode",
+            "description": "The duration of the overlay in the video."
+          },
+          "scale": {
+            "type": "object",
+            "properties": {
+              "width": {
+                "type": "integer",
+                "description": "The width of the overlay."
+              },
+              "height": {
+                "type": "integer",
+                "description": "The height of the overlay."
+              }
+            },
+            "required": [
+              "width",
+              "height"
+            ],
+            "description": "The scale of the overlay."
+          },
+          "position": {
+            "type": "object",
+            "properties": {
+              "anchorPoint": {
+                "type": "string",
+                "enum": [
+                  "top_left",
+                  "top_right",
+                  "bottom_left",
+                  "bottom_right",
+                  "center"
+                ],
+                "description": "The anchor point of the overlay."
+              },
+              "offsetX": {
+                "type": "integer",
+                "description": "The X offset of the overlay from the anchor point."
+              },
+              "offsetY": {
+                "type": "integer",
+                "description": "The Y offset of the overlay from the anchor point."
+              }
+            },
+            "required": [
+              "anchorPoint",
+              "offsetX",
+              "offsetY"
+            ],
+            "description": "The position of the overlay."
+          },
+          "repeat": {
+            "type": "string",
+            "enum": [
+              "loop",
+              "once"
+            ],
+            "description": "The repeat behavior of the overlay."
+          }
+        },
+        "required": [
+          "mediaType",
+          "source",
+          "startTime",
+          "duration",
+          "scale",
+          "position"
+        ],
+        "description": "Configuration for an overlay in the reframed video."
+      },
+      "GenerateReframedVideoJobErrorBody": {
+        "type": "object",
+        "properties": {
+          "error_code": {
+            "type": "string",
+            "description": "A code representing the specific error type."
+          },
+          "message": {
+            "type": "string",
+            "description": "A description of the error that occurred."
+          }
+        },
+        "required": [
+          "error_code",
+          "message"
+        ],
+        "description": "Error response for the reframed video job."
       }
     },
     "examples": {
@@ -1912,6 +2309,27 @@
         "value": {
           "error_code": "runtime_error",
           "message": "Error while fetching available entities"
+        }
+      },
+      "ErrorBodyBadRequest": {
+        "summary": "Bad Request",
+        "value": {
+          "error_code": "bad_request",
+          "message": "The request was invalid or cannot be served."
+        }
+      },
+      "ErrorBodyMethodNotAllowed": {
+        "summary": "Method Not Allowed",
+        "value": {
+          "error_code": "method_not_allowed",
+          "message": "The HTTP method is not supported for this endpoint."
+        }
+      },
+      "ErrorBodyInternalServerError": {
+        "summary": "Internal Server Error",
+        "value": {
+          "error_code": "internal_server_error",
+          "message": "An unexpected error occurred while processing the request."
         }
       }
     }
