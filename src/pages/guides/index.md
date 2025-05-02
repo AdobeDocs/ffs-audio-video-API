@@ -8,7 +8,7 @@ contributors:
 
 # Using the Text to Speech API
 
-The **Text to Speech (TTS)** API address the need for automated speech audio creation at scale. This guide shows you how to get started with using this asynchronous API.
+With the **Text to Speech (TTS)** API, you can create automated speech audio at scale. This guide shows you how to get started with using this asynchronous API.
 
 ## Overview
 
