@@ -13,6 +13,10 @@
     {
       "name": "Reframe",
       "description": "Endpoints for video reframing."
+    },
+    {
+      "name": "Manage jobs",
+      "description": "Endpoints for managing asyncronous jobs."
     }
   ],
   "servers": [
@@ -375,6 +379,7 @@
     },
     "/status/{jobId}": {
       "get": {
+        "tags": ["Manage jobs"],
         "summary": "Get the status of a job",
         "description": "Provides the status and result of an asynchronous TTS job.",
         "operationId": "status",
