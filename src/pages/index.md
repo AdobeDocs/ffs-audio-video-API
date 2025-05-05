@@ -60,11 +60,10 @@ Reframe features include:
 3. **Track Status**: Check a job's progress using a designated endpoint. Response times and update frequencies are subject to system load and configuration.
 4. **Add Overlays**: Apply pre-generated graphic overlays, such as GIFs or PNGs, over videos with precise control over timing, positioning, scaling, and looping behavior. Customization ensures that overlays align across different aspect ratios and remain consistent with the visual layout.
 
-[Check out the Getting Started section](/getting_started/) to see what they're all about.
+<AnnouncementBlock slots="heading, text, button" />
 
-<Resources slots="heading, links"/>
+### Ready to go?
 
-### Next steps
+Check out the Getting Started page to see what these services are all about.
 
-* [Get authenticated](./getting_started/index.md)
-* [Technical Usage Notes](./getting_started/usage/index.md)
+[Begin](/getting_started/)

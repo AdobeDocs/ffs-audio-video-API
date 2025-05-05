@@ -7,7 +7,7 @@ contributors:
 
 # Using the Reframe API
 
-This quickstart guide provides ready-to-use cURL commands and instructions for the features of the Reframe API.
+This quickstart guide provides ready-to-use cURL commands and instructions for the features of the **Reframe** API.
 
 ## Before you start
 
