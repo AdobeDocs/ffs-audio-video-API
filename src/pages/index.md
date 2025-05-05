@@ -41,8 +41,6 @@ The Text-to-Speech API generates lifelike spoken audio from a provided transcrip
 
 The Reframe API intelligently analyzes video content to dynamically adjust frame composition to fit the aspect ratios that you've specified, generating seamless content where it's needed from the existing video characteristics.
 
-All content in the generated reframed output is derived solely from the original source video.
-
 <TextBlock slots="image, heading, text" theme="dark" />
 
 ![Reframe GIF](/images/reframe.gif)
@@ -50,6 +48,10 @@ All content in the generated reframed output is derived solely from the original
 Reframe your Videos with AI
 
 This API uses technology similar to the Auto Reframe feature currently available in Premiere Pro software. It can be integrated with third-party systems and workflows, subject to applicable terms and conditions. Performance and results may vary based on input parameters and system configurations.
+
+<InlineAlert variant="info" slots="text"  />
+
+All content in the generated reframed output is derived solely from the original source video.
 
 Reframe features include:
 
