@@ -16,7 +16,7 @@ module.exports = {
     pages: [
       {
         title: 'Firefly Services',
-        path: 'https://developer.adobe.com/firefly-services/docs/guides/'
+        path: 'https://developer.adobe.com/firefly-services/docs/guides/?aio_internal'
       },
       {
         title: 'About Audio/Video API',
