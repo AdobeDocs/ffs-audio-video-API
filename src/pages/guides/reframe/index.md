@@ -11,7 +11,7 @@ This quickstart guide provides ready-to-use cURL commands and instructions for t
 
 ## Before you start
 
-- You'll need a valid access token and client ID. See the [Authentication Guide](../getting_started/index.md) for details.
+- You'll need a valid access token and client ID. See the [Authentication Guide](../../getting_started/index.md) for details.
 - Upload your media files (audio or video) to [your storage location and generate a pre-signed URL](../../getting_started/storage_solutions/index.md).
 
 ## Use reframing and scene edit detection
@@ -54,7 +54,7 @@ In the command, be sure to:
 - For multi-scene videos, enable scene transition handling by setting `sceneEditDetection: true`.
 - Specify aspect ratios for the output in width:height format (examples: "1:1", "9:16").
 
-For full details, [see the API Reference](../api/reframe.md).
+For full details, [see the API Reference](../../api/index.md).
 
 ## Add video overlays
 
@@ -111,7 +111,7 @@ In the command, be sure to:
 - Update `x-api-key` with your assigned API key/Client ID.
 - [Include data for a reframed video source](#provide-the-source).
 
-Each overlay object has many customizable properties to adjust the result. For full details, [see the API Reference](../api/reframe.md).
+Each overlay object has many customizable properties to adjust the result. For full details, [see the API Reference](../../api/index.md).
 
 ### Provide the overlay source
 
@@ -241,7 +241,7 @@ If there's an error, you'll see something like:
 }
 ```
 
-For a full list of error codes, check the [API Reference](../api/reframe.md).
+For a full list of error codes, check the [API Reference](../../api/index.md).
 
 ## Check the job status
 
