@@ -82,4 +82,3 @@ The rate of API requests are limited to:
 
 You may encounter a HTTP 429 "Too Many Requests" error if your usage exceeds either the per minute, or per day limits.
 We recommend using the 'retry-after' header to determine the number of seconds you should wait before trying again.
-
