@@ -6,13 +6,13 @@ contributors:
   - https://github.com/aeabreu-hub
 ---
 
-# Using the Text to Speech API
+# Using the Text-to-speech API
 
-The **Text to Speech (TTS)** API address the need for automated speech audio creation at scale. This guide shows you how to get started with using this asynchronous API.
+This quickstart guide offer ready-to-use cURL commands for the **Text-to-speech** API.
 
 ## Overview
 
-Using the Text to Speech (TTS) API, you can generate an audio output from a text prompt or text file input.
+Using the Text-to-speech (TTS) API, you can generate an audio output from a text prompt or text file input.
 Options with this API allow you to:
 
 1. Use a voice of your choice from a catalog of stock voices.

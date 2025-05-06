@@ -46,6 +46,10 @@ module.exports = {
             path: '/getting_started/'
           },
           {
+            title: 'Storage Solutions',
+            path: '/getting_started/storage_solutions'
+          },
+          {
             title: 'Technical Usage Notes',
             path: '/getting_started/usage'
           }
@@ -59,6 +63,10 @@ module.exports = {
           {
             title: 'Using the TTS API',
             path: '/guides/index.md'
+          },
+          {
+            title: 'Using the Reframe API',
+            path: '/guides/reframe.md'
           }
         ]
       }
