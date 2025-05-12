@@ -3,7 +3,8 @@
   "info": {
     "version": "1.0.0",
     "title": "Firefly Services Audio/Video API",
-    "description": "This REST API provides resources to use Firefly Services AI for audio and video generation and processing."
+    "description": "This REST API provides resources to use Firefly Services AI for audio and video generation and processing.",
+    "termsOfService" : "https://www.adobe.com/content/dam/cc/en/legal/terms/enterprise/pdfs/PSLT-AdobeCreativeAPI-WW-2024v2.pdf"
   },
   "tags": [
     {
