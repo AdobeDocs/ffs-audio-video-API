@@ -15,12 +15,12 @@
       "description": "Endpoints for video reframing."
     },
     {
-      "name": "Manage jobs",
-      "description": "Endpoints for managing asyncronous jobs."
+      "name": "Translate and lip sync",
+      "description": "Endpoints for transcribing and dubbing audio/video content."
     },
     {
-      "name": "Translate and Lip Sync",
-      "description": "Endpoints for transcribing and dubbing audio/video content with lip sync capabilities."
+      "name": "Manage jobs",
+      "description": "Endpoints for managing asyncronous jobs."
     }
   ],
   "servers": [
