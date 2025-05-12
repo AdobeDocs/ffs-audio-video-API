@@ -30,7 +30,7 @@ Here's the technical usage information for the Text-to-Speech API.
 
 Render times for Text-to-speech are 2X the output audio length.
 
-### Request limits per API
+### Request limits
 
 To be sure everyone enjoys peak performance with these APIs, Adobe sets limits on the volume, frequency, and concurrency of API calls. Adobe monitors your API usage and will contact you proactively to resolve any risks to API performance.
 
@@ -145,7 +145,7 @@ Technical details for audio used as input:
 - **Render time:** 3x the audio length
 - **Dubbing:** Multi-speaker support
 
-### Request limits per API
+### Request limits
 
 To ensure equitable peak performance, Adobe places limits on the volume, frequency, and concurrency of API calls, and monitors API usage in order to proactively reach out and resolve any risks to performance.
 
