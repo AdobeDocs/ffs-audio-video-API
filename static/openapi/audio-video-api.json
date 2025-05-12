@@ -793,7 +793,7 @@
     },
     "/v1/transcribe": {
       "post": {
-        "tags": ["Translate and Lip Sync"],
+        "tags": ["Translate and lip sync"],
         "summary": "Transcribe media",
         "description": "Generates transcripts for the input audio or video.",
         "operationId": "transcribe",
@@ -1038,7 +1038,7 @@
     },
     "/v1/dub": {
       "post": {
-        "tags": ["Translate and Lip Sync"],
+        "tags": ["Translate and lip sync"],
         "summary": "Dub audio or video",
         "description": "Generate dubbed video or audio.<br></br> A composited lip sync can be added for video dubbing.",
         "operationId": "dub",
