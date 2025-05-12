@@ -21,7 +21,7 @@
     },
     {
       "name": "Manage jobs",
-      "description": "Endpoints for managing asyncronous jobs."
+      "description": "Endpoints for managing asynchronous jobs."
     }
   ],
   "servers": [
@@ -3137,12 +3137,12 @@
         }
       },
       "StatusAPIFailedLipsyncErrorResponse": {
-        "summary": "Error in Lipsync",
+        "summary": "Error in lip sync.",
         "value": {
           "jobId": "string",
           "status": "failed",
           "error_code": "runtime_error",
-          "message": "Validation failure in Lipsync Pipeline"
+          "message": "Validation failure in lip sync pipeline."
         }
       },
       "StatusAPIFailedFFMpegErrorResponse": {
@@ -3155,12 +3155,12 @@
         }
       },
       "StatusAPIFailedLipsyncPollingErrorResponse": {
-        "summary": "Error Polling for Lipsync",
+        "summary": "Error Polling for lip sync.",
         "value": {
           "jobId": "string",
           "status": "failed",
           "error_code": "runtime_error",
-          "message": "Failed while polling for Lipsync"
+          "message": "Failed while polling for lip sync."
         }
       },
       "StatusAPIFailedMediaTrimErrorResponse": {
