@@ -77,7 +77,7 @@ module.exports = {
             path: '/guides/TLS/dub_quickstart.md'
           },
           {
-            title: 'GET Result API quickstart',
+            title: 'GET Result API Quickstart',
             path: '/guides/TLS/get_result_quickstart.md'
           }
         ]
