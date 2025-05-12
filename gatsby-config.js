@@ -66,7 +66,19 @@ module.exports = {
           },
           {
             title: 'Using the Reframe API',
-            path: '/guides/reframe.md'
+            path: '/guides/reframe/index.md'
+          },
+          {
+            title: 'Using the Transcribe API',
+            path: '/guides/TLS/index.md'
+          },
+          {
+            title: 'Using the Dub API',
+            path: '/guides/TLS/dub_quickstart.md'
+          },
+          {
+            title: 'GET Result API quickstart',
+            path: '/guides/TLS/get_result_quickstart.md'
           }
         ]
       }
