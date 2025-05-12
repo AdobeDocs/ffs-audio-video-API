@@ -27,9 +27,9 @@ curl -X POST 'https://ims-na1.adobelogin.com/ims/token/v3' \
 
 The required parameters are:
 
-- ```client_id```: The Client ID.
-- ```client_secret```: The Client secret.
-- ```scope```: ```openid,AdobeID,firefly_api,ff_apis```
+- `client_id`: The Client ID.
+- `client_secret`: The Client secret.
+- `scope`: The scopes are `openid`, `AdobeID`, `firefly_api`, `ff_apis`.
 
 Automate your token generation by calling the IMS endpoint above using standard OAuth2 libraries. Using industry-standard libraries is the quickest and most secure way of integrating with OAuth.
 
