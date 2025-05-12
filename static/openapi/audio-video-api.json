@@ -3234,6 +3234,362 @@
           "error_code": "internal_server_error",
           "message": "An unexpected error occurred while processing the request."
         }
+      },
+      "AudioInputToGenerateTranscriptFromSourceAudio": {
+        "summary": "Generate transcript from source audio",
+        "value": {
+          "audio": {
+            "source": {
+              "url": "<pre-signed url for downloading the audio input>"
+            },
+            "mediaType": "audio/wav"
+          },
+          "targetLocaleCodes": [
+            {
+              "localeCode": "en-US"
+            }
+          ]
+        }
+      },
+      "AudioInputToGenerateTranscriptFromTargetLanguageAudio": {
+        "summary": "Generate transcript from target language audio",
+        "value": {
+          "audio": {
+            "source": {
+              "url": "<pre-signed url for downloading the audio input>"
+            },
+            "mediaType": "audio/wav"
+          },
+          "targetLocaleCodes": [
+            {
+              "localeCode": "es-ES"
+            }
+          ]
+        }
+      },
+      "VideoInputToGenerateTranscriptFromSourceVideo": {
+        "summary": "Generate transcript from source video",
+        "value": {
+          "video": {
+            "source": {
+              "url": "<pre-signed url for downloading the video input>"
+            },
+            "mediaType": "video/mp4"
+          },
+          "targetLocaleCodes": [
+            {
+              "localeCode": "en-US"
+            }
+          ]
+        }
+      },
+      "VideoInputToGenerateTranscriptFromTargetLanguageVideo": {
+        "summary": "Generate transcript from target language video",
+        "value": {
+          "video": {
+            "source": {
+              "url": "<pre-signed url for downloading the video input>"
+            },
+            "mediaType": "video/mp4"
+          },
+          "targetLocaleCodes": [
+            {
+              "localeCode": "es-ES"
+            }
+          ]
+        }
+      },
+      "AudioInputToGenerateTranscriptAndCaptionsFromTargetFormatsFromSourceAudio": {
+        "summary": "Generate transcript and captions from source audio",
+        "value": {
+          "audio": {
+            "source": {
+              "url": "<pre-signed url for downloading the audio input>"
+            },
+            "mediaType": "audio/wav"
+          },
+          "targetLocaleCodes": [
+            {
+              "localeCode": "en-US"
+            }
+          ],
+          "captions": {
+            "targetFormats": ["SRT"]
+          }
+        }
+      },
+      "VideoInputToGenerateTranscriptAndCaptionsFromTargetFormatsFromSourceVideo": {
+        "summary": "Generate transcript and captions from source video",
+        "value": {
+          "video": {
+            "source": {
+              "url": "<pre-signed url for downloading the video input>"
+            },
+            "mediaType": "video/mp4"
+          },
+          "targetLocaleCodes": [
+            {
+              "localeCode": "en-US"
+            }
+          ],
+          "captions": {
+            "targetFormats": ["SRT"]
+          }
+        }
+      },
+      "JobStatusLinkResponse": {
+        "summary": "Job status link response",
+        "value": {
+          "jobId": "<jobId>",
+          "statusUrl": "https://<baseUrl>/v1/status/<jobId>"
+        }
+      },
+      "ValidationErrorVideoSourceBlank": {
+        "summary": "Video source blank error",
+        "value": {
+          "error_code": "validation_error",
+          "message": "Video source URL cannot be blank"
+        }
+      },
+      "ValidationErrorAudioSourceBlank": {
+        "summary": "Audio source blank error",
+        "value": {
+          "error_code": "validation_error",
+          "message": "Audio source URL cannot be blank"
+        }
+      },
+      "ValidationErrorInputSourceBlank": {
+        "summary": "Input source blank error",
+        "value": {
+          "error_code": "validation_error",
+          "message": "Input source URL cannot be blank"
+        }
+      },
+      "ValidationErrorVideoAndAudioSimultaneous": {
+        "summary": "Video and audio simultaneous error",
+        "value": {
+          "error_code": "validation_error",
+          "message": "Cannot provide both video and audio input simultaneously"
+        }
+      },
+      "ValidationErrorVideoInputMediaTypeMissing": {
+        "summary": "Video input media type missing error",
+        "value": {
+          "error_code": "validation_error",
+          "message": "Video input media type is required"
+        }
+      },
+      "ValidationErrorAudioInputMediaTypeMissing": {
+        "summary": "Audio input media type missing error",
+        "value": {
+          "error_code": "validation_error",
+          "message": "Audio input media type is required"
+        }
+      },
+      "ValidationErrorSourceUrlEmpty": {
+        "summary": "Source URL empty error",
+        "value": {
+          "error_code": "validation_error",
+          "message": "Source URL cannot be empty"
+        }
+      },
+      "ValidationErrorInvalidVideoAudioSourceUrl": {
+        "summary": "Invalid video/audio source URL error",
+        "value": {
+          "error_code": "validation_error",
+          "message": "Invalid video/audio source URL format"
+        }
+      },
+      "ValidationErrorBlankTranscriptSourceField": {
+        "summary": "Blank transcript source field error",
+        "value": {
+          "error_code": "validation_error",
+          "message": "Transcript source field cannot be blank"
+        }
+      },
+      "ValidationErrorInvalidTranscriptUrl": {
+        "summary": "Invalid transcript URL error",
+        "value": {
+          "error_code": "validation_error",
+          "message": "Invalid transcript URL format"
+        }
+      },
+      "ValidationErrorUnsupportedVideoMediaType": {
+        "summary": "Unsupported video media type error",
+        "value": {
+          "error_code": "validation_error",
+          "message": "Unsupported video media type"
+        }
+      },
+      "ValidationErrorUnsupportedAudioMediaType": {
+        "summary": "Unsupported audio media type error",
+        "value": {
+          "error_code": "validation_error",
+          "message": "Unsupported audio media type"
+        }
+      },
+      "ValidationErrorUnsupportedTargetLocaleCode": {
+        "summary": "Unsupported target locale code error",
+        "value": {
+          "error_code": "validation_error",
+          "message": "Unsupported target locale code"
+        }
+      },
+      "ValidationErrorBlankTargetLocaleCode": {
+        "summary": "Blank target locale code error",
+        "value": {
+          "error_code": "validation_error",
+          "message": "Target locale code cannot be blank"
+        }
+      },
+      "ValidationErrorMissingTargetLocaleCode": {
+        "summary": "Missing target locale code error",
+        "value": {
+          "error_code": "validation_error",
+          "message": "Target locale code is required"
+        }
+      },
+      "ValidationErrorLocaleCodeNotRequiredForEditedTranscript": {
+        "summary": "Locale code not required for edited transcript error",
+        "value": {
+          "error_code": "validation_error",
+          "message": "Locale code is not required for edited transcript"
+        }
+      },
+      "ValidationErrorEitherTargetLocaleCodesOrTranscriptionRequired": {
+        "summary": "Either target locale codes or transcription required error",
+        "value": {
+          "error_code": "validation_error",
+          "message": "Either target locale codes or transcription is required"
+        }
+      },
+      "ValidationErrorCaptionGenerationNotSupportedWithTranslation": {
+        "summary": "Caption generation not supported with translation error",
+        "value": {
+          "error_code": "validation_error",
+          "message": "Caption generation is not supported with translation"
+        }
+      },
+      "DubRequestUsingAutoTranslatedTranscripts": {
+        "summary": "Dub request using auto-translated transcripts",
+        "value": {
+          "video": {
+            "source": {
+              "url": "<pre-signed url for downloading the video input>"
+            },
+            "mediaType": "video/mp4"
+          },
+          "targetLocaleCodes": [
+            {
+              "localeCode": "es-ES"
+            }
+          ],
+          "lipSync": true
+        }
+      },
+      "DubRequestUsingAudioAutoTranslatedTranscripts": {
+        "summary": "Dub request using audio auto-translated transcripts",
+        "value": {
+          "audio": {
+            "source": {
+              "url": "<pre-signed url for downloading the audio input>"
+            },
+            "mediaType": "audio/wav"
+          },
+          "targetLocaleCodes": [
+            {
+              "localeCode": "es-ES"
+            }
+          ]
+        }
+      },
+      "DubRequestUsingEditedSourceTranscript": {
+        "summary": "Dub request using edited source transcript",
+        "value": {
+          "video": {
+            "source": {
+              "url": "<pre-signed url for downloading the video input>"
+            },
+            "mediaType": "video/mp4"
+          },
+          "transcripts": [
+            {
+              "source": {
+                "url": "<pre-signed url for downloading the edited transcript>"
+              },
+              "localeCode": "en-US"
+            }
+          ],
+          "targetLocaleCodes": [
+            {
+              "localeCode": "es-ES"
+            }
+          ],
+          "lipSync": true
+        }
+      },
+      "DubRequestUsingAudioEditedSourceTranscript": {
+        "summary": "Dub request using audio edited source transcript",
+        "value": {
+          "audio": {
+            "source": {
+              "url": "<pre-signed url for downloading the audio input>"
+            },
+            "mediaType": "audio/wav"
+          },
+          "transcripts": [
+            {
+              "source": {
+                "url": "<pre-signed url for downloading the edited transcript>"
+              },
+              "localeCode": "en-US"
+            }
+          ],
+          "targetLocaleCodes": [
+            {
+              "localeCode": "es-ES"
+            }
+          ]
+        }
+      },
+      "DubRequestUsingEditedTranslatedTranscript": {
+        "summary": "Dub request using edited translated transcript",
+        "value": {
+          "video": {
+            "source": {
+              "url": "<pre-signed url for downloading the video input>"
+            },
+            "mediaType": "video/mp4"
+          },
+          "transcripts": [
+            {
+              "source": {
+                "url": "<pre-signed url for downloading the edited translated transcript>"
+              },
+              "localeCode": "es-ES"
+            }
+          ],
+          "lipSync": true
+        }
+      },
+      "DubRequestUsingAudioEditedTranslatedTranscript": {
+        "summary": "Dub request using audio edited translated transcript",
+        "value": {
+          "audio": {
+            "source": {
+              "url": "<pre-signed url for downloading the audio input>"
+            },
+            "mediaType": "audio/wav"
+          },
+          "transcripts": [
+            {
+              "source": {
+                "url": "<pre-signed url for downloading the edited translated transcript>"
+              },
+              "localeCode": "es-ES"
+            }
+          ]
+        }
       }
     }
   }
