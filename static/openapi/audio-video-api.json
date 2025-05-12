@@ -245,7 +245,7 @@
             }
           },
           "422": {
-            "description": "Unprocessable Entity.",
+            "description": "Unprocessable Entity",
             "content": {
               "application/json": {
                 "schema": {
@@ -344,7 +344,7 @@
             }
           },
           "451": {
-            "description": "Unavailable For Legal Reasons",
+            "description": "Unauthorized For Legal Reasons",
             "content": {
               "application/json": {
                 "schema": {
@@ -1004,7 +1004,7 @@
             }
           },
           "451": {
-            "description": "Unauthorized due to legal reasons",
+            "description": "Unauthorized For Legal Reasons",
             "content": {
               "application/json": {
                 "schema": {
@@ -1240,7 +1240,7 @@
             }
           },
           "451": {
-            "description": "Unauthorized due to legal reasons",
+            "description": "Unauthorized For Legal Reasons",
             "content": {
               "application/json": {
                 "schema": {
