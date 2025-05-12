@@ -29,6 +29,12 @@ Generate spoken audio from a provided transcript.
 
 Automatically reframe videos.
 
+<DiscoverBlock slots="link, text"/>
+
+[TLS API](guides/)
+
+Create transcriptions and precise, accurate video dubs.
+
 ## Text-to-Speech API
 
 The Text-to-Speech API generates lifelike spoken audio from a provided transcript. Features include:
@@ -60,9 +66,23 @@ Reframe features include:
 3. **Track Status**: Check a job's progress using a designated endpoint. Response times and update frequencies are subject to system load and configuration.
 4. **Add Overlays**: Apply pre-generated graphic overlays, such as GIFs or PNGs, over videos with precise control over timing, positioning, scaling, and looping behavior. Customization ensures that overlays align across different aspect ratios and remain consistent with the visual layout.
 
+## Translate and Lip Sync API
+
+The Translate and Lip Sync (TLS) API uses transcriptions to generate audio and video with precise, accurate dubbing and composited lip sync. This feature supports multi-speaker scenarios.
+
+Supported workflows include:
+
+1. **Transcribe** audio and video.
+2. **Generate captions** for audio and video.
+3. **Automated Dubbing** for audio and video.
+4. **Dubbing with edited transcripts**.
+5. **Dubbing with pre-existing translations**.
+
+**Lip Sync** is also included as a parameter of the Dub API to create high-quality composited videos with precise lip-syncing. [Content Authenticity Initiative (CAI)](http://contentauthenticity.org/) support ensures protection against deepfakes.
+
 <AnnouncementBlock slots="heading, text, button" />
 
-### Ready to go?
+### Ready to try it?
 
 Check out the Getting Started page to see what these services are all about.
 
