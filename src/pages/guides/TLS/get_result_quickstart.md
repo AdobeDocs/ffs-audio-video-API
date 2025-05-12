@@ -8,8 +8,8 @@ Quickstart commands to see the result of an asynchronous dub job.
 
 ## Before you start
 
-- You'll need a valid access token and client ID. See the [Authentication Guide](../getting_started/index.md) for details.
-- Upload your media files (audio or video) to [your storage location and generate a pre-signed URL](../getting_started/storage_solutions/index.md).
+- You'll need a valid access token and client ID. See the [Authentication Guide](../../getting_started/index.md) for details.
+- Upload your media files (audio or video) to [your storage location and generate a pre-signed URL](../../getting_started/storage_solutions/index.md).
 
 ## Quickstart commands
 
