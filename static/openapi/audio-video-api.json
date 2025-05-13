@@ -1975,7 +1975,7 @@
           },
           "captions": {
             "$ref": "#/components/schemas/Captions",
-            "description": "Captions related details to generate captions for transcribe request"
+            "description": "Details to generate captions for a transcribe request."
           }
         },
         "description": "Transcribe request body."
