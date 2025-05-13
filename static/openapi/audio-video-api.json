@@ -2074,7 +2074,7 @@
             "items": {
               "$ref": "#/components/schemas/DubTargetLocaleCodes"
             },
-            "description": "See the usage notes for more about [these supported languages](../getting_started/usage/index.md#Language-Support)."
+            "description": "See the usage notes for more about [these supported languages](https://developer.adobe.com/audio-video-firefly-services/getting_started/usage/#language-support)."
           },
           "transcripts": {
             "type": "array",
