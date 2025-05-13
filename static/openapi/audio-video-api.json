@@ -2037,11 +2037,11 @@
         "type": "object",
         "oneOf": [
           {
-            "description": "Dub audio input",
+            "summary": "Dub audio input",
             "$ref": "#/components/schemas/DubAudioRequest"
           },
           {
-            "description": "Dub video input",
+            "summary": "Dub video input",
             "$ref": "#/components/schemas/DubVideoRequest"
           }
         ],
