@@ -1969,9 +1969,9 @@
         "properties": {
           "targetLocaleCodes": {
             "type": "array",
+            "description": "See the usage notes for more about [these supported languages](https://developer.adobe.com/audio-video-firefly-services/getting_started/usage/#language-support).",
             "items": {
-              "$ref": "#/components/schemas/TargetLocaleCodes",
-              "description": "See the usage notes for more about [these supported languages](https://developer.adobe.com/audio-video-firefly-services/getting_started/usage/#language-support)."
+              "$ref": "#/components/schemas/TargetLocaleCodes"
             }
           },
           "captions": {
