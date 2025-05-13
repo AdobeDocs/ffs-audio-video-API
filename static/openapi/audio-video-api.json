@@ -288,8 +288,8 @@
                   "MissingMediaTypeForScriptErrorExample": {
                     "$ref": "#/components/examples/MissingMediaTypeForScriptErrorExample"
                   },
-                  "MediatypeIncomatibleForText": {
-                    "$ref": "#/components/examples/MediatypeIncomatibleForText"
+                  "MediatypeIncompatibleForText": {
+                    "$ref": "#/components/examples/MediatypeIncompatibleForText"
                   },
                   "MissingSourceLocaleErrorExample": {
                     "$ref": "#/components/examples/MissingSourceLocaleErrorExample"
@@ -2468,7 +2468,7 @@
         "summary": "Access Denied",
         "value": {
           "error_code": "unauthorized_forbidden",
-          "message": "Access denied: You do not have the necessary permissions to access this resourced"
+          "message": "Access Denied: You do not have the necessary permissions to access this resource"
         }
       },
       "ErrorBodyForbidden": {
@@ -2552,7 +2552,7 @@
         "summary": "",
         "value": {
           "error_code": "validation_error",
-          "message": "Unauthorised authorization request"
+          "message": "Unauthorized request"
         }
       },
       "InvalidInputErrorExample": {
@@ -2639,7 +2639,7 @@
           "message": "Missing script 'mediaType' in the payload"
         }
       },
-      "MediatypeIncomatibleForText": {
+      "MediatypeIncompatibleForText": {
         "summary": "Invalid Script Mediatype",
         "value": {
           "error_code": "validation_error",
@@ -3069,7 +3069,7 @@
           "message": "Unsupported file type for background"
         }
       },
-      "StatusAPIFailedBackgroundResulutionMismatchResponse": {
+      "StatusAPIFailedBackgroundResolutionMismatchResponse": {
         "summary": "Unsupported Background Resolution",
         "value": {
           "jobId": "string",
@@ -3156,7 +3156,7 @@
           "jobId": "string",
           "status": "failed",
           "error_code": "runtime_error",
-          "message": "Failed while polling for lip sync."
+          "message": "Failed while polling for lip sync"
         }
       },
       "StatusAPIFailedMediaTrimErrorResponse": {
@@ -3165,7 +3165,7 @@
           "jobId": "string",
           "status": "failed",
           "error_code": "runtime_error",
-          "message": "Error while triming avatar video"
+          "message": "Error while trimming avatar video"
         }
       },
       "StatusAPIFailedMediaTrimAlphaErrorResponse": {
@@ -3174,7 +3174,7 @@
           "jobId": "string",
           "status": "failed",
           "error_code": "runtime_error",
-          "message": "Error while triming avatar alpha video"
+          "message": "Error while trimming avatar alpha video"
         }
       },
       "StatusAPIFailedConfigDownloadResponse": {
