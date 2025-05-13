@@ -23,16 +23,21 @@ on:
         options:
           - console
           - index
+  push:
+    branches:
+      - main
+
 jobs:
   set-state:
     runs-on: ubuntu-latest
     outputs:
-      deploy_prod: ${{ contains(github.event.inputs.env, 'prod') }}
+      deploy_prod: ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' || contains(github.event.inputs.env, 'prod') }}
       deploy_dev: ${{ contains(github.event.inputs.env, 'dev') }}
       clean_cache: ${{ contains(github.event.inputs.clean, 'yes') }}
       path_prefix: ${{ steps.get_path_prefix.outputs.path_prefix }}
       branch_short_ref: ${{ steps.get_branch.outputs.branch }}
       exclude_subfolder: ${{ github.event.inputs.excludeSubfolder }}
+      is_auto_deploy: ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' }}
     steps:
       - name: Checkout
         uses: actions/checkout@v3
@@ -187,6 +192,7 @@ jobs:
         shell: bash
     needs: [set-state, pre-build-production]
     runs-on: ubuntu-latest
+    if: needs.set-state.outputs.deploy_prod == 'true'
     steps:
       - name: Checkout
         uses: actions/checkout@v3
@@ -274,3 +280,27 @@ jobs:
         with:
           fastly-token: ${{ secrets.AIO_FASTLY_TOKEN }}
           fastly-url: "${{ secrets.AIO_FASTLY_PROD_URL }}${{ needs.set-state.outputs.path_prefix }}"
+
+  deploy-production:
+    needs: [build-production]
+    runs-on: ubuntu-latest
+    if: |
+      (needs.build-production.result == 'success') &&
+      (needs.set-state.outputs.deploy_prod == 'true') &&
+      (needs.set-state.outputs.is_auto_deploy == 'true')
+    steps:
+      - name: Deploy to Production
+        uses: AdobeDocs/static-website-deploy@master
+        with:
+          enabled-static-website: "true"
+          source: "public"
+          target: ${{ needs.set-state.outputs.path_prefix }}
+          connection-string: ${{ secrets.AIO_AZURE_PROD_CONNECTION_STRING }}
+          remove-existing-files: "true"
+          exclude-subfolder: ${{ needs.set-state.outputs.exclude_subfolder }}
+      
+      - name: Purge Fastly Cache
+        uses: AdobeDocs/gatsby-fastly-purge-action@master
+        with:
+          fastly-token: ${{ secrets.AIO_FASTLY_TOKEN }}
+          fastly-url: "${{ secrets.AIO_FASTLY_PROD_URL}}${{ needs.set-state.outputs.path_prefix }}"
