@@ -1970,7 +1970,8 @@
           "targetLocaleCodes": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/TargetLocaleCodes"
+              "$ref": "#/components/schemas/TargetLocaleCodes",
+              "description": "See the usage notes for more about [these supported languages](https://developer.adobe.com/audio-video-firefly-services/getting_started/usage/#language-support)."
             }
           },
           "captions": {
