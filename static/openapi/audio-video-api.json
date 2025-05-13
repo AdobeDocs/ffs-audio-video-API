@@ -798,7 +798,7 @@
         "description": "Generates transcripts for the input audio or video.",
         "operationId": "transcribe",
         "requestBody": {
-          "description": "Transcribe request body.",
+          "description": "The transcribe request body.",
           "required": true,
           "content": {
             "application/json": {
@@ -1040,10 +1040,10 @@
       "post": {
         "tags": ["Translate and lip sync"],
         "summary": "Dub audio or video",
-        "description": "Generate dubbed video or audio.<br></br> A composited lip sync can be added for video dubbing.",
+        "description": "Generate dubbed video or audio. A composited lip sync can also be added for video dubbing.",
         "operationId": "dub",
         "requestBody": {
-          "description": "The dub request body is used to specify either an audio dubbing or a video dubbing.",
+          "description": "The dub request body.",
           "required": true,
           "content": {
             "application/json": {
@@ -1960,11 +1960,9 @@
         "type": "object",
         "oneOf": [
           {
-            "description": "Transcribe audio input",
             "$ref": "#/components/schemas/TranscribeAudioInput"
           },
           {
-            "description": "Transcribe video input",
             "$ref": "#/components/schemas/TranscribeVideoInput"
           }
         ],
@@ -2037,11 +2035,9 @@
         "type": "object",
         "oneOf": [
           {
-            "summary": "Dub audio input",
             "$ref": "#/components/schemas/DubAudioRequest"
           },
           {
-            "summary": "Dub video input",
             "$ref": "#/components/schemas/DubVideoRequest"
           }
         ],
