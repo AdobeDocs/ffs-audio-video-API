@@ -31,13 +31,16 @@ jobs:
   set-state:
     runs-on: ubuntu-latest
     outputs:
-      deploy_prod: ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' || contains(github.event.inputs.env, 'prod') }}
+      deploy_prod: >-
+        ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' || 
+        contains(github.event.inputs.env, 'prod') }}
       deploy_dev: ${{ contains(github.event.inputs.env, 'dev') }}
       clean_cache: ${{ contains(github.event.inputs.clean, 'yes') }}
       path_prefix: ${{ steps.get_path_prefix.outputs.path_prefix }}
       branch_short_ref: ${{ steps.get_branch.outputs.branch }}
       exclude_subfolder: ${{ github.event.inputs.excludeSubfolder }}
-      is_auto_deploy: ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' }}
+      is_auto_deploy: >-
+        ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' }}
     steps:
       - name: Checkout
         uses: actions/checkout@v3
@@ -76,7 +79,8 @@ jobs:
       - name: check dev azure connection string
         if: env.AIO_AZURE_DEV_CONNECTION_STRING == null
         run: |
-          echo "::error::Please set the Azure Blob Storage connection string as AIO_AZURE_DEV_CONNECTION_STRING in Github Secrets"
+          echo "::error::Please set the Azure Blob Storage connection string as 
+          AIO_AZURE_DEV_CONNECTION_STRING in Github Secrets"
           exit 1
         env:
           AIO_AZURE_DEV_CONNECTION_STRING: ${{ secrets.AIO_AZURE_DEV_CONNECTION_STRING }}
@@ -181,7 +185,8 @@ jobs:
       - name: check prod azure connection string
         if: env.AIO_AZURE_PROD_CONNECTION_STRING == null
         run: |
-          echo "::error::Please set the Azure Blob Storage connection string as AIO_AZURE_PROD_CONNECTION_STRING in Github Secrets"
+          echo "::error::Please set the Azure Blob Storage connection string as 
+          AIO_AZURE_PROD_CONNECTION_STRING in Github Secrets"
           exit 1
         env:
           AIO_AZURE_PROD_CONNECTION_STRING: ${{ secrets.AIO_AZURE_PROD_CONNECTION_STRING }}
@@ -279,7 +284,8 @@ jobs:
         uses: AdobeDocs/gatsby-fastly-purge-action@master
         with:
           fastly-token: ${{ secrets.AIO_FASTLY_TOKEN }}
-          fastly-url: "${{ secrets.AIO_FASTLY_PROD_URL }}${{ needs.set-state.outputs.path_prefix }}"
+          fastly-url: >-
+            "${{ secrets.AIO_FASTLY_PROD_URL}}${{ needs.set-state.outputs.path_prefix }}"
 
   deploy-production:
     needs: [build-production]
@@ -303,4 +309,5 @@ jobs:
         uses: AdobeDocs/gatsby-fastly-purge-action@master
         with:
           fastly-token: ${{ secrets.AIO_FASTLY_TOKEN }}
-          fastly-url: "${{ secrets.AIO_FASTLY_PROD_URL}}${{ needs.set-state.outputs.path_prefix }}"
+          fastly-url: >-
+            "${{ secrets.AIO_FASTLY_PROD_URL}}${{ needs.set-state.outputs.path_prefix }}"
