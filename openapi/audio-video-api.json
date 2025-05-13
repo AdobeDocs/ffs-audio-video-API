@@ -288,8 +288,8 @@
                   "MissingMediaTypeForScriptErrorExample": {
                     "$ref": "#/components/examples/MissingMediaTypeForScriptErrorExample"
                   },
-                  "MediatypeIncomatibleForText": {
-                    "$ref": "#/components/examples/MediatypeIncomatibleForText"
+                  "MediatypeIncompatibleForText": {
+                    "$ref": "#/components/examples/MediatypeIncompatibleForText"
                   },
                   "MissingSourceLocaleErrorExample": {
                     "$ref": "#/components/examples/MissingSourceLocaleErrorExample"
@@ -526,11 +526,11 @@
     "/reframe": {
       "post": {
         "tags": ["Reframe"],
-        "summary": "Reframe input video",
-        "description": "This endpoint enables you to reframe the input media. You can provide video input through a pre-signed URL to generate reframed output video.",
+        "summary": "Reframe video",
+        "description": "This endpoint enables you to reframe video using AI. Provide video input with a pre-signed URL to generate reframed video output.",
         "operationId": "generate-reframed-video",
         "requestBody": {
-          "description": "Generate reframed video request body.",
+          "description": "The reframe request body.",
           "required": true,
           "content": {
             "application/json": {
@@ -566,7 +566,7 @@
                       "source",
                       "mediaType"
                     ],
-                    "description": "Video Input details for Generate reframed video request."
+                    "description": "Video input details."
                   },
                   "sceneEditDetection": {
                     "type": "boolean",
@@ -578,7 +578,7 @@
                     "items": {
                       "$ref": "#/components/schemas/Overlay"
                     },
-                    "description": "Configuration details for generating the reframed video."
+                    "description": "Configuration details for video overlays."
                   },
                   "outputConfig": {
                     "type": "object",
@@ -595,7 +595,7 @@
                     "required": [
                       "aspectRatios"
                     ],
-                    "description": "Configuration details for generating the reframed video."
+                    "description": "Configuration details for the generated reframed video."
                   }
                 },
                 "required": [
@@ -610,7 +610,7 @@
                   "value": {
                     "video": {
                       "source": {
-                        "url": "<pre-signed url for downloading the video input>"
+                        "url": "<pre-signed URL for downloading the video input>"
                       },
                       "mediaType": "video/mp4"
                     },
@@ -619,7 +619,7 @@
                       {
                         "mediaType": "image/gif",
                         "source": {
-                          "url": "pre-signed url for downloading the overlay input>"
+                          "url": "<pre-signed URL for downloading the overlay input>"
                         },
                         "startTime": "00:00:05:00",
                         "duration": "00:00:05:00",
@@ -798,7 +798,7 @@
         "description": "Generates transcripts for the input audio or video.",
         "operationId": "transcribe",
         "requestBody": {
-          "description": "Transcribe request body.",
+          "description": "The transcribe request body.",
           "required": true,
           "content": {
             "application/json": {
@@ -1040,10 +1040,10 @@
       "post": {
         "tags": ["Translate and lip sync"],
         "summary": "Dub audio or video",
-        "description": "Generate dubbed video or audio.<br></br> A composited lip sync can be added for video dubbing.",
+        "description": "Generate dubbed video or audio. A composited lip sync can also be added for video dubbing.",
         "operationId": "dub",
         "requestBody": {
-          "description": "The dub request body is used to specify either an audio dubbing or a video dubbing.",
+          "description": "The dub request body.",
           "required": true,
           "content": {
             "application/json": {
@@ -1969,13 +1969,14 @@
         "properties": {
           "targetLocaleCodes": {
             "type": "array",
+            "description": "See the usage notes for more about [these supported languages](https://developer.adobe.com/audio-video-firefly-services/getting_started/usage/#language-support).",
             "items": {
-              "$ref": "#/components/schemas/TranscriptInputLocale"
+              "$ref": "#/components/schemas/TargetLocaleCodes"
             }
           },
           "captions": {
             "$ref": "#/components/schemas/Captions",
-            "description": "Captions related details to generate captions for transcribe request"
+            "description": "Details to generate captions."
           }
         },
         "description": "Transcribe request body."
@@ -2049,9 +2050,9 @@
           "targetLocaleCodes": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/DubTargetLocaleCodes"
+              "$ref": "#/components/schemas/TargetLocaleCodes"
             },
-            "description": "Accepted values: [ 'da-DK','en-IN','en-GB','es-AR', 'es-419','fr-CA','hi-IN','ja-JP','ko-KR','nb-NO','nl-NL','pt-BR','sv-SE','zh-CN','en-US','es-ES','de-DE','fr-FR','it-IT','pt-PT']"
+            "description": "See the usage notes for more about [these supported languages](https://developer.adobe.com/audio-video-firefly-services/getting_started/usage/#language-support)."
           },
           "transcripts": {
             "type": "array",
@@ -2072,9 +2073,9 @@
           "targetLocaleCodes": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/DubTargetLocaleCodes"
+              "$ref": "#/components/schemas/TargetLocaleCodes"
             },
-            "description": "Accepted values: [ 'da-DK','en-IN','en-GB','es-AR', 'es-419','fr-CA','hi-IN','ja-JP','ko-KR','nb-NO','nl-NL','pt-BR','sv-SE','zh-CN','en-US','es-ES','de-DE','fr-FR','it-IT','pt-PT']"
+            "description": "See the usage notes for more about [these supported languages](https://developer.adobe.com/audio-video-firefly-services/getting_started/usage/#language-support)."
           },
           "transcripts": {
             "type": "array",
@@ -2204,7 +2205,7 @@
               "$ref": "#/components/schemas/CaptionOutput"
             },
             "localeCode": {
-              "$ref": "#/components/schemas/TranscriptInputLocale"
+              "$ref": "#/components/schemas/TargetLocaleCodes"
             }
           }
         }
@@ -2256,12 +2257,12 @@
       "AudioOutputMediaType": {
         "type": "string",
         "enum": ["audio/wav"],
-        "description": "Media type of the audio output"
+        "description": "Media type of the audio output."
       },
       "VideoOutputMediaType": {
         "type": "string",
         "enum": ["video/mp4", "video/mov"],
-        "description": "Media type of the video output"
+        "description": "Media type of the video output."
       },
       "AudioOutput": {
         "type": "object",
@@ -2304,18 +2305,13 @@
             "description": "The pre-signed URL to download the translated/edited transcripts."
           },
           "localeCode": {
-            "$ref": "#/components/schemas/TranscriptInputLocale"
+            "$ref": "#/components/schemas/TargetLocaleCodes"
           }
         },
         "required": ["source"],
         "description": "Transcript input details for transcribe request."
       },
-      "TranscriptInputLocale": {
-        "type": "string",
-        "description": "Locale code for transcript input.",
-        "enum": ["da-DK", "en-IN", "en-GB", "es-AR", "es-419", "fr-CA", "hi-IN", "ja-JP", "ko-KR", "nb-NO", "nl-NL", "pt-BR", "sv-SE", "zh-CN", "en-US", "es-ES", "de-DE", "fr-FR", "it-IT", "pt-PT"]
-      },
-      "DubTargetLocaleCodes": {
+      "TargetLocaleCodes": {
         "type": "string",
         "description": "Locale code for dubbing target.",
         "enum": ["da-DK", "en-IN", "en-GB", "es-AR", "es-419", "fr-CA", "hi-IN", "ja-JP", "ko-KR", "nb-NO", "nl-NL", "pt-BR", "sv-SE", "zh-CN", "en-US", "es-ES", "de-DE", "fr-FR", "it-IT", "pt-PT"]
@@ -2361,12 +2357,12 @@
       },
       "AudioInputMediaType": {
         "type": "string",
-        "description": "Media type of the audio input",
+        "description": "Media type of the audio input.",
         "enum": ["audio/mp3", "audio/wav", "audio/mpeg", "audio/x-m4a", "audio/aac"]
       },
       "VideoInputMediaType": {
         "type": "string",
-        "description": "Media type of the video input",
+        "description": "Media type of the video input.",
         "enum": ["video/mp4", "video/mov", "video/quicktime", "video/x-msvideo", "video/x-matroska"]
       }
     },
@@ -2472,7 +2468,7 @@
         "summary": "Access Denied",
         "value": {
           "error_code": "unauthorized_forbidden",
-          "message": "Access denied: You do not have the necessary permissions to access this resourced"
+          "message": "Access Denied: You do not have the necessary permissions to access this resource"
         }
       },
       "ErrorBodyForbidden": {
@@ -2556,7 +2552,7 @@
         "summary": "",
         "value": {
           "error_code": "validation_error",
-          "message": "Unauthorised authorization request"
+          "message": "Unauthorized request"
         }
       },
       "InvalidInputErrorExample": {
@@ -2643,7 +2639,7 @@
           "message": "Missing script 'mediaType' in the payload"
         }
       },
-      "MediatypeIncomatibleForText": {
+      "MediatypeIncompatibleForText": {
         "summary": "Invalid Script Mediatype",
         "value": {
           "error_code": "validation_error",
@@ -3073,7 +3069,7 @@
           "message": "Unsupported file type for background"
         }
       },
-      "StatusAPIFailedBackgroundResulutionMismatchResponse": {
+      "StatusAPIFailedBackgroundResolutionMismatchResponse": {
         "summary": "Unsupported Background Resolution",
         "value": {
           "jobId": "string",
@@ -3160,7 +3156,7 @@
           "jobId": "string",
           "status": "failed",
           "error_code": "runtime_error",
-          "message": "Failed while polling for lip sync."
+          "message": "Failed while polling for lip sync"
         }
       },
       "StatusAPIFailedMediaTrimErrorResponse": {
@@ -3169,7 +3165,7 @@
           "jobId": "string",
           "status": "failed",
           "error_code": "runtime_error",
-          "message": "Error while triming avatar video"
+          "message": "Error while trimming avatar video"
         }
       },
       "StatusAPIFailedMediaTrimAlphaErrorResponse": {
@@ -3178,7 +3174,7 @@
           "jobId": "string",
           "status": "failed",
           "error_code": "runtime_error",
-          "message": "Error while triming avatar alpha video"
+          "message": "Error while trimming avatar alpha video"
         }
       },
       "StatusAPIFailedConfigDownloadResponse": {
