@@ -1960,9 +1960,11 @@
         "type": "object",
         "oneOf": [
           {
+            "description": "Transcribe audio input",
             "$ref": "#/components/schemas/TranscribeAudioInput"
           },
           {
+            "description": "Transcribe video input",
             "$ref": "#/components/schemas/TranscribeVideoInput"
           }
         ],
@@ -2035,9 +2037,11 @@
         "type": "object",
         "oneOf": [
           {
+            "description": "Dub audio input",
             "$ref": "#/components/schemas/DubAudioRequest"
           },
           {
+            "description": "Dub video input",
             "$ref": "#/components/schemas/DubVideoRequest"
           }
         ],
