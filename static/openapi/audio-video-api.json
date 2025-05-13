@@ -526,11 +526,11 @@
     "/reframe": {
       "post": {
         "tags": ["Reframe"],
-        "summary": "Reframe input video",
-        "description": "This endpoint enables you to reframe the input media. You can provide video input through a pre-signed URL to generate reframed output video.",
+        "summary": "Reframe video",
+        "description": "This endpoint enables you to reframe video using AI. Provide video input with a pre-signed URL to generate reframed video output.",
         "operationId": "generate-reframed-video",
         "requestBody": {
-          "description": "Generate reframed video request body.",
+          "description": "The reframe request body.",
           "required": true,
           "content": {
             "application/json": {
@@ -566,7 +566,7 @@
                       "source",
                       "mediaType"
                     ],
-                    "description": "Video Input details for Generate reframed video request."
+                    "description": "Video input details."
                   },
                   "sceneEditDetection": {
                     "type": "boolean",
@@ -578,7 +578,7 @@
                     "items": {
                       "$ref": "#/components/schemas/Overlay"
                     },
-                    "description": "Configuration details for generating the reframed video."
+                    "description": "Configuration details for video overlays."
                   },
                   "outputConfig": {
                     "type": "object",
@@ -595,7 +595,7 @@
                     "required": [
                       "aspectRatios"
                     ],
-                    "description": "Configuration details for generating the reframed video."
+                    "description": "Configuration details for the generated reframed video."
                   }
                 },
                 "required": [
@@ -610,7 +610,7 @@
                   "value": {
                     "video": {
                       "source": {
-                        "url": "<pre-signed url for downloading the video input>"
+                        "url": "<pre-signed URL for downloading the video input>"
                       },
                       "mediaType": "video/mp4"
                     },
@@ -619,7 +619,7 @@
                       {
                         "mediaType": "image/gif",
                         "source": {
-                          "url": "pre-signed url for downloading the overlay input>"
+                          "url": "<pre-signed URL for downloading the overlay input>"
                         },
                         "startTime": "00:00:05:00",
                         "duration": "00:00:05:00",
