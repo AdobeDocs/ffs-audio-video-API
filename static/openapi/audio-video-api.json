@@ -1970,7 +1970,7 @@
           "targetLocaleCodes": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/TranscriptInputLocale"
+              "$ref": "#/components/schemas/TargetLocaleCodes"
             }
           },
           "captions": {
@@ -2049,7 +2049,7 @@
           "targetLocaleCodes": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/DubTargetLocaleCodes"
+              "$ref": "#/components/schemas/TargetLocaleCodes"
             },
             "description": "See the usage notes for more about [these supported languages](https://developer.adobe.com/audio-video-firefly-services/getting_started/usage/#language-support)."
           },
@@ -2072,7 +2072,7 @@
           "targetLocaleCodes": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/DubTargetLocaleCodes"
+              "$ref": "#/components/schemas/TargetLocaleCodes"
             },
             "description": "See the usage notes for more about [these supported languages](https://developer.adobe.com/audio-video-firefly-services/getting_started/usage/#language-support)."
           },
@@ -2204,7 +2204,7 @@
               "$ref": "#/components/schemas/CaptionOutput"
             },
             "localeCode": {
-              "$ref": "#/components/schemas/TranscriptInputLocale"
+              "$ref": "#/components/schemas/TargetLocaleCodes"
             }
           }
         }
@@ -2304,18 +2304,13 @@
             "description": "The pre-signed URL to download the translated/edited transcripts."
           },
           "localeCode": {
-            "$ref": "#/components/schemas/TranscriptInputLocale"
+            "$ref": "#/components/schemas/TargetLocaleCodes"
           }
         },
         "required": ["source"],
         "description": "Transcript input details for transcribe request."
       },
-      "TranscriptInputLocale": {
-        "type": "string",
-        "description": "Locale code for transcript input.",
-        "enum": ["da-DK", "en-IN", "en-GB", "es-AR", "es-419", "fr-CA", "hi-IN", "ja-JP", "ko-KR", "nb-NO", "nl-NL", "pt-BR", "sv-SE", "zh-CN", "en-US", "es-ES", "de-DE", "fr-FR", "it-IT", "pt-PT"]
-      },
-      "DubTargetLocaleCodes": {
+      "TargetLocaleCodes": {
         "type": "string",
         "description": "Locale code for dubbing target.",
         "enum": ["da-DK", "en-IN", "en-GB", "es-AR", "es-419", "fr-CA", "hi-IN", "ja-JP", "ko-KR", "nb-NO", "nl-NL", "pt-BR", "sv-SE", "zh-CN", "en-US", "es-ES", "de-DE", "fr-FR", "it-IT", "pt-PT"]
