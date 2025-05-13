@@ -2074,7 +2074,7 @@
             "items": {
               "$ref": "#/components/schemas/DubTargetLocaleCodes"
             },
-            "description": "Accepted values: [ 'da-DK','en-IN','en-GB','es-AR', 'es-419','fr-CA','hi-IN','ja-JP','ko-KR','nb-NO','nl-NL','pt-BR','sv-SE','zh-CN','en-US','es-ES','de-DE','fr-FR','it-IT','pt-PT']"
+            "description": "See the usage notes for more about [these supported languages](../getting_started/usage/index.md#Language-Support)."
           },
           "transcripts": {
             "type": "array",
