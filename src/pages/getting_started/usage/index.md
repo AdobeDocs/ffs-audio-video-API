@@ -40,11 +40,9 @@ Be aware that these usage limits apply to your entire organization.
 
 These are the current rate limits for API requests:
 
-**Get Voices API**: 50 requests per minute.
+**Get Voices API (/voices)**: 50 requests per minute.
 
-**Generate Speech API**: 10 requests per minute.
-
-**Get Result API**: 100 requests per minute.
+**Generate Speech API (/generate-speech)**: 10 requests per minute.
 
 You may encounter a `HTTP 429 "Too Many Requests"` error if usage exceeds either the per minute or per day limits. We recommend using the `retry-after` header to determine the number of seconds you should wait before trying again.
 
@@ -67,20 +65,20 @@ You may encounter a `HTTP 429 "Too Many Requests"` error if usage exceeds either
 
 | Configuration                                     | Estimated Render Time                 |
 |-------------------------------                    |---------------------------------------|
-| 1 Aspect Ratio, no scene edit detection applied   | ~0.5x video length  |
-| 3 Aspect Ratios, no scene edit detection applied  | ~0.6x video length |
-| 1 Aspect Ratio, with scene edit detection         | ~1.4x video length        |
+| 1 aspect ratio requested, 60s input video, Scene Edit Detection NOT applied   | ~0.5x video length  |
+| 5 aspect ratios requested, 60s input video, Scene Edit Detection NOT applied  | ~0.6x video length |
+| 1 aspect ratio requested, 60s input video, Scene Edit Detection applied         | ~1.3x video length        |
+| 5 aspect ratios requested, 60s input video, Scene Edit Detection applied         | ~1.5x video length        |
 
 ### Request limits
 
-To ensure equitable peak performance, Adobe limits the volume, frequency, and concurrency of API calls. We monitor usage and proactively contact you to resolve any risks to performance.
+To ensure equitable peak performance, Adobe limits the volume, frequency, and concurrency of API calls. We monitor usage to proactively resolve any risks to performance.
 
-The rate of API requests are limited to:
+These are the current rate limits for API requests:
 
-- Reframe Processing Endpoint (/reframe): Max of 2 requests per minute.
-- Status Check Endpoint (/status): Max of 100 requests per minute.
+**Reframe Processing API (/reframe)**: Max of 2 requests per minute.
 
-You may encounter a HTTP 429 "Too Many Requests" error if your usage exceeds either the per minute, or per day limits.
+You'll encounter a HTTP 429 "Too Many Requests" error if usage exceeds the limits per minute or per day.
 We recommend using the 'retry-after' header to determine the number of seconds you should wait before trying again.
 
 ## Translate and Lip Sync API usage
@@ -147,7 +145,7 @@ Technical details for audio used as input:
 
 ### Request limits
 
-To ensure equitable peak performance, Adobe places limits on the volume, frequency, and concurrency of API calls, and monitors API usage in order to proactively reach out and resolve any risks to performance.
+To ensure equitable peak performance, Adobe places limits on the volume, frequency, and concurrency of API calls, and monitors API usage to proactively resolve any risks to performance.
 
 <InlineAlert variant="warning" slots="text1" />
 
@@ -155,8 +153,12 @@ These usage limits apply to your entire organization. <br/>
 
 The current limitations are:
 
-**Transcribe endpoint:** 5 requests per minute.
+**Transcribe endpoint (/transcribe):** 5 requests per minute.
 
-**Dubbing/Lip Sync endpoint:**  5 requests per minute and 150 requests per day.
+**Dubbing/Lip Sync endpoint (/dub):**  5 requests per minute and 150 requests per day.
 
-**Get Result endpoint:** 100 requests per minute.
+## GET status API
+
+### Request limits
+
+**Get Result endpoint (/status/{jobId}):** 100 requests per minute.
