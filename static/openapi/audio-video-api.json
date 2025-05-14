@@ -392,7 +392,7 @@
           {
             "name": "jobId",
             "in": "path",
-            "description": "The job ID of an asynchronous TTS job.",
+            "description": "The job ID of an asynchronous job.",
             "required": true,
             "schema": {
               "type": "string"
