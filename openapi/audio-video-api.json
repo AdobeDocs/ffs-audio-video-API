@@ -386,13 +386,13 @@
       "get": {
         "tags": ["Manage jobs"],
         "summary": "Get the status of a job",
-        "description": "Provides the status and result of an asynchronous TTS job.",
+        "description": "Provides the status and result of an asynchronous job.",
         "operationId": "status",
         "parameters": [
           {
             "name": "jobId",
             "in": "path",
-            "description": "The job ID of an asynchronous TTS job.",
+            "description": "The job ID of an asynchronous job.",
             "required": true,
             "schema": {
               "type": "string"
