@@ -65,9 +65,10 @@ You may encounter a `HTTP 429 "Too Many Requests"` error if usage exceeds either
 
 | Configuration                                     | Estimated Render Time                 |
 |-------------------------------                    |---------------------------------------|
-| 1 Aspect Ratio, no scene edit detection applied   | ~0.5x video length  |
-| 3 Aspect Ratios, no scene edit detection applied  | ~0.6x video length |
-| 1 Aspect Ratio, with scene edit detection         | ~1.4x video length        |
+| 1 aspect ratio requested, 60s input video, Scene Edit Detection NOT applied   | ~0.5x video length  |
+| 5 aspect ratios requested, 60s input video, Scene Edit Detection NOT applied  | ~0.6x video length |
+| 1 aspect ratio requested, 60s input video, Scene Edit Detection applied         | ~1.3x video length        |
+| 5 aspect ratios requested, 60s input video, Scene Edit Detection applied         | ~1.5x video length        |
 
 ### Request limits
 
