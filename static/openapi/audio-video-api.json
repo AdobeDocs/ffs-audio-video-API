@@ -791,7 +791,7 @@
         }
       }
     },
-    "/v1/transcribe": {
+    "/transcribe": {
       "post": {
         "tags": ["Translate and lip sync"],
         "summary": "Transcribe media",
@@ -1036,7 +1036,7 @@
         }
       }
     },
-    "/v1/dub": {
+    "/dub": {
       "post": {
         "tags": ["Translate and lip sync"],
         "summary": "Dub audio or video",
