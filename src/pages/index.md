@@ -3,6 +3,7 @@ title: Audio/Video API Overview
 description: The overview page for Audio/Video API services.
 contributors:
   - https://github.com/BaskarMitrah
+  - https://github.com/AEAbreu-hub
 ---
 
 <Hero slots="heading, text" background="rgb(233, 80, 80)"/>
@@ -37,7 +38,7 @@ Create transcriptions and precise, accurate video dubs.
 
 ## Text-to-Speech API
 
-The Text-to-Speech API generates lifelike spoken audio from a provided transcript. Features include:
+The Text-to-Speech (TTS) API generates lifelike spoken audio from a provided transcript. Features include:
 
 - **Choose voices** from Firefly's catalog of voices.
 - **Turn prompts into spoken audio**.
