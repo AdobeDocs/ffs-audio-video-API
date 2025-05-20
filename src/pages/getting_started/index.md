@@ -31,6 +31,12 @@ The required parameters are:
 - `client_secret`: The Client secret.
 - `scope`: The scopes are `openid`, `AdobeID`, `firefly_api`, `ff_apis`.
 
+<InlineAlert variant="warning" slots="header, text" />
+
+Tokens for TLS need additional scopes
+
+Translate and Lip Sync (TLS) tokens can be generated but MAY NOT BE VALID without two cards included on your developer console project. To authenticate the TLS API, add another API from the Firefly services family to your project on the Adobe developer console.
+
 Automate your token generation by calling the IMS endpoint above using standard OAuth2 libraries. Using industry-standard libraries is the quickest and most secure way of integrating with OAuth.
 
 Be diligent when choosing the OAuth 2.0 library that works best for your application. Your teams' projects likely leverage OAuth libraries already to connect with other APIs. It's recommended to use these libraries to automatically generate tokens when they expire.
