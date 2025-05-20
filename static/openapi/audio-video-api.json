@@ -2021,16 +2021,21 @@
             "format": "uri",
             "description": "The pre-signed URL pointing to the input source."
           }
-        }
+        },
+        "required": ["url"],
+        "description": "Source details including a pre-signed URL for accessing the input media."
       },
       "Destination": {
         "type": "object",
         "properties": {
           "url": {
             "type": "string",
-            "description": "The pre-signed URL pointing to the output source."
+            "format": "uri",
+            "description": "The pre-signed URL pointing to the output destination."
           }
-        }
+        },
+        "required": ["url"],
+        "description": "Destination details including a pre-signed URL for the output media."
       },
       "DubRequest": {
         "type": "object",
