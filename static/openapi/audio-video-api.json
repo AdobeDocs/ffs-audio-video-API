@@ -3241,11 +3241,7 @@
             },
             "mediaType": "audio/wav"
           },
-          "targetLocaleCodes": [
-            {
-              "localeCode": "en-US"
-            }
-          ]
+          "targetLocaleCodes": ["en-US"]
         }
       },
       "AudioInputToGenerateTranscriptFromTargetLanguageAudio": {
@@ -3257,11 +3253,7 @@
             },
             "mediaType": "audio/wav"
           },
-          "targetLocaleCodes": [
-            {
-              "localeCode": "es-ES"
-            }
-          ]
+          "targetLocaleCodes": ["es-ES"]
         }
       },
       "VideoInputToGenerateTranscriptFromSourceVideo": {
@@ -3273,11 +3265,7 @@
             },
             "mediaType": "video/mp4"
           },
-          "targetLocaleCodes": [
-            {
-              "localeCode": "en-US"
-            }
-          ]
+          "targetLocaleCodes": ["en-US"]
         }
       },
       "VideoInputToGenerateTranscriptFromTargetLanguageVideo": {
@@ -3289,11 +3277,7 @@
             },
             "mediaType": "video/mp4"
           },
-          "targetLocaleCodes": [
-            {
-              "localeCode": "es-ES"
-            }
-          ]
+          "targetLocaleCodes": ["es-ES"]
         }
       },
       "AudioInputToGenerateTranscriptAndCaptionsFromTargetFormatsFromSourceAudio": {
@@ -3305,11 +3289,7 @@
             },
             "mediaType": "audio/wav"
           },
-          "targetLocaleCodes": [
-            {
-              "localeCode": "en-US"
-            }
-          ],
+          "targetLocaleCodes": ["en-US"],
           "captions": {
             "targetFormats": ["SRT"]
           }
@@ -3324,11 +3304,7 @@
             },
             "mediaType": "video/mp4"
           },
-          "targetLocaleCodes": [
-            {
-              "localeCode": "en-US"
-            }
-          ],
+          "targetLocaleCodes": ["en-US"],
           "captions": {
             "targetFormats": ["SRT"]
           }
@@ -3476,11 +3452,7 @@
             },
             "mediaType": "video/mp4"
           },
-          "targetLocaleCodes": [
-            {
-              "localeCode": "es-ES"
-            }
-          ],
+          "targetLocaleCodes": ["es-ES"],
           "lipSync": true
         }
       },
@@ -3493,11 +3465,7 @@
             },
             "mediaType": "audio/wav"
           },
-          "targetLocaleCodes": [
-            {
-              "localeCode": "es-ES"
-            }
-          ]
+          "targetLocaleCodes": ["es-ES"]
         }
       },
       "DubRequestUsingEditedSourceTranscript": {
@@ -3517,11 +3485,7 @@
               "localeCode": "en-US"
             }
           ],
-          "targetLocaleCodes": [
-            {
-              "localeCode": "es-ES"
-            }
-          ],
+          "targetLocaleCodes": ["es-ES"],
           "lipSync": true
         }
       },
@@ -3542,11 +3506,7 @@
               "localeCode": "en-US"
             }
           ],
-          "targetLocaleCodes": [
-            {
-              "localeCode": "es-ES"
-            }
-          ]
+          "targetLocaleCodes": ["es-ES"]
         }
       },
       "DubRequestUsingEditedTranslatedTranscript": {
