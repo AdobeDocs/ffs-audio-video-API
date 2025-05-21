@@ -2308,13 +2308,10 @@
           "source": {
             "$ref": "#/components/schemas/Source",
             "description": "The pre-signed URL to download the translated/edited transcripts."
-          },
-          "localeCode": {
-            "$ref": "#/components/schemas/TargetLocaleCodes"
           }
         },
         "required": ["source"],
-        "description": "Transcript input details for transcribe request."
+        "description": "Transcript input details for a transcribe request."
       },
       "TargetLocaleCodes": {
         "type": "string",
