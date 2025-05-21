@@ -1226,7 +1226,7 @@
             }
           },
           "429": {
-            "description": "Too many requests",
+            "description": "Too Many Requests",
             "content": {
               "application/json": {
                 "schema": {
