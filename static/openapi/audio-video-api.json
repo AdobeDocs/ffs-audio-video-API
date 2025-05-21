@@ -1,6 +1,5 @@
 {
   "openapi": "3.1.0",
-  "x-hideTryItPanel": true,
   "info": {
     "version": "1.0.0",
     "title": "Firefly Services Audio/Video API",
