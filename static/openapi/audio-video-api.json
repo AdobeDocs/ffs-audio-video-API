@@ -3483,8 +3483,7 @@
             {
               "source": {
                 "url": "<pre-signed url for downloading the edited transcript>"
-              },
-              "localeCode": "en-US"
+              }
             }
           ],
           "targetLocaleCodes": ["es-ES"],
@@ -3504,8 +3503,7 @@
             {
               "source": {
                 "url": "<pre-signed url for downloading the edited transcript>"
-              },
-              "localeCode": "en-US"
+              }
             }
           ],
           "targetLocaleCodes": ["es-ES"]
@@ -3524,8 +3522,7 @@
             {
               "source": {
                 "url": "<pre-signed url for downloading the edited translated transcript>"
-              },
-              "localeCode": "es-ES"
+              }
             }
           ],
           "lipSync": true
@@ -3544,8 +3541,7 @@
             {
               "source": {
                 "url": "<pre-signed url for downloading the edited translated transcript>"
-              },
-              "localeCode": "es-ES"
+              }
             }
           ]
         }
