@@ -188,7 +188,7 @@ Use the GET Result API to see the status of a job. In the command below, update:
 - `x-api-key` with the Client ID.
 
 ```bash
-curl --location '<status_url>' \
+curl --location '<status_URL>' \
   -H 'Authorization: Bearer <token>' \
   -H 'x-api-key: <client_ID>' 
 ```
@@ -205,4 +205,15 @@ curl --location '<status_url>' \
 }
 ```
 
-Use the `url`
+Use the `url` to download the generated video.
+
+### Verify with Content Credentials
+
+Adobe participates in the content authentication initiative for AI-generated assets, addressing concerns around content legitimacy. Register your content by uploading the file at [ContentCredential.org][5].
+
+<!-- Links -->
+[1]: ../../getting_started/
+[2]: ../../api
+[3]: ../../api
+[4]: /getting_started/usage/
+[5]: https://contentcredentials.org/verify
