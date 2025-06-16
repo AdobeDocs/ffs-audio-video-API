@@ -100,34 +100,36 @@ Speakers can be updated, however don't remove speakers before dubbing. Also, dub
 
 Dubbing is supported for the following languages:
 
-- English (Indian) (`en-IN`)
-- English (American) (`en-US`)
-- English (British) (`en-GB`)
-- Spanish (Spanish) (`es-ES`)
-- Spanish (Argentina) (`es-AR`)
-- Spanish (Latin America) (`es-419`)
-- French (France) (`fr-FR`)
-- French (Canada) (`fr-CA`)
-- Danish (Denmark) (`da-DK`)
-- Norwegian (Norway) (`nb-NO`)
-- German (`de-DE`)
-- Italian (`it-IT`)
-- Portuguese (Brazil) (`pt-BR`)
-- Portuguese (Portugal) (`pt-PT`)
-- Hindi (India) (`hi-IN`)
-- Japanese (Japan) (`ja-JP`)
-- Korean (South Korea) (`ko-KR`)
+| Language description | Code |
+|---------------------|------|
+| English (Indian) | `en-IN` |
+| English (American) | `en-US` |
+| English (British) | `en-GB` |
+| Spanish (Spanish) | `es-ES` |
+| Spanish (Argentina) | `es-AR` |
+| Spanish (Latin America) | `es-419` |
+| French (France) | `fr-FR` |
+| French (Canada) | `fr-CA` |
+| Danish (Denmark) | `da-DK` |
+| Norwegian (Norway) | `nb-NO` |
+| German | `de-DE` |
+| Italian | `it-IT` |
+| Portuguese (Brazil) | `pt-BR` |
+| Portuguese (Portugal) | `pt-PT` |
+| Hindi (India) | `hi-IN` |
+| Japanese (Japan) | `ja-JP` |
+| Korean (South Korea) | `ko-KR` |
 
 ### Input video support
 
 Technical details for videos used as input:
 
 - **Duration (max):** 30 mins
-- **FPS:** 24 fps, 25 fps, 29.97, 30, 50, 59.94, 60
-- **Resolution (max):** Full HD `1920*1080px` or `1080*1920px`
+- **FPS:** 24 fps, 25 fps, 29.97, 30, 50, 59.94, 60
+- **Resolution (max):** Full HD `1920*1080px` or `1080*1920px`
 - **CODEC**: `H.264, HEVC`
-- **Formats/container:** `.mp4, .mov`
-- **Input medium:** Pre-signed URL
+- **Formats/container:** .mp4, .mov
+- **Input medium:** Pre-signed URL
 - **Render time:** 3x the video length, 10x the video length (for 30 fps and 1080 resolution) if `lipSync` is enabled
 - **Speaker speech (min):** 5 secs
 - **Dubbing and Lip Sync:** Multi-speaker support
@@ -138,7 +140,7 @@ Technical details for audio used as input:
 
 - **Duration (max):** 30 mins
 - **CODEC:** `MPEG, PCM`
-- **Formats/container:** `.mp3, .wav, .aac`
+- **Formats/container:** .mp3, .wav, .aac
 - **Input medium:** Pre-signed URL
 - **Render time:** 3x the audio length
 - **Dubbing:** Multi-speaker support
@@ -161,31 +163,31 @@ The current limitations are:
 
 ### Known limitations and workarounds
 
-These are some known limitations of the these APIs and their workarounds:
-
 - **Gesture mismatch**: Output videos may occasionally feature gesture mismatches.
 
 ### Language support
 
 Video generation is supported for the following languages:
 
-- English (Indian) (`en-IN`)
-- English (American) (`en-US`)
-- English (British) (`en-GB`)
-- Spanish (Spanish) (`es-ES`)
-- Spanish (Argentina) (`es-AR`)
-- Spanish (Latin America) (`es-419`)
-- French (France) (`fr-FR`)
-- French (Canada) (`fr-CA`)
-- Danish (Denmark) (`da-DK`)
-- Norwegian (Norway) (`nb-NO`)
-- German (`de-DE`)
-- Italian (`it-IT`)
-- Portuguese (Brazil) (`pt-BR`)
-- Portuguese (Portugal) (`pt-PT`)
-- Hindi (India) (`hi-IN`)
-- Japanese (Japan) (`ja-JP`)
-- Korean (South Korea) (`ko-KR`)
+| Language description | Code |
+|---------------------|------|
+| English (Indian) | `en-IN` |
+| English (American) | `en-US` |
+| English (British) | `en-GB` |
+| Spanish (Spanish) | `es-ES` |
+| Spanish (Argentina) | `es-AR` |
+| Spanish (Latin America) | `es-419` |
+| French (France) | `fr-FR` |
+| French (Canada) | `fr-CA` |
+| Danish (Denmark) | `da-DK` |
+| Norwegian (Norway) | `nb-NO` |
+| German | `de-DE` |
+| Italian | `it-IT` |
+| Portuguese (Brazil) | `pt-BR` |
+| Portuguese (Portugal) | `pt-PT` |
+| Hindi (India) | `hi-IN` |
+| Japanese (Japan) | `ja-JP` |
+| Korean (South Korea) | `ko-KR` |
 
 ### Avatar input audio specifications
 
