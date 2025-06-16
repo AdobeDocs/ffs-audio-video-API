@@ -18,7 +18,7 @@ This is sometimes referred to as "two-legged OAuth".
 This tutorial assumes you have worked with your Adobe Representative and have the following:
 
 - An [Adobe Developer Console][2] account.
-- A [project][3] with Substance 3D API [OAuth Server-to-Server credentials set up][4].
+- A [project][3] with Audio/Video API [OAuth Server-to-Server credentials set up][4].
 - Access to your **Client ID** and **Client Secret** from the [Adobe Developer Console project][5]. Securely store these credentials and never expose them in client-side or public code.
 
 ## Access tokens
