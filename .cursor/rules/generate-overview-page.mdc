@@ -1,6 +1,6 @@
 ---
-description:
-globs:
+description: Use when creating or editing a /src/pages/index.md for an API service.
+globs: 
 alwaysApply: false
 ---
 # Generate Overview Page Rule
@@ -44,13 +44,13 @@ contributors:
 
 ### Explore our APIs
 
-[API Name](guides/)
+[API Name](mdc:guides)
 
 [Brief description of what this API does.]
 
 <DiscoverBlock slots="link, text"/>
 
-[Next API Name](guides/)
+[Next API Name](mdc:guides)
 
 [Brief description of what this API does.]
 ```
@@ -75,7 +75,7 @@ Use these components as needed:
 ```markdown
 <TextBlock slots="image, heading, text" theme="dark" />
 
-![Image Alt Text](/images/image-name.gif)
+![Image Alt Text](mdc:images/image-name.gif)
 
 [Heading Text]
 
@@ -97,7 +97,7 @@ Use these components as needed:
 
 [Description text]
 
-[Button Text](/getting_started/)
+[Button Text](mdc:getting_started)
 ```
 
 ## Content Analysis Guidelines
