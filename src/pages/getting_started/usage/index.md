@@ -10,9 +10,9 @@ contributors:
 
 This document has details about what's currently supported, limitations, and workarounds for the Audio/Video APIs to help developers optimize their API implementations and understand service boundaries.
 
-## Text-to-Speech API usage
+## Text to Speech API usage
 
-Here's the technical usage information for the Text-to-Speech API.
+Here's the technical usage information for the Text to Speech API.
 
 ### Limitations and workarounds
 
@@ -28,7 +28,7 @@ Here's the technical usage information for the Text-to-Speech API.
 
 ### API render time
 
-Render times for Text-to-speech are 2X the output audio length.
+Render times for Text to Speech are 2X the output audio length.
 
 ### Request limits
 
@@ -44,7 +44,7 @@ These are the current rate limits for API requests:
 
 **Generate Speech API (/generate-speech)**: 10 requests per minute.
 
-You may encounter a `HTTP 429 "Too Many Requests"` error if usage exceeds either the per minute or per day limits. We recommend using the `retry-after` header to determine the number of seconds you should wait before trying again.
+You may encounter a `HTTP 429 "Too Many Requests"` error if usage exceeds either the per minute or per day limits. We recommend using the `retry-after` header to determine the number of seconds to wait before trying again.
 
 ## Reframe API usage
 
@@ -92,7 +92,7 @@ We recommend using the 'retry-after' header to determine the number of seconds y
 
 ### For editing transcripts
 
-Only sentence editing is currently supported. Do not modify the timestamps.
+Only sentence editing is currently supported. Don't modify the timestamps.
 
 Speakers can be updated, however don't remove speakers before dubbing. Also, dub using the edited transcripts in different target languages.
 
@@ -106,7 +106,7 @@ Dubbing is supported for the following languages:
 - Spanish (Spanish) (`es-ES`)
 - Spanish (Argentina) (`es-AR`)
 - Spanish (Latin America) (`es-419`)
-- French (France) (`fr-FR`))
+- French (France) (`fr-FR`)
 - French (Canada) (`fr-CA`)
 - Danish (Denmark) (`da-DK`)
 - Norwegian (Norway) (`nb-NO`)
@@ -157,8 +157,98 @@ The current limitations are:
 
 **Dubbing/Lip Sync endpoint (/dub):**  5 requests per minute and 150 requests per day.
 
+## Avatar API usage
+
+### Known limitations and workarounds
+
+These are some known limitations of the these APIs and their workarounds:
+
+- **Gesture mismatch**: Output videos may occasionally feature gesture mismatches.
+
+### Language support
+
+Video generation is supported for the following languages:
+
+- English (Indian) (`en-IN`)
+- English (American) (`en-US`)
+- English (British) (`en-GB`)
+- Spanish (Spanish) (`es-ES`)
+- Spanish (Argentina) (`es-AR`)
+- Spanish (Latin America) (`es-419`)
+- French (France) (`fr-FR`)
+- French (Canada) (`fr-CA`)
+- Danish (Denmark) (`da-DK`)
+- Norwegian (Norway) (`nb-NO`)
+- German (`de-DE`)
+- Italian (`it-IT`)
+- Portuguese (Brazil) (`pt-BR`)
+- Portuguese (Portugal) (`pt-PT`)
+- Hindi (India) (`hi-IN`)
+- Japanese (Japan) (`ja-JP`)
+- Korean (South Korea) (`ko-KR`)
+
+### Avatar input audio specifications
+
+**Duration (max)**: 30 mins.
+
+**CODEC**: MPEG, PCM.
+
+**Formats/container**: audio/wav, audio/x-wav, audio/aac.
+
+**Input Medium**: Pre-signed URL.
+
+### Avatar background video specifications
+
+**Duration (max)**: 30 mins.
+
+**FPS**: 24 fps, 25 fps, 29.97, 30, 50, 59.94, 60.
+
+**Resolution (max)**: Full HD.
+
+**Aspect Ratio**: 1,920*1,080px.
+
+**CODEC**: H.264.
+
+**Formats/container**: video/mp4, video/mov.
+
+**Input Medium**: Pre-signed URL.
+
+### Avatar background image specifications
+
+**Formats**: JPEG,PNG.
+
+**Input Medium**: Pre-signed URL.
+
+**Aspect Ratio**: 1,920*1,080px.
+
+### API render time
+
+10X the output video length for Avatar API.
+
+### Request limits per API
+
+To ensure equitable peak performance, Adobe places limits on the volume, frequency, and concurrency of API calls, and monitors API usage to proactively resolve any risks to performance.
+
+<InlineAlert variant="warning" slots="text1" />
+
+These usage limits apply to your entire organization. <br/>
+
+The current limitations are:
+
+**Get Actors API**: 50 requests per minute.
+
+**Avatar API**: 5 requests per minute.
+
 ## GET status API
 
 ### Request limits
+
+To ensure equitable peak performance, Adobe places limits on the volume, frequency, and concurrency of API calls, and monitors API usage to proactively resolve any risks to performance.
+
+<InlineAlert variant="warning" slots="text1" />
+
+These usage limits apply to your entire organization. <br/>
+
+The current limitations are:
 
 **Get Result endpoint (/status/{jobId}):** 100 requests per minute.
