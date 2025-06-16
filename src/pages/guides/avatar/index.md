@@ -8,11 +8,11 @@ contributors:
 
 # Using the Avatar API
 
-The Avatar API offers automated video creation using a digital avatar speaking from a provided transcript. This guide shows you how to get started using the asynchronous API.
+The Avatar API generates videos using a digital avatar speaking from a provided transcript or recording.
 
 ## Overview
 
-Using the Avatar API you can generate an Avatar video with a text prompt or audio input.
+Using the Avatar API you can generate an avatar video from a text prompt or audio input.
 Options with the endpoint allow you to:
 
 - Select an avatar from a catalog of stock actors.
@@ -20,38 +20,27 @@ Options with the endpoint allow you to:
 - Use your own voice file to create avatar videos.
 - Set your own image/video as a video background.
 
-The endpoint returns a response object like the one below. Use the `statusUrl` from the response to [check the job result](#check-the-status-of-a-job).
-
-```json
-{
-    "jobId": "986fc222-1118-4242-b326-eb9873e3982f",
-    "statusUrl": "https://audio-video-api.adobe.io/v1/status/{jobID}"
-}
-```
-
 ## Prerequisites
-
-[Review the Getting Started page](/getting_started/) for this API for authentication and setup.
-
-### API credentials
 
 You'll need:
 
-- ```client_id```
-- ```client_secret```
+- Client ID
+- Client secret
+  
+[Review the Getting Started page](../../getting_started/) for authentication and setup.
 
 ## Quickstart
 
-Use the commands below to generate an Avatar video.
+Use the commands below to generate an avatar video.
 
 In the cURL commands, be sure to update:
 
 -  `Authorization` with the bearer token.
 -  `x-api-key` with the Client ID.
--  `mediaType` the correct input format.
+-  `mediaType` with the correct input format.
 -  `url` (where applicable) with the generated pre-signed URL.
--  `avatarId` with the unique ID of the avatar to be used for avatar generation. Users should [refer to the Avatars List API](/api) to choose the appropriate Avatar ID.
--  `voiceId` with the unique ID of the voice to be used for avatar generation. Users should [refer to the Voices List API](/api) to choose the appropriate Voice ID.
+-  `avatarId` with the unique ID of the avatar to be used for avatar generation. Users should [refer to the Avatars List API](../../api) to choose the Avatar ID.
+-  `voiceId` with the unique ID of the voice to be used for avatar generation. Users should [refer to the Voices List API](../../api) to choose the Voice ID.
 
 ### Generate a video from plain text input
 
@@ -183,7 +172,7 @@ curl 'https://audio-video-api.adobe.io/v1/generate-avatar' \
 }'  
 ```
 
-### Check the status of a job
+## Check the result
 
 Use the GET Result API to see the status of a job. In the command below, update:
 
