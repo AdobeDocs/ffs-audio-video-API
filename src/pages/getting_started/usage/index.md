@@ -1,6 +1,18 @@
 ---
 title: Audio/Video API Usage Notes
 description: This document has details about what's currently supported, limitations, and workarounds for the Audio/Video APIs.
+hideBreadcrumbNav: true
+keywords:
+  - audio
+  - video
+  - API
+  - usage
+  - limitations
+  - text-to-speech
+  - reframe
+  - translate
+  - lip sync
+  - avatar
 contributors:
   - https://github.com/BaskarMitrah
   - https://github.com/aeabreu-hub
