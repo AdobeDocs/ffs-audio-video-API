@@ -77,6 +77,10 @@ module.exports = {
             path: '/guides/TLS/dub_quickstart.md'
           },
           {
+            title: 'Using the Avatar API',
+            path: '/guides/avatar/index.md'
+          },
+          {
             title: 'GET Result API Quickstart',
             path: '/guides/TLS/get_result_quickstart.md'
           }
