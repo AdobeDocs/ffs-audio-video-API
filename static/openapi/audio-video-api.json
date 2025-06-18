@@ -1280,7 +1280,7 @@
       "get": {
         "tags": ["Text-to-Avatar"],
         "summary": "Get available avatars",
-        "description": "This endpoint provides the list of all available avatars for the user's enterprise.",
+        "description": "Retrieves the list of all available avatars for the user's enterprise.",
         "operationId": "avatars",
         "responses": {
           "200": {
@@ -1371,7 +1371,7 @@
       "post": {
         "tags": ["Text-to-Avatar"],
         "summary": "Generate avatar video from text",
-        "description": "This endpoint generates an avatar video from a transcript. You can provide the transcript either as plain text or a pre-signed URL. The response will include a job ID and a status URL for tracking the job.",
+        "description": "Generates an avatar video from a transcript. You can provide the transcript either as plain text or a pre-signed URL. The response will include a job ID and a status URL for tracking the job.",
         "operationId": "generate-avatar",
         "requestBody": {
           "description": "The request body contains the transcript and details for generating an avatar.",
