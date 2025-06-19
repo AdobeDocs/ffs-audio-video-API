@@ -52,6 +52,10 @@ module.exports = {
           {
             title: 'Technical Usage Notes',
             path: '/getting_started/usage'
+          },
+          {
+            title: 'Avatar Catalog',
+            path: '/getting_started/avatar_catalog'
           }
         ]
       },

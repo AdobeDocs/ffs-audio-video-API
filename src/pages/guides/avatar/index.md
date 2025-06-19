@@ -46,8 +46,8 @@ In the cURL commands, be sure to update:
 -  `x-api-key` with the Client ID.
 -  `mediaType` with the correct input format.
 -  `url` (where applicable) with the generated pre-signed URL.
--  `avatarId` with the unique ID of the avatar to be used for avatar generation. Users should [refer to the Avatars List API][2] to choose the Avatar ID.
--  `voiceId` with the unique ID of the voice to be used for avatar generation. Users should [refer to the Voices List API][3] to choose the Voice ID.
+-  `avatarId` with the unique ID of the avatar to be used for avatar generation. Users should [refer to the GET Avatars API][2] to choose the Avatar ID.
+-  `voiceId` with the unique ID of the voice to be used for avatar generation. Users should [refer to the GET Voices API][3] to choose the Voice ID.
 
 ### Generate a video from plain text input
 

@@ -26,19 +26,19 @@ With the Text-to-Speech API, generate spoken audio from a provided transcript.
 
 <DiscoverBlock slots="link, text"/>
 
-[Reframe API](guides/)
+[Reframe API](guides/reframe/)
 
 Automatically reframe videos.
 
 <DiscoverBlock slots="link, text"/>
 
-[TLS API](guides/)
+[TLS API](guides/TLS/)
 
 The Translate and Lip Sync API creates transcriptions and precise, accurate video dubs.
 
 <DiscoverBlock slots="link, text"/>
 
-[Text to Avatar API](guides/)
+[Text to Avatar API](guides/avatar/)
 
 Generate an Avatar video with a text prompt or audio input.
 
