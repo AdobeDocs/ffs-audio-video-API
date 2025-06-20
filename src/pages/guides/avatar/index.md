@@ -46,8 +46,8 @@ In the cURL commands, be sure to update:
 -  `x-api-key` with the Client ID.
 -  `mediaType` with the correct input format.
 -  `url` (where applicable) with the generated pre-signed URL.
--  `avatarId` with the unique ID of the avatar to be used for avatar generation. Users should [refer to the GET Avatars API][2] to choose the Avatar ID.
--  `voiceId` with the unique ID of the voice to be used for avatar generation. Users should [refer to the GET Voices API][3] to choose the Voice ID.
+-  `avatarId` with the unique ID of the avatar to be used for avatar generation. Users should [refer to the GET Avatars API][2] to choose the Avatar ID or refer to the [Avatar Catalog][6] to see the list of avatars.
+-  `voiceId` with the unique ID of the voice to be used for avatar generation. Users should [leverage the Text to Speech GET Voices API][3] to choose the Voice ID.
 
 ### Generate a video from plain text input
 
@@ -217,3 +217,4 @@ Adobe participates in the content authentication initiative for AI-generated ass
 [3]: ../../api
 [4]: /getting_started/usage/
 [5]: https://contentcredentials.org/verify
+[6]: ../../getting_started/avatar_catalog/
