@@ -1831,6 +1831,33 @@
           },
           "extendedPropertyMap": {
             "type": "object",
+            "properties": {
+                "aspectRatio": {
+                  "type": "object",
+                  "properties": {
+                    "x": {
+                      "type": "integer"
+
+                    },
+                    "y":{
+                      "type": "integer"
+                    }
+                  }
+
+                },
+                "resolution": {
+                  "type": "object",
+                  "properties": {
+                    "width": {
+                      "type": "integer"
+                    },
+                    "height":{
+                      "type": "integer"
+                    }
+                  }
+                }
+
+            },
             "description": "This is a field for any additional properties for the avatar."
           },
           "thumbnailUrls": {
@@ -2212,8 +2239,8 @@
           "output": {
             "type": "object",
             "properties": {
-              "url": {
-                "type": "string"
+              "destination": {
+                "$ref": "#/components/schemas/Destination"
               }
             }
           }
@@ -2843,7 +2870,16 @@
               "ethnicity": "Caucasian",
               "status": "Active",
               "style": "Doctor",
-              "extendedPropertyMap": {},
+              "extendedPropertyMap": {
+                "aspectRatio": {
+                  "x": 16,
+                  "y": 9
+                },
+                "resolution": {
+                  "width": 1920,
+                  "height": 1080
+                }
+              },
               "thumbnailUrls": {
                 "hd": "<pre-signed url for downloading HD avatar thumbnail>",
                 "lowRes": "<pre-signed url for downloading low resolution avatar thumbnail>"
@@ -3434,7 +3470,9 @@
           "jobId": "string",
           "status": "succeeded",
           "output": {
-            "url": "string"
+            "destination": {
+              "url": "string"
+            }
           }
         }
       },
