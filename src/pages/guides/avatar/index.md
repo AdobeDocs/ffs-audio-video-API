@@ -200,7 +200,9 @@ curl --location '<status_URL>' \
     "jobId": "986fc222-1118-4242-b326-eb9873e3982f",
     "status": "succeeded",
     "output": {
-        "url": "<pre_signed_URL_of_the_result>"
+        "destination": {
+            "url": "<pre_signed_URL_of_the_result>"
+        }
     }
 }
 ```
