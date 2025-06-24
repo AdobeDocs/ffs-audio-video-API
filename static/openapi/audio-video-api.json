@@ -436,6 +436,42 @@
                   "StatusAPIFailedTTSErrorResponse": {
                     "$ref": "#/components/examples/StatusAPIFailedTTSErrorResponse"
                   },
+                  "StatusAPIFailedDurationTooLongResponse": {
+                    "$ref": "#/components/examples/StatusAPIFailedDurationTooLongResponse"
+                  },
+                  "StatusAPIFailedUnsupportedBackgroundResponse": {
+                    "$ref": "#/components/examples/StatusAPIFailedUnsupportedBackgroundResponse"
+                  },
+                  "StatusAPIFailedBackgroundResolutionErrorResponse": {
+                    "$ref": "#/components/examples/StatusAPIFailedBackgroundResolutionErrorResponse"
+                  },
+                  "StatusAPIFailedCropAreaErrorResponse": {
+                    "$ref": "#/components/examples/StatusAPIFailedCropAreaErrorResponse"
+                  },
+                  "StatusAPIFailedBackgroundCropErrorResponse": {
+                    "$ref": "#/components/examples/StatusAPIFailedBackgroundCropErrorResponse"
+                  },
+                  "StatusAPIFailedFFMpegErrorResponse": {
+                    "$ref": "#/components/examples/StatusAPIFailedFFMpegErrorResponse"
+                  },
+                  "StatusAPIFailedAvatarErrorResponse": {
+                    "$ref": "#/components/examples/StatusAPIFailedAvatarErrorResponse"
+                  },
+                  "StatusAPIFailedLipsyncErrorResponse": {
+                    "$ref": "#/components/examples/StatusAPIFailedLipsyncErrorResponse"
+                  },
+                  "StatusAPIFailedLipsyncPollingErrorResponse": {
+                    "$ref": "#/components/examples/StatusAPIFailedLipsyncPollingErrorResponse"
+                  },
+                  "StatusAPIFailedMediaTrimErrorResponse": {
+                    "$ref": "#/components/examples/StatusAPIFailedMediaTrimErrorResponse"
+                  },
+                  "StatusAPIFailedMediaTrimAlphaErrorResponse": {
+                    "$ref": "#/components/examples/StatusAPIFailedMediaTrimAlphaErrorResponse"
+                  },
+                  "DentroCheckFailedResponse": {
+                    "$ref": "#/components/examples/DentroCheckFailedResponse"
+                  },
                   "StatusAPIFailedInternalErrorResponse": {
                     "$ref": "#/components/examples/StatusAPIFailedInternalErrorResponse"
                   },
@@ -519,6 +555,12 @@
                 "examples": {
                   "RunTimeError": {
                     "$ref": "#/components/examples/RunTimeError"
+                  },
+                  "TEXT_TO_SPEECH_ENTITY_CREATION_ERROR": {
+                    "$ref": "#/components/examples/TEXT_TO_SPEECH_ENTITY_CREATION_ERROR"
+                  },
+                  "TEXT_TO_SPEECH_SERVICE_SUBMIT_ERROR": {
+                    "$ref": "#/components/examples/TEXT_TO_SPEECH_SERVICE_SUBMIT_ERROR"
                   }
                 }
               }
@@ -1622,6 +1664,24 @@
                   },
                   "IncorrectVoiceNameErrorExample": {
                     "$ref": "#/components/examples/IncorrectVoiceNameErrorExample"
+                  },
+                  "MediatypeIncompatibleForText": {
+                    "$ref": "#/components/examples/MediatypeIncompatibleForText"
+                  },
+                  "MISSING_PARAMS_IN_CROP_AREA": {
+                    "$ref": "#/components/examples/MISSING_PARAMS_IN_CROP_AREA"
+                  },
+                  "INVALID_CROP_AREA_PARAMS": {
+                    "$ref": "#/components/examples/INVALID_CROP_AREA_PARAMS"
+                  },
+                  "CROP_AREA_ASPECT_RATIO_NOT_SUPPORTED": {
+                    "$ref": "#/components/examples/CROP_AREA_ASPECT_RATIO_NOT_SUPPORTED"
+                  },
+                  "StatusAPIFailedBackgroundFileResponse": {
+                    "$ref": "#/components/examples/StatusAPIFailedBackgroundFileResponse"
+                  },
+                  "CROP_AREA_UNSUPPORTED_FOR_NON_IMAGE_VIDEO_BACKGROUND": {
+                    "$ref": "#/components/examples/CROP_AREA_UNSUPPORTED_FOR_NON_IMAGE_VIDEO_BACKGROUND"
                   }
                 }
               }
@@ -2070,9 +2130,7 @@
               "mediaType": {
                 "type": "string",
                 "enum": [
-                  "audio/wav",
-                  "audio/x-wav",
-                  "audio/aac"
+                  "audio/wav"
                 ]
               },
               "localeCode": {
@@ -2987,7 +3045,7 @@
       "AccessError": {
         "summary": "Access Error",
         "value": {
-          "error_code": "unauthorized",
+          "error_code": "access_error",
           "message": "Token not allowed in the current context"
         }
       },
@@ -3212,7 +3270,7 @@
         "summary": "Missing Background Type",
         "value": {
           "error_code": "validation_error",
-          "message": "Background type must be set to 'image', 'video', or 'color'"
+          "message": "Background type must be set to one of the following: 'image', 'video', 'color', or 'transparent'."
         }
       },
       "InvalidBackgroundUrlErrorExample": {
@@ -3289,7 +3347,7 @@
         "summary": "Invalid Source URL",
         "value": {
           "error_code": "validation_error",
-          "message": "Invalid source url"
+          "message": "Invalid source url specified"
         }
       },
       "IncorrectVoiceNameErrorExample": {
@@ -3325,6 +3383,20 @@
         "value": {
           "error_code": "runtime_error",
           "message": "Internal Server Error"
+        }
+      },
+      "TEXT_TO_SPEECH_ENTITY_CREATION_ERROR": {
+        "summary": "Internal Server Error during Entity Creation",
+        "value": {
+          "error_code": "runtime_error",
+          "message": "Internal Server Error while creating text to speech request"
+        }
+      },
+      "TEXT_TO_SPEECH_SERVICE_SUBMIT_ERROR": {
+        "summary": "Internal Server Error during Submit",
+        "value": {
+          "error_code": "runtime_error",
+          "message": "Internal Server Error while submitting text to speech request"
         }
       },
       "TTSRuntimeError": {
@@ -3497,10 +3569,72 @@
       "StatusAPIFailedBackgroundFileResponse": {
         "summary": "Failed Background File Download",
         "value": {
+          "error_code": "validation_error",
+          "message": "Error while downloading file from Background URL"
+        }
+      },
+      "DentroCheckFailedResponse": {
+        "summary": "Error Processing Unsafe Prompt",
+        "value": {
           "jobId": "string",
           "status": "failed",
           "error_code": "validation_error",
-          "message": "Error while downloading media format file from Background URL"
+          "message": "The provided prompt is considered unsafe and it cannot be used to generate content."
+        }
+      },
+      "MISSING_PARAMS_IN_CROP_AREA": {
+        "summary": "Missing params in crop area",
+        "value": {
+          "error_code": "validation_error",
+          "message": "Missing params in crop area"
+        }
+      },
+      "INVALID_CROP_AREA_PARAMS": {
+        "summary": "Invalid value in crop area",
+        "value": {
+          "error_code": "validation_error",
+          "message": "Invalid value in crop area params"
+        }
+      },
+      "CROP_AREA_ASPECT_RATIO_NOT_SUPPORTED": {
+        "summary": "Aspect ratio in Crop",
+        "value": {
+          "error_code": "validation_error",
+          "message": " Aspect ratio 16:9 is not maintained in crop width*height"
+        }
+      },
+      "CROP_AREA_UNSUPPORTED_FOR_NON_IMAGE_VIDEO_BACKGROUND": {
+        "summary": "Crop area support",
+        "value": {
+          "error_code": "validation_error",
+          "message": "Crop area supported only for image and video background"
+        }
+      },
+      "StatusAPIFailedBackgroundResolutionErrorResponse": {
+        "summary": "Error in Background Resolution",
+        "value": {
+          "jobId": "string",
+          "status": "failed",
+          "error_code": "validation_error",
+          "message": "Background asset resolution should be greater than 640x360"
+        }
+      },
+      "StatusAPIFailedCropAreaErrorResponse": {
+        "summary": "Error in Crop Area",
+        "value": {
+          "jobId": "string",
+          "status": "failed",
+          "error_code": "validation_error",
+          "message": "Crop Area is going out of bounds"
+        }
+      },
+      "StatusAPIFailedBackgroundCropErrorResponse": {
+        "summary": "Error in Background Aspect Ratio",
+        "value": {
+          "jobId": "string",
+          "status": "failed",
+          "error_code": "validation_error",
+          "message": " Image background asset should be 16:9 aspect ratio, please provide crop the media and then send"
         }
       },
       "StatusAPIFailedMediatypeMismatchResponse": {
@@ -3590,7 +3724,7 @@
           "jobId": "string",
           "status": "failed",
           "error_code": "runtime_error",
-          "message": "Validation failure in lip sync pipeline."
+          "message": "Validation failure in Lipsync Pipeline"
         }
       },
       "StatusAPIFailedFFMpegErrorResponse": {
@@ -3608,7 +3742,7 @@
           "jobId": "string",
           "status": "failed",
           "error_code": "runtime_error",
-          "message": "Failed while polling for lip sync"
+          "message": "Failed while polling for Lipsync"
         }
       },
       "StatusAPIFailedMediaTrimErrorResponse": {
@@ -3617,7 +3751,7 @@
           "jobId": "string",
           "status": "failed",
           "error_code": "runtime_error",
-          "message": "Error while trimming avatar video"
+          "message": "Error while triming avatar video"
         }
       },
       "StatusAPIFailedMediaTrimAlphaErrorResponse": {
@@ -3626,7 +3760,7 @@
           "jobId": "string",
           "status": "failed",
           "error_code": "runtime_error",
-          "message": "Error while trimming avatar alpha video"
+          "message": "Error while triming avatar alpha video"
         }
       },
       "StatusAPIFailedConfigDownloadResponse": {
