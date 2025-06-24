@@ -179,6 +179,54 @@ curl 'https://audio-video-api.adobe.io/v1/generate-avatar' \
 }'  
 ```
 
+#### Generate a video from text input with a color background
+
+```bash
+curl 'https://audio-video-api.adobe.io/v1/generate-avatar' \
+  -H 'Content-Type: application/json' \
+  -H 'Authorization: Bearer <token>' \
+  -H 'x-api-key: <client_ID>' \
+  --data-raw '{
+    "script": {
+        "text": "<script_text>",
+        "mediaType": "text/plain",
+        "localeCode": "en-US"
+    },
+    "voiceId": "<voice_ID>",
+    "avatarId": "<avatar_ID>",
+    "output": {
+        "mediaType": "video/mp4",
+        "background": {
+            "type": "color",
+            "color": "#ffffff"
+        }
+    }
+}'  
+```
+
+#### Generate a video from text input with a transparent background
+
+```bash
+curl 'https://audio-video-api.adobe.io/v1/generate-avatar' \
+  -H 'Content-Type: application/json' \
+  -H 'Authorization: Bearer <token>' \
+  -H 'x-api-key: <client_ID>' \
+  --data-raw '{
+    "script": {
+        "text": "<script_text>",
+        "mediaType": "text/plain",
+        "localeCode": "en-US"
+    },
+    "voiceId": "<voice_ID>",
+    "avatarId": "<avatar_ID>",
+    "output": {
+        "mediaType": "video/webm",
+        "background": {
+            "type": "transparent"
+        }
+    }
+}'  
+```
 ## Check the result
 
 Use the GET Result API to see the status of a job. In the command below, update:
