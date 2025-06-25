@@ -2065,7 +2065,7 @@
         ]
       },
       "GenerateAvatarUsingPlainText": {
-        "title": "Generate Avatar Using Plain Text",
+        "title": "Using Plain Text",
         "type": "object",
         "properties": {
           "script": {
@@ -2115,7 +2115,7 @@
         ]
       },
       "GenerateAvatarUsingAudioFile": {
-        "title": "Generate Avatar Using Audio File",
+        "title": "Using Audio File",
         "type": "object",
         "properties": {
           "audio": {
