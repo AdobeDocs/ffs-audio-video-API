@@ -27,6 +27,8 @@ Options with the endpoint allow you to:
 - Use your own audio file to create avatar videos.
 - Set your own image/video as a video background.
 
+The Avatar API is an asynchronous API. The API returns a job ID immediately after the request is submitted. The job status can be checked using the GET Result API.
+
 ## Prerequisites
 
 You'll need:
@@ -47,7 +49,7 @@ In the cURL commands, be sure to update:
 -  `mediaType` with the correct input format.
 -  `url` (where applicable) with the generated pre-signed URL.
 -  `avatarId` with the unique ID of the avatar to be used for avatar generation. Users should [refer to the GET Avatars API][2] to choose the Avatar ID or refer to the [Avatar Catalog][6] to see the list of avatars.
--  `voiceId` with the unique ID of the voice to be used for avatar generation. Users should [leverage the Text to Speech GET Voices API][3] to choose the Voice ID.
+-  `voiceId` with the unique ID of the voice to be used for avatar generation. Users should [refer to the GET Voices API][3] to choose the Voice ID.
 
 ### Generate a video from plain text input
 
