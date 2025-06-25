@@ -227,6 +227,7 @@ curl 'https://audio-video-api.adobe.io/v1/generate-avatar' \
     }
 }'  
 ```
+
 ## Check the result
 
 Use the GET Result API to see the status of a job. In the command below, update:
