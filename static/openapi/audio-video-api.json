@@ -469,9 +469,6 @@
                   "StatusAPIFailedMediaTrimAlphaErrorResponse": {
                     "$ref": "#/components/examples/StatusAPIFailedMediaTrimAlphaErrorResponse"
                   },
-                  "DentroCheckFailedResponse": {
-                    "$ref": "#/components/examples/DentroCheckFailedResponse"
-                  },
                   "StatusAPIFailedInternalErrorResponse": {
                     "$ref": "#/components/examples/StatusAPIFailedInternalErrorResponse"
                   },
