@@ -1323,7 +1323,7 @@
         "operationId": "avatars",
         "responses": {
           "200": {
-            "description": "Successful response",
+            "description": "Success",
             "content": {
               "application/json": {
                 "schema": {
