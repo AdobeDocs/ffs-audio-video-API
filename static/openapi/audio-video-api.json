@@ -1410,7 +1410,7 @@
       "post": {
         "tags": ["Text-to-Avatar"],
         "summary": "Generate avatar video from text",
-        "description": "Generates an avatar video from a transcript. You can provide the transcript either as plain text or a pre-signed URL. The response will include a job ID and a status URL for tracking the job.",
+        "description": "Generates an avatar video from a provided transcript or audio file. You can provide the transcript either as plain text or a pre-signed URL. The API is asynchronous, so the response will include a job ID and a status URL for tracking the running job.",
         "operationId": "generate-avatar",
         "requestBody": {
           "description": "The request body contains the transcript and details for generating an avatar.",
