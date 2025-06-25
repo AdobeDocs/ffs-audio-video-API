@@ -24,7 +24,7 @@ Options with the endpoint allow you to:
 
 - Select an avatar from a catalog of stock actors.
 - Select a voice from a catalog of stock voices.
-- Use your own voice file to create avatar videos.
+- Use your own audio file to create avatar videos.
 - Set your own image/video as a video background.
 
 ## Prerequisites
