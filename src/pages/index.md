@@ -20,25 +20,31 @@ Audio/Video APIs are a collection of resources that leverage Firefly Services' A
 
 ### Explore our APIs
 
-[TTS API](guides/)
+[Text to Speech API](guides/)
 
-Generate spoken audio from a provided transcript.
+With the Text-to-Speech API, generate spoken audio from a provided transcript.
 
 <DiscoverBlock slots="link, text"/>
 
-[Reframe API](guides/)
+[Reframe API](guides/reframe/)
 
 Automatically reframe videos.
 
 <DiscoverBlock slots="link, text"/>
 
-[TLS API](guides/)
+[TLS API](guides/TLS/)
 
-Create transcriptions and precise, accurate video dubs.
+The Translate and Lip Sync API creates transcriptions and precise, accurate video dubs.
 
-## Text-to-Speech API
+<DiscoverBlock slots="link, text"/>
 
-The Text-to-Speech (TTS) API generates lifelike spoken audio from a provided transcript. Features include:
+[Text to Avatar API](guides/avatar/)
+
+Generate an Avatar video with a text prompt or audio input.
+
+## Text to Speech API
+
+The Text to Speech API generates lifelike spoken audio from a provided transcript. Features include:
 
 - **Choose voices** from Firefly's catalog of voices.
 - **Turn prompts into spoken audio**.
@@ -80,6 +86,16 @@ Supported workflows include:
 5. **Dubbing with pre-existing translations**.
 
 **Lip Sync** is also included as a parameter of the Dub API to create high-quality composited videos with precise lip-syncing. [Content Authenticity Initiative (CAI)](http://contentauthenticity.org/) support ensures protection against deepfakes.
+
+## Text to Avatar API
+
+Using the Avatar API you can generate an Avatar video with a text prompt or audio input.
+Options with the endpoint allow you to:
+
+1. **Select an avatar** from a catalog of stock actors.
+2. **Select a voice** from a catalog of stock voices.
+3. **Use your own voice file** to create avatar videos.
+4. Set your own image/video as a video background.
 
 <AnnouncementBlock slots="heading, text, button" />
 

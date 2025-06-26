@@ -3,7 +3,7 @@
   "info": {
     "version": "1.0.0",
     "title": "Firefly Services Audio/Video API",
-    "description": "This REST API provides resources to use Firefly Services AI for audio and video generation and processing.",
+    "description": "This RESTful API provides resources to use Firefly Services AI for audio and video generation and processing.",
     "termsOfService" : "https://www.adobe.com/content/dam/cc/en/legal/terms/enterprise/pdfs/PSLT-AdobeCreativeAPI-WW-2024v2.pdf"
   },
   "tags": [
@@ -18,6 +18,10 @@
     {
       "name": "Translate and lip sync",
       "description": "Endpoints for transcribing and dubbing audio/video content."
+    },
+    {
+      "name": "Text-to-Avatar",
+      "description": "Endpoints for Text-to-Avatar operations."
     },
     {
       "name": "Manage jobs",
@@ -39,13 +43,13 @@
   "paths": {
     "/voices": {
       "get": {
-        "tags": ["Text-to-speech"],
+        "tags": ["Text-to-speech", "Text-to-Avatar"],
         "summary": "Get available voices",
         "description": "This endpoint provides the list of all available voices for the user's enterprise.",
         "operationId": "voices",
         "responses": {
           "200": {
-            "description": "Successful Response",
+            "description": "Success",
             "content": {
               "application/json": {
                 "schema": {
@@ -401,7 +405,7 @@
         ],
         "responses": {
           "200": {
-            "description": "Successful Response",
+            "description": "Success",
             "content": {
               "application/json": {
                 "schema": {
@@ -431,6 +435,39 @@
                   },
                   "StatusAPIFailedTTSErrorResponse": {
                     "$ref": "#/components/examples/StatusAPIFailedTTSErrorResponse"
+                  },
+                  "StatusAPIFailedDurationTooLongResponse": {
+                    "$ref": "#/components/examples/StatusAPIFailedDurationTooLongResponse"
+                  },
+                  "StatusAPIFailedUnsupportedBackgroundResponse": {
+                    "$ref": "#/components/examples/StatusAPIFailedUnsupportedBackgroundResponse"
+                  },
+                  "StatusAPIFailedBackgroundResolutionErrorResponse": {
+                    "$ref": "#/components/examples/StatusAPIFailedBackgroundResolutionErrorResponse"
+                  },
+                  "StatusAPIFailedCropAreaErrorResponse": {
+                    "$ref": "#/components/examples/StatusAPIFailedCropAreaErrorResponse"
+                  },
+                  "StatusAPIFailedBackgroundCropErrorResponse": {
+                    "$ref": "#/components/examples/StatusAPIFailedBackgroundCropErrorResponse"
+                  },
+                  "StatusAPIFailedFFMpegErrorResponse": {
+                    "$ref": "#/components/examples/StatusAPIFailedFFMpegErrorResponse"
+                  },
+                  "StatusAPIFailedAvatarErrorResponse": {
+                    "$ref": "#/components/examples/StatusAPIFailedAvatarErrorResponse"
+                  },
+                  "StatusAPIFailedLipsyncErrorResponse": {
+                    "$ref": "#/components/examples/StatusAPIFailedLipsyncErrorResponse"
+                  },
+                  "StatusAPIFailedLipsyncPollingErrorResponse": {
+                    "$ref": "#/components/examples/StatusAPIFailedLipsyncPollingErrorResponse"
+                  },
+                  "StatusAPIFailedMediaTrimErrorResponse": {
+                    "$ref": "#/components/examples/StatusAPIFailedMediaTrimErrorResponse"
+                  },
+                  "StatusAPIFailedMediaTrimAlphaErrorResponse": {
+                    "$ref": "#/components/examples/StatusAPIFailedMediaTrimAlphaErrorResponse"
                   },
                   "StatusAPIFailedInternalErrorResponse": {
                     "$ref": "#/components/examples/StatusAPIFailedInternalErrorResponse"
@@ -515,6 +552,12 @@
                 "examples": {
                   "RunTimeError": {
                     "$ref": "#/components/examples/RunTimeError"
+                  },
+                  "TEXT_TO_SPEECH_ENTITY_CREATION_ERROR": {
+                    "$ref": "#/components/examples/TEXT_TO_SPEECH_ENTITY_CREATION_ERROR"
+                  },
+                  "TEXT_TO_SPEECH_SERVICE_SUBMIT_ERROR": {
+                    "$ref": "#/components/examples/TEXT_TO_SPEECH_SERVICE_SUBMIT_ERROR"
                   }
                 }
               }
@@ -1271,6 +1314,432 @@
           }
         }
       }
+    },
+    "/avatars": {
+      "get": {
+        "tags": ["Text-to-Avatar"],
+        "summary": "Get available avatars",
+        "description": "Retrieves the list of all available avatars for the user's enterprise.",
+        "operationId": "avatars",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SuccessfulAvatarsResponse"
+                },
+                "examples": {
+                  "Success": {
+                    "$ref": "#/components/examples/SuccessfulAvatarsResponse"
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FailedResponse"
+                },
+                "examples": {
+                  "ErrorBodyUnauthorized": {
+                    "$ref": "#/components/examples/ErrorBodyUnauthorized"
+                  }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FailedResponse"
+                },
+                "examples": {
+                  "ErrorBodyForbidden": {
+                    "$ref": "#/components/examples/ErrorBodyForbidden"
+                  },
+                  "ErrorBodyAPIKeyInvalid": {
+                    "$ref": "#/components/examples/ErrorBodyAPIKeyInvalid"
+                  }
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FailedResponse"
+                },
+                "examples": {
+                  "ErrorBodyTooManyRequests": {
+                    "$ref": "#/components/examples/ErrorBodyTooManyRequests"
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FailedResponse"
+                },
+                "examples": {
+                  "RunTimeError": {
+                    "$ref": "#/components/examples/RunTimeError"
+                  },
+                  "StudioAPIFailedEntitiesErrorResponse": {
+                    "$ref": "#/components/examples/StudioAPIFailedEntitiesErrorResponse"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/generate-avatar": {
+      "post": {
+        "tags": ["Text-to-Avatar"],
+        "summary": "Generate avatar video from text",
+        "description": "Generates an avatar video from a provided transcript or audio file. You can provide the transcript either as plain text or a pre-signed URL. The API is asynchronous, so the response will include a job ID and a status URL for tracking the running job.",
+        "operationId": "generate-avatar",
+        "requestBody": {
+          "description": "The request body contains the transcript and details for generating an avatar.",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AvatarRequest"
+              },
+              "examples": {
+                "PlainTextInputForAvatarGeneration": {
+                  "$ref": "#/components/examples/PlainTextInputForAvatarGeneration"
+                },
+                "PlainTextInputForAvatarGenerationUsingVideoBackground": {
+                  "$ref": "#/components/examples/PlainTextInputForAvatarGenerationUsingVideoBackground"
+                },
+                "PlainTextInputForAvatarGenerationUsingImageBackground": {
+                  "$ref": "#/components/examples/PlainTextInputForAvatarGenerationUsingImageBackground"
+                },
+                "PlainTextInputForAvatarGenerationUsingColorBackground": {
+                  "$ref": "#/components/examples/PlainTextInputForAvatarGenerationUsingColorBackground"
+                },
+                "URLTextInputForAvatarGeneration": {
+                  "$ref": "#/components/examples/URLTextInputForAvatarGeneration"
+                },
+                "URLInputForAvatarGeneration": {
+                  "$ref": "#/components/examples/URLInputForAvatarGeneration"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "202": {
+            "description": "Accepted",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SubmitAPIResponse"
+                },
+                "examples": {
+                  "SubmitRequestResponse": {
+                    "$ref": "#/components/examples/SubmitRequestResponse"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FailedResponse"
+                },
+                "examples": {
+                  "BadRequestError": {
+                    "$ref": "#/components/examples/BadRequestError"
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FailedResponse"
+                },
+                "examples": {
+                  "UnauthorizedAccessError": {
+                    "$ref": "#/components/examples/ErrorBodyUnauthorized"
+                  },
+                  "ErrorBodyAccessDenied": {
+                    "$ref": "#/components/examples/ErrorBodyAccessDenied"
+                  }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FailedResponse"
+                },
+                "examples": {
+                  "ErrorBodyForbidden": {
+                    "$ref": "#/components/examples/ErrorBodyForbidden"
+                  },
+                  "ErrorBodyAPIKeyInvalid": {
+                    "$ref": "#/components/examples/ErrorBodyAPIKeyInvalid"
+                  },
+                  "UserNotEntitledError": {
+                    "$ref": "#/components/examples/UserNotEntitledError"
+                  },
+                  "QuotaExceededError": {
+                    "$ref": "#/components/examples/QuotaExceededError"
+                  },
+                  "UserProfileDeniedError": {
+                    "$ref": "#/components/examples/UserProfileDeniedError"
+                  },
+                  "UserBlockedError": {
+                    "$ref": "#/components/examples/UserBlockedError"
+                  },
+                  "InvalidSubscriptionError": {
+                    "$ref": "#/components/examples/InvalidSubscriptionError"
+                  },
+                  "ViolationError": {
+                    "$ref": "#/components/examples/ViolationError"
+                  },
+                  "TasteExhaustedError": {
+                    "$ref": "#/components/examples/TasteExhaustedError"
+                  },
+                  "AccessError": {
+                    "$ref": "#/components/examples/AccessError"
+                  }
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Unprocessable Entity.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FailedResponse"
+                },
+                "examples": {
+                  "InvalidInputErrorExample": {
+                    "$ref": "#/components/examples/InvalidInputErrorExample"
+                  },
+                  "MissingInputFileUrlErrorExample": {
+                    "$ref": "#/components/examples/MissingInputFileUrlErrorExample"
+                  },
+                  "InvalidInputUrlErrorExample": {
+                    "$ref": "#/components/examples/InvalidInputUrlErrorExample"
+                  },
+                  "InputFileFormatValidationErrorExample": {
+                    "$ref": "#/components/examples/InputFileFormatValidationErrorExample"
+                  },
+                  "MissingScriptErrorExample": {
+                    "$ref": "#/components/examples/MissingScriptErrorExample"
+                  },
+                  "EmptyTextForScriptErrorExample": {
+                    "$ref": "#/components/examples/EmptyTextForScriptErrorExample"
+                  },
+                  "TextLengthExceededForScriptErrorExample": {
+                    "$ref": "#/components/examples/TextLengthExceededForScriptErrorExample"
+                  },
+                  "TextLengthTooShortForScriptErrorExample": {
+                    "$ref": "#/components/examples/TextLengthTooShortForScriptErrorExample"
+                  },
+                  "ScriptInvalidASCIIRange": {
+                    "$ref": "#/components/examples/ScriptInvalidASCIIRange"
+                  },
+                  "ScriptInvalidTextSupportedRange": {
+                    "$ref": "#/components/examples/ScriptInvalidTextSupportedRange"
+                  },
+                  "InvalidOrMissingLocaleCodeForScriptErrorExample": {
+                    "$ref": "#/components/examples/InvalidOrMissingLocaleCodeForScriptErrorExample"
+                  },
+                  "MissingMediaTypeForScriptErrorExample": {
+                    "$ref": "#/components/examples/MissingMediaTypeForScriptErrorExample"
+                  },
+                  "MissingSourceLocaleErrorExample": {
+                    "$ref": "#/components/examples/MissingSourceLocaleErrorExample"
+                  },
+                  "SourceUrlSourceTextConflictErrorExample": {
+                    "$ref": "#/components/examples/SourceUrlSourceTextConflictErrorExample"
+                  },
+                  "UnsupportedVoiceIdErrorExample": {
+                    "$ref": "#/components/examples/UnsupportedVoiceIdErrorExample"
+                  },
+                  "MissingVoiceIdErrorExample": {
+                    "$ref": "#/components/examples/MissingVoiceIdErrorExample"
+                  },
+                  "MissingOutputErrorExample": {
+                    "$ref": "#/components/examples/MissingOutputErrorExample"
+                  },
+                  "MissingMediaTypeForOutputErrorExample": {
+                    "$ref": "#/components/examples/MissingMediaTypeForOutputErrorExample"
+                  },
+                  "InvalidOutputFileFormatErrorExample": {
+                    "$ref": "#/components/examples/InvalidOutputFileFormatErrorExample"
+                  },
+                  "InvalidRequestPayloadErrorExample": {
+                    "$ref": "#/components/examples/InvalidRequestPayloadErrorExample"
+                  },
+                  "InputScriptAudioConflictErrorExample": {
+                    "$ref": "#/components/examples/InputScriptAudioConflictErrorExample"
+                  },
+                  "InputScriptAudioMissingErrorExample": {
+                    "$ref": "#/components/examples/InputScriptAudioMissingErrorExample"
+                  },
+                  "InputScriptAudioMissingOrInvalidErrorExample": {
+                    "$ref": "#/components/examples/InputScriptAudioMissingOrInvalidErrorExample"
+                  },
+                  "InvalidOrMissingAudioUrlErrorExample": {
+                    "$ref": "#/components/examples/InvalidOrMissingAudioUrlErrorExample"
+                  },
+                  "MissingAudioSourceErrorExample": {
+                    "$ref": "#/components/examples/MissingAudioSourceErrorExample"
+                  },
+                  "MissingAvatarIdErrorExample": {
+                    "$ref": "#/components/examples/MissingAvatarIdErrorExample"
+                  },
+                  "UnsupportedAvatarIdErrorExample": {
+                    "$ref": "#/components/examples/UnsupportedAvatarIdErrorExample"
+                  },
+                  "MissingBackgroundUrlErrorExample": {
+                    "$ref": "#/components/examples/MissingBackgroundUrlErrorExample"
+                  },
+                  "MissingBackgroundTypeErrorExample": {
+                    "$ref": "#/components/examples/MissingBackgroundTypeErrorExample"
+                  },
+                  "InvalidBackgroundUrlErrorExample": {
+                    "$ref": "#/components/examples/InvalidBackgroundUrlErrorExample"
+                  },
+                  "BackgroundSourceColorConflictErrorExample": {
+                    "$ref": "#/components/examples/BackgroundSourceColorConflictErrorExample"
+                  },
+                  "BackgroundSourceColorMissingErrorExample": {
+                    "$ref": "#/components/examples/BackgroundSourceColorMissingErrorExample"
+                  },
+                  "InvalidBackgroundColorErrorExample": {
+                    "$ref": "#/components/examples/InvalidBackgroundColorErrorExample"
+                  },
+                  "MissingBackgroundColorErrorExample": {
+                    "$ref": "#/components/examples/MissingBackgroundColorErrorExample"
+                  },
+                  "BackgroundIncompatibleWithFormat": {
+                    "$ref": "#/components/examples/BackgroundIncompatibleWithFormat"
+                  },
+                  "FormatIncompatibleWithBackground": {
+                    "$ref": "#/components/examples/FormatIncompatibleWithBackground"
+                  },
+                  "UnsupportedOutputResolution": {
+                    "$ref": "#/components/examples/UnsupportedOutputResolution"
+                  },
+                  "UnsupportedShotTypeErrorExample": {
+                    "$ref": "#/components/examples/UnsupportedShotTypeErrorExample"
+                  },
+                  "InvalidSourceUrlErrorExample": {
+                    "$ref": "#/components/examples/InvalidSourceUrlErrorExample"
+                  },
+                  "IncorrectVoiceNameErrorExample": {
+                    "$ref": "#/components/examples/IncorrectVoiceNameErrorExample"
+                  },
+                  "MediatypeIncompatibleForText": {
+                    "$ref": "#/components/examples/MediatypeIncompatibleForText"
+                  },
+                  "MISSING_PARAMS_IN_CROP_AREA": {
+                    "$ref": "#/components/examples/MISSING_PARAMS_IN_CROP_AREA"
+                  },
+                  "INVALID_CROP_AREA_PARAMS": {
+                    "$ref": "#/components/examples/INVALID_CROP_AREA_PARAMS"
+                  },
+                  "CROP_AREA_ASPECT_RATIO_NOT_SUPPORTED": {
+                    "$ref": "#/components/examples/CROP_AREA_ASPECT_RATIO_NOT_SUPPORTED"
+                  },
+                  "StatusAPIFailedBackgroundFileResponse": {
+                    "$ref": "#/components/examples/StatusAPIFailedBackgroundFileResponse"
+                  },
+                  "CROP_AREA_UNSUPPORTED_FOR_NON_IMAGE_VIDEO_BACKGROUND": {
+                    "$ref": "#/components/examples/CROP_AREA_UNSUPPORTED_FOR_NON_IMAGE_VIDEO_BACKGROUND"
+                  }
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FailedResponse"
+                },
+                "examples": {
+                  "ErrorBodyTooManyRequests": {
+                    "$ref": "#/components/examples/ErrorBodyTooManyRequests"
+                  },
+                  "ErrorBodyRateLimited": {
+                    "$ref": "#/components/examples/ErrorBodyRateLimited"
+                  }
+                }
+              }
+            }
+          },
+          "451": {
+            "description": "Unavailable For Legal Reasons",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FailedResponse"
+                },
+                "examples": {
+                  "ErrorBodyLegalReasons": {
+                    "$ref": "#/components/examples/ErrorBodyLegalReasons"
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FailedResponse"
+                },
+                "examples": {
+                  "TTSServiceSubmitError": {
+                    "$ref": "#/components/examples/TTSServiceSubmitError"
+                  },
+                  "TTSEntityCreationError": {
+                    "$ref": "#/components/examples/TTSEntityCreationError"
+                  },
+                  "TTSRuntimeError": {
+                    "$ref": "#/components/examples/TTSRuntimeError"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
     }
   },
   "components": {
@@ -1419,6 +1888,33 @@
           },
           "extendedPropertyMap": {
             "type": "object",
+            "properties": {
+                "aspectRatio": {
+                  "type": "object",
+                  "properties": {
+                    "x": {
+                      "type": "integer"
+
+                    },
+                    "y":{
+                      "type": "integer"
+                    }
+                  }
+
+                },
+                "resolution": {
+                  "type": "object",
+                  "properties": {
+                    "width": {
+                      "type": "integer"
+                    },
+                    "height":{
+                      "type": "integer"
+                    }
+                  }
+                }
+
+            },
             "description": "This is a field for any additional properties for the avatar."
           },
           "thumbnailUrls": {
@@ -1569,7 +2065,7 @@
         ]
       },
       "GenerateAvatarUsingPlainText": {
-        "title": "Generate Avatar Using Plain Text",
+        "title": "Using Plain Text",
         "type": "object",
         "properties": {
           "script": {
@@ -1619,7 +2115,7 @@
         ]
       },
       "GenerateAvatarUsingAudioFile": {
-        "title": "Generate Avatar Using Audio File",
+        "title": "Using Audio File",
         "type": "object",
         "properties": {
           "audio": {
@@ -1631,9 +2127,7 @@
               "mediaType": {
                 "type": "string",
                 "enum": [
-                  "audio/wav",
-                  "audio/x-wav",
-                  "audio/aac"
+                  "audio/wav"
                 ]
               },
               "localeCode": {
@@ -1800,8 +2294,8 @@
           "output": {
             "type": "object",
             "properties": {
-              "url": {
-                "type": "string"
+              "destination": {
+                "$ref": "#/components/schemas/Destination"
               }
             }
           }
@@ -2431,7 +2925,16 @@
               "ethnicity": "Caucasian",
               "status": "Active",
               "style": "Doctor",
-              "extendedPropertyMap": {},
+              "extendedPropertyMap": {
+                "aspectRatio": {
+                  "x": 16,
+                  "y": 9
+                },
+                "resolution": {
+                  "width": 1920,
+                  "height": 1080
+                }
+              },
               "thumbnailUrls": {
                 "hd": "<pre-signed url for downloading HD avatar thumbnail>",
                 "lowRes": "<pre-signed url for downloading low resolution avatar thumbnail>"
@@ -2539,7 +3042,7 @@
       "AccessError": {
         "summary": "Access Error",
         "value": {
-          "error_code": "unauthorized",
+          "error_code": "access_error",
           "message": "Token not allowed in the current context"
         }
       },
@@ -2764,7 +3267,7 @@
         "summary": "Missing Background Type",
         "value": {
           "error_code": "validation_error",
-          "message": "Background type must be set to 'image', 'video', or 'color'"
+          "message": "Background type must be set to one of the following: 'image', 'video', 'color', or 'transparent'."
         }
       },
       "InvalidBackgroundUrlErrorExample": {
@@ -2841,7 +3344,7 @@
         "summary": "Invalid Source URL",
         "value": {
           "error_code": "validation_error",
-          "message": "Invalid source url"
+          "message": "Invalid source url specified"
         }
       },
       "IncorrectVoiceNameErrorExample": {
@@ -2877,6 +3380,20 @@
         "value": {
           "error_code": "runtime_error",
           "message": "Internal Server Error"
+        }
+      },
+      "TEXT_TO_SPEECH_ENTITY_CREATION_ERROR": {
+        "summary": "Internal Server Error during Entity Creation",
+        "value": {
+          "error_code": "runtime_error",
+          "message": "Internal Server Error while creating text to speech request"
+        }
+      },
+      "TEXT_TO_SPEECH_SERVICE_SUBMIT_ERROR": {
+        "summary": "Internal Server Error during Submit",
+        "value": {
+          "error_code": "runtime_error",
+          "message": "Internal Server Error while submitting text to speech request"
         }
       },
       "TTSRuntimeError": {
@@ -3022,7 +3539,9 @@
           "jobId": "string",
           "status": "succeeded",
           "output": {
-            "url": "string"
+            "destination": {
+              "url": "string"
+            }
           }
         }
       },
@@ -3047,10 +3566,72 @@
       "StatusAPIFailedBackgroundFileResponse": {
         "summary": "Failed Background File Download",
         "value": {
+          "error_code": "validation_error",
+          "message": "Error while downloading file from Background URL"
+        }
+      },
+      "DentroCheckFailedResponse": {
+        "summary": "Error Processing Unsafe Prompt",
+        "value": {
           "jobId": "string",
           "status": "failed",
           "error_code": "validation_error",
-          "message": "Error while downloading media format file from Background URL"
+          "message": "The provided prompt is considered unsafe and it cannot be used to generate content."
+        }
+      },
+      "MISSING_PARAMS_IN_CROP_AREA": {
+        "summary": "Missing params in crop area",
+        "value": {
+          "error_code": "validation_error",
+          "message": "Missing params in crop area"
+        }
+      },
+      "INVALID_CROP_AREA_PARAMS": {
+        "summary": "Invalid value in crop area",
+        "value": {
+          "error_code": "validation_error",
+          "message": "Invalid value in crop area params"
+        }
+      },
+      "CROP_AREA_ASPECT_RATIO_NOT_SUPPORTED": {
+        "summary": "Aspect ratio in Crop",
+        "value": {
+          "error_code": "validation_error",
+          "message": " Aspect ratio 16:9 is not maintained in crop width*height"
+        }
+      },
+      "CROP_AREA_UNSUPPORTED_FOR_NON_IMAGE_VIDEO_BACKGROUND": {
+        "summary": "Crop area support",
+        "value": {
+          "error_code": "validation_error",
+          "message": "Crop area supported only for image and video background"
+        }
+      },
+      "StatusAPIFailedBackgroundResolutionErrorResponse": {
+        "summary": "Error in Background Resolution",
+        "value": {
+          "jobId": "string",
+          "status": "failed",
+          "error_code": "validation_error",
+          "message": "Background asset resolution should be greater than 640x360"
+        }
+      },
+      "StatusAPIFailedCropAreaErrorResponse": {
+        "summary": "Error in Crop Area",
+        "value": {
+          "jobId": "string",
+          "status": "failed",
+          "error_code": "validation_error",
+          "message": "Crop Area is going out of bounds"
+        }
+      },
+      "StatusAPIFailedBackgroundCropErrorResponse": {
+        "summary": "Error in Background Aspect Ratio",
+        "value": {
+          "jobId": "string",
+          "status": "failed",
+          "error_code": "validation_error",
+          "message": " Image background asset should be 16:9 aspect ratio, please provide crop the media and then send"
         }
       },
       "StatusAPIFailedMediatypeMismatchResponse": {
@@ -3140,7 +3721,7 @@
           "jobId": "string",
           "status": "failed",
           "error_code": "runtime_error",
-          "message": "Validation failure in lip sync pipeline."
+          "message": "Validation failure in Lipsync Pipeline"
         }
       },
       "StatusAPIFailedFFMpegErrorResponse": {
@@ -3158,7 +3739,7 @@
           "jobId": "string",
           "status": "failed",
           "error_code": "runtime_error",
-          "message": "Failed while polling for lip sync"
+          "message": "Failed while polling for Lipsync"
         }
       },
       "StatusAPIFailedMediaTrimErrorResponse": {
@@ -3167,7 +3748,7 @@
           "jobId": "string",
           "status": "failed",
           "error_code": "runtime_error",
-          "message": "Error while trimming avatar video"
+          "message": "Error while triming avatar video"
         }
       },
       "StatusAPIFailedMediaTrimAlphaErrorResponse": {
@@ -3176,7 +3757,7 @@
           "jobId": "string",
           "status": "failed",
           "error_code": "runtime_error",
-          "message": "Error while trimming avatar alpha video"
+          "message": "Error while triming avatar alpha video"
         }
       },
       "StatusAPIFailedConfigDownloadResponse": {

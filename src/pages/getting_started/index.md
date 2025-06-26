@@ -13,6 +13,14 @@ For your application to generate an access token, an end user does not need to s
 
 This is sometimes referred to as "two-legged OAuth".
 
+## Prerequisites
+
+This tutorial assumes you have worked with your Adobe Representative and have the following:
+
+- An [Adobe Developer Console][2] account.
+- A [project][3] with Audio/Video API [OAuth Server-to-Server credentials set up][4].
+- Access to your **Client ID** and **Client Secret** from the [Adobe Developer Console project][5]. Securely store these credentials and never expose them in client-side or public code.
+
 ## Access tokens
 
 Each access token is valid for 24 hours. To adhere to OAuth best practices, you should generate a new token every 23 hours.
@@ -42,3 +50,10 @@ Automate your token generation by calling the IMS endpoint above using standard 
 Be diligent when choosing the OAuth 2.0 library that works best for your application. Your teams' projects likely leverage OAuth libraries already to connect with other APIs. It's recommended to use these libraries to automatically generate tokens when they expire.
 
 The token endpoint also returns an expiry date, and the token itself (when decoded) contains the expiry time.
+
+<!-- Links -->
+[1]: https://www.adobe.com/content/dam/cc/en/trust-center/ungated/whitepapers/corporate/adobe-identity-management-services-security-overview.pdf
+[2]: https://developer.adobe.com/
+[3]: https://developer.adobe.com/developer-console/docs/guides/projects/projects-empty/
+[4]: https://developer.adobe.com/developer-console/docs/guides/services/services-add-api-oauth-s2s/
+[5]: https://developer.adobe.com/developer-console/docs/guides/services/services-add-api-oauth-s2s/#api-overview

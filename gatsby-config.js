@@ -52,6 +52,10 @@ module.exports = {
           {
             title: 'Technical Usage Notes',
             path: '/getting_started/usage'
+          },
+          {
+            title: 'Avatar Catalog',
+            path: '/getting_started/avatar_catalog'
           }
         ]
       },
@@ -75,6 +79,10 @@ module.exports = {
           {
             title: 'Using the Dub API',
             path: '/guides/TLS/dub_quickstart.md'
+          },
+          {
+            title: 'Using the Avatar API',
+            path: '/guides/avatar/index.md'
           },
           {
             title: 'GET Result API Quickstart',
