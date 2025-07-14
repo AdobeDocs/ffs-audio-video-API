@@ -2,9 +2,13 @@
 title: Transcribe API Quickstart
 description: This page is a quickstart guide for the TLS Transcribe API.
 ---
-# Transcribe API
+# Using the Transcribe API
 
 Quickstart commands to create a transcription from audio or video files.
+
+## Overview
+
+The Transcribe API enables you to convert speech from audio and video files into text. You can transcribe content in the source language or translate it to target languages, and generate captions in various formats. This guide provides ready-to-use cURL commands to get you started with transcription workflows.
 
 ## Before you start
 

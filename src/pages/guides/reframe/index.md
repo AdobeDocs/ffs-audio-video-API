@@ -7,7 +7,12 @@ contributors:
 
 # Using the Reframe API
 
-This quickstart guide provides ready-to-use cURL commands and instructions for the features of the **Reframe** API.
+This quickstart guide provides ready-to-use cURL commands and instructions for the features of
+the **Reframe** API.
+
+## Overview
+
+The Reframe API automatically adjusts video content to fit different aspect ratios while maintaining visual focus on important elements. Reframe videos for various social media platforms and add dynamic overlays like GIFs and images with precise timing and positioning controls. This guide provides cURL commands for basic reframing and advanced overlay workflows.
 
 ## Before you start
 

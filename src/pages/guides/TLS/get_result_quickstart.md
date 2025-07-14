@@ -2,9 +2,13 @@
 title: Get Result API Quickstart
 description: This page is a quickstart guide for the TLS Get Result API.
 ---
-# Get Result API
+# Using the Get Result API
 
 Quickstart commands to see the result of an asynchronous dub job.
+
+## Overview
+
+The Get Result API allows you to check the status and retrieve the output of asynchronous Audio and Video API jobs. Monitor job progress and download the results including audio, video, and transcript files. Use these cURL commands to check job status and understand the response formats for different job types.
 
 ## Before you start
 
