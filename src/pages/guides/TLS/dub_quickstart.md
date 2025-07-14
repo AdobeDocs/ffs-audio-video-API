@@ -6,6 +6,10 @@ description: This page is a quickstart guide for the TLS Dub API.
 
 Quickstart commands to dub audio or video with a target language or edited transcript.
 
+## Overview
+
+The Dub API allows you to create dubbed versions of audio and video content by translating speech to different languages. Use automated dubbing with AI-generated translations or provide your own edited transcripts for precise control. This guide provides cURL commands for various dubbing scenarios including automated translation and custom transcript workflows.
+
 ## Before you start
 
 - You'll need a valid access token and client ID. See the [Authentication Guide](../../getting_started/index.md) for details.
