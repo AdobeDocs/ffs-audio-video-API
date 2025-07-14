@@ -2,7 +2,7 @@
 title: Transcribe API Quickstart
 description: This page is a quickstart guide for the TLS Transcribe API.
 ---
-# Transcribe API
+# Using the Transcribe API
 
 Quickstart commands to create a transcription from audio or video files.
 

@@ -2,7 +2,7 @@
 title: Dub API Quickstart
 description: This page is a quickstart guide for the TLS Dub API.
 ---
-# Dub API
+# Using the Dub API
 
 Quickstart commands to dub audio or video with a target language or edited transcript.
 

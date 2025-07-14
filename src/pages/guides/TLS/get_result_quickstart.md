@@ -2,7 +2,7 @@
 title: Get Result API Quickstart
 description: This page is a quickstart guide for the TLS Get Result API.
 ---
-# Get Result API
+# Using the Get Result API
 
 Quickstart commands to see the result of an asynchronous dub job.
 
