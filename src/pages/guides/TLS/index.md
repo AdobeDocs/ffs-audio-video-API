@@ -151,13 +151,15 @@ curl --location 'https://audio-video-api.adobe.io/v1/transcribe' \
 
 ## Check the result
 
-Note the job ID in the response and use the [Get Result API](get_result_quickstart.md) to see the final result.
+Requests to these endpoints are processed asynchronously so a successful response will return a 202 status code with a job ID and a status URL.
 
-**Sample response**
+**Example 202 response**
 
 ```bash
 {
     "jobId": "986fc222-1118-4242-b326-eb9873e3982f",
-    "statusUrl": "https://audio-video-api.adobe.io/v1/status/{jobID}"
+    "statusUrl": "https://audio-video-api.adobe.io/v1/status/986fc222-1118-4242-b326-eb9873e3982f"
 }
 ```
+
+Use the job ID from the response with the [Get Result API](get_result_quickstart.md) to poll the job's status and retrieve the final results.

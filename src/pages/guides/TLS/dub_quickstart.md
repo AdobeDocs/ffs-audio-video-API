@@ -198,16 +198,3 @@ curl --location 'https://audio-video-api.adobe.io/v1/dub' \
   "lipSync": "false"
 }'
 ```
-
-## Check the result
-
-Note the job ID in the response and use the [Get Result API](get_result_quickstart.md) to see the final result.
-
-**Sample response**
-
-```bash
-{
-    "jobId": "986fc222-1118-4242-b326-eb9873e3982f",
-    "statusUrl": "https://audio-video-api.adobe.io/v1/status/{jobID}"
-}
-```
