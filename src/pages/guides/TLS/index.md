@@ -39,7 +39,7 @@ This API can't re-translate a source transcript. A translation can only be perfo
 
 ## Before you start
 
-Use the quickstart commands below to get started implementing the TLS workflow. You can try these cURL requests directly in your terminal. Or use an HTTP client like [Postman][1].
+Use the quickstart commands below to get started implementing a workflow with these APIs. You can try these cURL requests directly in your terminal. Or use an HTTP client like [Postman][1].
 
 Prerequisites:
 
