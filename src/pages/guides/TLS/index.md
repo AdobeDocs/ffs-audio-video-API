@@ -4,11 +4,14 @@ description: Understand the workflow for creating a video dub by leveraging Fire
 ---
 # Creating a video dub
 
-This guide explains the workflow for creating a video dub, which leverages Firefly's Transcribe and Dub APIs. Understand the use case for each service and use the quickstart commands to get started.
+This guide explains the workflow for creating a video dub, which leverages Firefly's Transcribe and Dub APIs. Understand the use case for each API service and use this guide's quickstart commands to get started with your own implementation.
 
 ## Overview
 
-The Transcribe API enables you to convert speech from audio and video files into text. You can transcribe content in the source language or translate it to target languages, and generate captions in various formats. This guide provides ready-to-use cURL commands to get you started with transcription workflows.
+
+The Dub API allows you to create dubbed versions of audio and video content by translating speech to different languages. Use automated dubbing with AI-generated translations or provide your own edited transcripts for precise control. This guide provides cURL commands for various dubbing scenarios including automated translation and custom transcript workflows.
+
+The Transcribe API enables you to convert speech from audio and video files into a text transcript or video captions. You can transcribe content in the source language or translate it to target languages, and generate captions in various formats. This guide provides ready-to-use cURL commands to get you started with transcription workflows.
 
 ## Before you start
 
@@ -149,13 +152,7 @@ curl --location 'https://audio-video-api.adobe.io/v1/transcribe' \
 }'
 ```
 
-## Using the Dub API
 
-Quickstart commands to dub audio or video with a target language or edited transcript.
-
-## Overview
-
-The Dub API allows you to create dubbed versions of audio and video content by translating speech to different languages. Use automated dubbing with AI-generated translations or provide your own edited transcripts for precise control. This guide provides cURL commands for various dubbing scenarios including automated translation and custom transcript workflows.
 
 ## Before you start
 
