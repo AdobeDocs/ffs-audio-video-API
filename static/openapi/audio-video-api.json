@@ -838,7 +838,7 @@
       "post": {
         "tags": ["Translate and lip sync"],
         "summary": "Transcribe media",
-        "description": "Generates transcripts for the input audio or video.",
+        "description": "Generates transcripts and captions for the input audio or video in the source language or in a target language.",
         "operationId": "transcribe",
         "requestBody": {
           "description": "The transcribe request body.",
