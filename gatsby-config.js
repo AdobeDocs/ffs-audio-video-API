@@ -73,12 +73,8 @@ module.exports = {
             path: '/guides/reframe/index.md'
           },
           {
-            title: 'Using the Transcribe API',
+            title: 'Creating a video dub',
             path: '/guides/TLS/index.md'
-          },
-          {
-            title: 'Using the Dub API',
-            path: '/guides/TLS/dub_quickstart.md'
           },
           {
             title: 'Using the Avatar API',
