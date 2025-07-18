@@ -1,14 +1,15 @@
 ---
 title: Creating a Video Dub
 description: Understand the workflow to create a video dub using Firefly's APIs.
+hideBreadcrumbNav: true
 keywords:
   - video dub
   - transcription
   - translation
   - dubbing
   - lip sync
-  - transcribe api
-  - dub api
+  - transcribe API
+  - dub API
 ---
 # Creating a video dub
 
@@ -18,15 +19,15 @@ This guide explains the workflow for creating a video dub, which leverages Firef
 
 When you create a dub from an audio or video file there are three main steps in the workflow: **transcription**, **translation**, and **dubbing**. Firefly's APIs are designed for use in specific parts of this workflow.
 
-| ![TLS workflow Diagram](./TLS_workflow_diagram.drawio.png) |
-| :---: |
-| *A workflow featuring the Transcribe API and Dub API.* |
+| ![TLS workflow diagram showing transcription, translation, and dubbing steps](./TLS_workflow_diagram.drawio.png) |
+|:--:|
+| **Figure 1:** TLS workflow diagram showing the three main steps and featuring the Transcribe API and Dub API. |
 
 Let's understand more about how each specific API is designed.
 
 ### About the Dub API
 
-The **Dub API** is the more comprehensive service and can be used for all three steps in the workflow. It consumes input media and can perform the transcription, translation to a target language, and dub, all at once. An optional AI lip sync can be applied to the dubbed video.
+The **Dub API** is the more comprehensive service and can perform all three steps in the workflow. It consumes input media and can perform the transcription, translation to a target language, and dub, all at once. An optional AI lip sync can also be applied to the dubbed video.
 
 This API also accepts transcripts as input, from Adobe's Transcript API or elsewhere, and can perform a dub using that transcript. Use edited transcripts in this way for more precise control over the final dub.
 
@@ -34,51 +35,53 @@ This API also accepts transcripts as input, from Adobe's Transcript API or elsew
 
 The **Transcribe API** converts speech from audio and video files into a text transcript which can be used as input for the Dub API. Transcribe content in the source language or translate it into target languages, and generate captions.
 
-This API cannot re-translate a source transcript. A translation can only be performed simultaneously with the transcription from the source media.
+This API can't re-translate a source transcript. A translation can only be performed simultaneously with the transcription from the source media.
 
 ## Before you start
 
-You can try these cURL requests directly in your terminal. Or you can use an HTTP client like [Postman](https://www.postman.com/). Before you start:
+Use the quickstart commands below to get started implementing the TLS workflow. You can try these cURL requests directly in your terminal. Or use an HTTP client like [Postman][1].
 
-- You'll need a valid access token and client ID. See the [Authentication Guide](../../getting_started/index.md) for details.
-- Upload your media files (audio or video) to [your storage location and generate a pre-signed URL](../../getting_started/storage_solutions/index.md).
+Prerequisites:
+
+- You'll need a valid access token and client ID. See the [Authentication Guide][2] for details.
+- Upload your media files (audio or video) to [your storage location and generate a pre-signed URL][3].
 
 ## Transcribe quickstart
 
 These are useful cURL commands to get started with the Transcribe API. In the commands below:
 
-- Update the `Authorization` with the bearer access token.
+- Update the `Authorization` with the bearer access token.
 - Update `x-api-key` with the client ID.
 - Update `url` with the generated pre-signed URL for your input file.
 
-### Transcribe video with source language output
+### Transcribe video
 
 ```bash
 curl --location 'https://audio-video-api.adobe.io/v1/transcribe' \
---header 'Authorization: Bearer {AccessToken}' \
+--header 'Authorization: Bearer <your_access_token>' \
 --header 'Content-Type: application/json' \
---header 'x-api-key: {ClientID}' \
+--header 'x-api-key: <your_client_id>' \
 --data '{
   "video": {
     "source": {
-         "url" : "{Presigned_URL}"
+         "url" : "<your_presigned_url>"
     },
     "mediaType": "video/mp4"
   }
 }'
 ```
 
-### Transcribe audio with source language output
+### Transcribe audio
 
 ```bash
 curl --location 'https://audio-video-api.adobe.io/v1/transcribe' \
---header 'Authorization: Bearer {AccessToken}' \
+--header 'Authorization: Bearer <your_access_token>' \
 --header 'Content-Type: application/json' \
---header 'x-api-key: {ClientID}' \
+--header 'x-api-key: <your_client_id>' \
 --data '{
   "audio": {
     "source": {
-         "url" : "{Presigned_URL}"
+         "url" : "<your_presigned_url>"
     },
     "mediaType": "audio/mp3"
   }
@@ -89,18 +92,18 @@ curl --location 'https://audio-video-api.adobe.io/v1/transcribe' \
 
 ```bash
 curl --location 'https://audio-video-api.adobe.io/v1/transcribe' \
---header 'Authorization: Bearer {AccessToken}' \
+--header 'Authorization: Bearer <your_access_token>' \
 --header 'Content-Type: application/json' \
---header 'x-api-key: {Client_ID}' \
+--header 'x-api-key: <your_client_id>' \
 --data '{
   "video": {
     "source": {
-         "url" : "{Pre-signed_URL}"
+         "url" : "<your_presigned_url>"
     },
     "mediaType": "video/mp4"
   },
   "targetLocaleCodes": [
-    "{Target_Locale_Code}"
+    "<your_target_locale_code>"
   ]
 }'
 ```
@@ -109,61 +112,61 @@ curl --location 'https://audio-video-api.adobe.io/v1/transcribe' \
 
 ```bash
 curl --location 'https://audio-video-api.adobe.io/v1/transcribe' \
---header 'Authorization: Bearer {AccessToken}' \
+--header 'Authorization: Bearer <your_access_token>' \
 --header 'Content-Type: application/json' \
---header 'x-api-key: {ClientID}' \
+--header 'x-api-key: <your_client_id>' \
 --data '{
   "audio": {
     "source": {
-         "url" : "{Presigned_URL}"
+         "url" : "<your_presigned_url>"
     },
     "mediaType": "audio/mp3"
   },
   "targetLocaleCodes": [
-    "{targetLocaleCode}"
+    "<your_target_locale_code>"
   ]
 }'
 ```
 
-### Transcribe and generate captions from video
+### Captions from video
 
 ```bash
 curl --location 'https://audio-video-api.adobe.io/v1/transcribe' \
---header 'Authorization: Bearer {AccessToken}' \
+--header 'Authorization: Bearer <your_access_token>' \
 --header 'Content-Type: application/json' \
---header 'x-api-key: {ClientID}' \
+--header 'x-api-key: <your_client_id>' \
 --data '{
   "video": {
     "source": {
-         "url" : "{Presigned_URL}"
+         "url" : "<your_presigned_url>"
     },
     "mediaType": "video/mp4"
   },
   "captions": {
     "targetFormats": [
-      "{targetCaptionFormat}"
+      "<your_target_caption_format>"
     ]
   }
 }'
 ```
 
-### Transcribe and generate captions from audio
+### Captions from audio
 
 ```bash
 curl --location 'https://audio-video-api.adobe.io/v1/transcribe' \
---header 'Authorization: Bearer {AccessToken}' \
+--header 'Authorization: Bearer <your_access_token>' \
 --header 'Content-Type: application/json' \
---header 'x-api-key: {ClientID}' \
+--header 'x-api-key: <your_client_id>' \
 --data '{
   "audio": {
     "source": {
-         "url" : "{Presigned_URL}"
+         "url" : "<your_presigned_url>"
     },
     "mediaType": "audio/mp3"
   },
   "captions": {
     "targetFormats": [
-      "{targetCaptionFormat}"
+      "<your_target_caption_format>"
     ]
   }
 }'
@@ -173,11 +176,11 @@ curl --location 'https://audio-video-api.adobe.io/v1/transcribe' \
 
 These are useful cURL commands to get started with the Dub API. In the commands below:
 
-- Update the `Authorization` with the bearer access token.
+- Update the `Authorization` with the bearer access token.
 - Update `x-api-key` with the client ID.
 - Update `url` with the generated pre-signed URL for your input file.
 
-### Automated dubbing
+### Generate an automated dub
 
 You'll need to pass `targetLocaleCodes` in these commands.
 
@@ -185,18 +188,18 @@ You'll need to pass `targetLocaleCodes` in these commands.
 
 ```bash
 curl --location 'https://audio-video-api.adobe.io/v1/dub' \
---header 'Authorization: Bearer {AccessToken}' \
+--header 'Authorization: Bearer <your_access_token>' \
 --header 'Content-Type: application/json' \
---header 'x-api-key: {ClientID}' \
+--header 'x-api-key: <your_client_id>' \
 --data '{
   "video": {
     "source": {
-        "url": "{Presigned_URL}"
+        "url": "<your_presigned_url>"
     },
     "mediaType": "video/mp4"
   },
   "targetLocaleCodes": [
-    "{targetLocaleCode}"
+    "<your_target_locale_code>"
   ],
   "lipSync": "false"
 }'
@@ -206,78 +209,78 @@ curl --location 'https://audio-video-api.adobe.io/v1/dub' \
 
 ```bash
 curl --location 'https://audio-video-api.adobe.io/v1/dub' \
---header 'Authorization: Bearer {AccessToken}' \
+--header 'Authorization: Bearer <your_access_token>' \
 --header 'Content-Type: application/json' \
---header 'x-api-key: {ClientID}' \
+--header 'x-api-key: <your_client_id>' \
 --data '{
   "audio": {
     "source": {
-        "url": "{Presigned_URL}"
+        "url": "<your_presigned_url>"
       },
       "mediaType": "audio/mp3"
     },
     "targetLocaleCodes": [
-      "{targetLocaleCode}"
+      "<your_target_locale_code>"
     ],
     "lipSync": "false"
 }'
 ```
 
-### Dubbing with edited transcripts
+### Dub from edited transcripts
 
 You'll need to pass the `targetLocaleCodes` and edited transcripts in these commands. The `transcripts` should contain **only one URL** for the edited transcript.
 
-#### Dubbing with edited translations for video
+#### Dub from edited translations for video
 
 ```bash
 curl --location 'https://audio-video-api.adobe.io/v1/dub' \
---header 'Authorization: Bearer {AccessToken}' \
+--header 'Authorization: Bearer <your_access_token>' \
 --header 'Content-Type: application/json' \
---header 'x-api-key: {ClientID}' \
+--header 'x-api-key: <your_client_id>' \
 --data '{
   "video": {
     "source": {
-      "url": "{Presigned_URL}"
+      "url": "<your_presigned_url>"
     },
     "mediaType": "video/mp4"
   },
   "transcripts": [
     {
       "source": {
-        "url": "{Transcript_Presigned_URL}"
+        "url": "<your_transcript_presigned_url>"
       }
     }
   ],
   "targetLocaleCodes": [
-    "{targetLocaleCode}"
+    "<your_target_locale_code>"
   ],
   "lipSync": "false"
 }'
 ```
 
-#### Dubbing with edited translations for audio
+#### Dub from edited translations for audio
 
 ```bash
 curl --location 'https://audio-video-api.adobe.io/v1/dub' \
---header 'Authorization: Bearer {AccessToken}' \
+--header 'Authorization: Bearer <your_access_token>' \
 --header 'Content-Type: application/json' \
---header 'x-api-key: {ClientID}' \
+--header 'x-api-key: <your_client_id>' \
 --data '{
   "audio": {
     "source": {
-      "url": "{Presigned_URL}"
+      "url": "<your_presigned_url>"
     },
     "mediaType": "audio/mp3"
   },
   "transcripts": [
     {
       "source": {
-        "url": "{Transcript_Presigned_URL}"
+        "url": "<your_transcript_presigned_url>"
       }
     }
   ],
   "targetLocaleCodes": [
-    "{targetLocaleCode}"
+    "<your_target_locale_code>"
   ],
   "lipSync": "false"
 }'
@@ -296,4 +299,10 @@ Requests to these endpoints are processed asynchronously so a successful respons
 }
 ```
 
-Use the job ID from the response with the [Get Result API](get_result_quickstart.md) to poll the job's status and retrieve the final results.
+Use the job ID from the response with the [Get Result API][4] to poll the job's status and retrieve the final results.
+
+<!-- Links -->
+[1]: https://www.postman.com/
+[2]: ../../getting_started/index.md
+[3]: ../../getting_started/storage_solutions/index.md
+[4]: get_result_quickstart.md
