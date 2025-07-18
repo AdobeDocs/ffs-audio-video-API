@@ -8,17 +8,33 @@ This guide explains the workflow for creating a video dub, which leverages Firef
 
 ## Overview
 
-To create dubbed versions of
-The Dub API allows you to create dubbed versions of audio and video content by translating speech to different languages. Use automated dubbing with AI-generated translations or provide your own edited transcripts for precise control. This guide provides cURL commands for various dubbing scenarios including automated translation and custom transcript workflows.
+When you create a dub from an audio or video file there are three main steps in the workflow: transcription, translation, and dubbing. Firefly's APIs are designed for use in specific parts of this workflow.
 
-The Transcribe API enables you to convert speech from audio and video files into a text transcript or video captions. You can transcribe content in the source language or translate it to target languages, and generate captions in various formats. This guide provides ready-to-use cURL commands to get you started with transcription workflows.
+| ![TLS workflow Diagram](./TLS%20workflow%20Diagram.drawio.png) |
+|:--:|
+| *A workflow featuring the Transcribe API and Dub API* |
 
-## Before you start
+Let's understand more about how each specific API is designed.
+
+### About the Dub API
+
+The Dub API is the more comprehensive service and can be used for all three steps in the workflow. It consumes input media and can perform the transcription, translation to a target language, and dub, all at once. An optional AI lip sync can be applied to the dubbed video.
+
+This API also accepts transcripts as input, from Adobe's Transcript API or elsewhere, and can perform a dub using that transcript. Edited transcripts can be used in this way for more precise control over the final dub.
+
+### About the Transcribe API
+
+The Transcribe API converts speech from audio and video files into a text transcript which can be used as input for the Dub API. Transcribe content in the source language or translate it into target languages, and generate captions.
+
+There is no way to re-translate from a source transcript. A translation can only be performed simultaneously with the transcription from the source content.
+
+## Quickstart commands
+
+
+### Before you start
 
 - You'll need a valid access token and client ID. See the [Authentication Guide](../../getting_started/index.md) for details.
 - Upload your media files (audio or video) to [your storage location and generate a pre-signed URL](../../getting_started/storage_solutions/index.md).
-
-## Quickstart commands
 
 In the commands below:
 
@@ -26,7 +42,7 @@ In the commands below:
 - Update `x-api-key` with the client ID.
 - Update `url` with the generated pre-signed URL for your input file.
 
-You can try these curl requests directly in your terminal. Or you can use an HTTP client like [Postman](https://www.postman.com/).
+You can try these cURL requests directly in your terminal. Or you can use an HTTP client like [Postman](https://www.postman.com/).
 
 ### Transcribe with source language output
 
