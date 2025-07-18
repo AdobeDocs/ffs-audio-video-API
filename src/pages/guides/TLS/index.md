@@ -8,6 +8,7 @@ This guide explains the workflow for creating a video dub, which leverages Firef
 
 ## Overview
 
+To create dubbed versions of
 The Dub API allows you to create dubbed versions of audio and video content by translating speech to different languages. Use automated dubbing with AI-generated translations or provide your own edited transcripts for precise control. This guide provides cURL commands for various dubbing scenarios including automated translation and custom transcript workflows.
 
 The Transcribe API enables you to convert speech from audio and video files into a text transcript or video captions. You can transcribe content in the source language or translate it to target languages, and generate captions in various formats. This guide provides ready-to-use cURL commands to get you started with transcription workflows.
