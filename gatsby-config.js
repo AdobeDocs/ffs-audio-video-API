@@ -73,7 +73,7 @@ module.exports = {
             path: '/guides/reframe/index.md'
           },
           {
-            title: 'Creating a Video Dub',
+            title: 'Creating a video dub',
             path: '/guides/TLS/index.md'
           },
           {

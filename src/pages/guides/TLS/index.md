@@ -2,7 +2,7 @@
 title: Creating a Video Dub
 description: Understand the workflow for creating a video dub by leveraging Firefly's Transcribe and Dub APIs.
 ---
-# Creating a Video Dub
+# Creating a video dub
 
 This guide explains the workflow for creating a video dub, which leverages Firefly's Transcribe and Dub APIs. Understand the use case for each service and use the quickstart commands to get started.
 
