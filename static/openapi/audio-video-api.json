@@ -852,11 +852,11 @@
                 "AudioInputToGenerateTranscriptFromSourceAudio": {
                   "$ref": "#/components/examples/AudioInputToGenerateTranscriptFromSourceAudio"
                 },
-                "AudioInputToGenerateTranscriptFromTargetLanguageAudio": {
-                  "$ref": "#/components/examples/AudioInputToGenerateTranscriptFromTargetLanguageAudio"
-                },
                 "VideoInputToGenerateTranscriptFromSourceVideo": {
                   "$ref": "#/components/examples/VideoInputToGenerateTranscriptFromSourceVideo"
+                },
+                "AudioInputToGenerateTranscriptFromTargetLanguageAudio": {
+                  "$ref": "#/components/examples/AudioInputToGenerateTranscriptFromTargetLanguageAudio"
                 },
                 "VideoInputToGenerateTranscriptFromTargetLanguageVideo": {
                   "$ref": "#/components/examples/VideoInputToGenerateTranscriptFromTargetLanguageVideo"
@@ -3820,7 +3820,7 @@
         "value": {
           "audio": {
             "source": {
-              "url": "<pre-signed url for downloading the audio input>"
+              "url": "<pre-signed URL for downloading the audio input>"
             },
             "mediaType": "audio/wav"
           },
@@ -3828,15 +3828,14 @@
         }
       },
       "AudioInputToGenerateTranscriptFromTargetLanguageAudio": {
-        "summary": "Generate transcript from target language audio",
+        "summary": "Generate transcript from audio in target language (Spanish)",
         "value": {
           "audio": {
             "source": {
-              "url": "<pre-signed url for downloading the audio input>"
+              "url": "<pre-signed URL for downloading the audio input>"
             },
             "mediaType": "audio/wav"
-          },
-          "targetLocaleCodes": ["es-ES"]
+          }
         }
       },
       "VideoInputToGenerateTranscriptFromSourceVideo": {
@@ -3844,19 +3843,18 @@
         "value": {
           "video": {
             "source": {
-              "url": "<pre-signed url for downloading the video input>"
+              "url": "<pre-signed URL for downloading the video input>"
             },
             "mediaType": "video/mp4"
-          },
-          "targetLocaleCodes": ["en-US"]
+          }
         }
       },
       "VideoInputToGenerateTranscriptFromTargetLanguageVideo": {
-        "summary": "Generate transcript from target language video",
+        "summary": "Generate transcript from video in target language (Spanish)",
         "value": {
           "video": {
             "source": {
-              "url": "<pre-signed url for downloading the video input>"
+              "url": "<pre-signed URL for downloading the video input>"
             },
             "mediaType": "video/mp4"
           },
@@ -3868,7 +3866,7 @@
         "value": {
           "audio": {
             "source": {
-              "url": "<pre-signed url for downloading the audio input>"
+              "url": "<pre-signed URL for downloading the audio input>"
             },
             "mediaType": "audio/wav"
           },
@@ -3883,7 +3881,7 @@
         "value": {
           "video": {
             "source": {
-              "url": "<pre-signed url for downloading the video input>"
+              "url": "<pre-signed URL for downloading the video input>"
             },
             "mediaType": "video/mp4"
           },
@@ -4031,7 +4029,7 @@
         "value": {
           "video": {
             "source": {
-              "url": "<pre-signed url for downloading the video input>"
+              "url": "<pre-signed URL for downloading the video input>"
             },
             "mediaType": "video/mp4"
           },
@@ -4044,7 +4042,7 @@
         "value": {
           "audio": {
             "source": {
-              "url": "<pre-signed url for downloading the audio input>"
+              "url": "<pre-signed URL for downloading the audio input>"
             },
             "mediaType": "audio/wav"
           },
@@ -4056,14 +4054,14 @@
         "value": {
           "video": {
             "source": {
-              "url": "<pre-signed url for downloading the video input>"
+              "url": "<pre-signed URL for downloading the video input>"
             },
             "mediaType": "video/mp4"
           },
           "transcripts": [
             {
               "source": {
-                "url": "<pre-signed url for downloading the edited transcript>"
+                "url": "<pre-signed URL for downloading the edited transcript>"
               }
             }
           ],
