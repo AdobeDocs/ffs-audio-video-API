@@ -10,7 +10,7 @@ This guide explains the workflow for creating a video dub, which leverages Firef
 
 When you create a dub from an audio or video file there are three main steps in the workflow: transcription, translation, and dubbing. Firefly's APIs are designed for use in specific parts of this workflow.
 
-| ![TLS workflow Diagram](./TLS%20workflow%20Diagram.drawio.png) |
+| ![TLS workflow Diagram](./TLS_workflow_diagram.drawio.png) |
 |:--:|
 | *A workflow featuring the Transcribe API and Dub API* |
 
