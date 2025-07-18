@@ -3820,11 +3820,10 @@
         "value": {
           "audio": {
             "source": {
-              "url": "<pre-signed URL for downloading the audio input>"
+              "url": "<pre_signed_url_for_downloading_the_audio_input>"
             },
             "mediaType": "audio/wav"
-          },
-          "targetLocaleCodes": ["en-US"]
+          }
         }
       },
       "AudioInputToGenerateTranscriptFromTargetLanguageAudio": {
@@ -3832,10 +3831,11 @@
         "value": {
           "audio": {
             "source": {
-              "url": "<pre-signed URL for downloading the audio input>"
+              "url": "<pre_signed_url_for_downloading_the_audio_input>"
             },
             "mediaType": "audio/wav"
-          }
+          },
+          "targetLocaleCodes": ["es-ES"]
         }
       },
       "VideoInputToGenerateTranscriptFromSourceVideo": {
@@ -3843,7 +3843,7 @@
         "value": {
           "video": {
             "source": {
-              "url": "<pre-signed URL for downloading the video input>"
+              "url": "<pre_signed_url_for_downloading_the_video_input>"
             },
             "mediaType": "video/mp4"
           }
@@ -3854,7 +3854,7 @@
         "value": {
           "video": {
             "source": {
-              "url": "<pre-signed URL for downloading the video input>"
+              "url": "<pre_signed_url_for_downloading_the_video_input>"
             },
             "mediaType": "video/mp4"
           },
@@ -3866,7 +3866,7 @@
         "value": {
           "audio": {
             "source": {
-              "url": "<pre-signed URL for downloading the audio input>"
+              "url": "<pre_signed_url_for_downloading_the_audio_input>"
             },
             "mediaType": "audio/wav"
           },
@@ -3881,7 +3881,7 @@
         "value": {
           "video": {
             "source": {
-              "url": "<pre-signed URL for downloading the video input>"
+              "url": "<pre_signed_url_for_downloading_the_video_input>"
             },
             "mediaType": "video/mp4"
           },
@@ -4029,7 +4029,7 @@
         "value": {
           "video": {
             "source": {
-              "url": "<pre-signed URL for downloading the video input>"
+              "url": "<pre_signed_url_for_downloading_the_video_input>"
             },
             "mediaType": "video/mp4"
           },
@@ -4042,7 +4042,7 @@
         "value": {
           "audio": {
             "source": {
-              "url": "<pre-signed URL for downloading the audio input>"
+              "url": "<pre_signed_url_for_downloading_the_audio_input>"
             },
             "mediaType": "audio/wav"
           },
@@ -4054,14 +4054,14 @@
         "value": {
           "video": {
             "source": {
-              "url": "<pre-signed URL for downloading the video input>"
+              "url": "<pre_signed_url_for_downloading_the_video_input>"
             },
             "mediaType": "video/mp4"
           },
           "transcripts": [
             {
               "source": {
-                "url": "<pre-signed URL for downloading the edited transcript>"
+                "url": "<pre_signed_url_for_downloading_the_edited_transcript>"
               }
             }
           ],
@@ -4074,14 +4074,14 @@
         "value": {
           "audio": {
             "source": {
-              "url": "<pre-signed url for downloading the audio input>"
+              "url": "<pre_signed_url_for_downloading_the_audio_input>"
             },
             "mediaType": "audio/wav"
           },
           "transcripts": [
             {
               "source": {
-                "url": "<pre-signed url for downloading the edited transcript>"
+                "url": "<pre_signed_url_for_downloading_the_edited_transcript>"
               }
             }
           ],
@@ -4093,14 +4093,14 @@
         "value": {
           "video": {
             "source": {
-              "url": "<pre-signed url for downloading the video input>"
+              "url": "<pre_signed_url_for_downloading_the_video_input>"
             },
             "mediaType": "video/mp4"
           },
           "transcripts": [
             {
               "source": {
-                "url": "<pre-signed url for downloading the edited translated transcript>"
+                "url": "<pre_signed_url_for_downloading_the_edited_translated_transcript>"
               }
             }
           ],
@@ -4112,14 +4112,14 @@
         "value": {
           "audio": {
             "source": {
-              "url": "<pre-signed url for downloading the audio input>"
+              "url": "<pre_signed_url_for_downloading_the_audio_input>"
             },
             "mediaType": "audio/wav"
           },
           "transcripts": [
             {
               "source": {
-                "url": "<pre-signed url for downloading the edited translated transcript>"
+                "url": "<pre_signed_url_for_downloading_the_edited_translated_transcript>"
               }
             }
           ]
