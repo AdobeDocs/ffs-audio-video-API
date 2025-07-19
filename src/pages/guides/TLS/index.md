@@ -17,17 +17,17 @@ This guide explains the workflow for creating a video dub, which leverages Firef
 
 ## Overview
 
-When you create a dub from an audio or video file there are three main steps in the workflow: **transcription**, **translation**, and **dubbing**. Firefly's APIs are designed for use in specific parts of this workflow.
+When you create a dub from an audio or video file there are three main steps in the workflow: **transcription**, **translation**, and **dubbing**. Firefly's APIs are designed to be used for specific tasks in this workflow.
 
-| ![TLS workflow diagram showing transcription, translation, and dubbing steps](./TLS_workflow_diagram.drawio.png) |
+| ![Workflow diagram showing transcription, translation, and dubbing steps](./TLS_workflow_diagram.drawio.png) |
 |:--:|
-| **Figure 1:** TLS workflow diagram showing the three main steps and featuring the Transcribe API and Dub API. |
+| **Figure 1:** Workflow diagram showing the three main steps and featuring the Transcribe API and Dub API. |
 
-Let's understand more about how each specific API is designed.
+Let's understand more about the design of each specific API.
 
 ### About the Dub API
 
-The **Dub API** is the more comprehensive service and can perform all three steps in the workflow. It consumes input media and can perform the transcription, translation to a target language, and dub, all at once. An optional AI lip sync can also be applied to the dubbed video.
+The **Dub API** is the more comprehensive service and can perform all three steps in the workflow. It consumes input media and can perform the transcription, translation to a target language, and dub, all at once. An optional AI lip sync is also available for the dubbed video.
 
 This API also accepts transcripts as input, from Adobe's Transcript API or elsewhere, and can perform a dub using that transcript. Use edited transcripts in this way for more precise control over the final dub.
 
@@ -35,11 +35,11 @@ This API also accepts transcripts as input, from Adobe's Transcript API or elsew
 
 The **Transcribe API** converts speech from audio and video files into a text transcript which can be used as input for the Dub API. Transcribe content in the source language or translate it into target languages, and generate captions.
 
-This API can't re-translate a source transcript. A translation can only be performed simultaneously with the transcription from the source media.
+This API can't re-translate a source transcript. A translation operation only occurs simultaneously with the transcription from the source media.
 
 ## Before you start
 
-Use the quickstart commands below to get started implementing the TLS workflow. You can try these cURL requests directly in your terminal. Or use an HTTP client like [Postman][1].
+Use the quickstart commands below to get started implementing a workflow with these APIs. You can try these cURL requests directly in your terminal. Or use an HTTP client like [Postman][1].
 
 Prerequisites:
 
