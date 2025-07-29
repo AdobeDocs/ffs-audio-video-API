@@ -1,5 +1,5 @@
 ---
-title: Creating a Video Dub
+title: How to Transcribe and Dub Audio/Video
 description: Understand the workflow to create a video dub using Firefly's APIs.
 hideBreadcrumbNav: true
 keywords:
@@ -11,13 +11,13 @@ keywords:
   - transcribe API
   - dub API
 ---
-# Creating a video dub
+# How to transcribe and dub audio/video content
 
 This guide explains the workflow for creating a video dub, which leverages Firefly's Transcribe and Dub APIs. Understand the use case for each API service and use this guide's quickstart commands to get started with your own implementation.
 
 ## Overview
 
-When you create a dub from an audio or video file there are three main steps in the workflow: **transcription**, **translation**, and **dubbing**. Firefly's APIs are designed to be used for specific tasks in this workflow.
+When you create a dub from an audio or video file there are three main steps in the workflow: **transcription**, **translation**, and **dubbing**. Firefly's APIs are designed for specific tasks in this workflow.
 
 | ![Workflow diagram showing transcription, translation, and dubbing steps](./TLS_workflow_diagram.drawio.png) |
 |:--:|
@@ -27,19 +27,19 @@ Let's understand more about the design of each specific API.
 
 ### About the Dub API
 
-The **Dub API** is the more comprehensive service and can perform all three steps in the workflow. It consumes input media and can perform the transcription, translation to a target language, and dub, all at once. An optional AI lip sync is also available for the dubbed video.
+The **Dub API** is the more comprehensive service and can perform all three steps in the workflow. It consumes input media and can perform the transcription, translation to a [target language][5], and dub, all at once. An optional AI lip sync is also available for the dubbed video.
 
 This API also accepts transcripts as input, from Adobe's Transcript API or elsewhere, and can perform a dub using that transcript. Use edited transcripts in this way for more precise control over the final dub.
 
 ### About the Transcribe API
 
-The **Transcribe API** converts speech from audio and video files into a text transcript which can be used as input for the Dub API. Transcribe content in the source language or translate it into target languages, and generate captions.
+The **Transcribe API** converts speech from audio and video files into a text transcript which can be used as input for the Dub API. The output is a text file, and when captions are requested the response also includes an SRT file with caption information. Use the API to transcribe content in the source language or translate it into target languages, and generate captions.
 
 This API can't re-translate a source transcript. A translation operation only occurs simultaneously with the transcription from the source media.
 
 ## Before you start
 
-Use the quickstart commands below to get started implementing a workflow with these APIs. You can try these cURL requests directly in your terminal. Or use an HTTP client like [Postman][1].
+Use the quickstart commands below to get started implementing a workflow with these APIs. Try these cURL requests directly in your terminal. Or use an HTTP client like [Postman][1].
 
 Prerequisites:
 
@@ -174,7 +174,7 @@ curl --location 'https://audio-video-api.adobe.io/v1/transcribe' \
 
 ## Dub quickstart
 
-These are useful cURL commands to get started with the Dub API. In the commands below:
+Use these helpful cURL commands to get started with the Dub API. In the commands below:
 
 - Update the `Authorization` with the bearer access token.
 - Update `x-api-key` with the client ID.
@@ -182,7 +182,7 @@ These are useful cURL commands to get started with the Dub API. In the commands 
 
 ### Generate an automated dub
 
-You'll need to pass `targetLocaleCodes` in these commands.
+Pass `targetLocaleCodes` in these automated dub commands.
 
 #### Automated dubbing for video
 
@@ -228,7 +228,7 @@ curl --location 'https://audio-video-api.adobe.io/v1/dub' \
 
 ### Dub from edited transcripts
 
-You'll need to pass the `targetLocaleCodes` and edited transcripts in these commands. The `transcripts` should contain **only one URL** for the edited transcript.
+Pass the `targetLocaleCodes` and edited transcripts in these commands for edited transcripts. The `transcripts` should contain **only one URL** for the edited transcript.
 
 #### Dub from edited translations for video
 
@@ -288,7 +288,7 @@ curl --location 'https://audio-video-api.adobe.io/v1/dub' \
 
 ## Check the result
 
-Requests to these endpoints are processed asynchronously so a successful response will return a 202 status code with a job ID and a status URL.
+Requests to these endpoints are processed asynchronously so a successful response returns a 202 status code with a job ID and a status URL.
 
 **Example 202 response**
 
@@ -306,3 +306,4 @@ Use the job ID from the response with the [Get Result API][4] to poll the job's 
 [2]: ../../getting_started/index.md
 [3]: ../../getting_started/storage_solutions/index.md
 [4]: get_result_quickstart.md
+[5]: ../../getting_started/usage/index.md#language-support
