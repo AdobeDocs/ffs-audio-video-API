@@ -73,7 +73,7 @@ module.exports = {
             path: '/guides/reframe/index.md'
           },
           {
-            title: 'Creating a video dub',
+            title: 'How to Transcribe and Dub Audio/Video',
             path: '/guides/TLS/index.md'
           },
           {

@@ -1,5 +1,5 @@
 ---
-title: Creating a Video Dub
+title: How to Transcribe and Dub Audio/Video
 description: Understand the workflow to create a video dub using Firefly's APIs.
 hideBreadcrumbNav: true
 keywords:
@@ -11,7 +11,7 @@ keywords:
   - transcribe API
   - dub API
 ---
-# Creating a video dub
+# How to transcribe and dub audio/video content
 
 This guide explains the workflow for creating a video dub, which leverages Firefly's Transcribe and Dub APIs. Understand the use case for each API service and use this guide's quickstart commands to get started with your own implementation.
 
