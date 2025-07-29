@@ -17,7 +17,7 @@ This guide explains the workflow for creating a video dub, which leverages Firef
 
 ## Overview
 
-When you create a dub from an audio or video file there are three main steps in the workflow: **transcription**, **translation**, and **dubbing**. Firefly's APIs are designed to be used for specific tasks in this workflow.
+When you create a dub from an audio or video file there are three main steps in the workflow: **transcription**, **translation**, and **dubbing**. Firefly's APIs are designed for specific tasks in this workflow.
 
 | ![Workflow diagram showing transcription, translation, and dubbing steps](./TLS_workflow_diagram.drawio.png) |
 |:--:|
@@ -27,13 +27,13 @@ Let's understand more about the design of each specific API.
 
 ### About the Dub API
 
-The **Dub API** is the more comprehensive service and can perform all three steps in the workflow. It consumes input media and can perform the transcription, translation to a target language, and dub, all at once. An optional AI lip sync is also available for the dubbed video.
+The **Dub API** is the more comprehensive service and can perform all three steps in the workflow. It consumes input media and can perform the transcription, translation to a [target language][5], and dub, all at once. An optional AI lip sync is also available for the dubbed video.
 
 This API also accepts transcripts as input, from Adobe's Transcript API or elsewhere, and can perform a dub using that transcript. Use edited transcripts in this way for more precise control over the final dub.
 
 ### About the Transcribe API
 
-The **Transcribe API** converts speech from audio and video files into a text transcript which can be used as input for the Dub API. Transcribe content in the source language or translate it into target languages, and generate captions.
+The **Transcribe API** converts speech from audio and video files into a text transcript which can be used as input for the Dub API. The output is a text file, and when captions are requested the response also includes an SRT file with caption information. Use the API to transcribe content in the source language or translate it into target languages, and generate captions.
 
 This API can't re-translate a source transcript. A translation operation only occurs simultaneously with the transcription from the source media.
 
@@ -306,3 +306,4 @@ Use the job ID from the response with the [Get Result API][4] to poll the job's 
 [2]: ../../getting_started/index.md
 [3]: ../../getting_started/storage_solutions/index.md
 [4]: get_result_quickstart.md
+[5]: ../../getting_started/usage/index.md#language-support
