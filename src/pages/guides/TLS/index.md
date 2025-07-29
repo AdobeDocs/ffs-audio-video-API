@@ -39,7 +39,7 @@ This API can't re-translate a source transcript. A translation operation only oc
 
 ## Before you start
 
-Use the quickstart commands below to get started implementing a workflow with these APIs. You can try these cURL requests directly in your terminal. Or use an HTTP client like [Postman][1].
+Use the quickstart commands below to get started implementing a workflow with these APIs. Try these cURL requests directly in your terminal. Or use an HTTP client like [Postman][1].
 
 Prerequisites:
 
@@ -174,7 +174,7 @@ curl --location 'https://audio-video-api.adobe.io/v1/transcribe' \
 
 ## Dub quickstart
 
-These are useful cURL commands to get started with the Dub API. In the commands below:
+Use these helpful cURL commands to get started with the Dub API. In the commands below:
 
 - Update the `Authorization` with the bearer access token.
 - Update `x-api-key` with the client ID.
@@ -182,7 +182,7 @@ These are useful cURL commands to get started with the Dub API. In the commands 
 
 ### Generate an automated dub
 
-You'll need to pass `targetLocaleCodes` in these commands.
+Pass `targetLocaleCodes` in these automated dub commands.
 
 #### Automated dubbing for video
 
@@ -228,7 +228,7 @@ curl --location 'https://audio-video-api.adobe.io/v1/dub' \
 
 ### Dub from edited transcripts
 
-You'll need to pass the `targetLocaleCodes` and edited transcripts in these commands. The `transcripts` should contain **only one URL** for the edited transcript.
+Pass the `targetLocaleCodes` and edited transcripts in these commands for edited transcripts. The `transcripts` should contain **only one URL** for the edited transcript.
 
 #### Dub from edited translations for video
 
@@ -288,7 +288,7 @@ curl --location 'https://audio-video-api.adobe.io/v1/dub' \
 
 ## Check the result
 
-Requests to these endpoints are processed asynchronously so a successful response will return a 202 status code with a job ID and a status URL.
+Requests to these endpoints are processed asynchronously so a successful response returns a 202 status code with a job ID and a status URL.
 
 **Example 202 response**
 
