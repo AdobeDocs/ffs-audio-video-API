@@ -6,7 +6,9 @@ contributors:
   - https://github.com/AEAbreu-hub
 ---
 
-<Hero slots="heading, text" background="rgb(233, 80, 80)"/>
+<Hero slots="image, heading, text" background="rgb(233, 80, 80)"/>
+
+![Audio/Video APIs](./av-hero.jpg)
 
 # Audio/Video APIs
 
