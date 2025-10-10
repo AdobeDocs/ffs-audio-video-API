@@ -93,7 +93,7 @@ In the command, be sure to:
 
 NOTE
 
-This focal point feature is only available with the Reframe API V2.
+This feature relies on focal point and is only available with the Reframe API v2.
 
 The Reframe API has **Semantic Subject Lock**, which allows you to declare a **focal subject** to guide reframing around a named object or subject using **plain-language keywords**. These keywords persist across scene boundaries, ensuring the same subject stays locked even through cuts.
 
@@ -124,7 +124,7 @@ If no focal points are provided, the API defaults to motion-based reframing.
 
 NOTE
 
-Some output features are only available with the Reframe API V2.
+Some output features are only available with the Reframe API v2.
 
 * For multi-scene videos, enable scene transition handling by setting `sceneEditDetection: true`.
 
@@ -135,7 +135,7 @@ Some output features are only available with the Reframe API V2.
 ```
 
 * Specify aspect ratios for the output in width:height format (examples: "1:1", "9:16").
-* With V2, pass exact frame sizes when needed. The Reframe API V2 accepts pixel dimensions (for example, 1080×1920) in addition to aspect ratios, which is useful where platform sizes differ.
+* With v2, pass exact frame sizes when needed. The Reframe API v2 accepts pixel dimensions (for example, 1080×1920) in addition to aspect ratios, which is useful where platform sizes differ.
 
 ```json
 "output": {
@@ -150,7 +150,7 @@ Some output features are only available with the Reframe API V2.
 }
 ```
 
-* With V2, request an *editable sidecar file* as an OpenTimeLine file (`otio`) for editing in Premiere Pro (beta) without reprocessing the whole video.
+* With v2, request an *editable sidecar file* as an OpenTimeLine file (`otio`) for editing in Premiere Pro (beta) without reprocessing the whole video.
 
 ```json
 "output": {
