@@ -4009,7 +4009,7 @@
             "description": "Array of focal point keyword identifiers for reframing. Up to 10 keywords are allowed. Keywords must be alphanumeric characters, spaces, hyphens, or underscores only, with a maximum of 1000 characters per keyword.",
             "default": [],
             "externalDocs": {
-              "description": "See documentation for best practices on authoring focal point keywords.",
+              "description": "See documentation for Semantic Subject Lock.",
               "url": "https://https://developer.adobe.com/reframev2/getting_started/semantic-search/"
             }
           }
