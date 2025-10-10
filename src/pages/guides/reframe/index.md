@@ -95,7 +95,7 @@ NOTE
 
 This feature relies on focal point and is only available with the Reframe API v2.
 
-The Reframe API has **Semantic Subject Lock**, which allows you to declare a **focal subject** to guide reframing around a named object or subject using **plain-language keywords**. These keywords persist across scene boundaries, ensuring the same subject stays locked even through cuts.
+The Reframe API has [**Semantic Subject Lock**](../../getting_started/semantic-search/), which allows you to declare a **focal subject** to guide reframing around a named object or subject using **plain-language keywords**. These keywords persist across scene boundaries, ensuring the same subject stays locked even through cuts.
 
 Omit focal points if:
 
