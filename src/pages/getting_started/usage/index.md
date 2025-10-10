@@ -60,7 +60,7 @@ You may encounter a `HTTP 429 "Too Many Requests"` error if usage exceeds either
 
 ## Reframe API usage
 
-### Supported media properties
+## Supported media properties
 
 | Attribute | Input | Output |
 |-----------|--------|--------|
@@ -73,16 +73,20 @@ You may encounter a `HTTP 429 "Too Many Requests"` error if usage exceeds either
 | Frame Rate | 24, 25, 29.97, 30, 50, 59.94, 60 | Same as source |
 | 4K Support | Yes | Yes |
 
-### Performance characteristics
+## Performance characteristics
 
-| Configuration                                     | Estimated Render Time                 |
-|-------------------------------                    |---------------------------------------|
-| 1 aspect ratio requested, 60s input video, Scene Edit Detection NOT applied   | ~0.5x video length  |
-| 5 aspect ratios requested, 60s input video, Scene Edit Detection NOT applied  | ~0.6x video length |
-| 1 aspect ratio requested, 60s input video, Scene Edit Detection applied         | ~1.3x video length        |
-| 5 aspect ratios requested, 60s input video, Scene Edit Detection applied         | ~1.5x video length        |
+Be aware that **these characteristics apply to Reframe v1** or when **no focal point objects are specified** in the payload of Reframe v2.
 
-### Request limits
+### Estimated render times
+
+| Aspect Ratios | Input Video Length | Scene Edit Detection | Estimated Render Time   |
+|---------------|------------|-----------------------|--------------------------|
+| 1             | 60s        | No                    | ~0.5× video length      |
+| 5             | 60s        | No                    | ~0.6× video length      |
+| 1             | 60s        | Yes                   | ~1.3× video length      |
+| 5             | 60s        | Yes                   | ~1.5× video length      |
+
+## Request limits
 
 To ensure equitable peak performance, Adobe limits the volume, frequency, and concurrency of API calls. We monitor usage to proactively resolve any risks to performance.
 
@@ -90,8 +94,8 @@ These are the current rate limits for API requests:
 
 **Reframe Processing API (/reframe)**: Max of 2 requests per minute.
 
-You'll encounter a HTTP 429 "Too Many Requests" error if usage exceeds the limits per minute or per day.
-We recommend using the 'retry-after' header to determine the number of seconds you should wait before trying again.
+You'll encounter a `HTTP 429 - Too Many Requests` error if usage exceeds the limits per minute or per day.
+Use the `retry-after` header to determine the number of seconds you should wait before trying again.
 
 ## Translate and Lip Sync API usage
 
