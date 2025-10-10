@@ -1876,7 +1876,7 @@
     },
     "/v2/status/{jobId}": {
       "get": {
-        "tags": ["Reframe, Manage jobs"],
+        "tags": ["Reframe", "Manage jobs"],
         "summary": "Get job result",
         "description": "This endpoint retrieves the result of an asynchronous reframed job initiated using the job ID.",
         "operationId": "job-result-v2",
