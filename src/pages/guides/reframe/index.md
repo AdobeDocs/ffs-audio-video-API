@@ -26,7 +26,7 @@ the Reframe API.
 
 NOTE
 
-There are two Reframe endpoints currently available. The v1 API has more limited capabilities and may be deprecated soon. It's recommended to use the v2 endpoint instead.
+There are two Reframe API endpoints currently available. The v1 API has more limited capabilities and may be deprecated soon. It's recommended to use the v2 endpoint instead.
 
 The Reframe API automatically adjusts video content to fit different aspect ratios while maintaining visual focus on important elements.
 Reframe videos for various social media platforms and add dynamic overlays like GIFs and images with precise timing and positioning controls.
