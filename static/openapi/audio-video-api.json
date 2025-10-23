@@ -570,7 +570,7 @@
       "post": {
         "tags": ["Reframe"],
         "summary": "Reframe video",
-        "description": "This endpoint enables you to reframe video using AI. Provide video input with a pre-signed URL to generate reframed video output. \n\nThis API has more limited capabilities than the v2 endpoint, and may be deprecated soon. It's recommended to use the v2 endpoint instead.",
+        "description": "This endpoint enables you to reframe video using AI. Provide video input with a pre-signed URL to generate reframed video output. \n\nThis API has more limited capabilities than the v2 endpoint, and may be deprecated soon. **It's recommended to use the v2 endpoint instead.**",
         "operationId": "generate-reframed-video",
         "requestBody": {
           "description": "The reframe request body.",
