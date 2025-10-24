@@ -4131,7 +4131,8 @@
           "sidecar": {
             "type": "string",
             "enum": [
-              "json"
+              "json",
+              "otio"
             ],
             "description": "Sidecar format for additional metadata."
           }
