@@ -60,7 +60,7 @@ The Reframe API intelligently analyzes video content to dynamically adjust frame
 
 ![Reframe GIF](/images/reframe.gif)
 
-Reframe your Videos with AI
+Reframe your videos with AI
 
 This API uses technology similar to the Auto Reframe feature currently available in Premiere Pro software. It can be integrated with third-party systems and workflows, subject to applicable terms and conditions. Performance and results may vary based on input parameters and system configurations.
 
@@ -74,6 +74,19 @@ Reframe features include:
 2. **Analyze Scenes**: Enable scene edit detection to analyze video transitions and use the existing video characteristics to maintain compositional integrity across different aspect ratio outputs.
 3. **Track Status**: Check a job's progress using a designated endpoint. Response times and update frequencies are subject to system load and configuration.
 4. **Add Overlays**: Apply pre-generated graphic overlays, such as GIFs or PNGs, over videos with precise control over timing, positioning, scaling, and looping behavior. Customization ensures that overlays align across different aspect ratios and remain consistent with the visual layout.
+
+### Why choose Reframe v2?
+
+Consider the Reframe v2 API to take your video workflows to the next level. Whether you're optimizing for e-commerce, brand storytelling, or high-volume creative production, Reframe v2 delivers unmatched flexibility and control.
+
+- **Pixel-Perfect Resolution**  
+  Define exact output sizes, like `1920x1080`, for precision processing.
+
+- **Semantic Subject Lock**  
+  Keep your subject in focus across every frame, every shot, every time. Just [provide a keyword or prompt](./getting_started/semantic-search/index.md) (for example, "Frisbee" or "man in yellow jacket") and let AI **automatically reframe around your chosen subject**.
+
+- **Media Destination**  
+  Define where your rendered video should go with a simple, secure upload flow. Just provide a pre-signed PUT URL to your storage bucket, and we'll handle the rest.
 
 ## Translate and Lip Sync API
 

@@ -1,6 +1,6 @@
 ---
-title: Avatar and TTS API reference
-description: The API reference page for Avatar and TTS API services.
+title: Firfly Audio and Video API Reference
+description: The API reference page for Firefly Audio and Video API services.
 contributors:
   - https://github.com/BaskarMitrah
   - https://github.com/AEAbreu-hub

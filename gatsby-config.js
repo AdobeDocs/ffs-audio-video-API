@@ -53,6 +53,17 @@ module.exports = {
             title: 'Technical Usage Notes',
             path: '/getting_started/usage'
           },
+        ]
+      },
+      {
+        title: 'Learn More',
+        path: '/getting_started/semantic-search/',
+        header: true,
+        pages: [
+          {
+            title: 'About Semantic Subject Lock',
+            path: '/getting_started/semantic-search/'
+          },
           {
             title: 'Avatar Catalog',
             path: '/getting_started/avatar_catalog'
