@@ -75,7 +75,7 @@ Limit to five maximum entries for the best results. Too many keywords can result
 
 ### Keyword structure patterns
 
-Usig these keyword structure patterns can be the most successful.
+Using these keyword structure patterns can offer the best results.
 
 - **Object only:** knife, guitar, bottle, book
 - **Object + Attribute:** red cup, stainless bottle, white truck, infotainment system
