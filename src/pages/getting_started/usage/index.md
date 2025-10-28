@@ -86,6 +86,20 @@ Be aware that **these characteristics apply to Reframe v1** or when **no focal p
 | 1             | 60s        | Yes                   | ~1.3× video length      |
 | 5             | 60s        | Yes                   | ~1.5× video length      |
 
+### Reframing tips
+
+When you're evaluating the suitability of your video for reframing, consider the following tips. For the best results, content should be in the **FLY ZONE**.
+
+| 💚 FLY ZONE | ⚠️ NO FLY ZONE |
+|------------|----------------|
+| **Source Video** | **Source Video** |
+| * Clean Footage (no graphics)<br/>* Multi-scene clips with trackable subjects that remain in the scene<br/>* Single-scene clips | * Graphics embedded<br/>* Tracking Multiple Faces<br/>* Scene-specific focal point targeting<br/>* Content with letterboxing or pillarboxing applied |
+| **Focal Points** | **Focal Points** |
+| * Keywords/phrases following guidelines (limit to 5 keywords/phrases)<br/>* Brand names on visible packaging ("Coke", "Brute" etc.)<br/>* Multiple subjects allowed<br/>&nbsp;&nbsp;◦ System selects the largest area with the multiple keyword subjects in it | * Small objects in a scene or clip (like football or baseball in sports footage)<br/>* Cannot set manual priority or weights for keywords/phrases<br/>* Negative keywords ("exclude label", "avoid hands")<br/>* Positional words (e.g., "leftmost," "center")<br/>* Celebrities or other public figures in keywords<br/>* Specialized terminology or jargon (such as baseball or football lingo)<br/>* Semantic nearness i.e. common synonyms can overlap (e.g., _bottle ≈ flask_)<br/>* Long prose. This is not a prompt |
+| **Editability** | **Editability** |
+| * Last mile editability in Premiere Pro 25.6<br/>* SED on/off<br/>* Letterbox off | * Opening .otio in other NLEs |
+
+
 ## Request limits
 
 To ensure equitable peak performance, Adobe limits the volume, frequency, and concurrency of API calls. We monitor usage to proactively resolve any risks to performance.
