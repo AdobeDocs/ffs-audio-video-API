@@ -13,8 +13,8 @@ This guide explains how to use OTIO files from the Reframe v2 API to adjust refr
 
 ## Overview
 
-The Reframe v2 API sidecar supports OTIO files, which also have support in Premiere Pro 2025.6.0 or above.
-Open Timeline IO format (OTIO) is an interchange format for video editing information.
+The Reframe v2 API sidecar supports OTIO files, which are also supported in Premiere Pro 2025.6.0 or above.
+[Open Timeline IO format (OTIO)](https://opentimelineio.readthedocs.io/en/latest/tutorials/otio-file-format-specification.html) is an interchange format for video editing information.
 OTIO contains information about the order and length of cuts and references to external media.
 
 With the `.otio` sidecar format, users get the maximum reframe flexibility for specific shots, leveraging scene edit detection cuts (in the set aspect ratio) in a timeline that's not destructive to the source file. This allows for quick and easy adjustments to the reframe of specific shots.
