@@ -84,6 +84,10 @@ module.exports = {
             path: '/guides/reframe/index.md'
           },
           {
+            title: 'Using OTIO files in Premiere Pro',
+            path: '/guides/otio/index.md'
+          },
+          {
             title: 'How to Transcribe and Dub Audio/Video Content',
             path: '/guides/TLS/index.md'
           },
