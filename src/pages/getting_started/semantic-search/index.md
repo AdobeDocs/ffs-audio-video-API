@@ -75,14 +75,14 @@ Limit to five maximum entries for the best results. Too many keywords can result
 
 ### Keyword structure patterns
 
-These keyword structure patterns can be most successful.
+Usig these keyword structure patterns can be the most successful.
 
 - **Object only:** knife, guitar, bottle, book
 - **Object + Attribute:** red cup, stainless bottle, white truck, infotainment system
 - **Body parts:** face, eyes, fingers, hands, snout, ear
 - **People + apparel:** man in yellow jacket, woman in red dress, person in blue hoodie
 - **People + relation:** man holding phone, presenter with microphone, woman wearing red backpack
-- **People + apparel + relation:** man in yellow jacket holding black phone (question)
+- **People + apparel + relation:** man in yellow jacket holding black phone
 
 ### Keyword families
 
