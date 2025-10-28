@@ -92,13 +92,12 @@ When you're evaluating the suitability of your video for reframing, consider the
 
 | 💚 FLY ZONE | ⚠️ NO FLY ZONE |
 |------------|----------------|
-| **Source Video** | **Source Video** |
-| * Clean Footage (no graphics)<br/>* Multi-scene clips with trackable subjects that remain in the scene<br/>* Single-scene clips | * Graphics embedded<br/>* Tracking Multiple Faces<br/>* Scene-specific focal point targeting<br/>* Content with letterboxing or pillarboxing applied |
-| **Focal Points** | **Focal Points** |
-| * Keywords/phrases following guidelines (limit to 5 keywords/phrases)<br/>* Brand names on visible packaging ("Coke", "Brute" etc.)<br/>* Multiple subjects allowed<br/>&nbsp;&nbsp;◦ System selects the largest area with the multiple keyword subjects in it | * Small objects in a scene or clip (like football or baseball in sports footage)<br/>* Cannot set manual priority or weights for keywords/phrases<br/>* Negative keywords ("exclude label", "avoid hands")<br/>* Positional words (e.g., "leftmost," "center")<br/>* Celebrities or other public figures in keywords<br/>* Specialized terminology or jargon (such as baseball or football lingo)<br/>* Semantic nearness i.e. common synonyms can overlap (e.g., _bottle ≈ flask_)<br/>* Long prose. This is not a prompt |
+| **With Source Video** | **With Source Video** |
+| - Clean footage (no graphics)<br/>- Multi-scene clips with trackable subjects that remain in the scene<br/>- Single-scene clips | - Graphics are embedded<br/>- Multiple faces are tracked<br/>- Scene-specific focal point targeting<br/>- Content has letterboxing or pillarboxing applied |
+| **With Focal Points Keywords** | **With Focal Points Keywords** |
+| - The number of keywords/phrases follow the guidelines <br/>- Brand names mentioned are on visible packaging <br/>- Multiple subjects are present. The system selects the largest frame area with the multiple keyword subjects in it | - Small objects in the scene or clip (like a football or baseball in sport footage) <br/>- Cannot set manual priority or weights for keywords/phrases<br/>- Negative keywords are used (like "exclude label", "avoid hands")<br/>- Positional words are used (like "leftmost", "center")<br/>- Celebrities or public figures are in keywords<br/>- Specialized terminology or jargon is used<br/>- Semantic nearness occurs. Common synonyms can overlap (e.g., _bottle ≈ flask_)<br/>- Long prose in the keyword. This is not a prompt |
 | **Editability** | **Editability** |
-| * Last mile editability in Premiere Pro 25.6<br/>* SED on/off<br/>* Letterbox off | * Opening .otio in other NLEs |
-
+| - Last mile editability is done in Premiere Pro 25.6<br/>- SED is on/off<br/>- Letterbox is off | - Opening the `.otio` file in other NLEs |
 
 ## Request limits
 
