@@ -84,7 +84,7 @@ module.exports = {
             path: '/guides/reframe/index.md'
           },
           {
-            title: 'Using OTIO files in Premiere Pro',
+            title: 'Using OTIO files with Premiere Pro',
             path: '/guides/otio/index.md'
           },
           {
