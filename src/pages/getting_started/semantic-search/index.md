@@ -1,5 +1,5 @@
 ---
-title: About Semantic Subject Lock
+title: About Reframe API's Semantic Subject Lock
 description: Best practices and authoring guidance for using semantic search with Reframe V2. Includes keyword families, grammar patterns, tie-break behavior, and sample inputs.
 hideBreadcrumbNav: true
 keywords:
