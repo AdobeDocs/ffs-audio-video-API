@@ -60,7 +60,7 @@ You may encounter a `HTTP 429 "Too Many Requests"` error if usage exceeds either
 
 ## Reframe API usage
 
-## Supported media properties
+### Supported media properties
 
 | Attribute | Input | Output |
 |-----------|--------|--------|
@@ -73,11 +73,11 @@ You may encounter a `HTTP 429 "Too Many Requests"` error if usage exceeds either
 | Frame Rate | 24, 25, 29.97, 30, 50, 59.94, 60 | Same as source |
 | 4K Support | Yes | Yes |
 
-## Performance characteristics
+### Performance characteristics
 
 Be aware that **these characteristics apply to Reframe v1** or when **no focal point objects are specified** in the payload of Reframe v2.
 
-### Estimated render times
+#### Estimated render times
 
 | Aspect Ratios | Input Video Length | Scene Edit Detection | Estimated Render Time   |
 |---------------|------------|-----------------------|--------------------------|
@@ -99,7 +99,7 @@ When you're evaluating the suitability of your video for reframing, consider the
 | **Editability** | **Editability** |
 | - Last mile editability is done in Premiere Pro 25.6<br/>- SED is on/off<br/>- Letterbox is off | - Opening the `.otio` file in other NLEs |
 
-## Request limits
+### Request limits
 
 To ensure equitable peak performance, Adobe limits the volume, frequency, and concurrency of API calls. We monitor usage to proactively resolve any risks to performance.
 
