@@ -28,10 +28,9 @@ To make adjustments using the `.otio` file in Premiere Pro:
    
 1. Open the video sequence by double clicking on the video thumbnail. The source file will open in the *Timeline* panel, showing cuts at each point where a new scene is detected. This allows corrections to the duration of a specific shot.
 
-2. To playback the video, position the blue play head at the start of the timeline and press **spacebar** to play. Pressing **spacebar** again pauses playback. Using play and pause, the blue line of the play head shows the underlying clip range that a user may adjust with the reframe.
+1. To playback the video, position the blue play head at the start of the timeline and press **spacebar** to play. Pressing **spacebar** again pauses playback. Using play and pause, the blue line of the play head shows the underlying clip range that a user may adjust with the reframe.
 ![Video Timeline](./otio-timeline.png)
 
 1. Find the clip that needs an adjustment and select the *Effect Controls* panel to see the selected clip's parameters and effects list. The `.otio` file has added the *Auto Reframe* effect and created key frames.
 
-2. Use the *Reframe Offset* option to adjust the offset (the X-position) of the area of interest, while keeping the tracking key frames. This is the fastest way to make an adjustment.
-![Effect Controls with Reframe Offset](./otio-effects-panel.png)
+1. Use the *Reframe Offset* option to adjust the offset (the X-position) of the area of interest, while keeping the tracking key frames. This is the fastest way to make an adjustment.
