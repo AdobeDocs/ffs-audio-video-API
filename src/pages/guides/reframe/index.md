@@ -1,6 +1,6 @@
 ---
-title: Reframe API Quickstart
-description: This guide provides a quickstart for using the Reframe API.
+title: Reframe API Feature Guidee
+description: See the features and key parameters for implentations of Firefly's Reframe API.
 hideBreadcrumbNav: true
 keywords:
   - Reframe
@@ -31,7 +31,7 @@ There are two Reframe API endpoints currently available. The v1 API has more lim
 The Reframe API automatically adjusts video content to fit different aspect ratios while maintaining visual focus on important elements.
 Reframe videos for various social media platforms and add dynamic overlays like GIFs and images with precise timing and positioning controls.
 
-This guide provides cURL commands for basic reframing and advanced overlay workflows.
+This guide provides cURL commands for basic reframing and advanced overlay workflows. For even more technical details and tips, see the [Usage Notes](../../getting_started/usage/index.md#reframe-api-usage).
 
 ## Before you start
 

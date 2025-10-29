@@ -1,5 +1,5 @@
 ---
-title: About Semantic Subject Lock
+title: About Reframe API's Semantic Subject Lock
 description: Best practices and authoring guidance for using semantic search with Reframe V2. Includes keyword families, grammar patterns, tie-break behavior, and sample inputs.
 hideBreadcrumbNav: true
 keywords:
@@ -75,14 +75,14 @@ Limit to five maximum entries for the best results. Too many keywords can result
 
 ### Keyword structure patterns
 
-These keyword structure patterns can be most successful.
+Using these keyword structure patterns can offer the best results.
 
 - **Object only:** knife, guitar, bottle, book
 - **Object + Attribute:** red cup, stainless bottle, white truck, infotainment system
 - **Body parts:** face, eyes, fingers, hands, snout, ear
 - **People + apparel:** man in yellow jacket, woman in red dress, person in blue hoodie
 - **People + relation:** man holding phone, presenter with microphone, woman wearing red backpack
-- **People + apparel + relation:** man in yellow jacket holding black phone (question)
+- **People + apparel + relation:** man in yellow jacket holding black phone
 
 ### Keyword families
 

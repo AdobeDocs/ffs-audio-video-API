@@ -1,6 +1,6 @@
 ---
-title: Audio/Video API Usage Notes
-description: This document has details about what's currently supported, limitations, and workarounds for the Audio/Video APIs.
+title: FireflyAudio/Video API Usage Notes
+description: This document has details about what's currently supported, limitations, and workarounds for the Firefly Audio/Video APIs.
 hideBreadcrumbNav: true
 keywords:
   - audio
@@ -60,7 +60,7 @@ You may encounter a `HTTP 429 "Too Many Requests"` error if usage exceeds either
 
 ## Reframe API usage
 
-## Supported media properties
+### Supported media properties
 
 | Attribute | Input | Output |
 |-----------|--------|--------|
@@ -73,11 +73,11 @@ You may encounter a `HTTP 429 "Too Many Requests"` error if usage exceeds either
 | Frame Rate | 24, 25, 29.97, 30, 50, 59.94, 60 | Same as source |
 | 4K Support | Yes | Yes |
 
-## Performance characteristics
+### Performance characteristics
 
 Be aware that **these characteristics apply to Reframe v1** or when **no focal point objects are specified** in the payload of Reframe v2.
 
-### Estimated render times
+#### Estimated render times
 
 | Aspect Ratios | Input Video Length | Scene Edit Detection | Estimated Render Time   |
 |---------------|------------|-----------------------|--------------------------|
@@ -86,7 +86,20 @@ Be aware that **these characteristics apply to Reframe v1** or when **no focal p
 | 1             | 60s        | Yes                   | ~1.3× video length      |
 | 5             | 60s        | Yes                   | ~1.5× video length      |
 
-## Request limits
+### Reframing tips
+
+When you're evaluating the suitability of your video for reframing, consider the following tips. For the best results, content should be in the **FLY ZONE**.
+
+| 💚 FLY ZONE | ⚠️ NO FLY ZONE |
+|------------|----------------|
+| **With Source Video** | **With Source Video** |
+| - Clean footage (no graphics)<br/>- Multi-scene clips with trackable subjects that remain in the scene<br/>- Single-scene clips | - Graphics are embedded<br/>- Multiple faces are tracked<br/>- Scene-specific focal point targeting<br/>- Content has letterboxing or pillarboxing applied |
+| [**With Focal Points Keywords**](../../getting_started/semantic-search/index.md) | [**With Focal Points Keywords**](../../getting_started/semantic-search/index.md) |
+| - The number of keywords/phrases follow the guidelines <br/>- Brand names mentioned are on visible packaging <br/>- Multiple subjects are present. The system selects the largest frame area with the multiple keyword subjects in it | - Small objects in the scene or clip (like a football or baseball in sport footage) <br/>- Cannot set manual priority or weights for keywords/phrases<br/>- Negative keywords are used (like "exclude label", "avoid hands")<br/>- Positional words are used (like "leftmost", "center")<br/>- Celebrities or public figures are in keywords<br/>- Specialized terminology or jargon is used<br/>- Semantic nearness occurs. Common synonyms can overlap (e.g., _bottle ≈ flask_)<br/>- Long prose in the keyword. This is not a prompt |
+| **Editability** | **Editability** |
+| - Last mile editability is done in Premiere Pro 25.6<br/>- SED is on/off<br/>- Letterbox is off | - Opening the `.otio` file in other NLEs |
+
+### Request limits
 
 To ensure equitable peak performance, Adobe limits the volume, frequency, and concurrency of API calls. We monitor usage to proactively resolve any risks to performance.
 

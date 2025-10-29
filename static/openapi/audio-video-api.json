@@ -4126,7 +4126,7 @@
               "mov",
               "source"
             ],
-            "description": "Media format for the output video."
+            "description": "Media format for the output video. If only the OTIO file is needed, set this as `none`."
           },
           "sidecar": {
             "type": "string",
@@ -4139,7 +4139,8 @@
         },
         "description": "Output format configuration. A media property is mandatory when this format object is specified.",
         "required": [
-          "media"
+          "media",
+          "sidecar"
         ]
       },
       "CompositionV2": {
