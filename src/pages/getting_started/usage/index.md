@@ -75,7 +75,7 @@ You may encounter a `HTTP 429 "Too Many Requests"` error if usage exceeds either
 
 ### Performance characteristics
 
-Be aware that **these characteristics apply to Reframe v1** or when **no focal point objects are specified** in the payload of Reframe v2.
+Be aware that **these characteristics apply when no focal point objects are specified** in the payload of Reframe v2.
 
 #### Estimated render times
 
@@ -93,11 +93,11 @@ When you're evaluating the suitability of your video for reframing, consider the
 | 💚 FLY ZONE | ⚠️ NO FLY ZONE |
 |------------|----------------|
 | **With Source Video** | **With Source Video** |
-| - Clean footage (no graphics)<br/>- Multi-scene clips with trackable subjects that remain in the scene<br/>- Single-scene clips | - Graphics are embedded<br/>- Multiple faces are tracked<br/>- Scene-specific focal point targeting<br/>- Content has letterboxing or pillarboxing applied |
+| - Clean footage (no graphics)<br/>- Multi-scene clips with trackable subjects that remain in the scene<br/>- Single-scene clips | - Graphics are embedded in the video<br/>- Video has multiple faces that need to be tracked<br/>- Content has letterboxing or pillarboxing applied |
 | [**With Focal Points Keywords**](../../getting_started/semantic-search/index.md) | [**With Focal Points Keywords**](../../getting_started/semantic-search/index.md) |
 | - The number of keywords/phrases follow the guidelines <br/>- Brand names mentioned are on visible packaging <br/>- Multiple subjects are present. The system selects the largest frame area with the multiple keyword subjects in it | - Small objects in the scene or clip (like a football or baseball in sport footage) <br/>- Cannot set manual priority or weights for keywords/phrases<br/>- Negative keywords are used (like "exclude label", "avoid hands")<br/>- Positional words are used (like "leftmost", "center")<br/>- Celebrities or public figures are in keywords<br/>- Specialized terminology or jargon is used<br/>- Semantic nearness occurs. Common synonyms can overlap (e.g., _bottle ≈ flask_)<br/>- Long prose in the keyword. This is not a prompt |
 | **Editability** | **Editability** |
-| - Last mile editability is done in Premiere Pro 25.6<br/>- SED is on/off<br/>- Letterbox is off | - Opening the `.otio` file in other NLEs |
+| - Last mile editability is done in Premiere Pro 25.6.0+<br/>- Scene Edit Detection is on/off<br/>- Letterbox is off | - Opening the `.otio` file in editors/versions other than Premiere Pro 25.6.0+ |
 
 ### Request limits
 
@@ -283,3 +283,4 @@ These usage limits apply to your entire organization. <br/>
 The current limitations are:
 
 **Get Result endpoint (/status/{jobId}):** 100 requests per minute.
+
