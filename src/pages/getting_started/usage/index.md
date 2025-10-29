@@ -283,4 +283,3 @@ These usage limits apply to your entire organization. <br/>
 The current limitations are:
 
 **Get Result endpoint (/status/{jobId}):** 100 requests per minute.
-
