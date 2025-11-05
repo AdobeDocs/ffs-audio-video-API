@@ -122,7 +122,7 @@ Provide keywords in the `focalPoints` array to enable **Semantic Subject Lock** 
 }
 ```
 
-If no focal points are provided, the API defaults to motion-based reframing.
+If no focal points are provided, the API defaults to saliency-based reframing.
 
 ### Adjust the output
 
