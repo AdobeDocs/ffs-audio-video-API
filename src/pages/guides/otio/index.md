@@ -3,8 +3,10 @@ title: Reframe with OTIO Files UserGuide
 description: Learn to use OTIO files from the Reframe API in Premiere Pro.
 keywords:
   - OTIO
+  - OTIO file
   - API
   - Guide
+  - how-to
 ---
 
 # Reframe with OTIO files
