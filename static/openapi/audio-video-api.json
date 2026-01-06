@@ -389,7 +389,7 @@
     "/v1/status/{jobId}": {
       "get": {
         "tags": ["Manage jobs"],
-        "summary": "Get the status of a job",
+        "summary": "Get job status",
         "description": "Provides the status and result of an asynchronous job.",
         "operationId": "status",
         "parameters": [
@@ -716,7 +716,7 @@
                 },
                 "examples": {
                   "GenerateReframedVideoResponse": {
-                    "summary": "Response for Successful Job Submission",
+                    "summary": "Response for successful job submission",
                     "value": {
                       "jobId": "<jobId>",
                       "statusUrl": "https://<baseUrl>/v1/status/<jobId>"
@@ -1623,7 +1623,7 @@
                 },
                 "examples": {
                   "GenerateReframedVideoResponse": {
-                    "summary": "Response for Successful Job Submission",
+                    "summary": "Response for successful job submission",
                     "value": {
                       "jobId": "<jobId>",
                       "statusUrl": "https://<base_URL>/v1/status/<job_ID>"
@@ -3261,6 +3261,7 @@
       },
       "URLSource": {
         "type": "object",
+        "title": "Image or video background",
         "properties": {
           "source": {
             "type": "object",
@@ -3276,6 +3277,7 @@
       },
       "URLObject": {
         "type": "object",
+        "description": "URL object containing a pre-signed URL.",
         "properties": {
           "url": {
             "type": "string",
@@ -3286,6 +3288,7 @@
       },
       "AvatarOutputObject": {
         "type": "object",
+        "description": "Output configuration for avatar video generation.",
         "properties": {
           "mediaType": {
             "$ref": "#/components/schemas/SupportedOutputVideoFormat"
@@ -3333,16 +3336,19 @@
       },
       "OutputColor": {
         "type": "string",
+        "title": "Color background",
+        "description": "Color specification for avatar background.",
         "properties": {
           "color": {
             "type": "string",
             "pattern": "^#[0-9a-fA-F]{6}$",
-            "description": "For color as background of output, it should be six digit hexadecimal value"
+            "description": "Color code for the background of the output. This should be a six digit hexadecimal value."
           }
         }
       },
       "SubmitAPIResponse": {
         "type": "object",
+        "description": "Response returned when a job is successfully submitted.",
         "properties": {
           "jobId": {
             "type": "string"
@@ -3354,6 +3360,7 @@
       },
       "StatusAPIResponse": {
         "type": "object",
+        "description": "Response object for job status queries.",
         "oneOf": [
           {
             "$ref": "#/components/schemas/StatusAPIInprogressResponse"
@@ -3408,6 +3415,7 @@
       },
       "StatusAPIFailedResponse": {
         "type": "object",
+        "description": "Response object for failed jobs.",
         "properties": {
           "status": {
             "$ref": "#/components/schemas/StatusAPIResponseStatus"
@@ -3425,6 +3433,7 @@
       },
       "FailedResponse": {
         "type": "object",
+        "description": "Generic error response object.",
         "properties": {
           "error_code": {
             "type": "string"
@@ -4053,6 +4062,7 @@
       },
       "PositionV2": {
         "type": "object",
+        "description": "Position configuration for overlay placement.",
         "properties": {
           "anchorPoint": {
             "type": "string",
@@ -4086,6 +4096,7 @@
       },
       "ScaleV2": {
         "type": "object",
+        "description": "Scale configuration for overlay dimensions.",
         "properties": {
           "width": {
             "type": "integer",
@@ -4099,6 +4110,7 @@
       },
       "AspectRatioV2": {
         "type": "object",
+        "description": "Aspect ratio specification for video output.",
         "properties": {
           "x": {
             "type": "integer",
@@ -4348,13 +4360,7 @@
           "message": "The requested resource was not found."
         }
       },
-      "UserBKSFailedErrorExample": {
-        "summary": "",
-        "value": {
-          "error_code": "validation_error",
-          "message": "Unauthorized request"
-        }
-      },
+
       "InvalidInputErrorExample": {
         "summary": "Invalid Input",
         "value": {
@@ -5011,7 +5017,7 @@
         }
       },
       "StatusAPIFailedLipsyncErrorResponse": {
-        "summary": "Error in lip sync.",
+        "summary": "Error in lip sync",
         "value": {
           "jobId": "string",
           "status": "failed",
@@ -5029,7 +5035,7 @@
         }
       },
       "StatusAPIFailedLipsyncPollingErrorResponse": {
-        "summary": "Error Polling for lip sync.",
+        "summary": "Error polling for lip sync",
         "value": {
           "jobId": "string",
           "status": "failed",
