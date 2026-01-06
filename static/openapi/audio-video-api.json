@@ -3659,6 +3659,7 @@
       },
       "DubAudioRequest": {
         "type": "object",
+        "title": "Audio dub request",
         "properties": {
           "targetLocaleCodes": {
             "type": "array",
@@ -3682,6 +3683,7 @@
       },
       "DubVideoRequest": {
         "type": "object",
+        "title": "Video dub request",
         "properties": {
           "targetLocaleCodes": {
             "type": "array",
