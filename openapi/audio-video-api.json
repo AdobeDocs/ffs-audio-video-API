@@ -30,8 +30,8 @@
   ],
   "servers": [
     {
-      "url": "https://audio-video-api.adobe.io/v1",
-      "description": "Production environment - GA"
+      "url": "https://audio-video-api.adobe.io",
+      "description": "Production server."
     }
   ],
   "security": [
@@ -41,7 +41,7 @@
     }
   ],
   "paths": {
-    "/voices": {
+    "/v1/voices": {
       "get": {
         "tags": ["Text-to-speech", "Text-to-Avatar"],
         "summary": "Get available voices",
@@ -132,7 +132,7 @@
         }
       }
     },
-    "/generate-speech": {
+    "/v1/generate-speech": {
       "post": {
         "tags": ["Text-to-speech"],
         "summary": "Generate speech from text",
@@ -386,10 +386,10 @@
         }
       }
     },
-    "/status/{jobId}": {
+    "/v1/status/{jobId}": {
       "get": {
         "tags": ["Manage jobs"],
-        "summary": "Get the status of a job",
+        "summary": "Get job status",
         "description": "Provides the status and result of an asynchronous job.",
         "operationId": "status",
         "parameters": [
@@ -566,7 +566,7 @@
         }
       }
     },
-    "/reframe": {
+    "/v1/reframe": {
       "post": {
         "tags": ["Reframe"],
         "summary": "Reframe video",
@@ -716,7 +716,7 @@
                 },
                 "examples": {
                   "GenerateReframedVideoResponse": {
-                    "summary": "Response for Successful Job Submission",
+                    "summary": "Response for successful job submission",
                     "value": {
                       "jobId": "<jobId>",
                       "statusUrl": "https://<baseUrl>/v1/status/<jobId>"
@@ -834,7 +834,7 @@
         }
       }
     },
-    "/transcribe": {
+    "/v1/transcribe": {
       "post": {
         "tags": ["Translate and lip sync"],
         "summary": "Transcribe media",
@@ -1079,7 +1079,7 @@
         }
       }
     },
-    "/dub": {
+    "/v1/dub": {
       "post": {
         "tags": ["Translate and lip sync"],
         "summary": "Dub audio or video",
@@ -1315,7 +1315,7 @@
         }
       }
     },
-    "/avatars": {
+    "/v1/avatars": {
       "get": {
         "tags": ["Text-to-Avatar"],
         "summary": "Get available avatars",
@@ -1623,7 +1623,7 @@
                 },
                 "examples": {
                   "GenerateReframedVideoResponse": {
-                    "summary": "Response for Successful Job Submission",
+                    "summary": "Response for successful job submission",
                     "value": {
                       "jobId": "<jobId>",
                       "statusUrl": "https://<base_URL>/v1/status/<job_ID>"
@@ -2511,7 +2511,7 @@
         }
       }
     },
-    "/generate-avatar": {
+    "/v1/generate-avatar": {
       "post": {
         "tags": ["Text-to-Avatar"],
         "summary": "Generate avatar video from text",
@@ -3261,6 +3261,7 @@
       },
       "URLSource": {
         "type": "object",
+        "title": "Image or video background",
         "properties": {
           "source": {
             "type": "object",
@@ -3276,6 +3277,7 @@
       },
       "URLObject": {
         "type": "object",
+        "description": "URL object containing a pre-signed URL.",
         "properties": {
           "url": {
             "type": "string",
@@ -3286,6 +3288,7 @@
       },
       "AvatarOutputObject": {
         "type": "object",
+        "description": "Output configuration for avatar video generation.",
         "properties": {
           "mediaType": {
             "$ref": "#/components/schemas/SupportedOutputVideoFormat"
@@ -3333,16 +3336,19 @@
       },
       "OutputColor": {
         "type": "string",
+        "title": "Color background",
+        "description": "Color specification for avatar background.",
         "properties": {
           "color": {
             "type": "string",
             "pattern": "^#[0-9a-fA-F]{6}$",
-            "description": "For color as background of output, it should be six digit hexadecimal value"
+            "description": "Color code for the background of the output. This should be a six digit hexadecimal value."
           }
         }
       },
       "SubmitAPIResponse": {
         "type": "object",
+        "description": "Response returned when a job is successfully submitted.",
         "properties": {
           "jobId": {
             "type": "string"
@@ -3354,6 +3360,7 @@
       },
       "StatusAPIResponse": {
         "type": "object",
+        "description": "Response object for job status queries.",
         "oneOf": [
           {
             "$ref": "#/components/schemas/StatusAPIInprogressResponse"
@@ -3408,6 +3415,7 @@
       },
       "StatusAPIFailedResponse": {
         "type": "object",
+        "description": "Response object for failed jobs.",
         "properties": {
           "status": {
             "$ref": "#/components/schemas/StatusAPIResponseStatus"
@@ -3425,6 +3433,7 @@
       },
       "FailedResponse": {
         "type": "object",
+        "description": "Generic error response object.",
         "properties": {
           "error_code": {
             "type": "string"
@@ -3650,6 +3659,7 @@
       },
       "DubAudioRequest": {
         "type": "object",
+        "title": "Audio dub request",
         "properties": {
           "targetLocaleCodes": {
             "type": "array",
@@ -3673,6 +3683,7 @@
       },
       "DubVideoRequest": {
         "type": "object",
+        "title": "Video dub request",
         "properties": {
           "targetLocaleCodes": {
             "type": "array",
@@ -4053,6 +4064,7 @@
       },
       "PositionV2": {
         "type": "object",
+        "description": "Position configuration for overlay placement.",
         "properties": {
           "anchorPoint": {
             "type": "string",
@@ -4086,6 +4098,7 @@
       },
       "ScaleV2": {
         "type": "object",
+        "description": "Scale configuration for overlay dimensions.",
         "properties": {
           "width": {
             "type": "integer",
@@ -4099,6 +4112,7 @@
       },
       "AspectRatioV2": {
         "type": "object",
+        "description": "Aspect ratio specification for video output.",
         "properties": {
           "x": {
             "type": "integer",
@@ -4348,13 +4362,7 @@
           "message": "The requested resource was not found."
         }
       },
-      "UserBKSFailedErrorExample": {
-        "summary": "",
-        "value": {
-          "error_code": "validation_error",
-          "message": "Unauthorized request"
-        }
-      },
+
       "InvalidInputErrorExample": {
         "summary": "Invalid Input",
         "value": {
@@ -5011,7 +5019,7 @@
         }
       },
       "StatusAPIFailedLipsyncErrorResponse": {
-        "summary": "Error in lip sync.",
+        "summary": "Error in lip sync",
         "value": {
           "jobId": "string",
           "status": "failed",
@@ -5029,7 +5037,7 @@
         }
       },
       "StatusAPIFailedLipsyncPollingErrorResponse": {
-        "summary": "Error Polling for lip sync.",
+        "summary": "Error polling for lip sync",
         "value": {
           "jobId": "string",
           "status": "failed",
