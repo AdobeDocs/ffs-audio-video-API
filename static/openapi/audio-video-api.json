@@ -30,8 +30,8 @@
   ],
   "servers": [
     {
-      "url": "https://audio-video-api.adobe.io/v1",
-      "description": "Production environment - GA"
+      "url": "https://audio-video-api.adobe.io",
+      "description": "Production server."
     }
   ],
   "security": [
@@ -41,7 +41,7 @@
     }
   ],
   "paths": {
-    "/voices": {
+    "/v1/voices": {
       "get": {
         "tags": ["Text-to-speech", "Text-to-Avatar"],
         "summary": "Get available voices",
@@ -132,7 +132,7 @@
         }
       }
     },
-    "/generate-speech": {
+    "/v1/generate-speech": {
       "post": {
         "tags": ["Text-to-speech"],
         "summary": "Generate speech from text",
@@ -386,7 +386,7 @@
         }
       }
     },
-    "/status/{jobId}": {
+    "/v1/status/{jobId}": {
       "get": {
         "tags": ["Manage jobs"],
         "summary": "Get the status of a job",
@@ -566,7 +566,7 @@
         }
       }
     },
-    "/reframe": {
+    "/v1/reframe": {
       "post": {
         "tags": ["Reframe"],
         "summary": "Reframe video",
@@ -834,7 +834,7 @@
         }
       }
     },
-    "/transcribe": {
+    "/v1/transcribe": {
       "post": {
         "tags": ["Translate and lip sync"],
         "summary": "Transcribe media",
@@ -1079,7 +1079,7 @@
         }
       }
     },
-    "/dub": {
+    "/v1/dub": {
       "post": {
         "tags": ["Translate and lip sync"],
         "summary": "Dub audio or video",
@@ -1315,7 +1315,7 @@
         }
       }
     },
-    "/avatars": {
+    "/v1/avatars": {
       "get": {
         "tags": ["Text-to-Avatar"],
         "summary": "Get available avatars",
@@ -2511,7 +2511,7 @@
         }
       }
     },
-    "/generate-avatar": {
+    "/v1/generate-avatar": {
       "post": {
         "tags": ["Text-to-Avatar"],
         "summary": "Generate avatar video from text",
