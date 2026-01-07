@@ -8,5 +8,3 @@ contributors:
 ---
 
 <RedoclyAPIBlock src="/audio-video-firefly-services/openapi/audio-video-api.json" hideTryItPanel scrollYOffset={64} generateCodeSamples="languages: [{lang: 'curl'}]" />
-
-
