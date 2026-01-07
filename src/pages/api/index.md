@@ -1,6 +1,7 @@
 ---
 title: Firefly Audio and Video API Reference
 description: The API reference page for Firefly Audio and Video API services.
+layout: none
 contributors:
   - https://github.com/BaskarMitrah
   - https://github.com/AEAbreu-hub
