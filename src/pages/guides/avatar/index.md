@@ -264,7 +264,7 @@ Use the `url` to download the generated video.
 
 Adobe participates in the content authentication initiative for AI-generated assets, addressing concerns around content legitimacy. Register your content by uploading the file at [ContentCredential.org][5].
 
-<!-- Links -->
+\<!-- Links -->
 [1]: ../../getting_started/
 [2]: ../../api
 [3]: ../../api
