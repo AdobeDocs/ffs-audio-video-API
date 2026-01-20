@@ -22,25 +22,25 @@ Audio/Video APIs are a collection of resources that leverage Firefly Services' A
 
 ### Explore our APIs
 
-[Text to Speech API](guides/)
+[Text to Speech API](guides/index.md)
 
 With the Text-to-Speech API, generate spoken audio from a provided transcript.
 
 <DiscoverBlock slots="link, text"/>
 
-[Reframe API](guides/reframe/)
+[Reframe API](guides/reframe/index.md)
 
 Automatically reframe videos.
 
 <DiscoverBlock slots="link, text"/>
 
-[TLS API](guides/TLS/)
+[TLS API](guides/tls/index.md)
 
 The Translate and Lip Sync API creates transcriptions and precise, accurate video dubs.
 
 <DiscoverBlock slots="link, text"/>
 
-[Text to Avatar API](guides/avatar/)
+[Text to Avatar API](guides/avatar/index.md)
 
 Generate an Avatar video with a text prompt or audio input.
 
@@ -83,7 +83,7 @@ Consider the Reframe v2 API to take your video workflows to the next level. Whet
   Define exact output sizes, like `1920x1080`, for precision processing.
 
 - **Semantic Subject Lock**  
-  Keep your subject in focus across every frame, every shot, every time. Just [provide a keyword or prompt](./getting_started/semantic-search/index.md) (for example, "Frisbee" or "man in yellow jacket") and let AI **automatically reframe around your chosen subject**.
+  Keep your subject in focus across every frame, every shot, every time. Just [provide a keyword or prompt](getting-started/semantic-search/index.md) (for example, "Frisbee" or "man in yellow jacket") and let AI **automatically reframe around your chosen subject**.
 
 - **Media Destination**  
   Define where your rendered video should go with a simple, secure upload flow. Just provide a pre-signed PUT URL to your storage bucket, and we'll handle the rest.

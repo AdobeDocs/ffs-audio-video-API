@@ -19,7 +19,7 @@ The current catalog of avatars available for use in the Avatar API.
 
 ## Overview
 
-This page provides the comprehensive list of all available avatars for use with the [Avatar API](../../guides/avatar/). Each avatar includes details about their appearance, style, and characteristics to help you choose the right avatar for your video generation needs.
+This page provides the comprehensive list of all available avatars for use with the [Avatar API](../../guides/avatar/index.md). Each avatar includes details about their appearance, style, and characteristics to help you choose the right avatar for your video generation needs.
 
 ## Avatar catalog
 

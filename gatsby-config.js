@@ -130,7 +130,7 @@ module.exports = {
           },
           {
             title: 'How to Transcribe and Dub Audio/Video Content',
-            path: '/guides/TLS/index.md'
+            path: '/guides/tls/index.md'
           },
           {
             title: 'Using the Avatar API',
@@ -138,7 +138,7 @@ module.exports = {
           },
           {
             title: 'GET Result API Quickstart',
-            path: '/guides/TLS/get_result_quickstart.md'
+            path: '/guides/tls/get-result-quickstart.md'
           }
         ]
       }

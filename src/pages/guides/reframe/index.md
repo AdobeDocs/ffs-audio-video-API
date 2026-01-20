@@ -31,7 +31,7 @@ There are two Reframe API endpoints currently available. The v1 API has more lim
 The Reframe API automatically adjusts video content to fit different aspect ratios while maintaining visual focus on important elements.
 Reframe videos for various social media platforms and add dynamic overlays like GIFs and images with precise timing and positioning controls.
 
-This guide provides cURL commands for basic reframing and advanced overlay workflows. For even more technical details and tips, see the [Usage Notes](../../getting_started/usage/index.md#reframe-api-usage).
+This guide provides cURL commands for basic reframing and advanced overlay workflows. For even more technical details and tips, see the [Usage Notes](../../getting-started/usage/index.md#reframe-api-usage).
 
 ## Before you start
 
@@ -101,7 +101,7 @@ NOTE
 
 This feature relies on focal point and is only available with the Reframe API v2.
 
-The Reframe API has [**Semantic Subject Lock**](../../getting_started/semantic-search/), which allows you to declare a **focal subject** to guide reframing around a named object or subject using **plain-language keywords**. These keywords persist across scene boundaries, ensuring the same subject stays locked even through cuts.
+The Reframe API has [**Semantic Subject Lock**](../../getting-started/semantic-search/index.md), which allows you to declare a **focal subject** to guide reframing around a named object or subject using **plain-language keywords**. These keywords persist across scene boundaries, ensuring the same subject stays locked even through cuts.
 
 Omit focal points if:
 
