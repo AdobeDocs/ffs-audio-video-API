@@ -51,7 +51,7 @@ Be diligent when choosing the OAuth 2.0 library that works best for your applica
 
 The token endpoint also returns an expiry date, and the token itself (when decoded) contains the expiry time.
 
-<!-- Links -->
+\<!-- Links -->
 [1]: https://www.adobe.com/content/dam/cc/en/trust-center/ungated/whitepapers/corporate/adobe-identity-management-services-security-overview.pdf
 [2]: https://developer.adobe.com/
 [3]: https://developer.adobe.com/developer-console/docs/guides/projects/projects-empty/
