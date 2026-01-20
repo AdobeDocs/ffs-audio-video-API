@@ -6,7 +6,7 @@ contributors:
   - https://github.com/AEAbreu-hub
 ---
 
-<Hero slots="image, heading, text" background="rgb(233, 80, 80)"/>
+<Superhero slots="image, heading, text" background="rgb(233, 80, 80)"/>
 
 ![Audio/Video APIs](./av-hero.jpg)
 
@@ -56,11 +56,11 @@ The Text to Speech API generates lifelike spoken audio from a provided transcrip
 
 The Reframe API intelligently analyzes video content to dynamically adjust frame composition to fit the aspect ratios that you've specified, generating seamless content where it's needed from the existing video characteristics.
 
-<TextBlock slots="image, heading, text" theme="dark" />
+<Columns slots="image, heading, text" />
 
-![Reframe GIF](/images/reframe.gif)
+![Reframe GIF](https://raw.githubusercontent.com/AdobeDocs/ffs-audio-video-API/refs/heads/main/src/pages/images/reframe.gif)
 
-Reframe your videos with AI
+### Reframe your videos with AI
 
 This API uses technology similar to the Auto Reframe feature currently available in Premiere Pro software. It can be integrated with third-party systems and workflows, subject to applicable terms and conditions. Performance and results may vary based on input parameters and system configurations.
 
