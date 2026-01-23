@@ -17,17 +17,17 @@
     - [API Reference](/api/index.md)
 
 - subPages:
-    - [Getting Started](/getting-started/index.md)
-        - [Authentication](/getting-started/index.md)
-        - [Storage Solutions](/getting-started/storage-solutions/index.md)
-        - [Technical Usage Notes](/getting-started/usage/index.md)
-    - [Learn More](/getting-started/semantic-search/index.md)
-        - [About Semantic Subject Lock](/getting-started/semantic-search/index.md)
-        - [Avatar Catalog](/getting-started/avatar-catalog/index.md)
-    - [Guides](/guides/index.md)
-        - [Using the TTS API](/guides/index.md)
-        - [Using the Reframe API](/guides/reframe/index.md)
-        - [Using OTIO files with Premiere Pro](/guides/otio/index.md)
-        - [How to Transcribe and Dub Audio/Video Content](/guides/tls/index.md)
-        - [Using the Avatar API](/guides/avatar/index.md)
-        - [GET Result API Quickstart](/guides/tls/get-result-quickstart.md)
+    - Getting Started - header
+    - [Authentication](/getting-started/index.md)
+    - [Storage Solutions](/getting-started/storage-solutions/index.md)
+    - [Technical Usage Notes](/getting-started/usage/index.md)
+    - Learn More - header
+    - [About Semantic Subject Lock](/getting-started/semantic-search/index.md)
+    - [Avatar Catalog](/getting-started/avatar-catalog/index.md)
+    - Guides - header
+    - [Using the TTS API](/guides/index.md)
+    - [Using the Reframe API](/guides/reframe/index.md)
+    - [Using OTIO files with Premiere Pro](/guides/otio/index.md)
+    - [How to Transcribe and Dub Audio/Video Content](/guides/tls/index.md)
+    - [Using the Avatar API](/guides/avatar/index.md)
+    - [GET Result API Quickstart](/guides/tls/get-result-quickstart.md)
