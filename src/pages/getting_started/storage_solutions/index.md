@@ -1,14 +1,32 @@
 ---
-title: Storage Solutions
-description: This page explains the storage solutions that are acceptable for use with video services.
+title: Storage Solutions for Firefly's Audio/Video APIs
+description: This page explains the storage solutions that are acceptable for use with Firefly's audio and video API services.
+keywords:
+  - storage
+  - solutions
+  - Amazon S3
+  - Frame.io
+  - Google Drive
 ---
 # Storage Solutions
 
-Explore more about the storage solutions you'll need when you're using these APIs.
+Learn about the storage solutions you'll need when you're using Firefly's Audio/Video APIs.
 
 Some form of user-owned storage (like Amazon S3 buckets) is necessary with these audio and video APIs. Media files (audio or video) and edited transcripts kept in your storage are targeted with pre-signed URLs and used as input for the API.
 
-Learn how to set up your files in these storage solutions to use with the API:
+## Allowed storage services
+
+These are the allowed domains for media storage accepted by Firefly's Audio/Video APIs:
+
+- amazonaws.com
+- windows.net
+- dropboxusercontent.com
+- frame.io
+- cloudfront.net
+- drive.google.com
+- adobe.io
+
+Learn how to set up your files in these storage solutions below.
 
 ## Using Amazon S3 buckets
 
