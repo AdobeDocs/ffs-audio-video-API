@@ -35,8 +35,8 @@ This guide provides cURL commands for basic reframing and advanced overlay workf
 
 ## Before you start
 
-* You'll need a valid access token and client ID. See the [Authentication Guide][1] for details.
-* Upload your media files (audio or video) to [your storage location and generate a pre-signed URL][2].
+* You'll need a valid access token and client ID. See the [Authentication Guide](../../getting_started/index.md) for details.
+* Upload your media files (audio or video) to [your storage location and generate a pre-signed URL](../../getting_started/storage_solutions/index.md).
 
 ## Use reframing and scene edit detection
 
@@ -171,7 +171,7 @@ When this option is enabled, you can download a **.zip archive** containing:
 * The **source asset**
 * An **`otio` file** (OpenTimeline), which can be opened in **Adobe Premiere Pro (beta)** for final edits.
 
-For full details, [see the API Reference][3].
+For full details, [see the API Reference](../../api/index.md).
 
 ## Add video overlays
 
@@ -244,9 +244,9 @@ In the command, be sure to:
 
 * Replace `bearer_token` with the access token generated during authentication.
 * Update `x-api-key` with your assigned API key/Client ID.
-* [Include data for a reframed video source][4].
+* [Include data for a reframed video source](#provide-the-source).
 
-Each overlay object has many customizable properties to adjust the result. For full details, [see the API Reference][3].
+Each overlay object has many customizable properties to adjust the result. For full details, [see the API Reference](../../api/index.md).
 
 ### Provide the overlay source
 
@@ -370,7 +370,7 @@ If there's an error, you'll see something like:
 }
 ```
 
-For a full list of error codes, check the [API Reference][3].
+For a full list of error codes, check the [API Reference](../../api/index.md).
 
 ## Check the job status
 
@@ -414,9 +414,3 @@ A successful response when the processing job is complete contains a secure link
     ]
 }
 ```
-
-\<!-- Links -->
-[1]: ../../getting_started/index.md
-[2]: ../../getting_started/storage_solutions/index.md
-[3]: ../../api/index.md
-[4]: #provide-the-source

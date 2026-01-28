@@ -17,9 +17,9 @@ This is sometimes referred to as "two-legged OAuth".
 
 This tutorial assumes you have worked with your Adobe Representative and have the following:
 
-- An [Adobe Developer Console][2] account.
-- A [project][3] with Audio/Video API [OAuth Server-to-Server credentials set up][4].
-- Access to your **Client ID** and **Client Secret** from the [Adobe Developer Console project][5]. Securely store these credentials and never expose them in client-side or public code.
+- An [Adobe Developer Console](https://developer.adobe.com/) account.
+- A [project](https://developer.adobe.com/developer-console/docs/guides/projects/projects-empty/) with Audio/Video API [OAuth Server-to-Server credentials set up](https://developer.adobe.com/developer-console/docs/guides/services/services-add-api-oauth-s2s/).
+- Access to your **Client ID** and **Client Secret** from the [Adobe Developer Console project](https://developer.adobe.com/developer-console/docs/guides/services/services-add-api-oauth-s2s/#api-overview). Securely store these credentials and never expose them in client-side or public code.
 
 ## Access tokens
 
@@ -51,9 +51,3 @@ Be diligent when choosing the OAuth 2.0 library that works best for your applica
 
 The token endpoint also returns an expiry date, and the token itself (when decoded) contains the expiry time.
 
-\<!-- Links -->
-[1]: https://www.adobe.com/content/dam/cc/en/trust-center/ungated/whitepapers/corporate/adobe-identity-management-services-security-overview.pdf
-[2]: https://developer.adobe.com/
-[3]: https://developer.adobe.com/developer-console/docs/guides/projects/projects-empty/
-[4]: https://developer.adobe.com/developer-console/docs/guides/services/services-add-api-oauth-s2s/
-[5]: https://developer.adobe.com/developer-console/docs/guides/services/services-add-api-oauth-s2s/#api-overview

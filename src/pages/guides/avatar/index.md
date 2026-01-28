@@ -36,7 +36,7 @@ You'll need:
 - Client ID
 - Client secret
   
-[Review the Getting Started page][1] for authentication and setup.
+[Review the Getting Started page](../../getting_started/) for authentication and setup.
 
 ## Quickstart
 
@@ -48,8 +48,8 @@ In the cURL commands, be sure to update:
 -  `x-api-key` with the Client ID.
 -  `mediaType` with the correct input format.
 -  `url` (where applicable) with the generated pre-signed URL.
--  `avatarId` with the unique ID of the avatar to be used for avatar generation. Users should [refer to the GET Avatars API][2] to choose the Avatar ID or refer to the [Avatar Catalog][6] to see the list of avatars.
--  `voiceId` with the unique ID of the voice to be used for avatar generation. Users should [refer to the GET Voices API][3] to choose the Voice ID.
+-  `avatarId` with the unique ID of the avatar to be used for avatar generation. Users should [refer to the GET Avatars API](../../api) to choose the Avatar ID or refer to the [Avatar Catalog](../../getting_started/avatar_catalog/) to see the list of avatars.
+-  `voiceId` with the unique ID of the voice to be used for avatar generation. Users should [refer to the GET Voices API](../../api) to choose the Voice ID.
 
 ### Generate a video from plain text input
 
@@ -125,7 +125,7 @@ Change the background of the Avatar video by providing a pre-signed URL of a vid
 
 NOTE
 
-[Refer to the Technical Usage notes][4] to understand the supported formats, aspect ratio, etc. for video and image backgrounds.
+[Refer to the Technical Usage notes](/getting_started/usage/) to understand the supported formats, aspect ratio, etc. for video and image backgrounds.
 
 #### Generate a video from text input with a video background
 
@@ -262,12 +262,4 @@ Use the `url` to download the generated video.
 
 ### Verify with Content Credentials
 
-Adobe participates in the content authentication initiative for AI-generated assets, addressing concerns around content legitimacy. Register your content by uploading the file at [ContentCredential.org][5].
-
-\<!-- Links -->
-[1]: ../../getting_started/
-[2]: ../../api
-[3]: ../../api
-[4]: /getting_started/usage/
-[5]: https://contentcredentials.org/verify
-[6]: ../../getting_started/avatar_catalog/
+Adobe participates in the content authentication initiative for AI-generated assets, addressing concerns around content legitimacy. Register your content by uploading the file at [ContentCredential.org](https://contentcredentials.org/verify).
