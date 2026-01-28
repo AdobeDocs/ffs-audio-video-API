@@ -300,4 +300,3 @@ Requests to these endpoints are processed asynchronously so a successful respons
 ```
 
 Use the job ID from the response with the [Get Result API](get_result_quickstart.md) to poll the job's status and retrieve the final results.
-

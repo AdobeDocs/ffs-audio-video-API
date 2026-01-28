@@ -50,4 +50,3 @@ Automate your token generation by calling the IMS endpoint above using standard 
 Be diligent when choosing the OAuth 2.0 library that works best for your application. Your teams' projects likely leverage OAuth libraries already to connect with other APIs. It's recommended to use these libraries to automatically generate tokens when they expire.
 
 The token endpoint also returns an expiry date, and the token itself (when decoded) contains the expiry time.
-
