@@ -594,7 +594,7 @@
                         "required": [
                           "url"
                         ],
-                        "description": "Details of the source including a pre-signed URL."
+                        "description": "Details of the source including a pre-signed URL. See the [list of allowed domains for storage](https://developer.adobe.com/audio-video-firefly-services/getting_started/storage_solutions/)."
                       },
                       "mediaType": {
                         "type": "string",
@@ -3271,13 +3271,14 @@
                 "format": "uri",
                 "description": "The pre-signed URL pointing to the resource to be used for avatar/speech generation."
               }
-            }
+            },
+            "description": "Details of the source including a pre-signed URL. See the [list of allowed domains for storage](https://developer.adobe.com/audio-video-firefly-services/getting_started/storage_solutions/)."
           }
         }
       },
       "URLObject": {
         "type": "object",
-        "description": "URL object containing a pre-signed URL.",
+        "description": "URL object containing a pre-signed URL. See the [list of allowed domains for storage](https://developer.adobe.com/audio-video-firefly-services/getting_started/storage_solutions/).",
         "properties": {
           "url": {
             "type": "string",
@@ -3467,7 +3468,7 @@
             "required": [
               "url"
             ],
-            "description": "Details of the source including a pre-signed URL."
+            "description": "Details of the source including a pre-signed URL. See the [list of allowed domains for storage](https://developer.adobe.com/audio-video-firefly-services/getting_started/storage_solutions/)."
           },
           "startTime": {
             "type": "string",
@@ -3631,7 +3632,7 @@
           }
         },
         "required": ["url"],
-        "description": "Source details including a pre-signed URL for accessing the input media."
+        "description": "Source details including a pre-signed URL for accessing the input media. See the [list of allowed domains for storage](https://developer.adobe.com/audio-video-firefly-services/getting_started/storage_solutions/)."
       },
       "Destination": {
         "type": "object",
@@ -3917,7 +3918,7 @@
         "properties": {
           "source": {
             "$ref": "#/components/schemas/Source",
-            "description": "The pre-signed URL to download the translated/edited transcripts."
+            "description": "The pre-signed URL to download the translated/edited transcripts. See the [list of allowed domains for storage](https://developer.adobe.com/audio-video-firefly-services/getting_started/storage_solutions/)."
           }
         },
         "required": ["source"],
@@ -3992,7 +3993,7 @@
             "required": [
               "url"
             ],
-            "description": "Details of the source including a pre-signed URL."
+            "description": "Details of the source including a pre-signed URL. See the [list of allowed domains for storage](https://developer.adobe.com/audio-video-firefly-services/getting_started/storage_solutions/)."
           }
         },
         "required": [
