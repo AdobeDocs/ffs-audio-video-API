@@ -112,10 +112,10 @@ Options with the endpoint allow you to:
 3. **Use your own voice file** to create avatar videos.
 4. Set your own image/video as a video background.
 
-<AnnouncementBlock slots="heading, text, button" />
+<Announcement slots="heading, text, button" variant="secondary" backgroundColor="background-color-gray" />
 
-### Ready to try it?
+#### Ready to try it?
 
 Check out the Getting Started page to see what these services are all about.
 
-[Begin](/getting_started/)
+- [Begin](/getting_started/)
