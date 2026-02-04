@@ -58,7 +58,7 @@ The Reframe API intelligently analyzes video content to dynamically adjust frame
 
 <Columns slots="image, heading, text" />
 
-![Reframe GIF](https://raw.githubusercontent.com/AdobeDocs/ffs-audio-video-API/refs/heads/main/src/pages/images/reframe.gif)
+![Reframe GIF](../../static/images/reframe.mp4)
 
 ### Reframe your videos with AI
 
