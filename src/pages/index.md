@@ -56,9 +56,9 @@ The Text to Speech API generates lifelike spoken audio from a provided transcrip
 
 The Reframe API intelligently analyzes video content to dynamically adjust frame composition to fit the aspect ratios that you've specified, generating seamless content where it's needed from the existing video characteristics.
 
-<Columns slots="image, heading, text" />
+<Columns slots="video, heading, text" />
 
-![Reframe GIF](../../static/images/reframe.mp4)
+[Reframe your videos with AI](https://raw.githubusercontent.com/AdobeDocs/ffs-audio-video-API/main/src/pages/images/reframe.mp4)
 
 ### Reframe your videos with AI
 
