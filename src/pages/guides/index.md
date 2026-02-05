@@ -20,7 +20,7 @@ Options with this API allow you to:
 
 ## Prerequisites
 
-[Review the Getting Started page](/getting_started/) for this API for authentication and setup.
+[Review the Getting Started page](/getting-started/index.md) for this API for authentication and setup.
 
 ### API credentials
 
