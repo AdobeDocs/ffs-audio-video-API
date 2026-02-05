@@ -5,7 +5,7 @@ alwaysApply: false
 ---
 # Generate Overview Page Rule
 
-This rule analyzes markdown files in `/getting_started` and `/guides` directories to automatically generate or update overview pages following the established pattern from the main index.md.
+This rule analyzes markdown files in `/getting-started` and `/guides` directories to automatically generate or update overview pages following the established pattern from the main index.md.
 
 ## Overview Page Structure
 
@@ -103,7 +103,7 @@ Use these components as needed:
 ## Content Analysis Guidelines
 
 ### 1. Directory Scanning
-- Scan `/getting_started/` for usage notes, limitations, and technical details
+- Scan `/getting-started/` for usage notes, limitations, and technical details
 - Scan `/guides/` for API documentation and examples
 - Identify all available APIs and their descriptions
 
@@ -141,7 +141,7 @@ For each API, identify:
 
 ### 3. Links and Navigation
 - Link to `/guides/` for API documentation
-- Link to `/getting_started/` for getting started content
+- Link to `/getting-started/` for getting started content
 - Use relative paths for internal links
 - Ensure all links are functional and relevant
 

@@ -20,7 +20,7 @@ Options with this API allow you to:
 
 ## Prerequisites
 
-[Review the Getting Started page](/getting_started/) for this API for authentication and setup.
+[Review the Getting Started page](/getting-started/index.md) for this API for authentication and setup.
 
 ### API credentials
 
@@ -37,7 +37,7 @@ In the cURL command below, be sure to update:
 - `x-api-key` as per the prerequisite.
 - `mediaType` as per input type.
 - `url` with the generated pre-signed URL.
-- `voiceId` specifies the unique ID of the voice to be used for speech generation. Users should [refer to the Voices List API](/api) to choose the appropriate voice ID.
+- `voiceId` specifies the unique ID of the voice to be used for speech generation. Users should [refer to the Voices List API](/api/index.md) to choose the appropriate voice ID.
 
 The command returns a response object like the one below. Use the `statusUrl` from the response to [check the job result](#check-the-status-of-a-job).
 

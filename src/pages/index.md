@@ -6,7 +6,7 @@ contributors:
   - https://github.com/AEAbreu-hub
 ---
 
-<Hero slots="image, heading, text" background="rgb(233, 80, 80)"/>
+<Superhero slots="image, heading, text" background="rgb(233, 80, 80)"/>
 
 ![Audio/Video APIs](./av-hero.jpg)
 
@@ -22,25 +22,25 @@ Audio/Video APIs are a collection of resources that leverage Firefly Services' A
 
 ### Explore our APIs
 
-[Text to Speech API](guides/)
+[Text to Speech API](guides/index.md)
 
 With the Text-to-Speech API, generate spoken audio from a provided transcript.
 
 <DiscoverBlock slots="link, text"/>
 
-[Reframe API](guides/reframe/)
+[Reframe API](guides/reframe/index.md)
 
 Automatically reframe videos.
 
 <DiscoverBlock slots="link, text"/>
 
-[TLS API](guides/TLS/)
+[TLS API](guides/TLS/index.md)
 
 The Translate and Lip Sync API creates transcriptions and precise, accurate video dubs.
 
 <DiscoverBlock slots="link, text"/>
 
-[Text to Avatar API](guides/avatar/)
+[Text to Avatar API](guides/avatar/index.md)
 
 Generate an Avatar video with a text prompt or audio input.
 
@@ -56,11 +56,11 @@ The Text to Speech API generates lifelike spoken audio from a provided transcrip
 
 The Reframe API intelligently analyzes video content to dynamically adjust frame composition to fit the aspect ratios that you've specified, generating seamless content where it's needed from the existing video characteristics.
 
-<TextBlock slots="image, heading, text" theme="dark" />
+<Columns slots="video, heading, text" />
 
-![Reframe GIF](/images/reframe.gif)
+[Reframe your videos with AI](https://raw.githubusercontent.com/AdobeDocs/ffs-audio-video-API/main/src/pages/images/reframe.mp4)
 
-Reframe your videos with AI
+### Reframe your videos with AI
 
 This API uses technology similar to the Auto Reframe feature currently available in Premiere Pro software. It can be integrated with third-party systems and workflows, subject to applicable terms and conditions. Performance and results may vary based on input parameters and system configurations.
 
@@ -83,7 +83,7 @@ Consider the Reframe v2 API to take your video workflows to the next level. Whet
   Define exact output sizes, like `1920x1080`, for precision processing.
 
 - **Semantic Subject Lock**  
-  Keep your subject in focus across every frame, every shot, every time. Just [provide a keyword or prompt](./getting_started/semantic-search/index.md) (for example, "Frisbee" or "man in yellow jacket") and let AI **automatically reframe around your chosen subject**.
+  Keep your subject in focus across every frame, every shot, every time. Just [provide a keyword or prompt](getting-started/semantic-search/index.md) (for example, "Frisbee" or "man in yellow jacket") and let AI **automatically reframe around your chosen subject**.
 
 - **Media Destination**  
   Define where your rendered video should go with a simple, secure upload flow. Just provide a pre-signed PUT URL to your storage bucket, and we'll handle the rest.
@@ -112,10 +112,10 @@ Options with the endpoint allow you to:
 3. **Use your own voice file** to create avatar videos.
 4. Set your own image/video as a video background.
 
-<AnnouncementBlock slots="heading, text, button" />
+<Announcement slots="heading, text, button" variant="secondary" backgroundColor="background-color-gray" />
 
-### Ready to try it?
+#### Ready to try it?
 
 Check out the Getting Started page to see what these services are all about.
 
-[Begin](/getting_started/)
+- [Begin](/getting-started/index.md)
