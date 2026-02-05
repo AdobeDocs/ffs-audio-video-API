@@ -39,7 +39,7 @@ The required parameters are:
 - `client_secret`: The Client secret.
 - `scope`: The scopes are `openid`, `AdobeID`, `firefly_api`, `ff_apis`.
 
-<InlineAlert variant="warning" slots="header, text" />
+<InlineAlert variant="warning" slots="heading, text" />
 
 Tokens for TLS need additional scopes
 

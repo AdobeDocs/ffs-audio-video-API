@@ -22,7 +22,7 @@ the Reframe API.
 
 ## Overview
 
-<InlineAlert variant="info" slots="header, text" />
+<InlineAlert variant="info" slots="heading, text" />
 
 NOTE
 
@@ -95,7 +95,7 @@ In the command, be sure to:
 
 ### Activate Semantic Subject Lock
 
-<InlineAlert variant="info" slots="header, text" />
+<InlineAlert variant="info" slots="heading, text" />
 
 NOTE
 
@@ -126,7 +126,7 @@ If no focal points are provided, the API defaults to saliency-based reframing.
 
 ### Adjust the output
 
-<InlineAlert variant="info" slots="header, text" />
+<InlineAlert variant="info" slots="heading, text" />
 
 NOTE
 

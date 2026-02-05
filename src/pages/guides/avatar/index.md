@@ -121,7 +121,7 @@ curl 'https://audio-video-api.adobe.io/v1/generate-avatar' \
 
 Change the background of the Avatar video by providing a pre-signed URL of a video or image, or opt for a transparent or color background to use as a replacement.
 
-<InlineAlert slots="header,text" />
+<InlineAlert slots="heading, text" />
 
 NOTE
 
