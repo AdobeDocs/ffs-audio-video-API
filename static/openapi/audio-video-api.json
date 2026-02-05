@@ -594,7 +594,7 @@
                         "required": [
                           "url"
                         ],
-                        "description": "Details of the source including a pre-signed URL. See the [list of allowed domains for storage](https://developer.adobe.com/audio-video-firefly-services/getting_started/storage_solutions/)."
+                        "description": "Details of the source including a pre-signed URL. See the [list of allowed domains for storage](https://developer.adobe.com/audio-video-firefly-services/getting-started/storage-solutions/)."
                       },
                       "mediaType": {
                         "type": "string",
@@ -3272,13 +3272,13 @@
                 "description": "The pre-signed URL pointing to the resource to be used for avatar/speech generation."
               }
             },
-            "description": "Details of the source including a pre-signed URL. See the [list of allowed domains for storage](https://developer.adobe.com/audio-video-firefly-services/getting_started/storage_solutions/)."
+            "description": "Details of the source including a pre-signed URL. See the [list of allowed domains for storage](https://developer.adobe.com/audio-video-firefly-services/getting-started/storage-solutions/)."
           }
         }
       },
       "URLObject": {
         "type": "object",
-        "description": "URL object containing a pre-signed URL. See the [list of allowed domains for storage](https://developer.adobe.com/audio-video-firefly-services/getting_started/storage_solutions/).",
+        "description": "URL object containing a pre-signed URL. See the [list of allowed domains for storage](https://developer.adobe.com/audio-video-firefly-services/getting-started/storage-solutions/).",
         "properties": {
           "url": {
             "type": "string",
@@ -3468,7 +3468,7 @@
             "required": [
               "url"
             ],
-            "description": "Details of the source including a pre-signed URL. See the [list of allowed domains for storage](https://developer.adobe.com/audio-video-firefly-services/getting_started/storage_solutions/)."
+            "description": "Details of the source including a pre-signed URL. See the [list of allowed domains for storage](https://developer.adobe.com/audio-video-firefly-services/getting-started/storage-solutions/)."
           },
           "startTime": {
             "type": "string",
@@ -3578,7 +3578,7 @@
         "properties": {
           "targetLocaleCodes": {
             "type": "array",
-            "description": "This determines the language used in the processed output. See the usage notes for more about [the supported languages](https://developer.adobe.com/audio-video-firefly-services/getting_started/usage/#language-support).",
+            "description": "This determines the language used in the processed output. See the usage notes for more about [the supported languages](https://developer.adobe.com/audio-video-firefly-services/getting-started/usage/#language-support).",
             "items": {
               "$ref": "#/components/schemas/TargetLocaleCodes"
             }
@@ -3632,7 +3632,7 @@
           }
         },
         "required": ["url"],
-        "description": "Source details including a pre-signed URL for accessing the input media. See the [list of allowed domains for storage](https://developer.adobe.com/audio-video-firefly-services/getting_started/storage_solutions/)."
+        "description": "Source details including a pre-signed URL for accessing the input media. See the [list of allowed domains for storage](https://developer.adobe.com/audio-video-firefly-services/getting-started/storage-solutions/)."
       },
       "Destination": {
         "type": "object",
@@ -3667,7 +3667,7 @@
             "items": {
               "$ref": "#/components/schemas/TargetLocaleCodes"
             },
-            "description": "This determines the language used in the processed output. See the usage notes for more about [the supported languages](https://developer.adobe.com/audio-video-firefly-services/getting_started/usage/#language-support)."
+            "description": "This determines the language used in the processed output. See the usage notes for more about [the supported languages](https://developer.adobe.com/audio-video-firefly-services/getting-started/usage/#language-support)."
           },
           "transcripts": {
             "type": "array",
@@ -3691,7 +3691,7 @@
             "items": {
               "$ref": "#/components/schemas/TargetLocaleCodes"
             },
-            "description": "This determines the language used in the processed output. See the usage notes for more about [the supported languages](https://developer.adobe.com/audio-video-firefly-services/getting_started/usage/#language-support)."
+            "description": "This determines the language used in the processed output. See the usage notes for more about [the supported languages](https://developer.adobe.com/audio-video-firefly-services/getting-started/usage/#language-support)."
           },
           "transcripts": {
             "type": "array",
@@ -3918,7 +3918,7 @@
         "properties": {
           "source": {
             "$ref": "#/components/schemas/Source",
-            "description": "The pre-signed URL to download the translated/edited transcripts. See the [list of allowed domains for storage](https://developer.adobe.com/audio-video-firefly-services/getting_started/storage_solutions/)."
+            "description": "The pre-signed URL to download the translated/edited transcripts. See the [list of allowed domains for storage](https://developer.adobe.com/audio-video-firefly-services/getting-started/storage-solutions/)."
           }
         },
         "required": ["source"],
@@ -3993,7 +3993,7 @@
             "required": [
               "url"
             ],
-            "description": "Details of the source including a pre-signed URL. See the [list of allowed domains for storage](https://developer.adobe.com/audio-video-firefly-services/getting_started/storage_solutions/)."
+            "description": "Details of the source including a pre-signed URL. See the [list of allowed domains for storage](https://developer.adobe.com/audio-video-firefly-services/getting-started/storage-solutions/)."
           }
         },
         "required": [
@@ -4022,7 +4022,7 @@
             "default": [],
             "externalDocs": {
               "description": "See documentation for Semantic Subject Lock.",
-              "url": "https://developer.adobe.com/reframev2/getting_started/semantic-search/"
+              "url": "https://developer.adobe.com/reframev2/getting-started/semantic-search/"
             }
           }
         },

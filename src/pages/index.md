@@ -34,7 +34,7 @@ Automatically reframe videos.
 
 <DiscoverBlock slots="link, text"/>
 
-[TLS API](guides/tls/index.md)
+[TLS API](guides/TLS/index.md)
 
 The Translate and Lip Sync API creates transcriptions and precise, accurate video dubs.
 
@@ -118,4 +118,4 @@ Options with the endpoint allow you to:
 
 Check out the Getting Started page to see what these services are all about.
 
-- [Begin](/getting_started/)
+- [Begin](/getting-started/index.md)

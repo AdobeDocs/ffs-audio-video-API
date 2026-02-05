@@ -27,7 +27,7 @@ Let's understand more about the design of each specific API.
 
 ### About the Dub API
 
-The **Dub API** is the more comprehensive service and can perform all three steps in the workflow. It consumes input media and can perform the transcription, translation to a [target language](../../getting_started/usage/index.md#language-support), and dub, all at once. An optional AI lip sync is also available for the dubbed video.
+The **Dub API** is the more comprehensive service and can perform all three steps in the workflow. It consumes input media and can perform the transcription, translation to a [target language](../../getting-started/usage/index.md#language-support), and dub, all at once. An optional AI lip sync is also available for the dubbed video.
 
 This API also accepts transcripts as input, from Adobe's Transcript API or elsewhere, and can perform a dub using that transcript. Use edited transcripts in this way for more precise control over the final dub.
 
@@ -43,8 +43,8 @@ Use the quickstart commands below to get started implementing a workflow with th
 
 Prerequisites:
 
-- You'll need a valid access token and client ID. See the [Authentication Guide](../../getting_started/index.md) for details.
-- Upload your media files (audio or video) to [your storage location and generate a pre-signed URL](../../getting_started/storage_solutions/index.md).
+- You'll need a valid access token and client ID. See the [Authentication Guide](../../getting-started/index.md) for details.
+- Upload your media files (audio or video) to [your storage location and generate a pre-signed URL](../../getting-started/storage-solutions/index.md).
 
 ## Transcribe quickstart
 
@@ -299,4 +299,4 @@ Requests to these endpoints are processed asynchronously so a successful respons
 }
 ```
 
-Use the job ID from the response with the [Get Result API](get_result_quickstart.md) to poll the job's status and retrieve the final results.
+Use the job ID from the response with the [Get Result API](get-result-quickstart.md) to poll the job's status and retrieve the final results.

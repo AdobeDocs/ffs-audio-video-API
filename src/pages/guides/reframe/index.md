@@ -35,8 +35,8 @@ This guide provides cURL commands for basic reframing and advanced overlay workf
 
 ## Before you start
 
-* You'll need a valid access token and client ID. See the [Authentication Guide](../../getting_started/index.md) for details.
-* Upload your media files (audio or video) to [your storage location and generate a pre-signed URL](../../getting_started/storage_solutions/index.md).
+* You'll need a valid access token and client ID. See the [Authentication Guide](../../getting-started/index.md) for details.
+* Upload your media files (audio or video) to [your storage location and generate a pre-signed URL](../../getting-started/storage-solutions/index.md).
 
 ## Use reframing and scene edit detection
 

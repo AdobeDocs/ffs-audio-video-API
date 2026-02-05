@@ -28,6 +28,6 @@
     - [Using the TTS API](/guides/index.md)
     - [Using the Reframe API](/guides/reframe/index.md)
     - [Using OTIO files with Premiere Pro](/guides/otio/index.md)
-    - [How to Transcribe and Dub Audio/Video Content](/guides/tls/index.md)
+    - [How to Transcribe and Dub Audio/Video Content](/guides/TLS/index.md)
     - [Using the Avatar API](/guides/avatar/index.md)
-    - [GET Result API Quickstart](/guides/tls/get-result-quickstart.md)
+    - [GET Result API Quickstart](/guides/TLS/get-result-quickstart.md)
