@@ -24,10 +24,12 @@
     - Learn More header
     - [About Semantic Subject Lock](/getting-started/semantic-search/index.md)
     - [Avatar Catalog](/getting-started/avatar-catalog/index.md)
-    - Guides header
+    - TTS and Avatar Guides header
     - [Using the TTS API](/guides/index.md)
+    - [Using the Avatar API](/guides/avatar/index.md)
+    - Reframe Guides header
     - [Using the Reframe API](/guides/reframe/index.md)
     - [Using OTIO files with Premiere Pro](/guides/otio/index.md)
+    - TLS Guides header
     - [How to Transcribe and Dub Audio/Video Content](/guides/TLS/index.md)
-    - [Using the Avatar API](/guides/avatar/index.md)
     - [GET Result API Quickstart](/guides/TLS/get-result-quickstart.md)
