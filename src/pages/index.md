@@ -44,9 +44,19 @@ The Translate and Lip Sync API creates transcriptions and precise, accurate vide
 
 Generate an Avatar video with a text prompt or audio input.
 
+<DiscoverBlock slots="link, text"/>
+
+[Dynamic Graphics Render API](guides/dgr/index.md)
+
+Programmatically generate video variations from Motion Graphics Templates (MOGRTs).
+
 ## Text to Speech API
 
-The Text to Speech API generates lifelike spoken audio from a provided transcript. Features include:
+The Text to Speech (TTS) API generates lifelike spoken audio from a provided transcript. 
+
+### What is this API?
+
+The Text to Speech API allows you to:
 
 - **Choose voices** from Firefly's catalog of voices.
 - **Turn prompts into spoken audio**.
@@ -92,19 +102,24 @@ Consider the Reframe v2 API to take your video workflows to the next level. Whet
 
 The Translate and Lip Sync (TLS) API uses transcriptions to generate audio and video with precise, accurate dubbing and composited lip sync. This feature supports multi-speaker scenarios.
 
-Supported workflows include:
+### What is this API?
 
-1. **Transcribe** audio and video.
-2. **Generate captions** for audio and video.
-3. **Automated Dubbing** for audio and video.
-4. **Dubbing with edited transcripts**.
-5. **Dubbing with pre-existing translations**.
+The Translate and Lip Sync (TLS) API allows you to:
+
+- **Transcribe** audio and video.
+- **Generate captions** for audio and video.
+- **Automated Dubbing** for audio and video.
+- **Dubbing with edited transcripts**.
+- **Dubbing with pre-existing translations**.
 
 **Lip Sync** is also included as a parameter of the Dub API to create high-quality composited videos with precise lip-syncing. [Content Authenticity Initiative (CAI)](http://contentauthenticity.org/) support ensures protection against deepfakes.
 
 ## Text to Avatar API
 
 Using the Avatar API you can generate an Avatar video with a text prompt or audio input.
+
+### What is this API?
+
 Options with the endpoint allow you to:
 
 1. **Select an avatar** from a catalog of stock actors.
@@ -112,10 +127,51 @@ Options with the endpoint allow you to:
 3. **Use your own voice file** to create avatar videos.
 4. Set your own image/video as a video background.
 
+## Dynamic Graphics Render API
+
+Programmatically *generate video variations* from Motion Graphics Templates (MOGRTs).
+
+### What is the Dynamic Graphics Render API?
+
+Use the Dynamic Graphics Render (DGR) API to **automate branded video creation**. The service **consumes Motion Graphics Templates (MOGRTs)** and lets you override essential graphics parameters to deliver **fully customized clips in seconds**.
+
+This API ingests Adobe After Effect's (AE) Motion Graphics Templates (MOGRTs), exposes editable Essential Graphics controls, and renders finalized video assets using predefined or custom encoding presets. Users can:
+
+- Inspect editable template controls.
+- Override text, media, audio, and design parameters.
+- Render brand‑ready, social‑optimized video outputs at scale.
+
+### Why choose this API?
+
+**Common use cases:**
+
+- Personalizing marketing videos with dynamic text and images.
+- Generating social media variations from a single video template.
+- Automating brand‑compliant video creation for campaigns.
+
+**For Marketers/Designers:**
+
+- Create your own custom MOGRT using the API to control the Essential Graphics parameters defined during MOGRT creation.
+
+### How it works
+
+The API workflow is simple and powerful. It mirrors other video API's asynchronous job model:
+
+1. **Discover presets** using the Get Presets API.  
+   Use our predefined social presets or your own custom ones.
+
+2. **Describe a template** to retrieve editable controls.  
+   These are Essential Graphics parameters defined in MOGRT.
+
+3. **Render template variations** with defined assets and presets.  
+   Render up to 10 variations of the same template in a single call.
+
+4. **Get Status** with a job ID to get results of Describe and Render template API calls.
+
 <Announcement slots="heading, text, button" variant="secondary" backgroundColor="background-color-gray" />
 
 #### Ready to try it?
 
-Check out the Getting Started page to see what these services are all about.
+Check out the Getting Started page to see what these Audio and Video services are all about.
 
 - [Begin](/getting-started/index.md)
