@@ -19,7 +19,7 @@
 - subPages:
     - Getting Started header
     - [General Authentication](/getting-started/index.md)
-    - [DGR Authentication](/getting-started/dg-authentication/index.md)
+    - [DGR Authentication](/getting-started/dgr-auth.md)
     - [Storage Solutions](/getting-started/storage-solutions/index.md)
     - [Technical Usage Notes](/getting-started/usage/index.md)
     - Learn More header

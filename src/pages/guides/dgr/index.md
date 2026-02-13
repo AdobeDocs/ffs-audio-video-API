@@ -1,15 +1,6 @@
 ---
 title: Getting started with Presets
 description: This page is a quickstart guide to using the Presets API.
-hideBreadcrumbNav: true
-keywords:
-  - presets API
-  - video presets
-  - configuration templates
-  - video rendering
-  - API quickstart
-  - video formats
-  - codec settings
 contributors:
   - https://github.com/aeabreu-hub
   - https://github.com/sandeepy-gh
