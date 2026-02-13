@@ -189,10 +189,16 @@ When the job has finished successfully, the response returns the editable contro
 }
 ```
 
-## Notes
+## Tips for best results
 
-**Job status.** A job can complete successfully (HTTP 200) with a payload status of `"succeeded"` or `"failed"`. Use the `status` field in the response body to determine the outcome. HTTP 4xx and 5xx responses indicate a problem with the request itself (for example, an invalid or missing Authorization header when calling the Get Status endpoint).
+### Job status
 
-**Audio controls.** An `audio` control can be used to either replace the full audio track for the output or mix the track with existing MOGRT audio. Only one `audio` control is allowed per Render API input variation. The `durationInSeconds` property for an audio-type control is informational only and is not required in the Render API request.
+A job can complete successfully (HTTP 200) with a payload status of `"succeeded"` or `"failed"`. Use the `status` field in the response body to determine the outcome. HTTP 4xx and 5xx responses indicate a problem with the request itself (for example, an invalid or missing Authorization header when calling the Get Status endpoint).
 
-**Fonts.** If the font is internal to Adobe and free, you do not need to upload the font in the Render API. If the font is licensed (Adobe or third-party), you must upload the font; otherwise, text falls back to the default font per Adobe policy. Use the `uploadRequired` flag to determine whether you need to send `source.url` to upload the font in the Render API.
+### Audio controls
+
+An `audio` control can be used to either replace the full audio track for the output or mix the track with existing MOGRT audio. Only one `audio` control is allowed per Render API input variation. The `durationInSeconds` property for an audio-type control is informational only and is not required in the Render API request.
+
+### Fonts
+
+If the font is internal to Adobe and free, you do not need to upload the font in the Render API. If the font is licensed (Adobe or third-party), you must upload the font; otherwise, text falls back to the default font per Adobe policy. Use the `uploadRequired` flag to determine whether you need to send `source.url` to upload the font in the Render API.

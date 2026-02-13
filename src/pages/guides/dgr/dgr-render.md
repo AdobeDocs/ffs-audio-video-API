@@ -227,19 +227,29 @@ When the job has succeeded, the response includes signed URLs for each output.
 }
 ```
 
-## Notes
+## Tips for best results
 
-**Presets.** You can use the `presetId` from the list of export presets returned by the [Get Presets API](index.md), or use custom encoder presets via a pre-signed URL. For details on preparing custom presets, see [Custom encoding presets](https://helpx.adobe.com/in/media-encoder/using/custom-encoding-presets.html) in Adobe Help.
+### Presets
 
-**Assets.** You can consolidate all audio, video, and image assets in the `assets` array and reference them by 0-based index in the `variations` array.
+You can use the `presetId` from the list of export presets returned by the [Get Presets API](index.md), or use custom encoder presets via a pre-signed URL. For details on preparing custom presets, see [Custom encoding presets](https://helpx.adobe.com/in/media-encoder/using/custom-encoding-presets.html) in Adobe Help.
 
-**Image and video controls.** For media controls, you can set `scale` to one of the possible values returned in the [Describe API](dgr-describe.md) response (for example, `no_scale`, `fit_to_frame`, `stretch_to_fill`, `fill_frame`).
+### Assets
 
-**Audio control.** For an audio control, set `audioPreference` to `"replace"` or `"mix"`. The default is `"replace"`.
+You can consolidate all audio, video, and image assets in the `assets` array and reference them by 0-based index in the `variations` array.
 
-**Missing fonts.** The `config.handleMissingFonts` parameter controls behavior when a required font is not provided. Possible values:
+### Image and video controls
 
-- **fail** – The render request fails.
-- **use_default** – Use Premiere Pro fallback behavior.
+For media controls, you can set `scale` to one of the possible values returned in the [Describe API](dgr-describe.md) response (for example, `no_scale`, `fit_to_frame`, `stretch_to_fill`, `fill_frame`).
+
+### Audio control
+
+For an audio control, set `audioPreference` to `"replace"` or `"mix"`. The default is `"replace"`.
+
+### Missing fonts
+
+The `config.handleMissingFonts` parameter controls behavior when a required font is not provided. Possible values:
+
+- `fail` – The render request fails.
+- `use_default` – Use Premiere Pro fallback behavior.
 
 If `handleMissingFonts` is not provided, the default is `use_default`.
