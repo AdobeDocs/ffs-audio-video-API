@@ -138,20 +138,21 @@ Use the Dynamic Graphics Render (DGR) API to **automate branded video creation**
 This API ingests Adobe After Effect's (AE) Motion Graphics Templates (MOGRTs), exposes editable Essential Graphics controls, and renders finalized video assets using predefined or custom encoding presets. Users can:
 
 - Inspect editable template controls.
-- Override text, media, audio, and design parameters.
+- Override text, image, video (fixed, per defined slot length), audio, and design parameters.
 - Render brand‑ready, social‑optimized video outputs at scale.
 
 ### Why choose this API?
 
 **Common use cases:**
 
+- Localize on-screen text to distribute branded video in multiple geographies.
 - Personalizing marketing videos with dynamic text and images.
-- Generating social media variations from a single video template.
+- Generate social-ready videos for different products from the same video template.
 - Automating brand‑compliant video creation for campaigns.
 
 **For Marketers/Designers:**
 
-- Create your own custom MOGRT using the API to control the Essential Graphics parameters defined during MOGRT creation.
+- Create a custom MOGRT template and use the DGR API to dynamically control the Essential Graphics parameters defined in the template to generate video variations.
 
 ### How it works
 
