@@ -13,10 +13,9 @@ This quickstart guide offers ready-to-use cURL commands for the **Presets** API.
 
 ## Overview
 
-Presets are configuration templates that define a specific behavior or setup used by creative applications.
-These presets help control how features are presented or behave.
-They may include information like supported formats, design templates, effects configurations, UI toggles, or automation options.
-Using the Presets API, you can get the list of presets currently supported.
+Presets are export configurations that define video quality. They control parameters like codec, resolution, and bitrate.
+
+Retrieve a catalog of predefined, social-first presets to discover the available encoding options for rendering outputs. Developers can use the presets in the guide below, or their own custom ones.
 
 ## Prerequisites
 
