@@ -13,6 +13,10 @@ For your application to generate an access token, an end user does not need to s
 
 This is sometimes referred to as "two-legged OAuth".
 
+<InlineAlert slots="text" variant="info" />
+
+This authenticaiton process is for the Dynamic Graphics Render API only. For the other APIs, [see the Authentication page](/getting-started/index.md) for more information.
+
 ## Prerequisites
 
 This tutorial assumes you have worked with your Adobe Representative and have the following:
