@@ -26,6 +26,10 @@
     {
       "name": "Manage jobs",
       "description": "Endpoints for managing asynchronous jobs."
+    },
+    {
+      "name": "Dynamic Graphics Render",
+      "description": "Endpoints for Dynamic Graphics Render (DGR): template describe, presets, render, and job status."
     }
   ],
   "servers": [
@@ -388,9 +392,9 @@
     },
     "/v1/status/{jobId}": {
       "get": {
-        "tags": ["Manage jobs"],
+        "tags": ["Manage jobs", "Dynamic Graphics Render"],
         "summary": "Get job status",
-        "description": "Provides the status and result of an asynchronous job.",
+        "description": "Provides the status and result of an asynchronous job. For Dynamic Graphics Render (DGR), returns the status of a Describe template or Render job.",
         "operationId": "status",
         "parameters": [
           {
@@ -474,6 +478,30 @@
                   },
                   "StatusAPIFailedTTSInternalErrorResponse": {
                     "$ref": "#/components/examples/StatusAPIFailedTTSInternalErrorResponse"
+                  },
+                  "DGRJobStatusNotStarted": {
+                    "$ref": "#/components/examples/DGRJobStatusNotStarted"
+                  },
+                  "DGRJobStatusRunning": {
+                    "$ref": "#/components/examples/DGRJobStatusRunning"
+                  },
+                  "DGRDescribeSuccess": {
+                    "$ref": "#/components/examples/DGRDescribeSuccess"
+                  },
+                  "DGRRenderSuccessSingle": {
+                    "$ref": "#/components/examples/DGRRenderSuccessSingle"
+                  },
+                  "DGRRenderSuccessMultiple": {
+                    "$ref": "#/components/examples/DGRRenderSuccessMultiple"
+                  },
+                  "DGRRenderPartialSuccess": {
+                    "$ref": "#/components/examples/DGRRenderPartialSuccess"
+                  },
+                  "DGRRenderSuccessTwoVariations": {
+                    "$ref": "#/components/examples/DGRRenderSuccessTwoVariations"
+                  },
+                  "DGRJobFailed": {
+                    "$ref": "#/components/examples/DGRJobFailed"
                   }
                 }
               }
@@ -558,6 +586,546 @@
                   },
                   "TEXT_TO_SPEECH_SERVICE_SUBMIT_ERROR": {
                     "$ref": "#/components/examples/TEXT_TO_SPEECH_SERVICE_SUBMIT_ERROR"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/templates/describe": {
+      "post": {
+        "tags": ["Dynamic Graphics Render"],
+        "summary": "Describe template",
+        "description": "Analyzes a MOGRT (video template) file and returns a manifest of editable controls; fonts, images, audio, video and other supported values.",
+        "operationId": "template-describe",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TemplateDescribeRequest"
+              },
+              "examples": {
+                "SampleExample": {
+                  "summary": "Sample example",
+                  "value": {
+                    "source": {
+                      "url": "<pre-signed_URL_to_download_the_template>"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "202": {
+            "description": "Accepted",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TemplateDescribeResponse"
+                },
+                "examples": {
+                  "SuccessResponse": {
+                    "value": {
+                      "jobId": "<job_ID>",
+                      "statusUrl": "https://audio-video-api.adobe.io/v1/status/<job_ID>"
+                    }
+                  }
+                }
+              }
+            },
+            "headers": {
+              "Link": {
+                "schema": {
+                  "type": "string"
+                },
+                "description": "URL to monitor the status of the job."
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                },
+                "examples": {
+                  "InvalidJsonError": {
+                    "value": {
+                      "error_code": "invalid_json",
+                      "message": "Invalid request. Please check the input data."
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                },
+                "examples": {
+                  "InvalidToken": {
+                    "value": {
+                      "error_code": "401013",
+                      "message": "OAuth token is not valid."
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                },
+                "examples": {
+                  "InvalidContext": {
+                    "value": {
+                      "error_code": "access_error",
+                      "message": "Token not allowed in the current context."
+                    }
+                  },
+                  "ApiKeyIsRequired": {
+                    "value": {
+                      "error_code": "403000",
+                      "message": "API key is required."
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Unprocessable Entity",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                },
+                "examples": {
+                  "ValidationError": {
+                    "value": {
+                      "error_code": "validation_error",
+                      "message": "Validation error occurred",
+                      "messageId": "42206000"
+                    }
+                  },
+                  "InvalidTemplateTypeError": {
+                    "value": {
+                      "error_code": "validation_error",
+                      "message": "Input must contain a valid template type",
+                      "messageId": "42206001"
+                    }
+                  },
+                  "InvalidTemplateSourceError": {
+                    "value": {
+                      "error_code": "validation_error",
+                      "message": "Invalid template source",
+                      "messageId": "42206002"
+                    }
+                  },
+                  "InvalidTemplateSourceUrlError": {
+                    "value": {
+                      "error_code": "validation_error",
+                      "message": "Invalid template source URL",
+                      "messageId": "42206003"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                },
+                "examples": {
+                  "ServerError": {
+                    "value": {
+                      "messageId": "50006000",
+                      "message": "Internal Server Error",
+                      "error_code": "runtime_error"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/presets": {
+      "get": {
+        "tags": ["Dynamic Graphics Render"],
+        "summary": "Fetch video rendering presets",
+        "description": "Returns a list of predefined social-first encoding presets for rendering outputs.",
+        "operationId": "get-presets",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PresetsResponse"
+                },
+                "examples": {
+                  "PresetsExample": {
+                    "$ref": "#/components/examples/PresetsResponse"
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                },
+                "examples": {
+                  "Unauthorized": {
+                    "value": {
+                      "error_code": "401013",
+                      "message": "OAuth token is not valid."
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                },
+                "examples": {
+                  "Forbidden": {
+                    "value": {
+                      "error_code": "403000",
+                      "message": "API key is required."
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/templates/render": {
+      "post": {
+        "tags": ["Dynamic Graphics Render"],
+        "summary": "Render template",
+        "description": "Renders one or more video variations by applying overrides and export presets. Submit up to 10 overrides per call for a subset of editable layers and get a pre-signed URL link to download the video file. For layers that are not editable, the system defaults are automatically applied at export.",
+        "operationId": "template-render",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TemplateRenderRequest"
+              },
+              "examples": {
+                "RenderExample": {
+                  "summary": "Sample render request",
+                  "value": {
+                    "source": {
+                      "url": "<pre-signed mogrt url>"
+                    },
+                    "fonts": [
+                      {
+                        "name": "<Font postscript name>",
+                        "source": {
+                          "url": "<pre-signed url for font .ttf/otf>"
+                        }
+                      }
+                    ],
+                    "config": {
+                      "handleMissingFonts": "use_default"
+                    },
+                    "assets": [
+                      {
+                        "source": {
+                          "url": "<pre-signed url for image or video asset>"
+                        }
+                      },
+                      {
+                        "source": {
+                          "url": "<pre-signed url for audio asset>"
+                        }
+                      }
+                    ],
+                    "presets": [
+                      {
+                        "source": {
+                          "presetId": "ffs_video_api_vert_1920p_hq"
+                        }
+                      },
+                      {
+                        "source": {
+                          "url": "<pre-signed url for Encoder preset file>"
+                        }
+                      }
+                    ],
+                    "variations": [
+                      {
+                        "variables": [
+                          {
+                            "variableId": "<unique template variable id>",
+                            "selectedCheckboxValue": true
+                          },
+                          {
+                            "variableId": "<unique template variable id>",
+                            "assetIndex": 0,
+                            "scale": "no_scale"
+                          },
+                          {
+                            "variableId": "<unique template variable id>",
+                            "selectedDropdownValue": "0"
+                          },
+                          {
+                            "variableId": "<unique template variable id>",
+                            "text": "First Name",
+                            "fontName": "font_name_1"
+                          },
+                          {
+                            "variableId": "<unique template variable id>",
+                            "selectedSliderValue": -18
+                          },
+                          {
+                            "variableId": "<unique template variable id>",
+                            "assetIndex": 1,
+                            "audioPreference": "replace"
+                          }
+                        ]
+                      },
+                      {
+                        "variables": [
+                          {
+                            "variableId": "<unique template variable id>",
+                            "selectedCheckboxValue": true
+                          },
+                          {
+                            "variableId": "<unique template variable id>",
+                            "assetIndex": 0,
+                            "scale": "fit_to_frame"
+                          },
+                          {
+                            "variableId": "<unique template variable id>",
+                            "selectedDropdownValue": "0"
+                          },
+                          {
+                            "variableId": "<unique template variable id>",
+                            "text": "First Name",
+                            "fontName": "font_name_1"
+                          },
+                          {
+                            "variableId": "<unique template variable id>",
+                            "selectedSliderValue": -18
+                          },
+                          {
+                            "variableId": "<unique template variable id>",
+                            "assetIndex": 1,
+                            "audioPreference": "mix"
+                          }
+                        ]
+                      }
+                    ],
+                    "outputs": [
+                      {
+                        "variationIndex": 0,
+                        "presetIndex": 0,
+                        "fileName": "some_custom_file_name"
+                      },
+                      {
+                        "variationIndex": 1,
+                        "presetIndex": 0,
+                        "fileName": "output_vert_1920p_hq"
+                      },
+                      {
+                        "variationIndex": 1,
+                        "presetIndex": 1,
+                        "fileName": "my_custom_file_name"
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "202": {
+            "description": "Accepted",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TemplateRenderResponse"
+                },
+                "examples": {
+                  "SuccessResponse": {
+                    "value": {
+                      "jobId": "<job_ID>",
+                      "statusUrl": "https://audio-video-api.adobe.io/v1/status/<job_ID>"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                },
+                "examples": {
+                  "InvalidJsonError": {
+                    "value": {
+                      "error_code": "invalid_json",
+                      "message": "Invalid request. Please check the input data."
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                },
+                "examples": {
+                  "InvalidToken": {
+                    "value": {
+                      "error_code": "401013",
+                      "message": "OAuth token is not valid."
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                },
+                "examples": {
+                  "InvalidContext": {
+                    "value": {
+                      "error_code": "access_error",
+                      "message": "Token not allowed in the current context."
+                    }
+                  },
+                  "ApiKeyIsRequired": {
+                    "value": {
+                      "error_code": "403000",
+                      "message": "API key is required."
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Unprocessable Entity",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                },
+                "examples": {
+                  "InvalidTemplateTypeError": {
+                    "value": {
+                      "error_code": "validation_error",
+                      "message": "Input must contain a valid template type",
+                      "messageId": "42205000"
+                    }
+                  },
+                  "InvalidTemplateSourceUrlError": {
+                    "value": {
+                      "error_code": "validation_error",
+                      "message": "Invalid template source URL",
+                      "messageId": "42205001"
+                    }
+                  },
+                  "InvalidPresetIdError": {
+                    "value": {
+                      "error_code": "validation_error",
+                      "message": "{presetId} export preset does not exist",
+                      "messageId": "42205002"
+                    }
+                  },
+                  "InvalidFontDetailsError": {
+                    "value": {
+                      "error_code": "validation_error",
+                      "message": "Invalid font details in variation {variationIndex} control {controlIndex}",
+                      "messageId": "42205003"
+                    }
+                  },
+                  "InvalidMediaDetailsError": {
+                    "value": {
+                      "error_code": "validation_error",
+                      "message": "Invalid media details in variation {variationIndex} control {controlIndex}",
+                      "messageId": "42205004"
+                    }
+                  },
+                  "InvalidScaleTypeError": {
+                    "value": {
+                      "error_code": "validation_error",
+                      "message": "Invalid scale type in variation {variationIndex} control {controlIndex}",
+                      "messageId": "42205005"
+                    }
+                  },
+                  "InvalidControlTypeError": {
+                    "value": {
+                      "error_code": "validation_error",
+                      "message": "Invalid control type in variation {variationIndex} control {controlIndex}",
+                      "messageId": "42205006"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                },
+                "examples": {
+                  "InternalServerError": {
+                    "value": {
+                      "error_code": "runtime_error",
+                      "message": "Internal Server Error",
+                      "messageId": "50005001"
+                    }
                   }
                 }
               }
@@ -3371,6 +3939,9 @@
           },
           {
             "$ref": "#/components/schemas/StatusAPIFailedResponse"
+          },
+          {
+            "$ref": "#/components/schemas/JobStatus"
           }
         ]
       },
@@ -3441,6 +4012,547 @@
           },
           "message": {
             "type": "string"
+          }
+        }
+      },
+      "ErrorResponse": {
+        "type": "object",
+        "required": ["error_code", "message"],
+        "properties": {
+          "error_code": {
+            "type": "string",
+            "description": "The error code returned with the response."
+          },
+          "message": {
+            "type": "string",
+            "description": "The error message returned with the response."
+          },
+          "messageId": {
+            "type": "string",
+            "description": "The error message ID returned with the response."
+          }
+        }
+      },
+      "TemplateDescribeRequest": {
+        "type": "object",
+        "required": ["source"],
+        "properties": {
+          "source": {
+            "type": "object",
+            "required": ["url"],
+            "properties": {
+              "url": {
+                "type": "string",
+                "format": "uri",
+                "description": "A pre-signed URL pointing to the input template file."
+              }
+            },
+            "description": "Contains metadata about the source of the input template."
+          }
+        }
+      },
+      "TemplateDescribeResponse": {
+        "type": "object",
+        "required": ["jobId", "statusUrl"],
+        "properties": {
+          "jobId": {
+            "type": "string",
+            "description": "Unique identifier for the describe job."
+          },
+          "statusUrl": {
+            "type": "string",
+            "format": "uri",
+            "description": "URL to poll for the status of the describe job."
+          }
+        }
+      },
+      "PresetItem": {
+        "type": "object",
+        "properties": {
+          "presetId": {
+            "type": "string",
+            "description": "Unique identifier for the preset."
+          },
+          "label": {
+            "type": "string",
+            "description": "Human-readable label for the preset."
+          },
+          "mediaType": {
+            "type": "string",
+            "description": "MIME type of the output media (e.g., video/mp4)."
+          },
+          "codec": {
+            "type": "string",
+            "description": "Video codec used (e.g., H.264)."
+          },
+          "profile": {
+            "type": "string",
+            "description": "Codec profile (e.g., high)."
+          },
+          "maxFps": {
+            "type": "object",
+            "required": ["numerator", "denominator"],
+            "properties": {
+              "numerator": {
+                "type": "integer",
+                "description": "Frames-per-second numerator."
+              },
+              "denominator": {
+                "type": "integer",
+                "description": "Frames-per-second denominator."
+              }
+            },
+            "description": "Maximum frames per second as a fraction."
+          },
+          "bitrateMode": {
+            "type": "string",
+            "description": "Bitrate mode (e.g., vbr, cbr)."
+          },
+          "targetBitrateInKbps": {
+            "type": "integer",
+            "description": "Target bitrate in kilobits per second."
+          },
+          "maxBitrateInKbps": {
+            "type": "integer",
+            "description": "Maximum bitrate in kilobits per second."
+          },
+          "alpha": {
+            "type": "boolean",
+            "description": "Whether the preset supports alpha channel."
+          },
+          "primaryUsage": {
+            "type": "string",
+            "description": "Primary use case for this preset."
+          }
+        },
+        "required": [
+          "presetId",
+          "label",
+          "mediaType",
+          "codec",
+          "maxFps",
+          "bitrateMode",
+          "alpha",
+          "primaryUsage"
+        ]
+      },
+      "PresetsResponse": {
+        "type": "object",
+        "properties": {
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PresetItem"
+            }
+          }
+        },
+        "required": ["items"]
+      },
+      "TemplateRenderRequest": {
+        "type": "object",
+        "required": ["source", "variations"],
+        "properties": {
+          "source": {
+            "type": "object",
+            "required": ["url"],
+            "properties": {
+              "url": {
+                "type": "string",
+                "format": "uri",
+                "description": "A pre-signed URL pointing to the input template file."
+              }
+            },
+            "description": "Contains metadata about the source of the input template."
+          },
+          "fonts": {
+            "type": "array",
+            "description": "Array of fonts to be used in the template.",
+            "items": {
+              "type": "object",
+              "required": ["name", "source"],
+              "properties": {
+                "name": {
+                  "type": "string",
+                  "description": "PostScript name of the font."
+                },
+                "source": {
+                  "type": "object",
+                  "required": ["url"],
+                  "properties": {
+                    "url": {
+                      "type": "string",
+                      "format": "uri",
+                      "description": "Pre-signed URL for the font file (.ttf/.otf)."
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "config": {
+            "type": "object",
+            "description": "Configuration options for the render request.",
+            "properties": {
+              "handleMissingFonts": {
+                "type": "string",
+                "enum": ["fail", "use_default"],
+                "default": "use_default",
+                "description": "How to handle missing fonts. 'fail' will cause the render to fail; 'use_default' will use Premiere Pro fallback behavior."
+              }
+            }
+          },
+          "assets": {
+            "type": "array",
+            "description": "Array of image, video, or audio assets referenced by variations via assetIndex.",
+            "items": {
+              "type": "object",
+              "required": ["source"],
+              "properties": {
+                "source": {
+                  "type": "object",
+                  "required": ["url"],
+                  "properties": {
+                    "url": {
+                      "type": "string",
+                      "format": "uri",
+                      "description": "Pre-signed URL for the image, video, or audio asset."
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "presets": {
+            "type": "array",
+            "description": "Array of export presets. Each item is either a built-in preset (by presetId) or a custom preset (by URL). Outputs reference presets by presetIndex.",
+            "items": {
+              "type": "object",
+              "required": ["source"],
+              "properties": {
+                "source": {
+                  "type": "object",
+                  "properties": {
+                    "presetId": {
+                      "type": "string",
+                      "description": "ID of a built-in preset from the presets endpoint."
+                    },
+                    "url": {
+                      "type": "string",
+                      "format": "uri",
+                      "description": "Pre-signed URL for a custom Encoder preset file."
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "variations": {
+            "type": "array",
+            "description": "List of variations. Each variation contains variable overrides applied to the template.",
+            "minItems": 1,
+            "items": {
+              "type": "object",
+              "required": ["variables"],
+              "properties": {
+                "variables": {
+                  "type": "array",
+                  "description": "Variable overrides for this variation. Each object targets one template variable by variableId and supplies the override value.",
+                  "items": {
+                    "type": "object",
+                    "required": ["variableId"],
+                    "properties": {
+                      "variableId": {
+                        "type": "string",
+                        "description": "Unique identifier for the template variable (from describe response)."
+                      },
+                      "selectedCheckboxValue": {
+                        "type": "boolean",
+                        "description": "Override for checkbox controls."
+                      },
+                      "selectedDropdownValue": {
+                        "type": "string",
+                        "description": "Override for dropdown controls."
+                      },
+                      "selectedSliderValue": {
+                        "type": "number",
+                        "description": "Override for slider controls."
+                      },
+                      "text": {
+                        "type": "string",
+                        "description": "Override for text controls."
+                      },
+                      "fontName": {
+                        "type": "string",
+                        "description": "PostScript font name for text controls."
+                      },
+                      "assetIndex": {
+                        "type": "integer",
+                        "description": "Index into the assets array for media or audio controls."
+                      },
+                      "scale": {
+                        "type": "string",
+                        "enum": ["no_scale", "fit_to_frame", "stretch_to_fill", "fill_frame"],
+                        "description": "Scaling behavior for media controls."
+                      },
+                      "audioPreference": {
+                        "type": "string",
+                        "enum": ["replace", "mix"],
+                        "description": "Audio preference for audio controls."
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "outputs": {
+            "type": "array",
+            "description": "Defines which variation and preset combinations to render and optional output file names.",
+            "items": {
+              "type": "object",
+              "required": ["variationIndex", "presetIndex"],
+              "properties": {
+                "variationIndex": {
+                  "type": "integer",
+                  "description": "Zero-based index of the variation to render."
+                },
+                "presetIndex": {
+                  "type": "integer",
+                  "description": "Zero-based index of the preset in the presets array."
+                },
+                "fileName": {
+                  "type": "string",
+                  "description": "Optional custom file name for the output."
+                }
+              }
+            }
+          }
+        }
+      },
+      "TemplateRenderResponse": {
+        "type": "object",
+        "required": ["jobId", "statusUrl"],
+        "properties": {
+          "jobId": {
+            "type": "string",
+            "description": "Unique identifier for the render job."
+          },
+          "statusUrl": {
+            "type": "string",
+            "format": "uri",
+            "description": "URL to poll for the status of the rendering job."
+          }
+        }
+      },
+      "JobStatus": {
+        "type": "object",
+        "required": ["jobId", "status"],
+        "properties": {
+          "jobId": {
+            "type": "string",
+            "description": "ID of the render job."
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "not_started",
+              "running",
+              "succeeded",
+              "failed",
+              "partially_succeeded"
+            ],
+            "description": "Current status of the job."
+          },
+          "message": {
+            "type": "string",
+            "description": "Error message when job status is failed."
+          },
+          "percentCompleted": {
+            "type": "string",
+            "description": "Percentage of job completed, as a string."
+          },
+          "outputs": {
+            "type": "array",
+            "description": "Array of output files with destination URLs, keyed by variation and preset indices.",
+            "items": {
+              "type": "object",
+              "required": ["variationIndex", "presetIndex", "destination"],
+              "properties": {
+                "variationIndex": {
+                  "type": "integer",
+                  "description": "Zero-based index of the variation that was rendered."
+                },
+                "presetIndex": {
+                  "type": "integer",
+                  "description": "Zero-based index of the preset that was used for rendering."
+                },
+                "destination": {
+                  "type": "object",
+                  "required": ["url"],
+                  "properties": {
+                    "url": {
+                      "type": "string",
+                      "format": "uri",
+                      "description": "URL from which the rendered video can be downloaded."
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "errors": {
+            "type": "array",
+            "description": "Array of errors for failed variations (only present when status is partially_succeeded).",
+            "items": {
+              "type": "object",
+              "required": ["variationIndex", "presetIndex", "error"],
+              "properties": {
+                "variationIndex": {
+                  "type": "integer",
+                  "description": "Zero-based index of the variation that failed."
+                },
+                "presetIndex": {
+                  "type": "integer",
+                  "description": "Zero-based index of the preset that was used for the failed variation."
+                },
+                "error": {
+                  "type": "object",
+                  "required": ["error_code", "message"],
+                  "properties": {
+                    "error_code": {
+                      "type": "string",
+                      "description": "Error code for the failure."
+                    },
+                    "message": {
+                      "type": "string",
+                      "description": "Error message describing the failure."
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "output": {
+            "type": "object",
+            "description": "Output for describe API jobs.",
+            "properties": {
+              "fonts": {
+                "type": "array",
+                "description": "Array of fonts from the template.",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "name": {
+                      "type": "string",
+                      "description": "PostScript name of the font."
+                    },
+                    "uploadRequired": {
+                      "type": "boolean",
+                      "description": "Whether the font needs to be uploaded in the render request."
+                    }
+                  },
+                  "required": ["name"]
+                }
+              },
+              "elements": {
+                "type": "array",
+                "description": "Array of elements from the template.",
+                "items": {
+                  "type": "object",
+                  "required": ["type", "controls"],
+                  "properties": {
+                    "id": {
+                      "type": "string",
+                      "description": "Unique identifier for the element."
+                    },
+                    "type": {
+                      "type": "string",
+                      "enum": ["mogrt"],
+                      "description": "Type of the element."
+                    },
+                    "controls": {
+                      "type": "array",
+                      "description": "Array of controls from the template.",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "variableId": {
+                            "type": "string",
+                            "description": "Unique identifier for the template variable."
+                          },
+                          "id": {
+                            "type": "string",
+                            "description": "Unique identifier for the control."
+                          },
+                          "label": {
+                            "type": "string",
+                            "description": "Human-readable label for the control."
+                          },
+                          "type": {
+                            "type": "string",
+                            "enum": [
+                              "text",
+                              "media",
+                              "dropdown",
+                              "checkbox",
+                              "slider",
+                              "audio",
+                              "comment"
+                            ],
+                            "description": "Type of the control."
+                          },
+                          "defaultData": {
+                            "type": "object",
+                            "description": "Default or current values for the control (e.g., text, fontName, selectedCheckboxValue, selectedDropdownValue, selectedSliderValue, scale)."
+                          },
+                          "data": {
+                            "type": "object",
+                            "description": "Data associated with the control."
+                          },
+                          "options": {
+                            "description": "Available options (object for dropdown; array for checkbox)."
+                          },
+                          "range": {
+                            "type": "object",
+                            "description": "Minimum and maximum values for slider controls.",
+                            "properties": {
+                              "minimum": { "type": "number" },
+                              "maximum": { "type": "number" }
+                            }
+                          },
+                          "size": {
+                            "type": "object",
+                            "description": "Dimensions for media controls.",
+                            "properties": {
+                              "width": { "type": "integer" },
+                              "height": { "type": "integer" }
+                            }
+                          },
+                          "possibleScaleValues": {
+                            "type": "array",
+                            "items": { "type": "string" },
+                            "description": "Possible scale values for media controls."
+                          },
+                          "durationInSeconds": {
+                            "type": "number",
+                            "description": "Duration in seconds for audio controls."
+                          },
+                          "possibleAudioPreferences": {
+                            "type": "array",
+                            "items": { "type": "string" },
+                            "description": "Possible audio preferences (e.g., replace, mix) for audio controls."
+                          },
+                          "text": {
+                            "type": "string",
+                            "description": "Comment text for comment controls."
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
           }
         }
       },
@@ -5427,6 +6539,331 @@
               }
             }
           ]
+        }
+      },
+      "PresetsResponse": {
+        "summary": "List of supported presets",
+        "value": {
+          "items": [
+            {
+              "presetId": "ffs_video_api_land_1080p_hq",
+              "label": "Landscape 1920×1080 – HQ",
+              "mediaType": "video/mp4",
+              "codec": "H.264",
+              "maxFps": {
+                "numerator": 30,
+                "denominator": 1
+              },
+              "bitrateMode": "vbr",
+              "targetBitrateInKbps": 8000,
+              "maxBitrateInKbps": 12000,
+              "alpha": false,
+              "primaryUsage": "Youtube, Web Promos"
+            },
+            {
+              "presetId": "ffs_video_api_land_1080p_lq",
+              "label": "Landscape 1920×1080 – LQ",
+              "mediaType": "video/mp4",
+              "codec": "H.264",
+              "maxFps": {
+                "numerator": 30,
+                "denominator": 1
+              },
+              "bitrateMode": "vbr",
+              "targetBitrateInKbps": 6000,
+              "maxBitrateInKbps": 8000,
+              "alpha": false,
+              "primaryUsage": "Previews"
+            },
+            {
+              "presetId": "ffs_video_api_square_1080p_hq",
+              "label": "Square 1080×1080 – HQ",
+              "mediaType": "video/mp4",
+              "codec": "H.264",
+              "maxFps": {
+                "numerator": 30,
+                "denominator": 1
+              },
+              "bitrateMode": "vbr",
+              "targetBitrateInKbps": 6000,
+              "maxBitrateInKbps": 8000,
+              "alpha": false,
+              "primaryUsage": "IG / FB feed ads, LinkedIn videos, X"
+            },
+            {
+              "presetId": "ffs_video_api_square_1080p_lq",
+              "label": "Square 1080×1080 – LQ",
+              "mediaType": "video/mp4",
+              "codec": "H.264",
+              "maxFps": {
+                "numerator": 30,
+                "denominator": 1
+              },
+              "bitrateMode": "vbr",
+              "targetBitrateInKbps": 3000,
+              "maxBitrateInKbps": 4000,
+              "alpha": false,
+              "primaryUsage": "Previews"
+            },
+            {
+              "presetId": "ffs_video_api_vert_1920p_hq",
+              "label": "Vertical 1080×1920 – HQ",
+              "mediaType": "video/mp4",
+              "codec": "H.264",
+              "profile": "high",
+              "maxFps": {
+                "numerator": 30,
+                "denominator": 1
+              },
+              "bitrateMode": "vbr",
+              "targetBitrateInKbps": 6000,
+              "maxBitrateInKbps": 8000,
+              "alpha": false,
+              "primaryUsage": "Reels, TikTok, Snapchat Paid Ads"
+            },
+            {
+              "presetId": "ffs_video_api_vert_1920p_lq",
+              "label": "Vertical 1080×1920 – LQ",
+              "mediaType": "video/mp4",
+              "codec": "H.264",
+              "profile": "high",
+              "maxFps": {
+                "numerator": 30,
+                "denominator": 1
+              },
+              "bitrateMode": "vbr",
+              "targetBitrateInKbps": 3000,
+              "maxBitrateInKbps": 4000,
+              "alpha": false,
+              "primaryUsage": "Previews"
+            },
+            {
+              "presetId": "ffs_video_api_prores",
+              "label": "ProRes export preset supporting Alpha channel",
+              "mediaType": "video/quicktime",
+              "codec": "Apple ProRes 4444",
+              "profile": "high",
+              "maxFps": {
+                "numerator": 30,
+                "denominator": 1
+              },
+              "bitrateMode": "vbr",
+              "alpha": true,
+              "primaryUsage": "Logo stings, overlay plates, compositing"
+            }
+          ]
+        }
+      },
+      "DGRJobStatusNotStarted": {
+        "summary": "DGR job not started",
+        "value": {
+          "status": "not_started",
+          "jobId": "<the_jobID_GUID>"
+        }
+      },
+      "DGRJobStatusRunning": {
+        "summary": "DGR job running",
+        "value": {
+          "status": "running",
+          "percentCompleted": "55",
+          "jobId": "<the_jobID_GUID>"
+        }
+      },
+      "DGRDescribeSuccess": {
+        "summary": "DGR describe template succeeded",
+        "value": {
+          "jobId": "<jobId GUID in the 202 response>",
+          "status": "succeeded",
+          "output": {
+            "fonts": [
+              {
+                "name": "FranklinGothicURW-Boo",
+                "uploadRequired": false
+              },
+              {
+                "name": "<Font postscript name>",
+                "uploadRequired": true
+              }
+            ],
+            "elements": [
+              {
+                "type": "mogrt",
+                "controls": [
+                  {
+                    "variableId": "<unique id for template variable>",
+                    "label": "Headline",
+                    "type": "text",
+                    "defaultData": {
+                      "text": "This is your headline.",
+                      "fontName": "FranklinGothicURW-Boo"
+                    }
+                  },
+                  {
+                    "variableId": "<unique id for template variable>",
+                    "label": "Show Extra?",
+                    "type": "checkbox",
+                    "defaultData": {
+                      "selectedCheckboxValue": true
+                    },
+                    "options": [true, false]
+                  },
+                  {
+                    "variableId": "<unique id for template variable>",
+                    "label": "Choices Dropdown",
+                    "type": "dropdown",
+                    "defaultData": {
+                      "selectedDropdownValue": "2"
+                    },
+                    "options": {
+                      "0": "AAA",
+                      "1": "BBB",
+                      "2": "CCC",
+                      "3": "DDD",
+                      "4": "EEE"
+                    }
+                  },
+                  {
+                    "variableId": "<unique id for template variable>",
+                    "label": "Size selector",
+                    "type": "slider",
+                    "defaultData": {
+                      "selectedSliderValue": 1
+                    },
+                    "range": {
+                      "minimum": 1,
+                      "maximum": 5
+                    }
+                  },
+                  {
+                    "variableId": "<unique id for template variable>",
+                    "label": "Logo",
+                    "type": "media",
+                    "size": {
+                      "width": 1344,
+                      "height": 768
+                    },
+                    "defaultData": {
+                      "scale": "no_scale"
+                    },
+                    "possibleScaleValues": [
+                      "no_scale",
+                      "fit_to_frame",
+                      "stretch_to_fill",
+                      "fill_frame"
+                    ]
+                  },
+                  {
+                    "variableId": "<unique id for template variable>",
+                    "label": "Mogrt Audio",
+                    "type": "audio",
+                    "durationInSeconds": 22.3,
+                    "possibleAudioPreferences": ["replace", "mix"]
+                  },
+                  {
+                    "label": "Logo comment",
+                    "type": "comment",
+                    "text": "Add your company logo here."
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      },
+      "DGRRenderSuccessSingle": {
+        "summary": "DGR render succeeded (single output)",
+        "value": {
+          "jobId": "<jobId>",
+          "status": "succeeded",
+          "outputs": [
+            {
+              "variationIndex": 0,
+              "presetIndex": 0,
+              "destination": {
+                "url": "https://<SIGNED_OUTPUT_URL>.mp4"
+              }
+            }
+          ]
+        }
+      },
+      "DGRRenderSuccessMultiple": {
+        "summary": "DGR render succeeded (multiple outputs)",
+        "value": {
+          "jobId": "<jobId>",
+          "status": "succeeded",
+          "outputs": [
+            {
+              "variationIndex": 0,
+              "presetIndex": 0,
+              "destination": {
+                "url": "https://<SIGNED_OUTPUT_URL>.mp4"
+              }
+            },
+            {
+              "variationIndex": 0,
+              "presetIndex": 1,
+              "destination": {
+                "url": "https://<SIGNED_OUTPUT_URL>.mp4"
+              }
+            }
+          ]
+        }
+      },
+      "DGRRenderPartialSuccess": {
+        "summary": "DGR render partially succeeded",
+        "value": {
+          "jobId": "<jobId>",
+          "status": "partially_succeeded",
+          "outputs": [
+            {
+              "variationIndex": 1,
+              "presetIndex": 0,
+              "destination": {
+                "url": "https://<SIGNED_OUTPUT_URL>.mp4"
+              }
+            }
+          ],
+          "errors": [
+            {
+              "variationIndex": 0,
+              "presetIndex": 0,
+              "error": {
+                "error_code": "validation_error",
+                "message": "You have exceeded the limit for..."
+              }
+            }
+          ]
+        }
+      },
+      "DGRRenderSuccessTwoVariations": {
+        "summary": "DGR render succeeded (two variations)",
+        "value": {
+          "jobId": "<jobId>",
+          "status": "succeeded",
+          "outputs": [
+            {
+              "variationIndex": 0,
+              "presetIndex": 0,
+              "destination": {
+                "url": "https://<SIGNED_OUTPUT_URL>.mp4"
+              }
+            },
+            {
+              "variationIndex": 1,
+              "presetIndex": 0,
+              "destination": {
+                "url": "https://<SIGNED_OUTPUT_URL>.mp4"
+              }
+            }
+          ]
+        }
+      },
+      "DGRJobFailed": {
+        "summary": "DGR job failed",
+        "value": {
+          "jobId": "6b77c479-b599-46d3-a6bc-307b5389c105",
+          "status": "failed",
+          "message": "Error extracting definition.json: [Errno 2] No such file or directory: '6b77c479-b599-46d3-a6bc-307b5389c105/template.zip'"
         }
       }
     }
