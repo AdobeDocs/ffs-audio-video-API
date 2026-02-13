@@ -1,12 +1,20 @@
 ---
-title: Getting started with Presets
+title: Quickstart for Presets with the Dynamic Graphics Render API
 description: This page is a quickstart guide to using the Presets API.
+keywords:
+  - Dynamic Graphics Render
+  - Presets
+  - API
+  - Quickstart
+  - cURL
+  - Presets API
+  - Presets API Quickstart
+  - Presets API Quickstart cURL
 contributors:
   - https://github.com/aeabreu-hub
   - https://github.com/sandeepy-gh
   - https://github.com/schhatwalgitacc
 ---
-
 # Using the Presets API
 
 This quickstart guide offers ready-to-use cURL commands for the **Presets** API.
