@@ -1,1 +1,136 @@
-{"total":25,"offset":0,"limit":25,"data":[{"Source":"/audio-video-firefly-services","Destination":"/audio-video-firefly-services/"},{"Source":"/audio-video-firefly-services/index","Destination":"/audio-video-firefly-services/"},{"Source":"/audio-video-firefly-services/guides","Destination":"/audio-video-firefly-services/guides/"},{"Source":"/audio-video-firefly-services/guides/index","Destination":"/audio-video-firefly-services/guides/"},{"Source":"/audio-video-firefly-services/guides/reframe","Destination":"/audio-video-firefly-services/guides/reframe/"},{"Source":"/audio-video-firefly-services/guides/reframe/index","Destination":"/audio-video-firefly-services/guides/reframe/"},{"Source":"/audio-video-firefly-services/guides/otio","Destination":"/audio-video-firefly-services/guides/otio/"},{"Source":"/audio-video-firefly-services/guides/otio/index","Destination":"/audio-video-firefly-services/guides/otio/"},{"Source":"/audio-video-firefly-services/guides/avatar","Destination":"/audio-video-firefly-services/guides/avatar/"},{"Source":"/audio-video-firefly-services/guides/avatar/index","Destination":"/audio-video-firefly-services/guides/avatar/"},{"Source":"/audio-video-firefly-services/guides/TLS","Destination":"/audio-video-firefly-services/guides/TLS/"},{"Source":"/audio-video-firefly-services/guides/TLS/index","Destination":"/audio-video-firefly-services/guides/TLS/"},{"Source":"/audio-video-firefly-services/guides/TLS/get-result-quickstart/","Destination":"/audio-video-firefly-services/guides/TLS/get-result-quickstart"},{"Source":"/audio-video-firefly-services/getting-started","Destination":"/audio-video-firefly-services/getting-started/"},{"Source":"/audio-video-firefly-services/getting-started/index","Destination":"/audio-video-firefly-services/getting-started/"},{"Source":"/audio-video-firefly-services/getting-started/usage","Destination":"/audio-video-firefly-services/getting-started/usage/"},{"Source":"/audio-video-firefly-services/getting-started/usage/index","Destination":"/audio-video-firefly-services/getting-started/usage/"},{"Source":"/audio-video-firefly-services/getting-started/storage-solutions","Destination":"/audio-video-firefly-services/getting-started/storage-solutions/"},{"Source":"/audio-video-firefly-services/getting-started/storage-solutions/index","Destination":"/audio-video-firefly-services/getting-started/storage-solutions/"},{"Source":"/audio-video-firefly-services/getting-started/semantic-search","Destination":"/audio-video-firefly-services/getting-started/semantic-search/"},{"Source":"/audio-video-firefly-services/getting-started/semantic-search/index","Destination":"/audio-video-firefly-services/getting-started/semantic-search/"},{"Source":"/audio-video-firefly-services/getting-started/avatar-catalog","Destination":"/audio-video-firefly-services/getting-started/avatar-catalog/"},{"Source":"/audio-video-firefly-services/getting-started/avatar-catalog/index","Destination":"/audio-video-firefly-services/getting-started/avatar-catalog/"},{"Source":"/audio-video-firefly-services/api","Destination":"/audio-video-firefly-services/api/"},{"Source":"/audio-video-firefly-services/api/index","Destination":"/audio-video-firefly-services/api/"}],":type":"sheet"}
+{
+  "total": 32,
+  "offset": 0,
+  "limit": 32,
+  "data": [
+    {
+      "Source": "/audio-video-firefly-services",
+      "Destination": "/audio-video-firefly-services/"
+    },
+    {
+      "Source": "/audio-video-firefly-services/index",
+      "Destination": "/audio-video-firefly-services/"
+    },
+    {
+      "Source": "/audio-video-firefly-services/guides",
+      "Destination": "/audio-video-firefly-services/guides/"
+    },
+    {
+      "Source": "/audio-video-firefly-services/guides/index",
+      "Destination": "/audio-video-firefly-services/guides/"
+    },
+    {
+      "Source": "/audio-video-firefly-services/guides/reframe",
+      "Destination": "/audio-video-firefly-services/guides/reframe/"
+    },
+    {
+      "Source": "/audio-video-firefly-services/guides/reframe/index",
+      "Destination": "/audio-video-firefly-services/guides/reframe/"
+    },
+    {
+      "Source": "/audio-video-firefly-services/guides/otio",
+      "Destination": "/audio-video-firefly-services/guides/otio/"
+    },
+    {
+      "Source": "/audio-video-firefly-services/guides/otio/index",
+      "Destination": "/audio-video-firefly-services/guides/otio/"
+    },
+    {
+      "Source": "/audio-video-firefly-services/guides/avatar",
+      "Destination": "/audio-video-firefly-services/guides/avatar/"
+    },
+    {
+      "Source": "/audio-video-firefly-services/guides/avatar/index",
+      "Destination": "/audio-video-firefly-services/guides/avatar/"
+    },
+    {
+      "Source": "/audio-video-firefly-services/guides/TLS",
+      "Destination": "/audio-video-firefly-services/guides/TLS/"
+    },
+    {
+      "Source": "/audio-video-firefly-services/guides/TLS/index",
+      "Destination": "/audio-video-firefly-services/guides/TLS/"
+    },
+    {
+      "Source": "/audio-video-firefly-services/guides/TLS/get_result_quickstart/",
+      "Destination": "/audio-video-firefly-services/guides/TLS/get_result_quickstart"
+    },
+    {
+      "Source": "/audio-video-firefly-services/getting_started",
+      "Destination": "/audio-video-firefly-services/getting_started/"
+    },
+    {
+      "Source": "/audio-video-firefly-services/getting_started/index",
+      "Destination": "/audio-video-firefly-services/getting_started/"
+    },
+    {
+      "Source": "/audio-video-firefly-services/getting_started/usage",
+      "Destination": "/audio-video-firefly-services/getting_started/usage/"
+    },
+    {
+      "Source": "/audio-video-firefly-services/getting_started/usage/index",
+      "Destination": "/audio-video-firefly-services/getting_started/usage/"
+    },
+    {
+      "Source": "/audio-video-firefly-services/getting_started/storage_solutions",
+      "Destination": "/audio-video-firefly-services/getting_started/storage_solutions/"
+    },
+    {
+      "Source": "/audio-video-firefly-services/getting_started/storage_solutions/index",
+      "Destination": "/audio-video-firefly-services/getting_started/storage_solutions/"
+    },
+    {
+      "Source": "/audio-video-firefly-services/getting_started/semantic-search",
+      "Destination": "/audio-video-firefly-services/getting_started/semantic-search/"
+    },
+    {
+      "Source": "/audio-video-firefly-services/getting_started/semantic-search/index",
+      "Destination": "/audio-video-firefly-services/getting_started/semantic-search/"
+    },
+    {
+      "Source": "/audio-video-firefly-services/getting_started/avatar_catalog",
+      "Destination": "/audio-video-firefly-services/getting_started/avatar_catalog/"
+    },
+    {
+      "Source": "/audio-video-firefly-services/getting_started/avatar_catalog/index",
+      "Destination": "/audio-video-firefly-services/getting_started/avatar_catalog/"
+    },
+    {
+      "Source": "/audio-video-firefly-services/api",
+      "Destination": "/audio-video-firefly-services/api/"
+    },
+    {
+      "Source": "/audio-video-firefly-services/api/index",
+      "Destination": "/audio-video-firefly-services/api/"
+    },
+    {
+      "Source": "/audio-video-firefly-services/guides/TLS/",
+      "Destination": "/audio-video-firefly-services/guides/tls/"
+    },
+    {
+      "Source": "/audio-video-firefly-services/guides/TLS/get_result_quickstart",
+      "Destination": "/audio-video-firefly-services/guides/tls/get-result-quickstart"
+    },
+    {
+      "Source": "/audio-video-firefly-services/getting_started/",
+      "Destination": "/audio-video-firefly-services/getting-started/"
+    },
+    {
+      "Source": "/audio-video-firefly-services/getting_started/usage/",
+      "Destination": "/audio-video-firefly-services/getting-started/usage/"
+    },
+    {
+      "Source": "/audio-video-firefly-services/getting_started/storage_solutions/",
+      "Destination": "/audio-video-firefly-services/getting-started/storage-solutions/"
+    },
+    {
+      "Source": "/audio-video-firefly-services/getting_started/semantic-search/",
+      "Destination": "/audio-video-firefly-services/getting-started/semantic-search/"
+    },
+    {
+      "Source": "/audio-video-firefly-services/getting_started/avatar_catalog/",
+      "Destination": "/audio-video-firefly-services/getting-started/avatar-catalog/"
+    }
+  ],
+  ":type": "sheet"
+}
