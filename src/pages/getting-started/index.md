@@ -1,11 +1,11 @@
 ---
-title: Getting Started
+title: Authentication for Firefly's Audio/Video APIs
 description: This is the content to get started with TTS APIs, including authentication and set up.
 contributors:
   - https://github.com/BaskarMitrah
   - https://github.com/aeabreu-hub
 ---
-# Authentication
+# Authentication for Firefly's Audio/Video APIs
 
 Server-to-server authentication credentials let your application's server generate access tokens and make API calls on behalf of your application.
 
