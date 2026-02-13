@@ -35,4 +35,6 @@
     - [How to Transcribe and Dub Audio/Video Content](/guides/TLS/index.md)
     - [GET Result API Quickstart](/guides/TLS/get-result-quickstart.md)
     - DGR Guides header
-    - [Using the Dynamic Graphics Render API](/guides/dgr/index.md)
+    - [Using the Presets API](/guides/dgr/index.md)
+    - [Using the Describe API](/guides/dgr/dgr-describe.md)
+    - [Using the Render API](/guides/dgr/dgr-render.md)

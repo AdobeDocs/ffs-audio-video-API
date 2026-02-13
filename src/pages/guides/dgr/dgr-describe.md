@@ -15,7 +15,6 @@ contributors:
   - https://github.com/sandeepy-gh
   - https://github.com/schhatwalgitacc
 ---
-<!-- markdownlint-disable-next-line MD025 -->
 # Using the Describe API
 
 This quickstart guide offers ready-to-use cURL commands for the **Describe** API.
