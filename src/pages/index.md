@@ -133,7 +133,7 @@ Programmatically *generate video variations* from Motion Graphics Templates (MOG
 
 ### What is the Dynamic Graphics Render API?
 
-Use the Dynamic Graphics Render (DGR) API to **automate branded video creation**. The service **consumes Motion Graphics Templates (MOGRTs)** and lets you override essential graphics parameters to deliver **fully customized clips in seconds**.
+Use the Dynamic Graphics Render API to **automate branded video creation**. The service **consumes Motion Graphics Templates (MOGRTs)** and lets you override essential graphics parameters to deliver **fully customized clips in seconds**.
 
 This API ingests Adobe After Effect's (AE) Motion Graphics Templates (MOGRTs), exposes editable Essential Graphics controls, and renders finalized video assets using predefined or custom encoding presets. Users can:
 
@@ -152,7 +152,7 @@ This API ingests Adobe After Effect's (AE) Motion Graphics Templates (MOGRTs), e
 
 **For Marketers/Designers:**
 
-- Create a custom MOGRT template and use the DGR API to dynamically control the Essential Graphics parameters defined in the template to generate video variations.
+- Create a custom MOGRT template and use the Dynamic Graphics Render API to dynamically control the Essential Graphics parameters defined in the template to generate video variations.
 
 ### How it works
 

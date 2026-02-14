@@ -19,7 +19,7 @@
 - subPages:
     - Getting Started header
     - [General Authentication](/getting-started/index.md)
-    - [DGR Authentication](/getting-started/dgr-auth.md)
+    - [Authentication for Dynamic Graphics Render](/getting-started/dgr-auth.md)
     - [Storage Solutions](/getting-started/storage-solutions/index.md)
     - [Technical Usage Notes](/getting-started/usage/index.md)
     - Learn More header
@@ -34,7 +34,7 @@
     - TLS Guides header
     - [How to Transcribe and Dub Audio/Video Content](/guides/TLS/index.md)
     - [GET Result API Quickstart](/guides/TLS/get-result-quickstart.md)
-    - DGR Guides header
+    - Dynamic Graphics Render Guides header
     - [Using the Presets API](/guides/dgr/index.md)
     - [Using the Describe API](/guides/dgr/dgr-describe.md)
     - [Using the Render API](/guides/dgr/dgr-render.md)
