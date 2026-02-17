@@ -24,7 +24,7 @@ Audio/Video APIs are a collection of resources that leverage Firefly Services' A
 
 [Dynamic Graphics Render API](guides/dgr/index.md)
 
-Programmatically generate video variations from after effects Motion Graphics Templates (MOGRTs).
+Programmatically generate video variations from After Effects Motion Graphics Templates (MOGRTs).
 
 <DiscoverBlock slots="link, text"/>
 
