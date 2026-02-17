@@ -28,12 +28,6 @@ Programmatically generate video variations from After Effects Motion Graphics Te
 
 <DiscoverBlock slots="link, text"/>
 
-[Text to Speech API](guides/index.md)
-
-With the Text-to-Speech API, generate spoken audio from a provided transcript.
-
-<DiscoverBlock slots="link, text"/>
-
 [Reframe API](guides/reframe/index.md)
 
 Automatically reframe videos.
@@ -43,6 +37,12 @@ Automatically reframe videos.
 [TLS API](guides/TLS/index.md)
 
 The Translate and Lip Sync API creates transcriptions and precise, accurate video dubs.
+
+<DiscoverBlock slots="link, text"/>
+
+[Text to Speech API](guides/index.md)
+
+With the Text-to-Speech API, generate spoken audio from a provided transcript.
 
 <DiscoverBlock slots="link, text"/>
 
