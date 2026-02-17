@@ -50,17 +50,47 @@ With the Text-to-Speech API, generate spoken audio from a provided transcript.
 
 Generate an Avatar video with a text prompt or audio input.
 
-## Text to Speech API
+## Dynamic Graphics Render API
 
-The Text to Speech (TTS) API generates lifelike spoken audio from a provided transcript. 
+Programmatically *generate video variations* from Motion Graphics Templates (MOGRTs).
 
-### What is this API?
+### What is the Dynamic Graphics Render API?
 
-The Text to Speech API allows you to:
+Use the Dynamic Graphics Render API to **automate branded video creation**. The service **consumes Motion Graphics Templates (MOGRTs)** and lets you override essential graphics parameters to deliver **fully customized clips in seconds**.
 
-- **Choose voices** from Firefly's catalog of voices.
-- **Turn prompts into spoken audio**.
-- **Generate speech** in a variety of languages and accents.
+This API ingests Adobe After Effect's (AE) Motion Graphics Templates (MOGRTs), exposes editable Essential Graphics controls, and renders finalized video assets using predefined or custom encoding presets. Users can:
+
+- Inspect editable template controls.
+- Override text, image, video (fixed, per defined slot length), audio, and design parameters.
+- Render brand‑ready, social‑optimized video outputs at scale.
+
+### Why choose this API?
+
+**Common use cases:**
+
+- Localize on-screen text to distribute branded video in multiple geographies.
+- Personalizing marketing videos with dynamic text and images.
+- Generate social-ready videos for different products from the same video template.
+- Automating brand‑compliant video creation for campaigns.
+
+**For Marketers/Designers:**
+
+- Create a custom MOGRT template and use the Dynamic Graphics Render API to dynamically control the Essential Graphics parameters defined in the template to generate video variations.
+
+### How it works
+
+The API workflow is simple and powerful. It mirrors other video API's asynchronous job model:
+
+1. **Discover presets** using the Get Presets API.  
+   Use our predefined social presets or your own custom ones.
+
+2. **Describe a template** to retrieve editable controls.  
+   These are Essential Graphics parameters defined in MOGRT.
+
+3. **Render template variations** with defined assets and presets.  
+   Render up to 10 variations of the same template in a single call.
+
+4. **Get Status** with a job ID to get results of Describe and Render template API calls.
 
 ## Reframe API
 
@@ -114,6 +144,19 @@ The Translate and Lip Sync (TLS) API allows you to:
 
 **Lip Sync** is also included as a parameter of the Dub API to create high-quality composited videos with precise lip-syncing. [Content Authenticity Initiative (CAI)](http://contentauthenticity.org/) support ensures protection against deepfakes.
 
+
+## Text to Speech API
+
+The Text to Speech (TTS) API generates lifelike spoken audio from a provided transcript. 
+
+### What is this API?
+
+The Text to Speech API allows you to:
+
+- **Choose voices** from Firefly's catalog of voices.
+- **Turn prompts into spoken audio**.
+- **Generate speech** in a variety of languages and accents.
+
 ## Text to Avatar API
 
 Using the Avatar API you can generate an Avatar video with a text prompt or audio input.
@@ -126,48 +169,6 @@ Options with the endpoint allow you to:
 2. **Select a voice** from a catalog of stock voices.
 3. **Use your own voice file** to create avatar videos.
 4. Set your own image/video as a video background.
-
-## Dynamic Graphics Render API
-
-Programmatically *generate video variations* from Motion Graphics Templates (MOGRTs).
-
-### What is the Dynamic Graphics Render API?
-
-Use the Dynamic Graphics Render API to **automate branded video creation**. The service **consumes Motion Graphics Templates (MOGRTs)** and lets you override essential graphics parameters to deliver **fully customized clips in seconds**.
-
-This API ingests Adobe After Effect's (AE) Motion Graphics Templates (MOGRTs), exposes editable Essential Graphics controls, and renders finalized video assets using predefined or custom encoding presets. Users can:
-
-- Inspect editable template controls.
-- Override text, image, video (fixed, per defined slot length), audio, and design parameters.
-- Render brand‑ready, social‑optimized video outputs at scale.
-
-### Why choose this API?
-
-**Common use cases:**
-
-- Localize on-screen text to distribute branded video in multiple geographies.
-- Personalizing marketing videos with dynamic text and images.
-- Generate social-ready videos for different products from the same video template.
-- Automating brand‑compliant video creation for campaigns.
-
-**For Marketers/Designers:**
-
-- Create a custom MOGRT template and use the Dynamic Graphics Render API to dynamically control the Essential Graphics parameters defined in the template to generate video variations.
-
-### How it works
-
-The API workflow is simple and powerful. It mirrors other video API's asynchronous job model:
-
-1. **Discover presets** using the Get Presets API.  
-   Use our predefined social presets or your own custom ones.
-
-2. **Describe a template** to retrieve editable controls.  
-   These are Essential Graphics parameters defined in MOGRT.
-
-3. **Render template variations** with defined assets and presets.  
-   Render up to 10 variations of the same template in a single call.
-
-4. **Get Status** with a job ID to get results of Describe and Render template API calls.
 
 <Announcement slots="heading, text, button" variant="secondary" backgroundColor="background-color-gray" />
 
