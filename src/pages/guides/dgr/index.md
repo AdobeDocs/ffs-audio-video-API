@@ -27,7 +27,7 @@ Retrieve a catalog of predefined, social-first presets to discover the available
 
 ## Prerequisites
 
-[Review the Getting Started page](/getting_started/) for this API for authentication and setup.
+[Review the Getting Started page](../../getting-started/dgr-auth.md) for this API for authentication and setup.
 
 ### API credentials
 

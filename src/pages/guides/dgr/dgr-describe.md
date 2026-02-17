@@ -25,7 +25,7 @@ The Describe API analyzes a MOGRT (video template) file and returns a manifest o
 
 ## Prerequisites
 
-[Review the Getting Started page](/getting-started/index.md) for this API for authentication and setup.
+[Review the Getting Started page](../../getting-started/dgr-auth.md) for this API for authentication and setup.
 
 ### API credentials
 

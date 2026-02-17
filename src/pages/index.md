@@ -22,6 +22,12 @@ Audio/Video APIs are a collection of resources that leverage Firefly Services' A
 
 ### Explore our APIs
 
+[Dynamic Graphics Render API](guides/dgr/index.md)
+
+Programmatically generate video variations from after effects Motion Graphics Templates (MOGRTs).
+
+<DiscoverBlock slots="link, text"/>
+
 [Text to Speech API](guides/index.md)
 
 With the Text-to-Speech API, generate spoken audio from a provided transcript.
@@ -43,12 +49,6 @@ The Translate and Lip Sync API creates transcriptions and precise, accurate vide
 [Text to Avatar API](guides/avatar/index.md)
 
 Generate an Avatar video with a text prompt or audio input.
-
-<DiscoverBlock slots="link, text"/>
-
-[Dynamic Graphics Render API](guides/dgr/index.md)
-
-Programmatically generate video variations from Motion Graphics Templates (MOGRTs).
 
 ## Text to Speech API
 
