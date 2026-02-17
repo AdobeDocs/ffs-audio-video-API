@@ -6,7 +6,7 @@ keywords:
   - Describe API
   - MOGRT
   - templates
-  - describeVariableElements
+  - describe
   - API
   - Quickstart
   - cURL
@@ -48,12 +48,11 @@ In the cURL command below, be sure to update:
 
 ```bash
 curl -X POST \
-  --location 'https://audio-video-api.adobe.io/v1/templates/describeVariableElements' \
+  --location 'https://audio-video-api.adobe.io/v1/templates/describe' \
   --header 'Authorization: Bearer <token>' \
   --header 'x-api-key: <client_id>' \
   --header 'Content-Type: application/json' \
   --data '{
-    "type": "mogrt",
     "source": {
       "url": "<mogrt pre-signed URL>"
     }
