@@ -46,7 +46,7 @@ In the cURL command below, be sure to update:
 ### Sample request
 
 ```bash
-curl --location 'https://audio-video-api.adobe.io/beta/presets' \
+curl --location 'https://audio-video-api.adobe.io/v1/presets' \
 --header 'Authorization: Bearer <token>' \
 --header 'x-api-key: <client_id>'
 ```
