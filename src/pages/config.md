@@ -19,7 +19,6 @@
 - subPages:
     - Getting Started header
     - [General Authentication](/getting-started/index.md)
-    - [Authentication for Dynamic Graphics Render](/getting-started/dgr-auth.md)
     - [Storage Solutions](/getting-started/storage-solutions/index.md)
     - [Technical Usage Notes](/getting-started/usage/index.md)
     - Learn More header
