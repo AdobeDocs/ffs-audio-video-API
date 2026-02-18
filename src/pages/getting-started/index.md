@@ -13,8 +13,6 @@ For your application to generate an access token, an end user does not need to s
 
 This is sometimes referred to as "two-legged OAuth".
 
-<InlineAlert slots="text" variant="info" />
-
 ## Prerequisites
 
 This tutorial assumes you have worked with your Adobe Representative and have the following:
