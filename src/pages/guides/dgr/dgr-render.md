@@ -28,7 +28,7 @@ Before calling the Render API, use the [Describe API](dgr-describe.md) to discov
 
 ## Prerequisites
 
-[Review the Getting Started page](../../getting-started/dgr-auth.md) for this API for authentication and setup.
+[Review the Getting Started page](../../getting-started/index.md) for this API for authentication and setup.
 
 ### API credentials
 
