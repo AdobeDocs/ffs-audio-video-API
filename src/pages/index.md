@@ -22,31 +22,31 @@ Audio/Video APIs are a collection of resources that leverage Firefly Services' A
 
 ### Explore our APIs
 
-[Dynamic Graphics Render API](guides/dgr/index.md)
+[Dynamic Graphics Render API](#dynamic-graphics-render-api)
 
 Programmatically generate video variations from After Effects Motion Graphics Templates (MOGRTs).
 
 <DiscoverBlock slots="link, text"/>
 
-[Reframe API](guides/reframe/index.md)
+[Reframe API](#reframe-api)
 
 Automatically reframe videos.
 
 <DiscoverBlock slots="link, text"/>
 
-[TLS API](guides/TLS/index.md)
+[TLS API](#tls-api)
 
 The Translate and Lip Sync API creates transcriptions and precise, accurate video dubs.
 
 <DiscoverBlock slots="link, text"/>
 
-[Text to Speech API](guides/index.md)
+[Text to Speech API](#text-to-speech-api)
 
 With the Text-to-Speech API, generate spoken audio from a provided transcript.
 
 <DiscoverBlock slots="link, text"/>
 
-[Text to Avatar API](guides/avatar/index.md)
+[Text to Avatar API](#text-to-avatar-api)
 
 Generate an Avatar video with a text prompt or audio input.
 
@@ -92,6 +92,8 @@ The API workflow is simple and powerful. It mirrors other video API's asynchrono
 
 4. **Get Status** with a job ID to get results of Describe and Render template API calls.
 
+Explore what you can do with this API in the [Dynamic Graphics Render API guides](guides/dgr/index.md).
+
 ## Reframe API
 
 The Reframe API intelligently analyzes video content to dynamically adjust frame composition to fit the aspect ratios that you've specified, generating seamless content where it's needed from the existing video characteristics.
@@ -128,6 +130,8 @@ Consider the Reframe v2 API to take your video workflows to the next level. Whet
 - **Media Destination**  
   Define where your rendered video should go with a simple, secure upload flow. Just provide a pre-signed PUT URL to your storage bucket, and we'll handle the rest.
 
+Explore what you can do with this API in the [Reframe API guides](guides/reframe/index.md).
+
 ## Translate and Lip Sync API
 
 The Translate and Lip Sync (TLS) API uses transcriptions to generate audio and video with precise, accurate dubbing and composited lip sync. This feature supports multi-speaker scenarios.
@@ -144,6 +148,7 @@ The Translate and Lip Sync (TLS) API allows you to:
 
 **Lip Sync** is also included as a parameter of the Dub API to create high-quality composited videos with precise lip-syncing. [Content Authenticity Initiative (CAI)](http://contentauthenticity.org/) support ensures protection against deepfakes.
 
+Explore what you can do with this API in the [Translate and Lip Sync API guides](guides/TLS/index.md).
 
 ## Text to Speech API
 
@@ -156,6 +161,8 @@ The Text to Speech API allows you to:
 - **Choose voices** from Firefly's catalog of voices.
 - **Turn prompts into spoken audio**.
 - **Generate speech** in a variety of languages and accents.
+
+Explore what you can do with this API in the [Text to Speech API guides](guides/index.md).
 
 ## Text to Avatar API
 
@@ -170,10 +177,12 @@ Options with the endpoint allow you to:
 3. **Use your own voice file** to create avatar videos.
 4. Set your own image/video as a video background.
 
+Explore what you can do with this API in the [Text to Avatar API guides](guides/avatar/index.md).
+
 <Announcement slots="heading, text, button" variant="secondary" backgroundColor="background-color-gray" />
 
 #### Ready to try it?
 
-Check out the Getting Started page to see what these Audio and Video services are all about.
+Check out the Getting Started page to authenticate and see what these Audio and Video services are all about.
 
 - [Begin](/getting-started/index.md)
