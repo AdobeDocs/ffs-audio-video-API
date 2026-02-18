@@ -8,8 +8,8 @@
   },
   "tags": [
     {
-      "name": "Text-to-speech",
-      "description": "Endpoints for text-to-speech operations."
+      "name": "Dynamic Graphics Render",
+      "description": "Endpoints for Dynamic Graphics Render (DGR): template describe, presets, render, and job status."
     },
     {
       "name": "Reframe",
@@ -20,16 +20,16 @@
       "description": "Endpoints for transcribing and dubbing audio/video content."
     },
     {
+      "name": "Text-to-speech",
+      "description": "Endpoints for text-to-speech operations."
+    },
+    {
       "name": "Text-to-Avatar",
       "description": "Endpoints for Text-to-Avatar operations."
     },
     {
       "name": "Manage jobs",
       "description": "Endpoints for managing asynchronous jobs."
-    },
-    {
-      "name": "Dynamic Graphics Render",
-      "description": "Endpoints for Dynamic Graphics Render (DGR): template describe, presets, render, and job status."
     }
   ],
   "servers": [
