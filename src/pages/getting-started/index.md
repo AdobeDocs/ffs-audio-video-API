@@ -15,8 +15,6 @@ This is sometimes referred to as "two-legged OAuth".
 
 <InlineAlert slots="text" variant="info" />
 
-The Dynamic Graphics Render API requires a separate set of credentials. [See the Dynamic Graphics Render authentication page](/getting-started/dgr-auth.md) for more information on how to authenticate that specific API.
-
 ## Prerequisites
 
 This tutorial assumes you have worked with your Adobe Representative and have the following:
