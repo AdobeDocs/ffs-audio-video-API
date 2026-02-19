@@ -22,35 +22,77 @@ Audio/Video APIs are a collection of resources that leverage Firefly Services' A
 
 ### Explore our APIs
 
-[Text to Speech API](guides/index.md)
+[Dynamic Graphics Render API](#dynamic-graphics-render-api)
 
-With the Text-to-Speech API, generate spoken audio from a provided transcript.
+Programmatically generate video variations from After Effects Motion Graphics Templates (MOGRTs).
 
 <DiscoverBlock slots="link, text"/>
 
-[Reframe API](guides/reframe/index.md)
+[Reframe API](#reframe-api)
 
 Automatically reframe videos.
 
 <DiscoverBlock slots="link, text"/>
 
-[TLS API](guides/TLS/index.md)
+[TLS API](#tls-api)
 
 The Translate and Lip Sync API creates transcriptions and precise, accurate video dubs.
 
 <DiscoverBlock slots="link, text"/>
 
-[Text to Avatar API](guides/avatar/index.md)
+[Text to Speech API](#text-to-speech-api)
+
+With the Text-to-Speech API, generate spoken audio from a provided transcript.
+
+<DiscoverBlock slots="link, text"/>
+
+[Text to Avatar API](#text-to-avatar-api)
 
 Generate an Avatar video with a text prompt or audio input.
 
-## Text to Speech API
+## Dynamic Graphics Render API
 
-The Text to Speech API generates lifelike spoken audio from a provided transcript. Features include:
+Programmatically *generate video variations* from Motion Graphics Templates (MOGRTs).
 
-- **Choose voices** from Firefly's catalog of voices.
-- **Turn prompts into spoken audio**.
-- **Generate speech** in a variety of languages and accents.
+### What is the Dynamic Graphics Render API?
+
+Use the Dynamic Graphics Render API to **automate branded video creation**. The service **consumes Motion Graphics Templates (MOGRTs)** and lets you override essential graphics parameters to deliver **fully customized clips in seconds**.
+
+This API ingests Adobe After Effect's (AE) Motion Graphics Templates (MOGRTs), exposes editable Essential Graphics controls, and renders finalized video assets using predefined or custom encoding presets. Users can:
+
+- Inspect editable template controls.
+- Override text, image, video (fixed, per defined slot length), audio, and design parameters.
+- Render brand‑ready, social‑optimized video outputs at scale.
+
+### Why choose this API?
+
+**Common use cases:**
+
+- Localize on-screen text to distribute branded video in multiple geographies.
+- Personalizing marketing videos with dynamic text and images.
+- Generate social-ready videos for different products from the same video template.
+- Automating brand‑compliant video creation for campaigns.
+
+**For Marketers/Designers:**
+
+- Create a custom MOGRT template and use the Dynamic Graphics Render API to dynamically control the Essential Graphics parameters defined in the template to generate video variations.
+
+### How it works
+
+The API workflow is simple and powerful. It mirrors other video API's asynchronous job model:
+
+1. **Discover presets** using the Get Presets API.  
+   Use our predefined social presets or your own custom ones.
+
+2. **Describe a template** to retrieve editable controls.  
+   These are Essential Graphics parameters defined in MOGRT.
+
+3. **Render template variations** with defined assets and presets.  
+   Render up to 10 variations of the same template in a single call.
+
+4. **Get Status** with a job ID to get results of Describe and Render template API calls.
+
+Explore what you can do with this API in the [Dynamic Graphics Render API guides](guides/dgr/index.md).
 
 ## Reframe API
 
@@ -88,23 +130,46 @@ Consider the Reframe v2 API to take your video workflows to the next level. Whet
 - **Media Destination**  
   Define where your rendered video should go with a simple, secure upload flow. Just provide a pre-signed PUT URL to your storage bucket, and we'll handle the rest.
 
+Explore what you can do with this API in the [Reframe API guides](guides/reframe/index.md).
+
 ## Translate and Lip Sync API
 
 The Translate and Lip Sync (TLS) API uses transcriptions to generate audio and video with precise, accurate dubbing and composited lip sync. This feature supports multi-speaker scenarios.
 
-Supported workflows include:
+### What is this API?
 
-1. **Transcribe** audio and video.
-2. **Generate captions** for audio and video.
-3. **Automated Dubbing** for audio and video.
-4. **Dubbing with edited transcripts**.
-5. **Dubbing with pre-existing translations**.
+The Translate and Lip Sync (TLS) API allows you to:
+
+- **Transcribe** audio and video.
+- **Generate captions** for audio and video.
+- **Automated Dubbing** for audio and video.
+- **Dubbing with edited transcripts**.
+- **Dubbing with pre-existing translations**.
 
 **Lip Sync** is also included as a parameter of the Dub API to create high-quality composited videos with precise lip-syncing. [Content Authenticity Initiative (CAI)](http://contentauthenticity.org/) support ensures protection against deepfakes.
+
+Explore what you can do with this API in the [Translate and Lip Sync API guides](guides/TLS/index.md).
+
+## Text to Speech API
+
+The Text to Speech (TTS) API generates lifelike spoken audio from a provided transcript. 
+
+### What is this API?
+
+The Text to Speech API allows you to:
+
+- **Choose voices** from Firefly's catalog of voices.
+- **Turn prompts into spoken audio**.
+- **Generate speech** in a variety of languages and accents.
+
+Explore what you can do with this API in the [Text to Speech API guides](guides/index.md).
 
 ## Text to Avatar API
 
 Using the Avatar API you can generate an Avatar video with a text prompt or audio input.
+
+### What is this API?
+
 Options with the endpoint allow you to:
 
 1. **Select an avatar** from a catalog of stock actors.
@@ -112,10 +177,12 @@ Options with the endpoint allow you to:
 3. **Use your own voice file** to create avatar videos.
 4. Set your own image/video as a video background.
 
+Explore what you can do with this API in the [Text to Avatar API guides](guides/avatar/index.md).
+
 <Announcement slots="heading, text, button" variant="secondary" backgroundColor="background-color-gray" />
 
 #### Ready to try it?
 
-Check out the Getting Started page to see what these services are all about.
+Check out the Getting Started page to authenticate and see what these Audio and Video services are all about.
 
 - [Begin](/getting-started/index.md)

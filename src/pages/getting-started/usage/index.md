@@ -283,3 +283,35 @@ These usage limits apply to your entire organization. \<br/\>
 The current limitations are:
 
 **Get Result endpoint (/status/\{jobId}):** 100 requests per minute.
+
+## Dynamic Graphics Render API usage
+
+### Error Handling
+
+Jobs that complete with errors return HTTP 200 with a `failed` or `partially_succeeded` status. [Refer to the API reference documentation](../../api/index.md) for the schema details.
+
+### Best practices
+
+- Always call the **Describe Template API** before rendering to obtain valid `variableId` values.
+- Reuse presets from the **Get Presets API** for social‑optimized outputs.
+- Use low‑quality presets for previews and approvals.
+- Batch variations in a single render request to reduce latency.
+
+### Authoring guidelines for higher render success
+
+When preparing *.mogrt* files for API automation, consider these guidelines:
+
+1. Avoid these unsupported features:
+    - Cinema 4D and Ray-traced 3D renderers are *not* supported.
+    - Adobe After Effects (AE) effects (like Camera-Shake Deblur, Synthetic Aperture Color Finesse, Maxon CINEWARE, Puppet, and Warp Stabilizer) are *not* supported.
+    - Any AE composition editing capabilities such as variable length footage replacement or shifting layers dynamically based on footage length are *not* supported.
+    - Dynamic Link footage is *not* supported (for example, Premiere Pro sequences or Character Animator scenes embedded in the comp).
+    - Avoid FLV footage.
+    - Avoid all third party plugins.
+2. Fonts
+    - Use fonts that can be legally distributed and uploaded.
+    - If a font is required, ensure that it's listed in the Describe response and provided in the Render request.
+3. Audio handling
+    - **Audio tracks in a *.mogrt* cannot be dynamically swapped** via the API.
+    - **Embed your design in the template**, if your design requires background audio.
+    - Only use the API for text changes and video/image swaps, not for replacing audio layers.

@@ -22,16 +22,22 @@
 
 - subPages:
     - Getting Started header
-    - [Authentication](/getting-started/index.md)
+    - [General Authentication](/getting-started/index.md)
     - [Storage Solutions](/getting-started/storage-solutions/index.md)
     - [Technical Usage Notes](/getting-started/usage/index.md)
     - Learn More header
     - [About Semantic Subject Lock](/getting-started/semantic-search/index.md)
     - [Avatar Catalog](/getting-started/avatar-catalog/index.md)
-    - Guides header
+    - TTS and Avatar Guides header
     - [Using the TTS API](/guides/index.md)
+    - [Using the Avatar API](/guides/avatar/index.md)
+    - Reframe Guides header
     - [Using the Reframe API](/guides/reframe/index.md)
     - [Using OTIO files with Premiere Pro](/guides/otio/index.md)
+    - TLS Guides header
     - [How to Transcribe and Dub Audio/Video Content](/guides/TLS/index.md)
-    - [Using the Avatar API](/guides/avatar/index.md)
     - [GET Result API Quickstart](/guides/TLS/get-result-quickstart.md)
+    - Dynamic Graphics Render Guides header
+    - [Using the Presets API](/guides/dgr/index.md)
+    - [Using the Describe API](/guides/dgr/dgr-describe.md)
+    - [Using the Render API](/guides/dgr/dgr-render.md)
