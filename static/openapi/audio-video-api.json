@@ -47,7 +47,10 @@
   "paths": {
     "/v1/voices": {
       "get": {
-        "tags": ["Text-to-speech", "Text-to-Avatar"],
+        "tags": [
+          "Text-to-speech",
+          "Text-to-Avatar"
+        ],
         "summary": "Get available voices",
         "description": "This endpoint provides the list of all available voices for the user's enterprise.",
         "operationId": "voices",
@@ -138,7 +141,9 @@
     },
     "/v1/generate-speech": {
       "post": {
-        "tags": ["Text-to-speech"],
+        "tags": [
+          "Text-to-speech"
+        ],
         "summary": "Generate speech from text",
         "description": "This endpoint generates speech from a transcript. You can provide the transcript either as plain text or a pre-signed URL. The response will include a job ID and a status URL for tracking the job.",
         "operationId": "generate-speech",
@@ -392,7 +397,9 @@
     },
     "/v1/status/{jobId}": {
       "get": {
-        "tags": ["Manage jobs"],
+        "tags": [
+          "Manage jobs"
+        ],
         "summary": "Get job status",
         "description": "Provides the status and result of an asynchronous job. For Dynamic Graphics Render (DGR), returns the status of a Describe template or Render job.",
         "operationId": "status",
@@ -596,7 +603,9 @@
     },
     "/v1/templates/describe": {
       "post": {
-        "tags": ["Dynamic Graphics Render"],
+        "tags": [
+          "Dynamic Graphics Render"
+        ],
         "summary": "Describe template",
         "description": "Analyzes a MOGRT (video template) file and returns a manifest of editable controls; fonts, images, audio, video and other supported values.",
         "operationId": "template-describe",
@@ -771,7 +780,9 @@
     },
     "/v1/presets": {
       "get": {
-        "tags": ["Dynamic Graphics Render"],
+        "tags": [
+          "Dynamic Graphics Render"
+        ],
         "summary": "Fetch video rendering presets",
         "description": "Returns a list of predefined social-first encoding presets for rendering outputs.",
         "operationId": "get-presets",
@@ -832,7 +843,9 @@
     },
     "/v1/templates/render": {
       "post": {
-        "tags": ["Dynamic Graphics Render"],
+        "tags": [
+          "Dynamic Graphics Render"
+        ],
         "summary": "Render template",
         "description": "Renders one or more video variations by applying overrides and export presets. Submit up to 10 overrides per call for a subset of editable layers and get a pre-signed URL link to download the video file. For layers that are not editable, the system defaults are automatically applied at export.",
         "operationId": "template-render",
@@ -1136,7 +1149,9 @@
     },
     "/v1/reframe": {
       "post": {
-        "tags": ["Reframe"],
+        "tags": [
+          "Reframe"
+        ],
         "summary": "Reframe video",
         "description": "This endpoint enables you to reframe video using AI. Provide video input with a pre-signed URL to generate reframed video output. \n\nThis API has more limited capabilities than the v2 endpoint, and may be deprecated soon. **It's recommended to use the v2 endpoint instead.**",
         "operationId": "generate-reframed-video",
@@ -1159,16 +1174,24 @@
                             "description": "The pre-signed URL pointing to the input source."
                           }
                         },
-                        "required": ["url"],
+                        "required": [
+                          "url"
+                        ],
                         "description": "Details of the source including a pre-signed URL. See the [list of allowed domains for storage](https://developer.adobe.com/audio-video-firefly-services/getting-started/storage-solutions/)."
                       },
                       "mediaType": {
                         "type": "string",
-                        "enum": ["video/mp4", "video/quicktime"],
+                        "enum": [
+                          "video/mp4",
+                          "video/quicktime"
+                        ],
                         "description": "Supported video media types."
                       }
                     },
-                    "required": ["source", "mediaType"],
+                    "required": [
+                      "source",
+                      "mediaType"
+                    ],
                     "description": "Video input details."
                   },
                   "sceneEditDetection": {
@@ -1195,11 +1218,16 @@
                         "description": "A list of aspect ratios for the output video."
                       }
                     },
-                    "required": ["aspectRatios"],
+                    "required": [
+                      "aspectRatios"
+                    ],
                     "description": "Configuration details for the generated reframed video."
                   }
                 },
-                "required": ["video", "outputConfig"],
+                "required": [
+                  "video",
+                  "outputConfig"
+                ],
                 "type": "object"
               },
               "examples": {
@@ -1234,7 +1262,11 @@
                       }
                     ],
                     "outputConfig": {
-                      "aspectRatios": ["1:1", "9:16", "4:5"]
+                      "aspectRatios": [
+                        "1:1",
+                        "9:16",
+                        "4:5"
+                      ]
                     }
                   }
                 }
@@ -1259,7 +1291,10 @@
                       "description": "The URL to monitor the status of the job."
                     }
                   },
-                  "required": ["jobId", "statusUrl"],
+                  "required": [
+                    "jobId",
+                    "statusUrl"
+                  ],
                   "type": "object"
                 },
                 "examples": {
@@ -1384,7 +1419,9 @@
     },
     "/v1/transcribe": {
       "post": {
-        "tags": ["Translate and lip sync"],
+        "tags": [
+          "Translate and lip sync"
+        ],
         "summary": "Transcribe media",
         "description": "Generates transcripts and captions for the input audio or video in the source language or in a target language.",
         "operationId": "transcribe",
@@ -1629,7 +1666,9 @@
     },
     "/v1/dub": {
       "post": {
-        "tags": ["Translate and lip sync"],
+        "tags": [
+          "Translate and lip sync"
+        ],
         "summary": "Dub audio or video",
         "description": "Generate dubbed video or audio. A composited lip sync can also be added for video dubbing.",
         "operationId": "dub",
@@ -1865,7 +1904,9 @@
     },
     "/v1/avatars": {
       "get": {
-        "tags": ["Text-to-Avatar"],
+        "tags": [
+          "Text-to-Avatar"
+        ],
         "summary": "Get available avatars",
         "description": "Retrieves the list of all available avatars for the user's enterprise.",
         "operationId": "avatars",
@@ -1956,7 +1997,9 @@
     },
     "/v2/reframe": {
       "post": {
-        "tags": ["Reframe"],
+        "tags": [
+          "Reframe"
+        ],
         "summary": "Reframe video v2",
         "description": "This endpoint enables you to reframe the input media. You can provide a video input via a pre-signed URL to generate reframed output video.",
         "operationId": "generate-reframed-video-v2",
@@ -2002,7 +2045,9 @@
                                   "$ref": "#/components/schemas/Destination"
                                 }
                               },
-                              "required": ["aspectRatio"]
+                              "required": [
+                                "aspectRatio"
+                              ]
                             },
                             {
                               "title": "Resolution Rendition",
@@ -2020,7 +2065,10 @@
                                       "description": "Resolution height of the output in pixels."
                                     }
                                   },
-                                  "required": ["width", "height"]
+                                  "required": [
+                                    "width",
+                                    "height"
+                                  ]
                                 },
                                 "mediaDestination": {
                                   "$ref": "#/components/schemas/Destination"
@@ -2029,17 +2077,24 @@
                                   "$ref": "#/components/schemas/Destination"
                                 }
                               },
-                              "required": ["resolution"]
+                              "required": [
+                                "resolution"
+                              ]
                             }
                           ]
                         }
                       }
                     },
-                    "required": ["renditions"],
+                    "required": [
+                      "renditions"
+                    ],
                     "description": "Output configuration details for generating the reframed video."
                   }
                 },
-                "required": ["video", "output"],
+                "required": [
+                  "video",
+                  "output"
+                ],
                 "type": "object"
               },
               "examples": {
@@ -2110,7 +2165,10 @@
                     },
                     "analysis": {
                       "sceneEditDetection": true,
-                      "focalPoints": ["car", "people"]
+                      "focalPoints": [
+                        "car",
+                        "people"
+                      ]
                     },
                     "output": {
                       "format": {
@@ -2148,7 +2206,10 @@
                       "description": "The URL to monitor the status of the job."
                     }
                   },
-                  "required": ["jobId", "statusUrl"],
+                  "required": [
+                    "jobId",
+                    "statusUrl"
+                  ],
                   "type": "object"
                 },
                 "examples": {
@@ -2179,7 +2240,10 @@
                       "description": "A description of the error that occurred."
                     }
                   },
-                  "required": ["message", "error_code"],
+                  "required": [
+                    "message",
+                    "error_code"
+                  ],
                   "type": "object"
                 },
                 "examples": {
@@ -2210,7 +2274,10 @@
                       "description": "A description of the error that occurred."
                     }
                   },
-                  "required": ["message", "error_code"],
+                  "required": [
+                    "message",
+                    "error_code"
+                  ],
                   "type": "object"
                 },
                 "examples": {
@@ -2241,7 +2308,10 @@
                       "description": "A description of the error that occurred."
                     }
                   },
-                  "required": ["message", "error_code"],
+                  "required": [
+                    "message",
+                    "error_code"
+                  ],
                   "type": "object"
                 },
                 "examples": {
@@ -2272,7 +2342,10 @@
                       "description": "A description of the error that occurred."
                     }
                   },
-                  "required": ["message", "error_code"],
+                  "required": [
+                    "message",
+                    "error_code"
+                  ],
                   "type": "object"
                 },
                 "examples": {
@@ -2303,7 +2376,10 @@
                       "description": "A description of the error that occurred."
                     }
                   },
-                  "required": ["message", "error_code"],
+                  "required": [
+                    "message",
+                    "error_code"
+                  ],
                   "type": "object"
                 },
                 "examples": {
@@ -2334,7 +2410,10 @@
                       "description": "A description of the error that occurred."
                     }
                   },
-                  "required": ["message", "error_code"],
+                  "required": [
+                    "message",
+                    "error_code"
+                  ],
                   "type": "object"
                 },
                 "examples": {
@@ -2365,7 +2444,10 @@
                       "description": "A description of the error that occurred."
                     }
                   },
-                  "required": ["message", "error_code"],
+                  "required": [
+                    "message",
+                    "error_code"
+                  ],
                   "type": "object"
                 },
                 "examples": {
@@ -2385,7 +2467,10 @@
     },
     "/v2/status/{jobId}": {
       "get": {
-        "tags": ["Reframe", "Manage jobs"],
+        "tags": [
+          "Reframe",
+          "Manage jobs"
+        ],
         "summary": "Get job result",
         "description": "This endpoint retrieves the result of an asynchronous reframed job initiated using the job ID.",
         "operationId": "job-result-v2",
@@ -2430,7 +2515,10 @@
                           "description": "The unique identifier for the job."
                         }
                       },
-                      "required": ["status", "jobId"]
+                      "required": [
+                        "status",
+                        "jobId"
+                      ]
                     },
                     {
                       "title": "Job Success",
@@ -2471,11 +2559,15 @@
                                         "description": "The pre-signed URL pointing to the output."
                                       }
                                     },
-                                    "required": ["url"],
+                                    "required": [
+                                      "url"
+                                    ],
                                     "description": "Details of the output destination, including a pre-signed URL."
                                   }
                                 },
-                                "required": ["destination"]
+                                "required": [
+                                  "destination"
+                                ]
                               },
                               {
                                 "title": "Failed Rendition",
@@ -2494,17 +2586,26 @@
                                         "description": "A description of the error that occurred."
                                       }
                                     },
-                                    "required": ["message", "error_code"],
+                                    "required": [
+                                      "message",
+                                      "error_code"
+                                    ],
                                     "description": "Details of the error encountered during the reframing process."
                                   }
                                 },
-                                "required": ["error"]
+                                "required": [
+                                  "error"
+                                ]
                               }
                             ]
                           }
                         }
                       },
-                      "required": ["status", "jobId", "outputs"]
+                      "required": [
+                        "status",
+                        "jobId",
+                        "outputs"
+                      ]
                     },
                     {
                       "title": "Job Partial Success",
@@ -2544,11 +2645,15 @@
                                         "description": "The pre-signed URL pointing to the output."
                                       }
                                     },
-                                    "required": ["url"],
+                                    "required": [
+                                      "url"
+                                    ],
                                     "description": "Details of the output destination, including a pre-signed URL."
                                   }
                                 },
-                                "required": ["destination"]
+                                "required": [
+                                  "destination"
+                                ]
                               },
                               {
                                 "title": "Failed Rendition",
@@ -2567,18 +2672,27 @@
                                         "description": "A description of the error that occurred."
                                       }
                                     },
-                                    "required": ["message", "error_code"],
+                                    "required": [
+                                      "message",
+                                      "error_code"
+                                    ],
                                     "description": "Details of the error encountered during the reframing process."
                                   }
                                 },
-                                "required": ["error"]
+                                "required": [
+                                  "error"
+                                ]
                               }
                             ]
                           },
                           "description": "Details of the job's partial success, including successful outputs and any errors encountered."
                         }
                       },
-                      "required": ["status", "jobId", "outputs"]
+                      "required": [
+                        "status",
+                        "jobId",
+                        "outputs"
+                      ]
                     },
                     {
                       "title": "Job Failure",
@@ -2624,19 +2738,30 @@
                                         "description": "A description of the error that occurred."
                                       }
                                     },
-                                    "required": ["message", "error_code"],
+                                    "required": [
+                                      "message",
+                                      "error_code"
+                                    ],
                                     "description": "Details of the error encountered during the reframing process."
                                   }
                                 },
-                                "required": ["error"]
+                                "required": [
+                                  "error"
+                                ]
                               }
                             }
                           },
-                          "required": ["renditions"],
+                          "required": [
+                            "renditions"
+                          ],
                           "description": "Details of the errors encountered during the job."
                         }
                       },
-                      "required": ["status", "jobId", "outputs"]
+                      "required": [
+                        "status",
+                        "jobId",
+                        "outputs"
+                      ]
                     }
                   ]
                 },
@@ -2730,7 +2855,10 @@
                       "description": "The URL to monitor the status of the job."
                     }
                   },
-                  "required": ["jobId", "statusUrl"],
+                  "required": [
+                    "jobId",
+                    "statusUrl"
+                  ],
                   "type": "object"
                 },
                 "examples": {
@@ -2761,7 +2889,10 @@
                       "description": "The URL to monitor the status of the job."
                     }
                   },
-                  "required": ["jobId", "statusUrl"],
+                  "required": [
+                    "jobId",
+                    "statusUrl"
+                  ],
                   "type": "object"
                 },
                 "examples": {
@@ -2792,7 +2923,10 @@
                       "description": "The URL to monitor the status of the job."
                     }
                   },
-                  "required": ["jobId", "statusUrl"],
+                  "required": [
+                    "jobId",
+                    "statusUrl"
+                  ],
                   "type": "object"
                 },
                 "examples": {
@@ -2823,7 +2957,10 @@
                       "description": "The URL to monitor the status of the job."
                     }
                   },
-                  "required": ["jobId", "statusUrl"],
+                  "required": [
+                    "jobId",
+                    "statusUrl"
+                  ],
                   "type": "object"
                 },
                 "examples": {
@@ -2854,7 +2991,10 @@
                       "description": "The URL to monitor the status of the job."
                     }
                   },
-                  "required": ["jobId", "statusUrl"],
+                  "required": [
+                    "jobId",
+                    "statusUrl"
+                  ],
                   "type": "object"
                 },
                 "examples": {
@@ -2885,7 +3025,10 @@
                       "description": "The URL to monitor the status of the job."
                     }
                   },
-                  "required": ["jobId", "statusUrl"],
+                  "required": [
+                    "jobId",
+                    "statusUrl"
+                  ],
                   "type": "object"
                 }
               }
@@ -2907,7 +3050,10 @@
                       "description": "The URL to monitor the status of the job."
                     }
                   },
-                  "required": ["jobId", "statusUrl"],
+                  "required": [
+                    "jobId",
+                    "statusUrl"
+                  ],
                   "type": "object"
                 },
                 "examples": {
@@ -2938,7 +3084,10 @@
                       "description": "The URL to monitor the status of the job."
                     }
                   },
-                  "required": ["jobId", "statusUrl"],
+                  "required": [
+                    "jobId",
+                    "statusUrl"
+                  ],
                   "type": "object"
                 },
                 "examples": {
@@ -2958,7 +3107,9 @@
     },
     "/v1/generate-avatar": {
       "post": {
-        "tags": ["Text-to-Avatar"],
+        "tags": [
+          "Text-to-Avatar"
+        ],
         "summary": "Generate avatar video from text",
         "description": "Generates an avatar video from a provided transcript or audio file. You can provide the transcript either as plain text or a pre-signed URL. The API is asynchronous, so the response will include a job ID and a status URL for tracking the running job.",
         "operationId": "generate-avatar",
@@ -3296,12 +3447,14 @@
     "securitySchemes": {
       "AccessToken": {
         "type": "http",
-        "scheme": "bearer"
+        "scheme": "bearer",
+        "description": "The Adobe-generated access token, S2S format."
       },
       "X-Api-Key": {
         "type": "apiKey",
         "name": "x-api-key",
-        "in": "header"
+        "in": "header",
+        "description": "The client ID for authentication."
       }
     },
     "schemas": {
@@ -3336,7 +3489,10 @@
           "style": {
             "type": "string",
             "description": "The speaking style of the voice.",
-            "enum": ["Casual", "Excited"]
+            "enum": [
+              "Casual",
+              "Excited"
+            ]
           },
           "voiceType": {
             "type": "string",
@@ -3345,7 +3501,10 @@
           "status": {
             "type": "string",
             "description": "This determines if the specific voice ID is available for use. Deprecated voices will have an Inactive status.",
-            "enum": ["Active", "Inactive"]
+            "enum": [
+              "Active",
+              "Inactive"
+            ]
           },
           "extendedPropertyMap": {
             "type": "object",
@@ -3399,12 +3558,20 @@
           "clothingStyle": {
             "type": "string",
             "description": "The clothing style worn by the avatar.",
-            "enum": ["Casual", "Formal", "Professional"]
+            "enum": [
+              "Casual",
+              "Formal",
+              "Professional"
+            ]
           },
           "ageGroup": {
             "type": "string",
             "description": "The intended age bracket of the avatar.",
-            "enum": ["Young Adult", "Middle Aged", "Senior"]
+            "enum": [
+              "Young Adult",
+              "Middle Aged",
+              "Senior"
+            ]
           },
           "ethnicity": {
             "type": "string",
@@ -3417,7 +3584,10 @@
           "status": {
             "type": "string",
             "description": "This determines if the specific avatar ID is available for use. Deprecated avatars will have an Inactive status.",
-            "enum": ["Active", "Inactive"]
+            "enum": [
+              "Active",
+              "Inactive"
+            ]
           },
           "extendedPropertyMap": {
             "type": "object",
@@ -3507,17 +3677,25 @@
       },
       "SupportedAudioOutputAudioFormat": {
         "type": "string",
-        "enum": ["audio/wav"],
+        "enum": [
+          "audio/wav"
+        ],
         "description": "The supported audio format for output."
       },
       "SupportedOutputVideoFormat": {
         "type": "string",
-        "enum": ["video/mp4"],
+        "enum": [
+          "video/mp4"
+        ],
         "description": "The supported video format for background video for Avatar."
       },
       "SupportedBackgroundType": {
         "type": "string",
-        "enum": ["color", "video", "image"],
+        "enum": [
+          "color",
+          "video",
+          "image"
+        ],
         "description": "Supported background type for output Avatar video."
       },
       "TTSRequest": {
@@ -3542,11 +3720,16 @@
               },
               "mediaType": {
                 "type": "string",
-                "enum": ["text/plain"],
+                "enum": [
+                  "text/plain"
+                ],
                 "description": "The format of the text resource."
               }
             },
-            "required": ["localeCode", "mediaType"]
+            "required": [
+              "localeCode",
+              "mediaType"
+            ]
           },
           "voiceId": {
             "type": "string",
@@ -3559,10 +3742,16 @@
                 "$ref": "#/components/schemas/SupportedAudioOutputAudioFormat"
               }
             },
-            "required": ["mediaType"]
+            "required": [
+              "mediaType"
+            ]
           }
         },
-        "required": ["voiceId", "output", "script"]
+        "required": [
+          "voiceId",
+          "output",
+          "script"
+        ]
       },
       "AvatarRequest": {
         "type": "object",
@@ -3595,11 +3784,16 @@
               },
               "mediaType": {
                 "type": "string",
-                "enum": ["text/plain"],
+                "enum": [
+                  "text/plain"
+                ],
                 "description": "The format of the text resource."
               }
             },
-            "required": ["localeCode", "mediaType"]
+            "required": [
+              "localeCode",
+              "mediaType"
+            ]
           },
           "voiceId": {
             "type": "string",
@@ -3613,7 +3807,12 @@
             "$ref": "#/components/schemas/AvatarOutputObject"
           }
         },
-        "required": ["voiceId", "output", "script", "avatarId"]
+        "required": [
+          "voiceId",
+          "output",
+          "script",
+          "avatarId"
+        ]
       },
       "GenerateAvatarUsingAudioFile": {
         "title": "Using Audio File",
@@ -3627,13 +3826,19 @@
               },
               "mediaType": {
                 "type": "string",
-                "enum": ["audio/wav"]
+                "enum": [
+                  "audio/wav"
+                ]
               },
               "localeCode": {
                 "$ref": "#/components/schemas/SupportedLanguageCode"
               }
             },
-            "required": ["localeCode", "mediaType", "source"]
+            "required": [
+              "localeCode",
+              "mediaType",
+              "source"
+            ]
           },
           "avatarId": {
             "type": "string",
@@ -3643,7 +3848,11 @@
             "$ref": "#/components/schemas/AvatarOutputObject"
           }
         },
-        "required": ["output", "audio", "avatarId"]
+        "required": [
+          "output",
+          "audio",
+          "avatarId"
+        ]
       },
       "URLSource": {
         "type": "object",
@@ -3708,7 +3917,9 @@
             }
           }
         },
-        "required": ["mediaType"]
+        "required": [
+          "mediaType"
+        ]
       },
       "TextSource": {
         "description": "Details of the text resource.",
@@ -3763,7 +3974,12 @@
       },
       "StatusAPIResponseStatus": {
         "type": "string",
-        "enum": ["pending", "running", "failed", "succeeded"],
+        "enum": [
+          "pending",
+          "running",
+          "failed",
+          "succeeded"
+        ],
         "description": "Status of the job."
       },
       "StatusAPIInprogressResponse": {
@@ -3828,7 +4044,10 @@
       },
       "ErrorResponse": {
         "type": "object",
-        "required": ["error_code", "message"],
+        "required": [
+          "error_code",
+          "message"
+        ],
         "properties": {
           "error_code": {
             "type": "string",
@@ -3846,11 +4065,15 @@
       },
       "TemplateDescribeRequest": {
         "type": "object",
-        "required": ["source"],
+        "required": [
+          "source"
+        ],
         "properties": {
           "source": {
             "type": "object",
-            "required": ["url"],
+            "required": [
+              "url"
+            ],
             "properties": {
               "url": {
                 "type": "string",
@@ -3864,7 +4087,10 @@
       },
       "TemplateDescribeResponse": {
         "type": "object",
-        "required": ["jobId", "statusUrl"],
+        "required": [
+          "jobId",
+          "statusUrl"
+        ],
         "properties": {
           "jobId": {
             "type": "string",
@@ -3902,7 +4128,10 @@
           },
           "maxFps": {
             "type": "object",
-            "required": ["numerator", "denominator"],
+            "required": [
+              "numerator",
+              "denominator"
+            ],
             "properties": {
               "numerator": {
                 "type": "integer",
@@ -3957,15 +4186,22 @@
             }
           }
         },
-        "required": ["items"]
+        "required": [
+          "items"
+        ]
       },
       "TemplateRenderRequest": {
         "type": "object",
-        "required": ["source", "variations"],
+        "required": [
+          "source",
+          "variations"
+        ],
         "properties": {
           "source": {
             "type": "object",
-            "required": ["url"],
+            "required": [
+              "url"
+            ],
             "properties": {
               "url": {
                 "type": "string",
@@ -3980,7 +4216,10 @@
             "description": "Array of fonts to be used in the template.",
             "items": {
               "type": "object",
-              "required": ["name", "source"],
+              "required": [
+                "name",
+                "source"
+              ],
               "properties": {
                 "name": {
                   "type": "string",
@@ -3988,7 +4227,9 @@
                 },
                 "source": {
                   "type": "object",
-                  "required": ["url"],
+                  "required": [
+                    "url"
+                  ],
                   "properties": {
                     "url": {
                       "type": "string",
@@ -4006,7 +4247,10 @@
             "properties": {
               "handleMissingFonts": {
                 "type": "string",
-                "enum": ["fail", "use_default"],
+                "enum": [
+                  "fail",
+                  "use_default"
+                ],
                 "default": "use_default",
                 "description": "How to handle missing fonts. 'fail' will cause the render to fail; 'use_default' will use Premiere Pro fallback behavior."
               }
@@ -4017,11 +4261,15 @@
             "description": "Array of image, video, or audio assets referenced by variations via assetIndex.",
             "items": {
               "type": "object",
-              "required": ["source"],
+              "required": [
+                "source"
+              ],
               "properties": {
                 "source": {
                   "type": "object",
-                  "required": ["url"],
+                  "required": [
+                    "url"
+                  ],
                   "properties": {
                     "url": {
                       "type": "string",
@@ -4038,7 +4286,9 @@
             "description": "Array of export presets. Each item is either a built-in preset (by presetId) or a custom preset (by URL). Outputs reference presets by presetIndex.",
             "items": {
               "type": "object",
-              "required": ["source"],
+              "required": [
+                "source"
+              ],
               "properties": {
                 "source": {
                   "type": "object",
@@ -4063,14 +4313,18 @@
             "minItems": 1,
             "items": {
               "type": "object",
-              "required": ["variables"],
+              "required": [
+                "variables"
+              ],
               "properties": {
                 "variables": {
                   "type": "array",
                   "description": "Variable overrides for this variation. Each object targets one template variable by variableId and supplies the override value.",
                   "items": {
                     "type": "object",
-                    "required": ["variableId"],
+                    "required": [
+                      "variableId"
+                    ],
                     "properties": {
                       "variableId": {
                         "type": "string",
@@ -4112,7 +4366,10 @@
                       },
                       "audioPreference": {
                         "type": "string",
-                        "enum": ["replace", "mix"],
+                        "enum": [
+                          "replace",
+                          "mix"
+                        ],
                         "description": "Audio preference for audio controls."
                       }
                     }
@@ -4126,7 +4383,10 @@
             "description": "Defines which variation and preset combinations to render and optional output file names.",
             "items": {
               "type": "object",
-              "required": ["variationIndex", "presetIndex"],
+              "required": [
+                "variationIndex",
+                "presetIndex"
+              ],
               "properties": {
                 "variationIndex": {
                   "type": "integer",
@@ -4147,7 +4407,10 @@
       },
       "TemplateRenderResponse": {
         "type": "object",
-        "required": ["jobId", "statusUrl"],
+        "required": [
+          "jobId",
+          "statusUrl"
+        ],
         "properties": {
           "jobId": {
             "type": "string",
@@ -4162,7 +4425,10 @@
       },
       "JobStatus": {
         "type": "object",
-        "required": ["jobId", "status"],
+        "required": [
+          "jobId",
+          "status"
+        ],
         "properties": {
           "jobId": {
             "type": "string",
@@ -4192,7 +4458,11 @@
             "description": "Array of output files with destination URLs, keyed by variation and preset indices.",
             "items": {
               "type": "object",
-              "required": ["variationIndex", "presetIndex", "destination"],
+              "required": [
+                "variationIndex",
+                "presetIndex",
+                "destination"
+              ],
               "properties": {
                 "variationIndex": {
                   "type": "integer",
@@ -4204,7 +4474,9 @@
                 },
                 "destination": {
                   "type": "object",
-                  "required": ["url"],
+                  "required": [
+                    "url"
+                  ],
                   "properties": {
                     "url": {
                       "type": "string",
@@ -4221,7 +4493,11 @@
             "description": "Array of errors for failed variations (only present when status is partially_succeeded).",
             "items": {
               "type": "object",
-              "required": ["variationIndex", "presetIndex", "error"],
+              "required": [
+                "variationIndex",
+                "presetIndex",
+                "error"
+              ],
               "properties": {
                 "variationIndex": {
                   "type": "integer",
@@ -4233,7 +4509,10 @@
                 },
                 "error": {
                   "type": "object",
-                  "required": ["error_code", "message"],
+                  "required": [
+                    "error_code",
+                    "message"
+                  ],
                   "properties": {
                     "error_code": {
                       "type": "string",
@@ -4267,7 +4546,9 @@
                       "description": "Whether the font needs to be uploaded in the render request."
                     }
                   },
-                  "required": ["name"]
+                  "required": [
+                    "name"
+                  ]
                 }
               },
               "elements": {
@@ -4275,7 +4556,10 @@
                 "description": "Array of elements from the template.",
                 "items": {
                   "type": "object",
-                  "required": ["type", "controls"],
+                  "required": [
+                    "type",
+                    "controls"
+                  ],
                   "properties": {
                     "id": {
                       "type": "string",
@@ -4283,7 +4567,9 @@
                     },
                     "type": {
                       "type": "string",
-                      "enum": ["mogrt"],
+                      "enum": [
+                        "mogrt"
+                      ],
                       "description": "Type of the element."
                     },
                     "controls": {
@@ -4332,21 +4618,31 @@
                             "type": "object",
                             "description": "Minimum and maximum values for slider controls.",
                             "properties": {
-                              "minimum": { "type": "number" },
-                              "maximum": { "type": "number" }
+                              "minimum": {
+                                "type": "number"
+                              },
+                              "maximum": {
+                                "type": "number"
+                              }
                             }
                           },
                           "size": {
                             "type": "object",
                             "description": "Dimensions for media controls.",
                             "properties": {
-                              "width": { "type": "integer" },
-                              "height": { "type": "integer" }
+                              "width": {
+                                "type": "integer"
+                              },
+                              "height": {
+                                "type": "integer"
+                              }
                             }
                           },
                           "possibleScaleValues": {
                             "type": "array",
-                            "items": { "type": "string" },
+                            "items": {
+                              "type": "string"
+                            },
                             "description": "Possible scale values for media controls."
                           },
                           "durationInSeconds": {
@@ -4355,7 +4651,9 @@
                           },
                           "possibleAudioPreferences": {
                             "type": "array",
-                            "items": { "type": "string" },
+                            "items": {
+                              "type": "string"
+                            },
                             "description": "Possible audio preferences (e.g., replace, mix) for audio controls."
                           },
                           "text": {
@@ -4377,7 +4675,11 @@
         "properties": {
           "mediaType": {
             "type": "string",
-            "enum": ["image/gif", "image/png", "image/jpeg"],
+            "enum": [
+              "image/gif",
+              "image/png",
+              "image/jpeg"
+            ],
             "description": "The media type of the overlay."
           },
           "source": {
@@ -4389,7 +4691,9 @@
                 "description": "The pre-signed URL pointing to the overlay source."
               }
             },
-            "required": ["url"],
+            "required": [
+              "url"
+            ],
             "description": "Details of the source including a pre-signed URL. See the [list of allowed domains for storage](https://developer.adobe.com/audio-video-firefly-services/getting-started/storage-solutions/)."
           },
           "startTime": {
@@ -4414,7 +4718,10 @@
                 "description": "The height of the overlay."
               }
             },
-            "required": ["width", "height"],
+            "required": [
+              "width",
+              "height"
+            ],
             "description": "The scale of the overlay."
           },
           "position": {
@@ -4440,12 +4747,19 @@
                 "description": "The Y offset of the overlay from the anchor point."
               }
             },
-            "required": ["anchorPoint", "offsetX", "offsetY"],
+            "required": [
+              "anchorPoint",
+              "offsetX",
+              "offsetY"
+            ],
             "description": "The position of the overlay."
           },
           "repeat": {
             "type": "string",
-            "enum": ["loop", "once"],
+            "enum": [
+              "loop",
+              "once"
+            ],
             "description": "The repeat behavior of the overlay."
           }
         },
@@ -4471,7 +4785,10 @@
             "description": "A description of the error that occurred."
           }
         },
-        "required": ["error_code", "message"],
+        "required": [
+          "error_code",
+          "message"
+        ],
         "description": "Error response for the reframed video job."
       },
       "TranscribeRequest": {
@@ -4506,7 +4823,9 @@
             "$ref": "#/components/schemas/AudioInput"
           }
         },
-        "required": ["audio"],
+        "required": [
+          "audio"
+        ],
         "description": "The request body for transcribing audio."
       },
       "TranscribeVideoInput": {
@@ -4516,7 +4835,9 @@
             "$ref": "#/components/schemas/VideoInput"
           }
         },
-        "required": ["video"],
+        "required": [
+          "video"
+        ],
         "description": "The request body for transcribing video."
       },
       "Captions": {
@@ -4540,7 +4861,9 @@
             "description": "The pre-signed URL pointing to the input source."
           }
         },
-        "required": ["url"],
+        "required": [
+          "url"
+        ],
         "description": "Source details including a pre-signed URL for accessing the input media. See the [list of allowed domains for storage](https://developer.adobe.com/audio-video-firefly-services/getting-started/storage-solutions/)."
       },
       "Destination": {
@@ -4552,7 +4875,9 @@
             "description": "The pre-signed URL pointing to the output destination."
           }
         },
-        "required": ["url"],
+        "required": [
+          "url"
+        ],
         "description": "Destination details including a pre-signed URL for the output media."
       },
       "DubRequest": {
@@ -4588,7 +4913,9 @@
             "$ref": "#/components/schemas/AudioInput"
           }
         },
-        "required": ["audio"],
+        "required": [
+          "audio"
+        ],
         "description": "The audio dub request body."
       },
       "DubVideoRequest": {
@@ -4617,7 +4944,9 @@
             "default": "false"
           }
         },
-        "required": ["video"],
+        "required": [
+          "video"
+        ],
         "description": "The video dub request body."
       },
       "JobStatusLinkResponse": {
@@ -4632,12 +4961,20 @@
             "description": "The job ID."
           }
         },
-        "required": ["statusUrl", "jobId"],
+        "required": [
+          "statusUrl",
+          "jobId"
+        ],
         "description": "Job status response."
       },
       "FireflyJobApiResponseStatus": {
         "type": "string",
-        "enum": ["pending", "running", "failed", "succeeded"],
+        "enum": [
+          "pending",
+          "running",
+          "failed",
+          "succeeded"
+        ],
         "description": "Status of the job."
       },
       "FireflyJobResponse": {
@@ -4678,7 +5015,10 @@
             }
           }
         },
-        "required": ["jobId", "status"]
+        "required": [
+          "jobId",
+          "status"
+        ]
       },
       "FireflyJobErrorResponse": {
         "type": "object",
@@ -4700,7 +5040,10 @@
             "description": "Associated error code."
           }
         },
-        "required": ["jobId", "status"]
+        "required": [
+          "jobId",
+          "status"
+        ]
       },
       "ErrorBody": {
         "type": "object",
@@ -4715,7 +5058,10 @@
             "description": "Associated error code."
           }
         },
-        "required": ["error_code", "message"]
+        "required": [
+          "error_code",
+          "message"
+        ]
       },
       "TranscribeOutput": {
         "type": "array",
@@ -4781,12 +5127,17 @@
       },
       "AudioOutputMediaType": {
         "type": "string",
-        "enum": ["audio/wav"],
+        "enum": [
+          "audio/wav"
+        ],
         "description": "Media type of the audio output."
       },
       "VideoOutputMediaType": {
         "type": "string",
-        "enum": ["video/mp4", "video/mov"],
+        "enum": [
+          "video/mp4",
+          "video/mov"
+        ],
         "description": "Media type of the video output."
       },
       "AudioOutput": {
@@ -4830,7 +5181,9 @@
             "description": "The pre-signed URL to download the translated/edited transcripts. See the [list of allowed domains for storage](https://developer.adobe.com/audio-video-firefly-services/getting-started/storage-solutions/)."
           }
         },
-        "required": ["source"],
+        "required": [
+          "source"
+        ],
         "description": "Transcript input details for a transcribe request."
       },
       "TargetLocaleCodes": {
@@ -4862,7 +5215,9 @@
       "TargetCaptionFormats": {
         "type": "string",
         "description": "Target caption format.",
-        "enum": ["SRT"]
+        "enum": [
+          "SRT"
+        ]
       },
       "AudioInput": {
         "type": "object",
@@ -4874,7 +5229,10 @@
             "$ref": "#/components/schemas/AudioInputMediaType"
           }
         },
-        "required": ["url", "mediaType"],
+        "required": [
+          "url",
+          "mediaType"
+        ],
         "description": "The audio input details for a dub request."
       },
       "VideoInput": {
@@ -4895,7 +5253,10 @@
             }
           }
         },
-        "required": ["url", "mediaType"],
+        "required": [
+          "url",
+          "mediaType"
+        ],
         "description": "The video input details for a dub request."
       },
       "AudioInputMediaType": {
@@ -4932,11 +5293,15 @@
                 "description": "The pre-signed URL pointing to the input source."
               }
             },
-            "required": ["url"],
+            "required": [
+              "url"
+            ],
             "description": "Details of the source including a pre-signed URL. See the [list of allowed domains for storage](https://developer.adobe.com/audio-video-firefly-services/getting-started/storage-solutions/)."
           }
         },
-        "required": ["source"],
+        "required": [
+          "source"
+        ],
         "description": "Video input details for generate reframed video request."
       },
       "AnalysisV2": {
@@ -5017,18 +5382,28 @@
             "description": "Anchor point for taking the position reference."
           },
           "offsetX": {
-            "type": ["integer", "null"],
+            "type": [
+              "integer",
+              "null"
+            ],
             "description": "Horizontal offset for the anchor point."
           },
           "offsetY": {
-            "type": ["integer", "null"],
+            "type": [
+              "integer",
+              "null"
+            ],
             "description": "Vertical offset for the anchor point."
           }
         }
       },
       "RepeatV2": {
         "type": "string",
-        "enum": ["stop_on_last_frame", "loop", "time_stretch"],
+        "enum": [
+          "stop_on_last_frame",
+          "loop",
+          "time_stretch"
+        ],
         "description": "Defines the repeat behavior of the overlay."
       },
       "ScaleV2": {
@@ -5058,7 +5433,10 @@
             "description": "AspectRatio y ratio."
           }
         },
-        "required": ["x", "y"]
+        "required": [
+          "x",
+          "y"
+        ]
       },
       "OutputFormatV2": {
         "type": "object",
@@ -5066,17 +5444,28 @@
         "properties": {
           "media": {
             "type": "string",
-            "enum": ["none", "mp4", "mov", "source"],
+            "enum": [
+              "none",
+              "mp4",
+              "mov",
+              "source"
+            ],
             "description": "Media format for the output video. If only the OTIO file is needed, set this as `none`."
           },
           "sidecar": {
             "type": "string",
-            "enum": ["json", "otio"],
+            "enum": [
+              "json",
+              "otio"
+            ],
             "description": "Sidecar format for additional metadata."
           }
         },
         "description": "Output format configuration. A media property is mandatory when this format object is specified.",
-        "required": ["media", "sidecar"]
+        "required": [
+          "media",
+          "sidecar"
+        ]
       },
       "CompositionV2": {
         "type": "object",
@@ -5283,7 +5672,6 @@
           "message": "The requested resource was not found."
         }
       },
-
       "InvalidInputErrorExample": {
         "summary": "Invalid Input",
         "value": {
@@ -6059,7 +6447,9 @@
             },
             "mediaType": "audio/wav"
           },
-          "targetLocaleCodes": ["es-ES"]
+          "targetLocaleCodes": [
+            "es-ES"
+          ]
         }
       },
       "VideoInputToGenerateTranscriptFromSourceVideo": {
@@ -6082,7 +6472,9 @@
             },
             "mediaType": "video/mp4"
           },
-          "targetLocaleCodes": ["es-ES"]
+          "targetLocaleCodes": [
+            "es-ES"
+          ]
         }
       },
       "AudioInputToGenerateTranscriptAndCaptionsFromTargetFormatsFromSourceAudio": {
@@ -6094,9 +6486,13 @@
             },
             "mediaType": "audio/wav"
           },
-          "targetLocaleCodes": ["en-US"],
+          "targetLocaleCodes": [
+            "en-US"
+          ],
           "captions": {
-            "targetFormats": ["SRT"]
+            "targetFormats": [
+              "SRT"
+            ]
           }
         }
       },
@@ -6109,9 +6505,13 @@
             },
             "mediaType": "video/mp4"
           },
-          "targetLocaleCodes": ["en-US"],
+          "targetLocaleCodes": [
+            "en-US"
+          ],
           "captions": {
-            "targetFormats": ["SRT"]
+            "targetFormats": [
+              "SRT"
+            ]
           }
         }
       },
@@ -6257,7 +6657,9 @@
             },
             "mediaType": "video/mp4"
           },
-          "targetLocaleCodes": ["es-ES"],
+          "targetLocaleCodes": [
+            "es-ES"
+          ],
           "lipSync": true
         }
       },
@@ -6270,7 +6672,9 @@
             },
             "mediaType": "audio/wav"
           },
-          "targetLocaleCodes": ["es-ES"]
+          "targetLocaleCodes": [
+            "es-ES"
+          ]
         }
       },
       "DubRequestUsingEditedSourceTranscript": {
@@ -6289,7 +6693,9 @@
               }
             }
           ],
-          "targetLocaleCodes": ["es-ES"],
+          "targetLocaleCodes": [
+            "es-ES"
+          ],
           "lipSync": true
         }
       },
@@ -6309,7 +6715,9 @@
               }
             }
           ],
-          "targetLocaleCodes": ["es-ES"]
+          "targetLocaleCodes": [
+            "es-ES"
+          ]
         }
       },
       "DubRequestUsingEditedTranslatedTranscript": {
@@ -6355,7 +6763,7 @@
           "items": [
             {
               "presetId": "ffs_video_api_land_1080p_hq",
-              "label": "Landscape 1920×1080 – HQ",
+              "label": "Landscape 1920\u00d71080 \u2013 HQ",
               "mediaType": "video/mp4",
               "codec": "H.264",
               "maxFps": {
@@ -6370,7 +6778,7 @@
             },
             {
               "presetId": "ffs_video_api_land_1080p_lq",
-              "label": "Landscape 1920×1080 – LQ",
+              "label": "Landscape 1920\u00d71080 \u2013 LQ",
               "mediaType": "video/mp4",
               "codec": "H.264",
               "maxFps": {
@@ -6385,7 +6793,7 @@
             },
             {
               "presetId": "ffs_video_api_square_1080p_hq",
-              "label": "Square 1080×1080 – HQ",
+              "label": "Square 1080\u00d71080 \u2013 HQ",
               "mediaType": "video/mp4",
               "codec": "H.264",
               "maxFps": {
@@ -6400,7 +6808,7 @@
             },
             {
               "presetId": "ffs_video_api_square_1080p_lq",
-              "label": "Square 1080×1080 – LQ",
+              "label": "Square 1080\u00d71080 \u2013 LQ",
               "mediaType": "video/mp4",
               "codec": "H.264",
               "maxFps": {
@@ -6415,7 +6823,7 @@
             },
             {
               "presetId": "ffs_video_api_vert_1920p_hq",
-              "label": "Vertical 1080×1920 – HQ",
+              "label": "Vertical 1080\u00d71920 \u2013 HQ",
               "mediaType": "video/mp4",
               "codec": "H.264",
               "profile": "high",
@@ -6431,7 +6839,7 @@
             },
             {
               "presetId": "ffs_video_api_vert_1920p_lq",
-              "label": "Vertical 1080×1920 – LQ",
+              "label": "Vertical 1080\u00d71920 \u2013 LQ",
               "mediaType": "video/mp4",
               "codec": "H.264",
               "profile": "high",
@@ -6513,7 +6921,10 @@
                     "defaultData": {
                       "selectedCheckboxValue": true
                     },
-                    "options": [true, false]
+                    "options": [
+                      true,
+                      false
+                    ]
                   },
                   {
                     "variableId": "<unique id for template variable>",
@@ -6565,7 +6976,10 @@
                     "label": "Mogrt Audio",
                     "type": "audio",
                     "durationInSeconds": 22.3,
-                    "possibleAudioPreferences": ["replace", "mix"]
+                    "possibleAudioPreferences": [
+                      "replace",
+                      "mix"
+                    ]
                   },
                   {
                     "label": "Logo comment",
