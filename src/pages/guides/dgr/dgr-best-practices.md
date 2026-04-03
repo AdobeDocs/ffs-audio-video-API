@@ -29,7 +29,7 @@ Dynamic Graphics Render (DGR) is an infinitely scalable service that renders dat
 
 Driven by a structured data set that represents the changeable parameters defined in After Effects (like CSV or JSON), the service concurrently renders each video and returns the output to your designated cloud location (for example, Frame.io or a signed URL location).
 
-## What can DGR be used for?
+### What can DGR be used for?
 
 DGR can be used to render any MOGRT at scale. Typical use cases include:
 
@@ -45,17 +45,17 @@ Rendering a high volume of:
 - images, and
 - video and audio for advertising and performance marketing.
 
-## How are MOGRTs created?
+### How are MOGRTs created?
 
 MOGRTs are created in Adobe After Effects, where designers can composite animation, graphics, video and audio on a timeline. After Effects is an industry-leading creative tool typically used to produce onscreen graphics, 2D and 3D animation that represent and maintain a brand's look and feel.
 
-## Why use MOGRTs?
+### Why use MOGRTs?
 
 MOGRTs are an intermediate format that package a specific After Effects composition and its associated assets into a single, easily distributable file, and define user-editable properties to ensure brand compliance.
 
 DGR uses MOGRTs to process After Effects compositions for scaled rendering.
 
-## Core capabilities of DGR
+### Core capabilities of DGR
 
 DGR capabilities include (but are not limited to) text replacement, image and video replacement, and audio replacement, which is a feature not available in standard MOGRT workflows.
 
@@ -65,45 +65,47 @@ End users don't need to have After Effects or Premiere experience. If a user can
 
 ## Tips for preparing your After Effects project for DGR-ready MOGRTs
 
-### Design templates for a fixed duration
+These tips will help you prepare your MOGRTs to be DGR-ready.
+
+**Design templates for a fixed duration:**
 
 In Adobe Premiere Pro, MOGRTs can be created with protected regions, allowing a user to adjust the duration of the template.
 
 These adjustable duration compositions are **not** currently supported by DGR. Videos rendered with DGR are always the same duration as the composition from which the MOGRT was created.
 
-### Create separate templates for different aspect ratios and durations
+**Create separate templates for different aspect ratios and durations:**
 
 When creating videos for multiple aspect ratios (for example, 9:16 portrait; 16:9 landscape), a separate MOGRT should be created for each.
 
 Likewise, if templates of different durations are required, these should be created as separate MOGRTs.
 
-### Give properties unique names in the Essential Graphics panel
+**Give properties unique names in the Essential Graphics panel:**
 
 To avoid any potential conflicts in the API, it's recommended to ensure that all properties (controls) in the Essential Graphics panel have unique names, even if you're separating similar controls into groups.
 
 For example, if you have a "Text" property in both an "Intro" and an "Outro" group, consider naming the properties "Intro Text" and "Outro Text".
 
-### Pre-render where possible
+**Pre-render where possible:**
 
 It can often be beneficial to pre-render the parts of your composition that won't change, or that won't interact with any customizable elements. This reduces the processing requirements when rendering, for a faster output.
 
-### Real-time feedback is not available via DGR – plan your MOGRT controls accordingly
+**Real-time feedback is not available via DGR – plan your MOGRT controls accordingly:**
 
 When using MOGRTs in Adobe Premiere Pro, users can see the template update in real time when control values are changed. As the DGR API runs as a headless service, this real-time feedback is not available. Plan your controls with this limitation in mind.
 
 For example, rather than using a Slider control to adjust the position of a layer, consider using a Dropdown Menu control to limit the position to a few pre-defined options.
 
-### Avoid third-party effects and plug-ins
+**Avoid third-party effects and plug-ins:**
 
 It's not currently possible to install third-party effects or plug-ins. Please avoid using these in your templates. If third-party effects or plug-ins are used, your DGR exports may fail, or may not render as expected.
 
-### Use the Classic 3D renderer
+**Use the Classic 3D renderer:**
 
 If your template includes 3D layers, ensure all relevant compositions are using the Classic 3D renderer. The Advanced 3D and Cinema 4D renderers are not supported by MOGRTs or DGR.
 
 In Adobe After Effects, you can change the renderer in the 3D Renderer tab in the Composition Settings dialog box.
 
-### Include safeguards for safe areas
+**Include safeguards for safe areas:**
 
 If designing for formats that recommend keeping elements within safe areas (for example, to avoid cut-off in TV broadcasts, or to avoid elements being placed underneath the UI in apps like Instagram or TikTok), be aware that dynamic content might extend beyond the planned area. This is most likely with Text layers set to Point text.
 
@@ -165,11 +167,9 @@ Font replacement is also possible via expressions. References to fonts in expres
 
 Tip
 
-You can find a font's PostScript name in After Effects by opening the Expression language menu on any property and selecting **Text** > **Font…** After you select a font and press OK, the PostScript name will be inserted into the expression.
+You can find a font's PostScript name in After Effects by opening the Expression language menu on any property and selecting **Text** > **Font…**. After you select a font and press **OK**, the PostScript name will be inserted into the expression.
 
 ![After Effects Timeline showing a text layer's Source Text expression field and the Expression Language menu with Text > Font… selected to insert font-related expression syntax.](./dgr-text-font.png)
-
-*Expression Language menu: **Text** > **Font…** (useful for discovering PostScript names for font replacement.)*
 
 ## Text sizing
 
@@ -318,19 +318,13 @@ The output video render profiles that we support are:
 
 ## DGR Encoder Presets
 
-The following preset IDs are available through the [Presets API](index.md). For request and response examples, see [Sample request](index.md#sample-request) on the same page.
+The following preset IDs are available through the [Presets API](index.md). For request and response examples, see [the sample request](index.md#sample-request) on the same page. Expand an item to see the encoder settings JSON for that preset.
 
-| Preset ID | Description |
-| --- | --- |
-| `ffs_video_api_land_1080p_hq` | Landscape 1920×1080 – High Quality |
-| `ffs_video_api_land_1080p_lq` | Landscape 1920×1080 – Low Quality |
-| `ffs_video_api_square_1080p_hq` | Square 1080×1080 – High Quality |
-| `ffs_video_api_square_1080p_lq` | Square 1080×1080 – Low Quality |
-| `ffs_video_api_vert_1920p_hq` | Vertical 1080×1920 – High Quality |
-| `ffs_video_api_vert_1920p_lq` | Vertical 1080×1920 – Low Quality |
-| `ffs_video_api_prores` | ProRes export preset supporting alpha channel |
+<AccordionItem slots="heading, text, code" />
 
-### Example encoder settings (H.264 landscape HQ)
+### `ffs_video_api_land_1080p_hq` — Landscape 1920×1080 – High Quality
+
+Encoder settings:
 
 ```json
 {
@@ -347,7 +341,74 @@ The following preset IDs are available through the [Presets API](index.md). For 
 }
 ```
 
-### Example encoder settings (vertical HQ)
+<AccordionItem slots="heading, text, code" />
+
+### `ffs_video_api_land_1080p_lq` — Landscape 1920×1080 – Low Quality
+
+Encoder settings:
+
+```json
+{
+  "mediaType": "video/mp4",
+  "codec": "H.264",
+  "maxFps": {
+    "numerator": 30,
+    "denominator": 1
+  },
+  "bitrateMode": "vbr",
+  "targetBitrateInKbps": 6000,
+  "maxBitrateInKbps": 8000,
+  "alpha": false
+}
+```
+
+<AccordionItem slots="heading, text, code" />
+
+### `ffs_video_api_square_1080p_hq` — Square 1080×1080 – High Quality
+
+Encoder settings:
+
+```json
+{
+  "mediaType": "video/mp4",
+  "codec": "H.264",
+  "maxFps": {
+    "numerator": 30,
+    "denominator": 1
+  },
+  "bitrateMode": "vbr",
+  "targetBitrateInKbps": 6000,
+  "maxBitrateInKbps": 8000,
+  "alpha": false
+}
+```
+
+<AccordionItem slots="heading, text, code" />
+
+### `ffs_video_api_square_1080p_lq` — Square 1080×1080 – Low Quality
+
+Encoder settings:
+
+```json
+{
+  "mediaType": "video/mp4",
+  "codec": "H.264",
+  "maxFps": {
+    "numerator": 30,
+    "denominator": 1
+  },
+  "bitrateMode": "vbr",
+  "targetBitrateInKbps": 3000,
+  "maxBitrateInKbps": 4000,
+  "alpha": false
+}
+```
+
+<AccordionItem slots="heading, text, code" />
+
+### `ffs_video_api_vert_1920p_hq` — Vertical 1080×1920 – High Quality
+
+Encoder settings:
 
 ```json
 {
@@ -365,7 +426,33 @@ The following preset IDs are available through the [Presets API](index.md). For 
 }
 ```
 
-### Example encoder settings (ProRes with alpha)
+<AccordionItem slots="heading, text, code" />
+
+### `ffs_video_api_vert_1920p_lq` — Vertical 1080×1920 – Low Quality
+
+Encoder settings:
+
+```json
+{
+  "mediaType": "video/mp4",
+  "codec": "H.264",
+  "profile": "high",
+  "maxFps": {
+    "numerator": 30,
+    "denominator": 1
+  },
+  "bitrateMode": "vbr",
+  "targetBitrateInKbps": 3000,
+  "maxBitrateInKbps": 4000,
+  "alpha": false
+}
+```
+
+<AccordionItem slots="heading, text, code" />
+
+### `ffs_video_api_prores` — ProRes export preset supporting alpha channel
+
+Encoder settings:
 
 ```json
 {
