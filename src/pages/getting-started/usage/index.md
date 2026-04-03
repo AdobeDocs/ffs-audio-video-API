@@ -312,6 +312,6 @@ When preparing *.mogrt* files for API automation, consider these guidelines:
     - Use fonts that can be legally distributed and uploaded.
     - If a font is required, ensure that it's listed in the Describe response and provided in the Render request.
 3. Audio handling
-    - **Audio tracks in a *.mogrt* cannot be dynamically swapped** via the API.
-    - **Embed your design in the template**, if your design requires background audio.
-    - Only use the API for text changes and video/image swaps, not for replacing audio layers.
+    - The Render API supports **global audio replacement** when the template exposes an audio control: set `audioPreference` to `"replace"` or `"mix"` in the request. See [Audio control](../../guides/dgr/dgr-render.md#audio-control) in [Using the Render API](../../guides/dgr/dgr-render.md).
+    - The Essential Graphics panel in After Effects does not configure audio replacement; use the Describe API to discover controls and supply assets in the Render request.
+    - For duration behavior, supported file types, and preprocessing (for example in Adobe Audition), see [Best practices for Dynamic Graphics Render and MOGRTs](../../guides/dgr/dgr-best-practices.md).
