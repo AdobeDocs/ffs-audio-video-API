@@ -43,3 +43,4 @@
     - [Using the Describe API](/guides/dgr/dgr-describe.md)
     - [Using the Render API](/guides/dgr/dgr-render.md)
     - [Best practices for Dynamic Graphics Render and MOGRTs](/guides/dgr/dgr-best-practices.md)
+    - [Sample MOGRT Project](/guides/dgr/dgr-sample-mogrt-wknd.md)

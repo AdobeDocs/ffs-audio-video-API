@@ -25,6 +25,8 @@ Presets are export configurations that define video quality. They control parame
 
 Retrieve a catalog of predefined, social-first presets to discover the available encoding options for rendering outputs. Developers can use the presets in the guide below, or their own custom ones.
 
+For a full sample MOGRT project (WKND Product Showcase) with Beginner and Advanced templates, media, and documentation, see [WKND Product Showcase sample MOGRT package](dgr-sample-mogrt-wknd.md).
+
 ## Prerequisites
 
 [Review the Getting Started page](../../getting-started/index.md) for this API for authentication and setup.
