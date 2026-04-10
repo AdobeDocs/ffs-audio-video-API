@@ -472,6 +472,7 @@ We support [predefined social presets](index.md#sample-request) or a custom pres
 
 ## See also
 
+- [WKND Product Showcase sample MOGRT package](dgr-sample-mogrt-wknd.md)
 - [Using the Presets API](index.md)
 - [Using the Describe API](dgr-describe.md)
 - [Using the Render API](dgr-render.md)
