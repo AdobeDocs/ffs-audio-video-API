@@ -79,7 +79,10 @@ curl --location 'https://audio-video-api.adobe.io/v2/reframe' \
           "y": 5
         }
       }
-    ]
+    ],
+    "layout": {
+      "applyLetterboxing": true
+    }
   }
 }'
 ```
@@ -170,6 +173,18 @@ When this option is enabled, you can download a **.zip archive** containing:
 
 * The **source asset**
 * An **`otio` file** (OpenTimeline), which can be opened in **Adobe Premiere Pro (beta)** for final edits.
+
+* Apply **letterboxing** to your output by enabling the `applyLetterboxing` option:
+
+```json
+"output": {
+    "layout": {
+        "applyLetterboxing": true
+    }
+}
+```
+
+When `applyLetterboxing` is set to `true`, the output may contain letterboxing for vertical formats and pillarboxing for horizontal aspect ratios.
 
 For full details, [see the API Reference](../../api/index.md).
 
