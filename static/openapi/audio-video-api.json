@@ -2151,7 +2151,10 @@
                             "y": 9
                           }
                         }
-                      ]
+                      ],
+                      "layout": {
+                        "applyLetterboxing": false
+                      }
                     }
                   }
                 },
@@ -2181,7 +2184,10 @@
                             "y": 9
                           }
                         }
-                      ]
+                      ],
+                      "layout": {
+                        "applyLetterboxing": false
+                      }
                     }
                   }
                 }
