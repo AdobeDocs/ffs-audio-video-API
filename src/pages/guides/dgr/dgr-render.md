@@ -162,17 +162,20 @@ curl -X POST \
       {
         "variationIndex": 0,
         "presetIndex": 0,
-        "fileName": "some_custom_file_name"
+        "fileName": "some_custom_file_name",
+        "destination": "<pre-signed_URL_for_output_video>"
       },
       {
         "variationIndex": 1,
         "presetIndex": 0,
-        "fileName": "output_vert_1920p_hq"
+        "fileName": "output_vert_1920p_hq",
+        "destination": "<pre-signed_URL_for_output_video>"
       },
       {
         "variationIndex": 1,
         "presetIndex": 1,
-        "fileName": "my_custom_file_name"
+        "fileName": "my_custom_file_name",
+        "destination": "<pre-signed_URL_for_output_video>"
       }
     ]
   }'
