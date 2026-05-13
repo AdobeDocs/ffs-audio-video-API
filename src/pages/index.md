@@ -88,7 +88,7 @@ The API workflow is simple and powerful. It mirrors other video API's asynchrono
    These are Essential Graphics parameters defined in MOGRT.
 
 3. **Render template variations** with defined assets and presets.  
-   Render up to 10 variations of the same template in a single call.
+   Render up to 500 variations of the same template in a single call.
 
 4. **Get Status** with a job ID to get results of Describe and Render template API calls.
 
