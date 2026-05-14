@@ -170,4 +170,3 @@ Use this checklist to validate your integration.
 ## See also
 
 - [Getting Started with Adobe I/O Events](https://developer.adobe.com/events/docs/)
-- [Setting up InDesign APIs User Events Stream with Adobe I/O Events](https://developer.adobe.com/events/docs/guides/using/indesign-apis/indesign-apis-events-data-stream-setup) (similar Console flow for another Firefly Services API)
