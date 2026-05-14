@@ -92,6 +92,8 @@ The API workflow is simple and powerful. It mirrors other video API's asynchrono
 
 4. **Get Status** with a job ID to get results of Describe and Render template API calls.
 
+You can also receive job lifecycle notifications through [Adobe I/O Events](guides/dgr/dgr-io-events-setup.md) instead of polling alone.
+
 Explore what you can do with this API in the [Dynamic Graphics Render API guides](guides/dgr/index.md).
 
 ## Reframe API

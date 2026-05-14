@@ -27,6 +27,8 @@ Retrieve a catalog of predefined, social-first presets to discover the available
 
 For a full sample MOGRT project (WKND Product Showcase) with Beginner and Advanced templates, media, and documentation, see [WKND Product Showcase sample MOGRT package](dgr-sample-mogrt-wknd.md).
 
+To subscribe to render job events with Adobe I/O Events and a webhook, see [Setting up Dynamic Graphics Render API events with Adobe I/O Events](dgr-io-events-setup.md).
+
 ## Prerequisites
 
 [Review the Getting Started page](../../getting-started/index.md) for this API for authentication and setup.

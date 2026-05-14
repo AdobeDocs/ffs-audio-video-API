@@ -26,6 +26,8 @@ The Render API renders one or more video variations by applying overrides and ex
 
 Before calling the Render API, use the [Describe API](dgr-describe.md) to discover the template's editable controls and variable IDs, and the [Presets API](index.md) to choose export presets.
 
+For near real-time job notifications in addition to polling the status URL, see [Setting up Dynamic Graphics Render API events with Adobe I/O Events](dgr-io-events-setup.md).
+
 ## Prerequisites
 
 [Review the Getting Started page](../../getting-started/index.md) for this API for authentication and setup.
@@ -256,3 +258,9 @@ The `config.handleMissingFonts` parameter controls behavior when a required font
 - `use_default` – Use Premiere Pro fallback behavior.
 
 If `handleMissingFonts` is not provided, the default is `use_default`.
+
+## Related guides
+
+- [Setting up Dynamic Graphics Render API events with Adobe I/O Events](dgr-io-events-setup.md)
+- [Using the Describe API](dgr-describe.md)
+- [Quickstart for Presets with the Dynamic Graphics Render API](index.md)
