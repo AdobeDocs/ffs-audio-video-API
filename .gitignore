@@ -1,3 +1,5 @@
+# .gitignore
+
 .editorconfig
 .idea
 .DS_Store
@@ -5,7 +7,7 @@
 
 # npm yarn
 node_modules
-package.lock
+package-lock.json
 yarn-error.log
 .pnp.*
 .yarn/*
