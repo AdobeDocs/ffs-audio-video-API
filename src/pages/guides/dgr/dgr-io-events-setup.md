@@ -31,19 +31,6 @@ When a render job reaches certain lifecycle points, the service emits events tha
 
 For webhooks, Adobe recommends **batch** delivery when your use case allows it, so your endpoint can process multiple notifications per request (see the [InDesign APIs events setup guide](https://developer.adobe.com/events/docs/guides/using/indesign-apis/indesign-apis-events-data-stream-setup) for similar guidance).
 
-## Delivery model
-
-The following diagram shows how render job activity flows from the Audio/Video platform through Adobe's pipeline, Developer Console subscriptions, and Adobe I/O Events to **first-party** consumers (subscribe and poll) and **third-party** consumers (webhook push).
-
-![Dynamic Graphics Render event notification flow from Platform API through Adobe Pipeline, Pipeline Smarts, Developer Console, and Adobe I/O Events to first-party subscribe-and-poll and third-party webhook consumers.](./dgr-event-notification.png)
-
-At a high level:
-
-1. The platform tracks render jobs and **publishes** lifecycle events into Adobe's event backbone.
-2. **Filtering and transformation** scope events (for example by organization) before downstream delivery.
-3. **Adobe Developer Console** lists the event types you can subscribe to for Dynamic Graphics Render.
-4. **Adobe I/O Events** envelopes the payload and **delivers** it: first-party integrations can subscribe and poll; third-party integrations typically register an **HTTPS webhook** to receive pushes.
-
 ## Setup Adobe I/O
 
 Start with [Getting Started with Adobe I/O Events](https://developer.adobe.com/events/docs/). The steps below mirror other Firefly Services APIs (for example [InDesign APIs - Firefly Services events](https://developer.adobe.com/events/docs/guides/using/indesign-apis/indesign-apis-events-data-stream-setup)), adapted for Dynamic Graphics Render.
