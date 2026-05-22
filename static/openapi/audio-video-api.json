@@ -9,7 +9,7 @@
   "tags": [
     {
       "name": "Dynamic Graphics Render",
-      "description": "Endpoints for Dynamic Graphics Render (DGR): template describe, presets, render, and job status."
+      "description": "Endpoints for Dynamic Graphics Render (DGR): template describe, presets, render, cancel, list jobs, and job status. Supports MOGRT and After Effects (AEP) templates."
     },
     {
       "name": "Reframe",
@@ -509,6 +509,12 @@
                   },
                   "StatusAPIFailedTTSInternalErrorResponse": {
                     "$ref": "#/components/examples/StatusAPIFailedTTSInternalErrorResponse"
+                  },
+                  "DGRDescribeAEPSuccess": {
+                    "$ref": "#/components/examples/DGRDescribeAEPSuccess"
+                  },
+                  "DGRRenderPartialSuccessWithDestination": {
+                    "$ref": "#/components/examples/DGRRenderPartialSuccessWithDestination"
                   }
                 }
               }
@@ -617,11 +623,23 @@
                 "$ref": "#/components/schemas/TemplateDescribeRequest"
               },
               "examples": {
-                "SampleExample": {
-                  "summary": "Sample example",
+                "MOGRTExample": {
+                  "summary": "Describe a MOGRT template",
                   "value": {
+                    "type": "MOGRT",
                     "source": {
-                      "url": "<pre-signed_URL_to_download_the_template>"
+                      "url": "<pre-signed_URL_to_download_the_mogrt_template>"
+                    }
+                  }
+                },
+                "AEPExample": {
+                  "summary": "Describe an AEP template",
+                  "value": {
+                    "type": "AEP",
+                    "source": {
+                      "url": "<pre-signed_URL_to_download_the_aep_project>",
+                      "projectFileName": "MyProject.aep",
+                      "compName": "MainComp"
                     }
                   }
                 }
@@ -857,9 +875,10 @@
                 "$ref": "#/components/schemas/TemplateRenderRequest"
               },
               "examples": {
-                "RenderExample": {
-                  "summary": "Sample render request",
+                "MOGRTRenderExample": {
+                  "summary": "Render a MOGRT template with two variations",
                   "value": {
+                    "type": "MOGRT",
                     "source": {
                       "url": "<pre-signed mogrt url>"
                     },
@@ -867,7 +886,7 @@
                       {
                         "name": "<Font postscript name>",
                         "source": {
-                          "url": "<pre-signed url for font .ttf/otf>"
+                          "url": "<pre-signed url for font .ttf/.otf>"
                         }
                       }
                     ],
@@ -908,7 +927,8 @@
                           {
                             "variableId": "<unique template variable id>",
                             "assetIndex": 0,
-                            "scale": "no_scale"
+                            "scale": "no_scale",
+                            "matchSourceDuration": true
                           },
                           {
                             "variableId": "<unique template variable id>",
@@ -939,7 +959,8 @@
                           {
                             "variableId": "<unique template variable id>",
                             "assetIndex": 0,
-                            "scale": "fit_to_frame"
+                            "scale": "fit_to_frame",
+                            "matchSourceDuration": false
                           },
                           {
                             "variableId": "<unique template variable id>",
@@ -979,7 +1000,98 @@
                         "variationIndex": 1,
                         "presetIndex": 1,
                         "fileName": "my_custom_file_name",
-                        "destination": "<pre-signed_URL_for_output_video>"
+                        "destination": {
+                          "url": "<pre-signed upload url>"
+                        }
+                      }
+                    ]
+                  }
+                },
+                "AEPRenderExample": {
+                  "summary": "Render an AEP template with layer operations",
+                  "value": {
+                    "type": "AEP",
+                    "source": {
+                      "url": "<pre-signed aep url>",
+                      "projectFileName": "MyProject.aep",
+                      "compName": "MainComp"
+                    },
+                    "fonts": [
+                      {
+                        "name": "<Font postscript name>",
+                        "source": {
+                          "url": "<pre-signed url for font .ttf/.otf>"
+                        }
+                      }
+                    ],
+                    "config": {
+                      "handleMissingFonts": "use_default"
+                    },
+                    "assets": [
+                      {
+                        "source": {
+                          "url": "<pre-signed url for image or video asset>"
+                        }
+                      }
+                    ],
+                    "presets": [
+                      {
+                        "source": {
+                          "presetId": "ffs_video_api_vert_1920p_hq"
+                        }
+                      }
+                    ],
+                    "variations": [
+                      {
+                        "variables": [
+                          {
+                            "variableId": "<unique template variable id>",
+                            "text": "Shop for your essential gear"
+                          },
+                          {
+                            "variableId": "<unique template variable id>",
+                            "selectedSliderValue": 50
+                          },
+                          {
+                            "variableId": "<unique template variable id>",
+                            "selectedCheckboxValue": true
+                          },
+                          {
+                            "variableId": "<unique template variable id>",
+                            "selectedDropdownValue": "0"
+                          },
+                          {
+                            "variableId": "<unique template variable id>",
+                            "assetIndex": 0,
+                            "scale": "fit_to_frame",
+                            "matchSourceDuration": true
+                          }
+                        ],
+                        "layerOperations": [
+                          {
+                            "operation": "SET_LAYER_DURATION",
+                            "layerIndex": 1,
+                            "durationSeconds": 4
+                          },
+                          {
+                            "operation": "SHIFT_INPOINT",
+                            "layerIndex": 2,
+                            "targetLayerIndex": 1,
+                            "offsetFrames": 30
+                          },
+                          {
+                            "operation": "TRIM_COMP_TO_LAYER",
+                            "startLayerIndex": 1,
+                            "endLayerIndex": 4
+                          }
+                        ]
+                      }
+                    ],
+                    "outputs": [
+                      {
+                        "variationIndex": 0,
+                        "presetIndex": 0,
+                        "fileName": "aep_output"
                       }
                     ]
                   }
@@ -3450,6 +3562,260 @@
           }
         }
       }
+    },
+    "/v1/cancel/{jobId}": {
+      "put": {
+        "tags": [
+          "Dynamic Graphics Render",
+          "Manage jobs"
+        ],
+        "summary": "Cancel a render job",
+        "description": "Aborts an in-flight render job. The request is synchronous from the caller's perspective \u2014 the API returns 200 OK as soon as the cancellation has been accepted. Subsequent status lookups will report `\"status\": \"canceled\"` once the worker has stopped. Cancellation is idempotent: a PUT against a job that is already canceled also returns 200 OK. In-progress outputs are not uploaded to the destinations specified in the original Render request.",
+        "operationId": "cancel-render-job",
+        "parameters": [
+          {
+            "name": "jobId",
+            "in": "path",
+            "description": "The job identifier (UUID) returned by the Render Template API in the 202 response, also available as the `cancelUrl` property.",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Cancellation accepted. The response body may be empty.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CancelJobResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request \u2014 malformed input.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized \u2014 missing or invalid token.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden \u2014 caller does not own this resource.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found \u2014 the specified job does not exist.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Conflict \u2014 the job is already in a terminal state and cannot be canceled.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Too Many Requests \u2014 rate limit exceeded.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "AccessToken": []
+          },
+          {
+            "X-Api-Key": []
+          }
+        ]
+      }
+    },
+    "/v1/templates/render/jobs": {
+      "get": {
+        "tags": [
+          "Dynamic Graphics Render",
+          "Manage jobs"
+        ],
+        "summary": "List render jobs",
+        "description": "Returns the list of render jobs owned by the caller, optionally filtered by job status. Useful for discovering all currently running renders before issuing cancels, and for building admin dashboards. Results are paginated; use `paging.nextUrl` to fetch subsequent pages.",
+        "operationId": "list-render-jobs",
+        "parameters": [
+          {
+            "name": "status",
+            "in": "query",
+            "description": "Filter by job status. Allowed values match the Status API enum. Omit to return jobs in all states.",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "not_started",
+                "running",
+                "succeeded",
+                "partially_succeeded",
+                "failed",
+                "canceled"
+              ]
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "Maximum number of jobs to return per page (default 20, max 100).",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "default": 20,
+              "minimum": 1,
+              "maximum": 100
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success \u2014 paginated list of jobs (possibly empty).",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ListJobsResponse"
+                },
+                "examples": {
+                  "FirstPageExample": {
+                    "summary": "First page with more pages available",
+                    "value": {
+                      "jobs": [
+                        {
+                          "jobId": "a1b2c3d4-e5f6-7890-abcd-ef1234567890",
+                          "status": "running",
+                          "statusUrl": "https://audio-video-api.adobe.io/v1/status/a1b2c3d4-e5f6-7890-abcd-ef1234567890",
+                          "cancelUrl": "https://audio-video-api.adobe.io/v1/cancel/a1b2c3d4-e5f6-7890-abcd-ef1234567890",
+                          "createdAt": "2025-05-13T10:00:00Z"
+                        }
+                      ],
+                      "paging": {
+                        "nextUrl": "https://audio-video-api.adobe.io/v1/templates/render/jobs?limit=20&cursor=eyJsYXN0S2V5IjoiYWJjIn0",
+                        "totalRecords": 42
+                      }
+                    }
+                  },
+                  "EmptyResultExample": {
+                    "summary": "No jobs match the filter",
+                    "value": {
+                      "jobs": [],
+                      "paging": {
+                        "totalRecords": 0
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request \u2014 malformed input.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized \u2014 missing or invalid token.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden \u2014 caller does not own this resource.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Too Many Requests \u2014 rate limit exceeded.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "AccessToken": []
+          },
+          {
+            "X-Api-Key": []
+          }
+        ]
+      }
     }
   },
   "components": {
@@ -3987,9 +4353,10 @@
           "pending",
           "running",
           "failed",
-          "succeeded"
+          "succeeded",
+          "canceled"
         ],
-        "description": "Status of the job."
+        "description": "Status of the job. Includes \"canceled\" for jobs aborted via the Cancel API."
       },
       "StatusAPIInprogressResponse": {
         "type": "object",
@@ -4078,6 +4445,14 @@
           "source"
         ],
         "properties": {
+          "type": {
+            "type": "string",
+            "enum": [
+              "MOGRT",
+              "AEP"
+            ],
+            "description": "Template type. Supported values: MOGRT (Motion Graphics Template) or AEP (After Effects Project)."
+          },
           "source": {
             "type": "object",
             "required": [
@@ -4088,6 +4463,14 @@
                 "type": "string",
                 "format": "uri",
                 "description": "A pre-signed URL pointing to the input template file."
+              },
+              "projectFileName": {
+                "type": "string",
+                "description": "Optional. Name of the After Effects project file (.aep). Required when type is AEP."
+              },
+              "compName": {
+                "type": "string",
+                "description": "Optional. Name of the After Effects composition to describe. Used when type is AEP."
               }
             },
             "description": "Contains metadata about the source of the input template."
@@ -4206,6 +4589,14 @@
           "variations"
         ],
         "properties": {
+          "type": {
+            "type": "string",
+            "enum": [
+              "MOGRT",
+              "AEP"
+            ],
+            "description": "Template type. Supported values: MOGRT (Motion Graphics Template) or AEP (After Effects Project)."
+          },
           "source": {
             "type": "object",
             "required": [
@@ -4216,13 +4607,21 @@
                 "type": "string",
                 "format": "uri",
                 "description": "A pre-signed URL pointing to the input template file."
+              },
+              "projectFileName": {
+                "type": "string",
+                "description": "Optional. Name of the After Effects project file (.aep). Required when type is AEP."
+              },
+              "compName": {
+                "type": "string",
+                "description": "Optional. Name of the After Effects composition to render. Used when type is AEP."
               }
             },
             "description": "Contains metadata about the source of the input template."
           },
           "fonts": {
             "type": "array",
-            "description": "Array of fonts to be used in the template.",
+            "description": "List of fonts required to process provided variations. Font name must be the PostScript name.",
             "items": {
               "type": "object",
               "required": [
@@ -4243,7 +4642,7 @@
                     "url": {
                       "type": "string",
                       "format": "uri",
-                      "description": "Pre-signed URL for the font file (.ttf/.otf)."
+                      "description": "Pre-signed URL for the font file (.ttf or .otf)."
                     }
                   }
                 }
@@ -4252,7 +4651,7 @@
           },
           "config": {
             "type": "object",
-            "description": "Configuration options for the render request.",
+            "description": "Global configuration options for the render request.",
             "properties": {
               "handleMissingFonts": {
                 "type": "string",
@@ -4261,13 +4660,13 @@
                   "use_default"
                 ],
                 "default": "use_default",
-                "description": "How to handle missing fonts. 'fail' will cause the render to fail; 'use_default' will use Premiere Pro fallback behavior."
+                "description": "How to handle missing fonts. 'fail' causes the render to fail; 'use_default' falls back to Adobe apps default font behavior."
               }
             }
           },
           "assets": {
             "type": "array",
-            "description": "Array of image, video, or audio assets referenced by variations via assetIndex.",
+            "description": "Consolidated list of image, video, or audio assets. Referenced in variations by zero-based assetIndex.",
             "items": {
               "type": "object",
               "required": [
@@ -4292,7 +4691,7 @@
           },
           "presets": {
             "type": "array",
-            "description": "Array of export presets. Each item is either a built-in preset (by presetId) or a custom preset (by URL). Outputs reference presets by presetIndex.",
+            "description": "Export presets for rendering variations. Each item is a built-in preset (by presetId) or a custom preset (by URL). Referenced in outputs by zero-based presetIndex.",
             "items": {
               "type": "object",
               "required": [
@@ -4304,7 +4703,7 @@
                   "properties": {
                     "presetId": {
                       "type": "string",
-                      "description": "ID of a built-in preset from the presets endpoint."
+                      "description": "ID of a built-in preset from the GET /v1/presets endpoint."
                     },
                     "url": {
                       "type": "string",
@@ -4318,7 +4717,7 @@
           },
           "variations": {
             "type": "array",
-            "description": "List of variations. Each variation contains variable overrides applied to the template.",
+            "description": "List of variations. Each variation specifies variable overrides and optional layer operations to apply on the template.",
             "minItems": 1,
             "items": {
               "type": "object",
@@ -4328,7 +4727,7 @@
               "properties": {
                 "variables": {
                   "type": "array",
-                  "description": "Variable overrides for this variation. Each object targets one template variable by variableId and supplies the override value.",
+                  "description": "Variable overrides for this variation. Each item targets one template variable by variableId.",
                   "items": {
                     "type": "object",
                     "required": [
@@ -4337,31 +4736,31 @@
                     "properties": {
                       "variableId": {
                         "type": "string",
-                        "description": "Unique identifier for the template variable (from describe response)."
-                      },
-                      "selectedCheckboxValue": {
-                        "type": "boolean",
-                        "description": "Override for checkbox controls."
-                      },
-                      "selectedDropdownValue": {
-                        "type": "string",
-                        "description": "Override for dropdown controls."
-                      },
-                      "selectedSliderValue": {
-                        "type": "number",
-                        "description": "Override for slider controls."
+                        "description": "Unique identifier for the template variable, obtained from the Describe API response."
                       },
                       "text": {
                         "type": "string",
-                        "description": "Override for text controls."
+                        "description": "Override value for text controls."
                       },
                       "fontName": {
                         "type": "string",
-                        "description": "PostScript font name for text controls."
+                        "description": "PostScript font name to use for text controls."
+                      },
+                      "selectedCheckboxValue": {
+                        "type": "boolean",
+                        "description": "Override value for checkbox controls."
+                      },
+                      "selectedDropdownValue": {
+                        "type": "string",
+                        "description": "Override value for dropdown controls. Must match one of the option keys from the Describe API response."
+                      },
+                      "selectedSliderValue": {
+                        "type": "number",
+                        "description": "Override value for slider controls. Must be within the range specified in the Describe API response."
                       },
                       "assetIndex": {
                         "type": "integer",
-                        "description": "Index into the assets array for media or audio controls."
+                        "description": "Zero-based index into the assets array. Used for media and audio controls."
                       },
                       "scale": {
                         "type": "string",
@@ -4371,7 +4770,11 @@
                           "stretch_to_fill",
                           "fill_frame"
                         ],
-                        "description": "Scaling behavior for media controls."
+                        "description": "Scaling behavior for media controls. Must be one of the possibleScaleValues from the Describe API response."
+                      },
+                      "matchSourceDuration": {
+                        "type": "boolean",
+                        "description": "If true, trims or extends the duration of the affected layer to match the duration of its source footage. Applicable for media controls."
                       },
                       "audioPreference": {
                         "type": "string",
@@ -4379,7 +4782,61 @@
                           "replace",
                           "mix"
                         ],
-                        "description": "Audio preference for audio controls."
+                        "default": "replace",
+                        "description": "Audio handling preference for audio controls. 'replace' replaces the existing audio track; 'mix' mixes with the existing audio."
+                      }
+                    }
+                  }
+                },
+                "layerOperations": {
+                  "type": "array",
+                  "description": "List of layer-level operations to apply on the template. Applicable only for AEP template type.",
+                  "items": {
+                    "type": "object",
+                    "required": [
+                      "operation"
+                    ],
+                    "properties": {
+                      "operation": {
+                        "type": "string",
+                        "enum": [
+                          "SET_LAYER_DURATION",
+                          "SHIFT_INPOINT",
+                          "TRIM_COMP_TO_LAYER"
+                        ],
+                        "description": "The layer operation to perform. SET_LAYER_DURATION sets the duration of a layer. SHIFT_INPOINT shifts the in-point of a layer relative to another. TRIM_COMP_TO_LAYER trims the composition duration to span specific layers."
+                      },
+                      "layerIndex": {
+                        "type": "integer",
+                        "description": "Zero-based index of the target layer. Used by SET_LAYER_DURATION and SHIFT_INPOINT."
+                      },
+                      "targetLayerIndex": {
+                        "type": "integer",
+                        "description": "Zero-based index of the reference layer. Used by SHIFT_INPOINT to define the layer whose position is used as reference."
+                      },
+                      "startLayerIndex": {
+                        "type": "integer",
+                        "description": "Zero-based index of the first layer defining the start boundary. Used by TRIM_COMP_TO_LAYER."
+                      },
+                      "endLayerIndex": {
+                        "type": "integer",
+                        "description": "Zero-based index of the last layer defining the end boundary. Used by TRIM_COMP_TO_LAYER."
+                      },
+                      "offsetFrames": {
+                        "type": "integer",
+                        "description": "Frame offset for the operation. Used by SHIFT_INPOINT."
+                      },
+                      "offsetSeconds": {
+                        "type": "number",
+                        "description": "Time offset in seconds for the operation. Used by SHIFT_INPOINT."
+                      },
+                      "durationFrames": {
+                        "type": "integer",
+                        "description": "Duration in frames. Used by SET_LAYER_DURATION."
+                      },
+                      "durationSeconds": {
+                        "type": "number",
+                        "description": "Duration in seconds. Used by SET_LAYER_DURATION."
                       }
                     }
                   }
@@ -4389,7 +4846,7 @@
           },
           "outputs": {
             "type": "array",
-            "description": "Defines which variation and preset combinations to render and optional output file names.",
+            "description": "Defines which variation and preset combinations to render, with optional output file name and upload destination.",
             "items": {
               "type": "object",
               "required": [
@@ -4399,19 +4856,29 @@
               "properties": {
                 "variationIndex": {
                   "type": "integer",
-                  "description": "Zero-based index of the variation to render."
+                  "description": "Zero-based index of the variation from the variations array."
                 },
                 "presetIndex": {
                   "type": "integer",
-                  "description": "Zero-based index of the preset in the presets array."
+                  "description": "Zero-based index of the preset from the presets array."
                 },
                 "fileName": {
                   "type": "string",
-                  "description": "Optional custom file name for the output."
+                  "description": "Optional preferred output file name (without extension)."
                 },
                 "destination": {
-                  "type": "string",
-                  "description": "A pre-signed URL destination for the video output."
+                  "type": "object",
+                  "description": "Optional. Pre-signed URL destination where the rendered output should be uploaded.",
+                  "properties": {
+                    "url": {
+                      "type": "string",
+                      "format": "uri",
+                      "description": "Pre-signed URL where the output file will be uploaded."
+                    }
+                  },
+                  "required": [
+                    "url"
+                  ]
                 }
               }
             }
@@ -4433,6 +4900,11 @@
             "type": "string",
             "format": "uri",
             "description": "URL to poll for the status of the rendering job."
+          },
+          "cancelUrl": {
+            "type": "string",
+            "format": "uri",
+            "description": "URL to cancel this render job. Equivalent to PUT /v1/cancel/{jobId}."
           }
         }
       },
@@ -4454,7 +4926,8 @@
               "running",
               "succeeded",
               "failed",
-              "partially_succeeded"
+              "partially_succeeded",
+              "canceled"
             ],
             "description": "Current status of the job."
           },
@@ -4581,9 +5054,10 @@
                     "type": {
                       "type": "string",
                       "enum": [
-                        "mogrt"
+                        "MOGRT",
+                        "AEP"
                       ],
-                      "description": "Type of the element."
+                      "description": "Type of the element: MOGRT (Motion Graphics Template) or AEP (After Effects Project)."
                     },
                     "controls": {
                       "type": "array",
@@ -4672,6 +5146,40 @@
                           "text": {
                             "type": "string",
                             "description": "Comment text for comment controls."
+                          },
+                          "ref": {
+                            "type": "object",
+                            "description": "Hierarchical reference for the control within the composition/layer structure. Present only for AEP template type.",
+                            "properties": {
+                              "compName": {
+                                "type": "string",
+                                "description": "Name of the composition containing the control."
+                              },
+                              "layerIndex": {
+                                "type": "integer",
+                                "description": "Index of the layer within the composition."
+                              },
+                              "epIndex": {
+                                "type": "integer",
+                                "description": "Index of the Essential Graphics property within the layer."
+                              },
+                              "effectIndex": {
+                                "type": "integer",
+                                "description": "Index of the effect within the layer (for effect-based controls)."
+                              },
+                              "layerPath": {
+                                "type": "string",
+                                "description": "Full hierarchical path of the layer (e.g., 'CompA > CompB > LayerName')."
+                              },
+                              "matchName": {
+                                "type": "string",
+                                "description": "After Effects internal match name for the property."
+                              },
+                              "sourceName": {
+                                "type": "string",
+                                "description": "Original source file name of the layer (for footage/media layers)."
+                              }
+                            }
                           }
                         }
                       }
@@ -5492,6 +6000,87 @@
           }
         },
         "description": "Configuration for composing elements on the video."
+      },
+      "CancelJobResponse": {
+        "type": "object",
+        "description": "Response body for a successful cancel request. May be empty per the Adobe Style Guide.",
+        "properties": {}
+      },
+      "PagingInfo": {
+        "type": "object",
+        "description": "Pagination metadata returned by list endpoints.",
+        "properties": {
+          "nextUrl": {
+            "type": "string",
+            "format": "uri",
+            "description": "URL for the next page of results. Omitted on the last page; its absence signals the end of the result set."
+          },
+          "totalRecords": {
+            "type": "integer",
+            "description": "Total number of records matching the query (may be approximate for large sets)."
+          }
+        }
+      },
+      "JobListItem": {
+        "type": "object",
+        "required": [
+          "jobId",
+          "status"
+        ],
+        "description": "Summary of a single render job in the list response.",
+        "properties": {
+          "jobId": {
+            "type": "string",
+            "format": "uuid",
+            "description": "Unique identifier for the job."
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "not_started",
+              "running",
+              "succeeded",
+              "partially_succeeded",
+              "failed",
+              "canceled"
+            ],
+            "description": "Current status of the job."
+          },
+          "statusUrl": {
+            "type": "string",
+            "format": "uri",
+            "description": "URL to query the full job status and result."
+          },
+          "cancelUrl": {
+            "type": "string",
+            "format": "uri",
+            "description": "URL to cancel this job. Only present for jobs in a non-terminal state."
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time",
+            "description": "ISO 8601 timestamp when the job was created."
+          }
+        }
+      },
+      "ListJobsResponse": {
+        "type": "object",
+        "required": [
+          "jobs"
+        ],
+        "description": "Paginated list of render jobs owned by the caller.",
+        "properties": {
+          "jobs": {
+            "type": "array",
+            "description": "Array of job summaries for the current page.",
+            "items": {
+              "$ref": "#/components/schemas/JobListItem"
+            }
+          },
+          "paging": {
+            "$ref": "#/components/schemas/PagingInfo"
+          }
+        }
       }
     },
     "examples": {
@@ -7099,6 +7688,115 @@
           "jobId": "6b77c479-b599-46d3-a6bc-307b5389c105",
           "status": "failed",
           "message": "Error extracting definition.json: [Errno 2] No such file or directory: '6b77c479-b599-46d3-a6bc-307b5389c105/template.zip'"
+        }
+      },
+      "DGRDescribeAEPSuccess": {
+        "summary": "Describe AEP template - succeeded",
+        "value": {
+          "jobId": "<job_ID>",
+          "status": "succeeded",
+          "output": {
+            "fonts": [
+              {
+                "name": "<font_name_1>",
+                "uploadRequired": false
+              },
+              {
+                "name": "<font_name_2>",
+                "uploadRequired": true
+              }
+            ],
+            "elements": [
+              {
+                "type": "AEP",
+                "controls": [
+                  {
+                    "variableId": "<variable_id_1>",
+                    "label": "Subtitle Text",
+                    "type": "text",
+                    "defaultData": {
+                      "text": "Shop for your essential gear",
+                      "fontName": "SourceSansPro-Bold"
+                    },
+                    "ref": {
+                      "compName": "WKND_ProductShowcase_1-1_DGRDemo_Beginner",
+                      "layerIndex": 1,
+                      "epIndex": 1,
+                      "layerPath": "WKND_ProductShowcase_1-1_DGRDemo_Beginner > Outro 1-1 Beginner",
+                      "matchName": "ADBE EP Text Document"
+                    }
+                  },
+                  {
+                    "variableId": "<variable_id_2>",
+                    "label": "Border Width",
+                    "type": "slider",
+                    "defaultData": {
+                      "selectedSliderValue": 50
+                    },
+                    "range": {
+                      "minimum": 0,
+                      "maximum": 100
+                    },
+                    "ref": {
+                      "compName": "Outro 1-1 Beginner",
+                      "layerIndex": 1,
+                      "effectIndex": 1,
+                      "layerPath": "WKND_ProductShowcase_1-1_DGRDemo_Beginner > Outro 1-1 Beginner > CONTROLS",
+                      "matchName": "ADBE Slider Control"
+                    }
+                  },
+                  {
+                    "variableId": "<variable_id_3>",
+                    "label": "Logo",
+                    "type": "media",
+                    "size": {
+                      "width": 240,
+                      "height": 90
+                    },
+                    "possibleScaleValues": [
+                      "no_scale",
+                      "fit_to_frame",
+                      "stretch_to_fill",
+                      "fill_frame"
+                    ],
+                    "ref": {
+                      "compName": "Logo Box",
+                      "layerIndex": 2,
+                      "layerPath": "WKND_ProductShowcase_1-1_DGRDemo_Beginner > Outro 1-1 Beginner > Logo Box > Logo",
+                      "sourceName": "WKND Logo.eps",
+                      "matchName": "footage_source"
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      },
+      "DGRRenderPartialSuccessWithDestination": {
+        "summary": "Render with partial success and custom output destination",
+        "value": {
+          "jobId": "<job_ID>",
+          "status": "partially_succeeded",
+          "outputs": [
+            {
+              "destination": {
+                "url": "https://mogrt-outputs-prod.s3.amazonaws.com/27776956-d405-4754-97e9-7e9cfd3809af/some_custom_file_name.mp4"
+              },
+              "variationIndex": 0,
+              "presetIndex": 0
+            }
+          ],
+          "errors": [
+            {
+              "variationIndex": 1,
+              "presetIndex": 0,
+              "error": {
+                "error_code": "validation_error",
+                "message": "You have exceeded the limit for the number of variations."
+              }
+            }
+          ]
         }
       }
     }
