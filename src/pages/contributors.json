@@ -6,12 +6,13 @@
     {
       "page": "/",
       "avatars": [
+        "https://avatars.githubusercontent.com/u/144417046?v=4",
         "https://avatars.githubusercontent.com/u/195011431?v=4",
         "https://avatars.githubusercontent.com/u/8681544?v=4",
         "https://avatars.githubusercontent.com/u/41382203?v=4",
         "https://avatars.githubusercontent.com/u/200883220?v=4"
       ],
-      "lastUpdated": "5/14/2026"
+      "lastUpdated": "6/1/2026"
     },
     {
       "page": "/api/",
@@ -59,9 +60,10 @@
     {
       "page": "/getting-started/usage/",
       "avatars": [
+        "https://avatars.githubusercontent.com/u/144417046?v=4",
         "https://avatars.githubusercontent.com/u/195011431?v=4"
       ],
-      "lastUpdated": "4/3/2026"
+      "lastUpdated": "6/3/2026"
     },
     {
       "page": "/guides/",
@@ -116,11 +118,12 @@
     {
       "page": "/guides/dgr/dgr-render",
       "avatars": [
+        "https://avatars.githubusercontent.com/u/144417046?v=4",
         "https://avatars.githubusercontent.com/u/195011431?v=4",
         "https://avatars.githubusercontent.com/u/278599571?v=4",
         "https://avatars.githubusercontent.com/u/8681544?v=4"
       ],
-      "lastUpdated": "5/14/2026"
+      "lastUpdated": "6/3/2026"
     },
     {
       "page": "/guides/dgr/dgr-sample-mogrt-wknd",

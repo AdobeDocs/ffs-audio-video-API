@@ -284,6 +284,26 @@ The current limitations are:
 
 **Get Result endpoint (/status/\{jobId}):** 100 requests per minute.
 
+## Cancel and List Render Jobs API usage
+
+The Cancel and List Render Jobs endpoints apply **only to render jobs submitted via `POST /v1/templates/render`**.
+
+### Request limits
+
+To ensure equitable peak performance, Adobe places limits on the volume, frequency, and concurrency of API calls, and monitors API usage to proactively resolve any risks to performance.
+
+<InlineAlert variant="warning" slots="text1" />
+
+These usage limits apply to your entire organization. \<br/\>
+
+The current limitations are:
+
+**Cancel Render Job endpoint (`PUT /v1/cancel/{jobId}`):** 2 requests per minute.
+
+**List Render Jobs endpoint (`GET /v1/templates/render-jobs`):** 2 requests per minute.
+
+You'll encounter a `HTTP 429 - Too Many Requests` error if usage exceeds the limits. Use the `retry-after` header to determine how long to wait before retrying.
+
 ## Dynamic Graphics Render API usage
 
 ### Error Handling
