@@ -401,7 +401,7 @@
           "Manage jobs"
         ],
         "summary": "Get job status",
-        "description": "Provides the status and result of an asynchronous job. For Dynamic Graphics Render (DGR), returns the status of a Describe template or Render job.",
+        "description": "Provides the status and result of an asynchronous job. For Dynamic Graphics Render (DGR) render API, returns detailed status of render job initiated.",
         "operationId": "status",
         "parameters": [
           {
@@ -432,32 +432,23 @@
                   "StatusAPIFailedInputFileDownloadResponse": {
                     "$ref": "#/components/examples/StatusAPIFailedInputFileDownloadResponse"
                   },
-                  "DGRJobStatusNotStarted": {
-                    "$ref": "#/components/examples/DGRJobStatusNotStarted"
+                  "DGRRenderNotStarted": {
+                    "$ref": "#/components/examples/DGRRenderNotStarted"
                   },
-                  "DGRJobStatusRunning": {
-                    "$ref": "#/components/examples/DGRJobStatusRunning"
+                  "DGRRenderTwoVariationsCompleted": {
+                    "$ref": "#/components/examples/DGRRenderTwoVariationsCompleted"
                   },
-                  "DGRDescribeSuccess": {
-                    "$ref": "#/components/examples/DGRDescribeSuccess"
+                  "DGRRenderPartiallySucceeded": {
+                    "$ref": "#/components/examples/DGRRenderPartiallySucceeded"
                   },
-                  "DGRRenderSuccessSingle": {
-                    "$ref": "#/components/examples/DGRRenderSuccessSingle"
+                  "DGRRenderCanceled": {
+                    "$ref": "#/components/examples/DGRRenderCanceled"
                   },
-                  "DGRRenderSuccessMultiple": {
-                    "$ref": "#/components/examples/DGRRenderSuccessMultiple"
+                  "DGRRenderRunning": {
+                    "$ref": "#/components/examples/DGRRenderRunning"
                   },
-                  "DGRRenderPartialSuccess": {
-                    "$ref": "#/components/examples/DGRRenderPartialSuccess"
-                  },
-                  "DGRRenderSuccessTwoVariations": {
-                    "$ref": "#/components/examples/DGRRenderSuccessTwoVariations"
-                  },
-                  "DGRJobFailed": {
-                    "$ref": "#/components/examples/DGRJobFailed"
-                  },
-                  "DGRJobCanceled": {
-                    "$ref": "#/components/examples/DGRJobCanceled"
+                  "DGRRenderFailed": {
+                    "$ref": "#/components/examples/DGRRenderFailed"
                   },
                   "StatusAPIFailedMediatypeMismatchResponse": {
                     "$ref": "#/components/examples/StatusAPIFailedMediatypeMismatchResponse"
@@ -7387,238 +7378,66 @@
           ]
         }
       },
-      "DGRJobStatusNotStarted": {
-        "summary": "DGR job not started",
+      "DGRRenderNotStarted": {
+        "summary": "DGR render succeeded (job not started)",
         "value": {
           "status": "not_started",
-          "jobId": "<the_jobID_GUID>"
+          "jobId": "27776956-d405-4754-97e9-7e9cfd3809af"
         }
       },
-      "DGRJobStatusRunning": {
-        "summary": "DGR job running",
-        "value": {
-          "status": "running",
-          "percentCompleted": "55",
-          "jobId": "<the_jobID_GUID>"
-        }
-      },
-      "DGRDescribeSuccess": {
-        "summary": "DGR describe template succeeded",
-        "value": {
-          "jobId": "<jobId GUID in the 202 response>",
-          "status": "succeeded",
-          "output": {
-            "fonts": [
-              {
-                "name": "FranklinGothicURW-Boo",
-                "uploadRequired": false
-              },
-              {
-                "name": "<Font postscript name>",
-                "uploadRequired": true
-              }
-            ],
-            "elements": [
-              {
-                "type": "mogrt",
-                "controls": [
-                  {
-                    "variableId": "<unique id for template variable>",
-                    "label": "Headline",
-                    "type": "text",
-                    "defaultData": {
-                      "text": "This is your headline.",
-                      "fontName": "FranklinGothicURW-Boo"
-                    }
-                  },
-                  {
-                    "variableId": "<unique id for template variable>",
-                    "label": "Show Extra?",
-                    "type": "checkbox",
-                    "defaultData": {
-                      "selectedCheckboxValue": true
-                    },
-                    "options": [
-                      true,
-                      false
-                    ]
-                  },
-                  {
-                    "variableId": "<unique id for template variable>",
-                    "label": "Choices Dropdown",
-                    "type": "dropdown",
-                    "defaultData": {
-                      "selectedDropdownValue": "2"
-                    },
-                    "options": {
-                      "0": "AAA",
-                      "1": "BBB",
-                      "2": "CCC",
-                      "3": "DDD",
-                      "4": "EEE"
-                    }
-                  },
-                  {
-                    "variableId": "<unique id for template variable>",
-                    "label": "Size selector",
-                    "type": "slider",
-                    "defaultData": {
-                      "selectedSliderValue": 1
-                    },
-                    "range": {
-                      "minimum": 1,
-                      "maximum": 5
-                    }
-                  },
-                  {
-                    "variableId": "<unique id for template variable>",
-                    "label": "Logo",
-                    "type": "media",
-                    "size": {
-                      "width": 1344,
-                      "height": 768
-                    },
-                    "defaultData": {
-                      "scale": "no_scale"
-                    },
-                    "possibleScaleValues": [
-                      "no_scale",
-                      "fit_to_frame",
-                      "stretch_to_fill",
-                      "fill_frame"
-                    ]
-                  },
-                  {
-                    "variableId": "<unique id for template variable>",
-                    "label": "Mogrt Audio",
-                    "type": "audio",
-                    "durationInSeconds": 22.3,
-                    "possibleAudioPreferences": [
-                      "replace",
-                      "mix"
-                    ]
-                  },
-                  {
-                    "label": "Logo comment",
-                    "type": "comment",
-                    "text": "Add your company logo here."
-                  }
-                ]
-              }
-            ]
-          }
-        }
-      },
-      "DGRRenderSuccessSingle": {
-        "summary": "DGR render succeeded (single output)",
-        "value": {
-          "jobId": "<jobId>",
-          "status": "succeeded",
-          "outputs": [
-            {
-              "variationIndex": 0,
-              "presetIndex": 0,
-              "destination": {
-                "url": "https://<SIGNED_OUTPUT_URL>.mp4"
-              }
-            }
-          ]
-        }
-      },
-      "DGRRenderSuccessMultiple": {
-        "summary": "DGR render succeeded (multiple outputs)",
-        "value": {
-          "jobId": "<jobId>",
-          "status": "succeeded",
-          "outputs": [
-            {
-              "variationIndex": 0,
-              "presetIndex": 0,
-              "destination": {
-                "url": "https://<SIGNED_OUTPUT_URL>.mp4"
-              }
-            },
-            {
-              "variationIndex": 0,
-              "presetIndex": 1,
-              "destination": {
-                "url": "https://<SIGNED_OUTPUT_URL>.mp4"
-              }
-            }
-          ]
-        }
-      },
-      "DGRRenderPartialSuccess": {
-        "summary": "DGR render partially succeeded",
-        "value": {
-          "jobId": "<jobId>",
-          "status": "partially_succeeded",
-          "outputs": [
-            {
-              "variationIndex": 1,
-              "presetIndex": 0,
-              "destination": {
-                "url": "https://<SIGNED_OUTPUT_URL>.mp4"
-              }
-            }
-          ],
-          "errors": [
-            {
-              "variationIndex": 0,
-              "presetIndex": 0,
-              "error": {
-                "error_code": "validation_error",
-                "message": "You have exceeded the limit for..."
-              }
-            }
-          ]
-        }
-      },
-      "DGRRenderSuccessTwoVariations": {
-        "summary": "DGR render succeeded (two variations)",
-        "value": {
-          "jobId": "<jobId>",
-          "status": "succeeded",
-          "outputs": [
-            {
-              "variationIndex": 0,
-              "presetIndex": 0,
-              "destination": {
-                "url": "https://<SIGNED_OUTPUT_URL>.mp4"
-              }
-            },
-            {
-              "variationIndex": 1,
-              "presetIndex": 0,
-              "destination": {
-                "url": "https://<SIGNED_OUTPUT_URL>.mp4"
-              }
-            }
-          ]
-        }
-      },
-      "DGRJobFailed": {
-        "summary": "DGR job failed",
-        "value": {
-          "jobId": "6b77c479-b599-46d3-a6bc-307b5389c105",
-          "status": "failed",
-          "message": "Error extracting definition.json: [Errno 2] No such file or directory: '6b77c479-b599-46d3-a6bc-307b5389c105/template.zip'"
-        }
-      },
-      "DGRJobCanceled": {
-        "summary": "DGR render job canceled (applies only to render jobs from POST /v1/templates/render)",
+      "DGRRenderTwoVariationsCompleted": {
+        "summary": "DGR render succeeded (job with 2 variations completed)",
         "value": {
           "jobId": "27776956-d405-4754-97e9-7e9cfd3809af",
-          "status": "canceled",
-          "createdDate": "2024-02-21T14:00:00Z",
+          "status": "succeeded",
+          "createdDate": "2024-02-21T14:07:17Z",
           "totalJobItems": 3,
           "outputs": [
             {
               "destination": {
                 "url": "https://mogrt-outputs-prod.s3.amazonaws.com/27776956-d405-4754-97e9-7e9cfd3809af/some_custom_file_name.mp4"
               },
-              "startedDate": "2024-02-21T14:05:00Z",
               "completedDate": "2024-02-21T14:07:17Z",
+              "startedDate": "2024-02-21T14:07:17Z",
+              "variationIndex": 0,
+              "presetIndex": 0
+            },
+            {
+              "destination": {
+                "url": "https://mogrt-outputs-prod.s3.amazonaws.com/27776956-d405-4754-97e9-7e9cfd3809af/output_vert_1920p_hq.mp4"
+              },
+              "completedDate": "2024-02-21T14:07:17Z",
+              "startedDate": "2024-02-21T14:07:17Z",
+              "variationIndex": 1,
+              "presetIndex": 0
+            },
+            {
+              "destination": {
+                "url": "https://mogrt-outputs-prod.s3.amazonaws.com/27776956-d405-4754-97e9-7e9cfd3809af/my_custom_file_name.mp4"
+              },
+              "completedDate": "2024-02-21T14:07:17Z",
+              "startedDate": "2024-02-21T14:05:00Z",
+              "variationIndex": 1,
+              "presetIndex": 1
+            }
+          ]
+        }
+      },
+      "DGRRenderPartiallySucceeded": {
+        "summary": "DGR render succeeded (job partially succeeded)",
+        "value": {
+          "jobId": "27776956-d405-4754-97e9-7e9cfd3809af",
+          "status": "partially_succeeded",
+          "retryPayloadUrl": "<pre-signed-url-for-retry-payload>",
+          "createdDate": "2024-02-21T14:07:17Z",
+          "totalJobItems": 2,
+          "outputs": [
+            {
+              "destination": {
+                "url": "https://mogrt-outputs-prod.s3.amazonaws.com/27776956-d405-4754-97e9-7e9cfd3809af/some_custom_file_name.mp4"
+              },
+              "completedDate": "2024-02-21T14:07:17Z",
+              "startedDate": "2024-02-21T14:05:00Z",
               "variationIndex": 0,
               "presetIndex": 0
             }
@@ -7627,12 +7446,88 @@
             {
               "variationIndex": 1,
               "presetIndex": 0,
+              "completedDate": "2024-02-21T14:06:00Z",
+              "startedDate": "2024-02-21T14:05:30Z",
               "error": {
                 "error_code": "validation_error",
                 "message": "You have exceeded the limit for..."
               }
             }
           ]
+        }
+      },
+      "DGRRenderCanceled": {
+        "summary": "DGR render succeeded (canceled job)",
+        "value": {
+          "jobId": "27776956-d405-4754-97e9-7e9cfd3809af",
+          "status": "canceled",
+          "createdDate": "2024-02-21T14:07:17Z",
+          "totalJobItems": 2,
+          "outputs": [
+            {
+              "destination": {
+                "url": "https://mogrt-outputs-prod.s3.amazonaws.com/27776956-d405-4754-97e9-7e9cfd3809af/some_custom_file_name.mp4"
+              },
+              "completedDate": "2024-02-21T14:07:17Z",
+              "startedDate": "2024-02-21T14:05:00Z",
+              "variationIndex": 0,
+              "presetIndex": 0
+            }
+          ],
+          "errors": [
+            {
+              "variationIndex": 1,
+              "presetIndex": 0,
+              "completedDate": "2024-02-21T14:07:17Z",
+              "startedDate": "2024-02-21T14:05:00Z",
+              "error": {
+                "error_code": "validation_error",
+                "message": "You have exceeded the limit for..."
+              }
+            }
+          ]
+        }
+      },
+      "DGRRenderRunning": {
+        "summary": "DGR render succeeded (job still running)",
+        "value": {
+          "jobId": "27776956-d405-4754-97e9-7e9cfd3809af",
+          "status": "running",
+          "createdDate": "2024-02-21T14:00:00Z",
+          "totalJobItems": 3,
+          "outputs": [
+            {
+              "destination": {
+                "url": "https://mogrt-outputs-prod.s3.amazonaws.com/27776956-d405-4754-97e9-7e9cfd3809af/some_custom_file_name.mp4"
+              },
+              "completedDate": "2024-02-21T14:07:17Z",
+              "startedDate": "2024-02-21T14:05:00Z",
+              "variationIndex": 0,
+              "presetIndex": 0
+            }
+          ],
+          "errors": [
+            {
+              "variationIndex": 2,
+              "presetIndex": 0,
+              "completedDate": "2024-02-21T14:07:17Z",
+              "startedDate": "2024-02-21T14:04:00Z",
+              "error": {
+                "error_code": "validation_error",
+                "message": "You have exceeded the limit for..."
+              }
+            }
+          ]
+        }
+      },
+      "DGRRenderFailed": {
+        "summary": "DGR render succeeded (job failed)",
+        "value": {
+          "status": "failed",
+          "jobId": "27776956-d405-4754-97e9-7e9cfd3809af",
+          "createdDate": "2024-02-21T14:00:00Z",
+          "error_code": "validation_error",
+          "message": "error description"
         }
       },
       "CancelAccepted": {

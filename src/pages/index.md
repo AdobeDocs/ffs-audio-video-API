@@ -81,16 +81,13 @@ This API ingests Adobe After Effect's (AE) Motion Graphics Templates (MOGRTs), e
 
 The API workflow is simple and powerful. It mirrors other video API's asynchronous job model:
 
-1. **Discover presets** using the Get Presets API.  
-   Use our predefined social presets or your own custom ones.
+1. **Discover presets** using the Get Presets API. Use our predefined social presets or your own custom ones.
 
-2. **Describe a template** to retrieve editable controls.  
-   These are Essential Graphics parameters defined in MOGRT.
+2. **Describe a template** to retrieve editable controls. These are Essential Graphics parameters defined in MOGRT.
 
-3. **Render template variations** with defined assets and presets.  
-   Render up to 500 variations of the same template in a single call.
+3. **Render template variations** with defined assets and presets. Render up to 500 variations of the same template in a single call. Ability to define the output file and give custom storage locations.
 
-4. **Get Status** with a job ID to poll the current state of a Describe or Render job. The response includes job status (`pending`, `running`, `succeeded`, `failed`, or `cancelled`) and, upon success, signed output URLs for each rendered variation.
+4. **Get Status** with a job ID to poll the current state of a Describe or Render job. The response includes job status (`not_started`, `running`, `succeeded`, `partially_succeeded`, `failed`,`canceling`,`canceled`) alongwith Job Created, Started and Completed timestamp values. On success, get signed output URLs for each rendered variation.
 
 5. **List Jobs** to retrieve a paginated list of previously submitted Render jobs, including their statuses and submission timestamps. Use this to audit job history or resume monitoring after a session.
 
