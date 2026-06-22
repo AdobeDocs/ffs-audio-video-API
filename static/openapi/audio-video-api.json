@@ -401,7 +401,7 @@
           "Manage jobs"
         ],
         "summary": "Get job status",
-        "description": "Provides the status and result of an asynchronous job. For Dynamic Graphics Render (DGR) render API, returns detailed status of render job initiated.",
+        "description": "Provides the status and result of an asynchronous job. For Dynamic Graphics Render (DGR) render API, returns the detailed status of an initiated render job.",
         "operationId": "status",
         "parameters": [
           {
