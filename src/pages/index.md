@@ -83,19 +83,19 @@ The API workflow is simple and powerful. It mirrors other video API's asynchrono
 
 1. **Discover presets** using the Get Presets API. Use our predefined social presets or your own custom ones.
 
-2. **Describe a template** to retrieve editable controls. These are Essential Graphics parameters defined in MOGRT.
+2. **Describe a template** to retrieve editable controls. These are Essential Graphics parameters, defined in MOGRT.
 
-3. **Render template variations** with defined assets and presets. Render up to 500 variations of the same template in a single call. Ability to define the output file and give custom storage locations.
+3. **Render template variations** with defined assets and presets. Render up to 500 variations of the same template in a single call, with the ability to define the output file and give custom storage locations.
 
-4. **Get Status** with a job ID to poll the current state of a Describe or Render job. The response includes job status (`not_started`, `running`, `succeeded`, `partially_succeeded`, `failed`,`canceling`,`canceled`) alongwith Job Created, Started and Completed timestamp values. On success, get signed output URLs for each rendered variation.
+4. **Get Status** with a job ID to poll the current state of a Describe or Render job. On success, get signed output URLs for each rendered variation.
 
 5. **List Jobs** to retrieve a paginated list of previously submitted Render jobs, including their statuses and submission timestamps. Use this to audit job history or resume monitoring after a session.
 
-6. **Cancel a Job** to stop an in-progress Render job before it completes. Cancellation is best-effort: jobs that have already started rendering may complete before the cancellation takes effect.
+6. **Cancel a Job** to stop an in-progress Render job before it completes. Cancelation is best-effort: jobs that have already started rendering may complete before the cancelation takes effect.
 
 You can also receive job lifecycle notifications through [Adobe I/O Events](guides/dgr/dgr-io-events-setup.md) instead of polling alone.
 
-Explore what you can do with this API in the [Dynamic Graphics Render API guides](guides/dgr/index.md).
+Explore what you can do with this API in detail in the [Dynamic Graphics Render API guides](guides/dgr/index.md).
 
 ## Reframe API
 
