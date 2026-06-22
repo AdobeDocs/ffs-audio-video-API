@@ -302,7 +302,7 @@ Cancel an in-flight render job. Returns `202 Accepted` immediately; poll `GET /v
 
 **Applicable only to render jobs submitted via `POST /v1/templates/render`.** This endpoint does not apply to Describe, Reframe, TLS, TTS, or Avatar jobs.
 
-- Cancelation is **idempotent** — re-canceling an already-canceled job returns 409.
+- Re-canceling an already-canceled job returns 409.
 - In-progress outputs that have not yet been uploaded are discarded.
 - For a brief window after the PUT, status may still report `running`; poll until it becomes `canceled`.
 

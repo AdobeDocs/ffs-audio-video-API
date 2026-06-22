@@ -1151,7 +1151,7 @@
           "Manage jobs"
         ],
         "summary": "Cancel a render job",
-        "description": "Aborts an in-flight render job. Returns `202 Accepted` as soon as the cancelation has been accepted; subsequent calls to `GET /v1/status/{jobId}` will report `\"status\": \"canceled\"` once the worker has fully stopped the underlying render.\n\n**Applicable only to render jobs submitted via `POST /v1/templates/render`.** This endpoint does not apply to Describe, Reframe, TLS, TTS, or Avatar jobs.\n\n**Notes:**\n- Cancelation is idempotent.\n- Once propagated to the worker, in-progress outputs are not uploaded to the destinations specified in the original render request.\n- For a short window after the PUT, the status endpoint may still report `running`; poll until it transitions to `canceled`.",
+        "description": "Aborts an in-flight Render job. Returns `202 Accepted` as soon as the cancelation has been accepted; subsequent calls to `GET /v1/status/{jobId}` will report `\"status\": \"canceled\"` once the worker has fully stopped the underlying render.\n\n**Applicable only to Render jobs submitted via `POST /v1/templates/render`.** This endpoint does not apply to Describe, Reframe, TLS, TTS, or Avatar jobs.\n\n**Notes:**\n- Once propagated to the worker, in-progress outputs are not uploaded to the destinations specified in the original render request.\n- For a short window after the PUT, the status endpoint may still report `running`; poll until it transitions to `canceled`.",
         "operationId": "cancel-render-job",
         "parameters": [
           {
