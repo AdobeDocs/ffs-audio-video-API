@@ -253,7 +253,7 @@ When the job has succeeded, the response includes signed URLs for each output. T
 |--------|-------------|
 | `not_started` | Job is queued, not yet picked up by a worker. |
 | `running` | Job is actively being processed. |
-| `canceling` | A cancel request was accepted; worker is stopping. Transient — poll until `canceled`. |
+| `canceling` | A cancel request was accepted; worker is stopping. This is a transient status — poll until `canceled`. |
 | `canceled` | Job was fully stopped. In-progress outputs were not uploaded. |
 | `succeeded` | All output items completed successfully. |
 | `partially_succeeded` | Some outputs succeeded; check `errors[]` for failures. A `retryPayloadUrl` is provided for retrying failed items. |
@@ -302,7 +302,7 @@ Cancel an in-flight render job. Returns `202 Accepted` immediately; poll `GET /v
 
 **Applicable only to render jobs submitted via `POST /v1/templates/render`.** This endpoint does not apply to Describe, Reframe, TLS, TTS, or Avatar jobs.
 
-- Cancellation is **idempotent** — re-canceling an already-canceled job returns 409.
+- Cancelation is **idempotent** — re-canceling an already-canceled job returns 409.
 - In-progress outputs that have not yet been uploaded are discarded.
 - For a brief window after the PUT, status may still report `running`; poll until it becomes `canceled`.
 

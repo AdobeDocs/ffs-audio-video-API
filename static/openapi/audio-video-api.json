@@ -1151,7 +1151,7 @@
           "Manage jobs"
         ],
         "summary": "Cancel a render job",
-        "description": "Aborts an in-flight render job. Returns `202 Accepted` as soon as the cancellation has been accepted; subsequent calls to `GET /v1/status/{jobId}` will report `\"status\": \"canceled\"` once the worker has fully stopped the underlying render.\n\n**Applicable only to render jobs submitted via `POST /v1/templates/render`.** This endpoint does not apply to Describe, Reframe, TLS, TTS, or Avatar jobs.\n\n**Notes:**\n- Cancellation is idempotent.\n- Once propagated to the worker, in-progress outputs are not uploaded to the destinations specified in the original render request.\n- For a short window after the PUT, the status endpoint may still report `running`; poll until it transitions to `canceled`.",
+        "description": "Aborts an in-flight render job. Returns `202 Accepted` as soon as the cancelation has been accepted; subsequent calls to `GET /v1/status/{jobId}` will report `\"status\": \"canceled\"` once the worker has fully stopped the underlying render.\n\n**Applicable only to render jobs submitted via `POST /v1/templates/render`.** This endpoint does not apply to Describe, Reframe, TLS, TTS, or Avatar jobs.\n\n**Notes:**\n- Cancelation is idempotent.\n- Once propagated to the worker, in-progress outputs are not uploaded to the destinations specified in the original render request.\n- For a short window after the PUT, the status endpoint may still report `running`; poll until it transitions to `canceled`.",
         "operationId": "cancel-render-job",
         "parameters": [
           {
@@ -1170,7 +1170,7 @@
         ],
         "responses": {
           "202": {
-            "description": "Cancellation accepted. The job is transitioning to `canceled`; poll `GET /v1/status/{jobId}` to observe the terminal state.",
+            "description": "Cancelation accepted. The job is transitioning to `canceled`; poll `GET /v1/status/{jobId}` to observe the terminal state.",
             "content": {
               "application/json": {
                 "schema": {
@@ -5898,7 +5898,7 @@
           "jobId": {
             "type": "string",
             "format": "uuid",
-            "description": "UUID of the render job for which cancellation was accepted."
+            "description": "UUID of the render job for which cancelation was accepted."
           },
           "status": {
             "type": "string",
@@ -5967,7 +5967,7 @@
           "cancelUrl": {
             "type": "string",
             "format": "uri",
-            "description": "Absolute URL to submit a cancel request (`PUT /v1/cancel/{jobId}`). Present only when the job is still cancellable (`status` is `not_started` or `running`)."
+            "description": "Absolute URL to submit a cancel request (`PUT /v1/cancel/{jobId}`). Present only when the job is still cancelable (`status` is `not_started` or `running`)."
           }
         }
       },
@@ -7531,7 +7531,7 @@
         }
       },
       "CancelAccepted": {
-        "summary": "Render job cancellation accepted",
+        "summary": "Render job cancelation accepted",
         "value": {
           "jobId": "27776956-d405-4754-97e9-7e9cfd3809af",
           "status": "canceling"
