@@ -7,6 +7,9 @@ keywords:
   - Cancel render job
   - List render jobs
   - MOGRT
+  - AEP
+  - After Effects
+  - layer operations
   - templates
   - variations
   - presets
@@ -24,7 +27,9 @@ This quickstart guide offers ready-to-use cURL commands for the **Render** API.
 
 ## Overview
 
-The Render API renders one or more video variations by applying overrides and export presets. Submit up to 10 overrides per call for a subset of editable layers and receive a signed URL download link to the video file. For layers that are not editable, the system defaults are automatically applied at export.
+The Render API renders one or more video variations by applying overrides and export presets. Submit overrides for a subset of editable layers and receive a signed URL download link to the video file. For layers that are not editable, the system defaults are automatically applied at export.
+
+The Render API supports two template types, selected with the `type` field: `mogrt` (default) and `aep` (an After Effects project). AEP requests use the same variation and preset model as MOGRT, add a required `compName`, and additionally support `layerOperations[]` for layer-level timing control. See [Render an AEP project](#render-an-aep-project).
 
 Before calling the Render API, use the [Describe API](dgr-describe.md) to discover the template's editable controls and variable IDs, and the [Presets API](index.md) to choose export presets.
 
@@ -41,7 +46,7 @@ You'll need:
 - ```client_id```
 - ```client_secret```
 
-## Render (POST)
+## Render a MOGRT template
 
 Submit a MOGRT source, optional fonts and assets, presets, and variation overrides to start a render job.
 
@@ -187,14 +192,251 @@ curl -X POST \
 
 A successful request returns `202 Accepted` with a `jobId` and `statusUrl`. Poll the status URL (or the Get Status API) until the job completes.
 
+## Render an AEP project
+
+To render an After Effects project, set `type` to `aep`, point `source.url` at a `.zip` archive that contains a single `.aep` file and its collected assets, and name the composition with `compName`.
+
+- `compName` is **required** for AEP; it must resolve to a single composition.
+- Each `variations[].variables[].variableId` is a control ID from the [Describe API](dgr-describe.md) `controls[]` (for example `c259:l261:media`, `c169:l193:layer:sourceText`). Use these IDs verbatim.
+
+In the AEP sample requests below, be sure to update:
+
+- `Authorization` with the bearer token.
+- `x-api-key` with your client ID.
+- The request body URLs (`source.url`, `assets[].source.url`, `fonts[].source.url`) with your pre-signed URLs, and control and layer IDs with values from the Describe API response.
+
+### Sample request (Render AEP)
+
+This variation replaces the video media on composition `A. Variable Duration` and scales it to fill the frame.
+
+```bash
+curl -X POST \
+  'https://audio-video-api.adobe.io/v1/templates/render' \
+  --header 'Authorization: Bearer <token>' \
+  --header 'x-api-key: <client_id>' \
+  --header 'Content-Type: application/json' \
+  --data '{
+    "type": "aep",
+    "compName": "A. Variable Duration",
+    "source": {
+      "url": "<.zip pre-signed URL>"
+    },
+    "config": {
+      "handleMissingFonts": "use_default"
+    },
+    "presets": [
+      {
+        "source": {
+          "presetId": "ffs_video_api_land_1080p_hq"
+        }
+      }
+    ],
+    "assets": [
+      {
+        "source": {
+          "url": "<pre-signed url for video asset>"
+        }
+      }
+    ],
+    "variations": [
+      {
+        "variables": [
+          {
+            "variableId": "c259:l261:media",
+            "assetIndex": 0,
+            "scale": "fill_frame"
+          }
+        ]
+      }
+    ],
+    "outputs": [
+      {
+        "variationIndex": 0,
+        "presetIndex": 0,
+        "fileName": "aep_media_replace"
+      }
+    ]
+  }'
+```
+
+The 202 response, status polling, output structure, cancel, and list-jobs behavior are identical to MOGRT (see the sections below).
+
+### Layer operations (AEP only)
+
+`layerOperations[]` is a top-level array, applicable only when `type` is `aep`, that adjusts layer and composition timing after variable overrides are applied. Operations run in array order and each targets a layer by its `layerId` — the `layers[].id` value from the Describe response (of the form `c{comp}:l{layer}:layer`).
+
+| Operation | Purpose | Key fields |
+|-----------|---------|------------|
+| `trim_comp` | Set the composition work area (the rendered time range). | `startLayerId` or `startSeconds`/`startFrames`, `endLayerId` or `durationSeconds`/`durationFrames` |
+| `trim_inpoint` | Move a layer's in point to a reference layer's in/out time. | `layerId`, `refLayerId`, `refInOut`, `offsetSeconds`/`offsetFrames` |
+| `trim_outpoint` | Move a layer's out point to a reference layer's in/out time. | `layerId`, `refLayerId`, `refInOut`, `offsetSeconds`/`offsetFrames` |
+| `shift_inpoint` | Shift a layer so its in point aligns to a reference time (keeps duration). | `layerId`, `refLayerId`, `refInOut`, `offsetSeconds`/`offsetFrames` |
+| `shift_outpoint` | Shift a layer so its out point aligns to a reference time (keeps duration). | `layerId`, `refLayerId`, `refInOut`, `offsetSeconds`/`offsetFrames` |
+| `match_source_duration` | Extend a layer to match its source footage duration. | `layerId` |
+| `set_layer_duration` | Set a layer to an absolute duration. | `layerId`, `durationSeconds`/`durationFrames` |
+| `stretch_layer` | Time-stretch a layer to a percentage or duration. | `layerId`, `durationPercent`/`durationSeconds`/`durationFrames` or `refLayerId`, `offsetSeconds`/`offsetFrames` |
+
+Reference times are resolved from `refLayerId` + `refInOut` (which end of the reference layer to read), then adjusted by `offsetSeconds` or `offsetFrames`. When both a seconds and a frames form are given for the same field, the seconds form takes precedence. For `stretch_layer`, the target duration is taken from `durationPercent`, then `durationSeconds`, then `durationFrames`, then `refLayerId` (the reference layer's duration), in that order.
+
+### Sample request (AEP layer operations)
+
+This request builds a variable-duration timeline: the video layer is extended to its source duration, downstream layers are chained relative to each other, and the composition work area is trimmed to the resulting range.
+
+```bash
+curl -X POST \
+  'https://audio-video-api.adobe.io/v1/templates/render' \
+  --header 'Authorization: Bearer <token>' \
+  --header 'x-api-key: <client_id>' \
+  --header 'Content-Type: application/json' \
+  --data '{
+    "type": "aep",
+    "compName": "A. Variable Duration",
+    "source": {
+      "url": "<.zip pre-signed URL>"
+    },
+    "config": {
+      "handleMissingFonts": "use_default"
+    },
+    "presets": [
+      {
+        "source": {
+          "presetId": "ffs_video_api_land_1080p_hq"
+        }
+      }
+    ],
+    "assets": [
+      {
+        "source": {
+          "url": "<pre-signed url for video asset>"
+        }
+      }
+    ],
+    "variations": [
+      {
+        "variables": [
+          {
+            "variableId": "c259:l261:media",
+            "assetIndex": 0
+          }
+        ]
+      }
+    ],
+    "layerOperations": [
+      {
+        "operation": "match_source_duration",
+        "layerId": "c259:l261:layer"
+      },
+      {
+        "operation": "shift_inpoint",
+        "layerId": "c259:l263:layer",
+        "refLayerId": "c259:l261:layer",
+        "refInOut": "out",
+        "offsetSeconds": -1
+      },
+      {
+        "operation": "shift_inpoint",
+        "layerId": "c259:l265:layer",
+        "refLayerId": "c259:l263:layer",
+        "refInOut": "in",
+        "offsetFrames": 90
+      },
+      {
+        "operation": "trim_comp",
+        "startSeconds": 0,
+        "endLayerId": "c259:l265:layer"
+      },
+      {
+        "operation": "trim_outpoint",
+        "layerId": "c259:l263:layer",
+        "refLayerId": "c259:l265:layer",
+        "refInOut": "out"
+      },
+      {
+        "operation": "trim_outpoint",
+        "layerId": "c259:l262:layer",
+        "refLayerId": "c259:l261:layer",
+        "refInOut": "out"
+      },
+      {
+        "operation": "trim_outpoint",
+        "layerId": "c259:l819:layer",
+        "refLayerId": "c259:l265:layer",
+        "refInOut": "out"
+      }
+    ],
+    "outputs": [
+      {
+        "variationIndex": 0,
+        "presetIndex": 0,
+        "fileName": "aep_layer_operations"
+      }
+    ]
+  }'
+```
+
+### Sample request (Render audio)
+
+This request replaces the audio control `c840:l921:audio` (from the [Describe API](dgr-describe.md) `controls[]` of the audio composition) with a replacement audio asset. Set `audioPreference` to `replace` to swap the track or `mix` to blend it with existing audio. Each `audio` control returned by Describe can be independently replaced or mixed; audio controls are the pure-audio layers in the main comp.
+
+```bash
+curl -X POST \
+  'https://audio-video-api.adobe.io/v1/templates/render' \
+  --header 'Authorization: Bearer <token>' \
+  --header 'x-api-key: <client_id>' \
+  --header 'Content-Type: application/json' \
+  --data '{
+    "type": "aep",
+    "compName": "C. Audio Replacement",
+    "source": {
+      "url": "<.zip pre-signed URL>"
+    },
+    "config": {
+      "handleMissingFonts": "use_default"
+    },
+    "presets": [
+      {
+        "source": {
+          "presetId": "ffs_video_api_land_1080p_hq"
+        }
+      }
+    ],
+    "assets": [
+      {
+        "source": {
+          "url": "<pre-signed url for audio asset>"
+        }
+      }
+    ],
+    "variations": [
+      {
+        "variables": [
+          {
+            "variableId": "c840:l921:audio",
+            "assetIndex": 0,
+            "audioPreference": "replace"
+          }
+        ]
+      }
+    ],
+    "outputs": [
+      {
+        "variationIndex": 0,
+        "presetIndex": 0,
+        "fileName": "aep_audio_replace"
+      }
+    ]
+  }'
+```
+
 ## Render API success response (202)
 
-The initial response provides the job ID and status URL to poll for completion.
+The initial response provides the job ID and status URL to poll for completion. It is the same for MOGRT and AEP.
 
 ```json
 {
   "jobId": "<JOB_ID>",
-  "statusUrl": "https://audio-video-api.adobe.io/v1/status/<JOB_ID>"
+  "statusUrl": "https://audio-video-api.adobe.io/v1/status/<JOB_ID>",
+  "cancelUrl": "https://audio-video-api.adobe.io/v1/cancel/<JOB_ID>"
 }
 ```
 
@@ -421,6 +663,8 @@ You can consolidate all audio, video, and image assets in the `assets` array and
 ### Image and video controls
 
 For media controls, you can set `scale` to one of the possible values returned in the [Describe API](dgr-describe.md) response (for example, `no_scale`, `fit_to_frame`, `stretch_to_fill`, `fill_frame`).
+
+For AEP, finer-grained timing control (including matching a layer's duration to its replacement footage) is available via [layer operations](#layer-operations-aep-only).
 
 ### Audio control
 
