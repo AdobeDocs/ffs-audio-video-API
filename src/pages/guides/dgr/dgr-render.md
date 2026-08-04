@@ -27,7 +27,7 @@ This quickstart guide offers ready-to-use cURL commands for the **Render** API.
 
 ## Overview
 
-The Render API renders one or more video variations by applying overrides and export presets. Submit overrides for a subset of editable layers and receive a signed URL download link to the video file. For layers that are not editable, the system defaults are automatically applied at export.
+The Render API renders one or more video variations by applying overrides and export presets. Submit overrides for a subset of editable layers and receive a signed URL download link to the video file. For layers that are not editable, or for which no override has been provided, the system defaults are automatically applied at export.
 
 The Render API supports two template types, selected with the `type` field: `mogrt` (default) and `aep` (an After Effects project). AEP requests use the same variation and preset model as MOGRT, add a required `compName`, and additionally support `layerOperations[]` for layer-level timing control. See [Render an AEP project](#render-an-aep-project).
 
@@ -196,7 +196,7 @@ A successful request returns `202 Accepted` with a `jobId` and `statusUrl`. Poll
 
 To render an After Effects project, set `type` to `aep`, point `source.url` at a `.zip` archive that contains a single `.aep` file and its collected assets, and name the composition with `compName`.
 
-- `compName` is **required** for AEP; it must resolve to a single composition.
+- `compName` is **required** for AEP. This composition name within the project must be unique so that `compName` resolves to a single composition.
 - Each `variations[].variables[].variableId` is a control ID from the [Describe API](dgr-describe.md) `controls[]` (for example `c259:l261:media`, `c169:l193:layer:sourceText`). Use these IDs verbatim.
 
 In the AEP sample requests below, be sure to update:
@@ -267,9 +267,9 @@ The 202 response, status polling, output structure, cancel, and list-jobs behavi
 
 | Operation | Purpose | Key fields |
 |-----------|---------|------------|
-| `trim_comp` | Set the composition work area (the rendered time range). | `startLayerId` or `startSeconds`/`startFrames`, `endLayerId` or `durationSeconds`/`durationFrames` |
-| `trim_inpoint` | Move a layer's in point to a reference layer's in/out time. | `layerId`, `refLayerId`, `refInOut`, `offsetSeconds`/`offsetFrames` |
-| `trim_outpoint` | Move a layer's out point to a reference layer's in/out time. | `layerId`, `refLayerId`, `refInOut`, `offsetSeconds`/`offsetFrames` |
+| `trim_comp` | Set the comp start time and duration. | `startLayerId` or `startSeconds`/`startFrames`, `endLayerId` or `durationSeconds`/`durationFrames` |
+| `trim_inpoint` | Move a layer's in point to a reference time. | `layerId`, `refLayerId`, `refInOut`, `offsetSeconds`/`offsetFrames` |
+| `trim_outpoint` | Move a layer's out point to a reference time. | `layerId`, `refLayerId`, `refInOut`, `offsetSeconds`/`offsetFrames` |
 | `shift_inpoint` | Shift a layer so its in point aligns to a reference time (keeps duration). | `layerId`, `refLayerId`, `refInOut`, `offsetSeconds`/`offsetFrames` |
 | `shift_outpoint` | Shift a layer so its out point aligns to a reference time (keeps duration). | `layerId`, `refLayerId`, `refInOut`, `offsetSeconds`/`offsetFrames` |
 | `match_source_duration` | Extend a layer to match its source footage duration. | `layerId` |
@@ -280,7 +280,7 @@ Reference times are resolved from `refLayerId` + `refInOut` (which end of the re
 
 ### Sample request (AEP layer operations)
 
-This request builds a variable-duration timeline: the video layer is extended to its source duration, downstream layers are chained relative to each other, and the composition work area is trimmed to the resulting range.
+This request builds a variable-duration timeline: the video layer is extended to its source duration, downstream layers are chained relative to each other, and the composition is trimmed to the resulting range.
 
 ```bash
 curl -X POST \

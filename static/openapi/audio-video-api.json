@@ -4717,7 +4717,7 @@
           },
           "compName": {
             "type": "string",
-            "description": "Name of the After Effects composition to describe. Required when `type` is `aep`; not applicable to `mogrt`. Composition names within an AEP project must be unique so that `compName` resolves to a single composition."
+            "description": "Name of the After Effects composition to describe. Required when `type` is `aep`; not applicable to `mogrt`. This composition name within the AEP project must be unique so that `compName` resolves to a single composition."
           }
         },
         "if": {
@@ -4874,7 +4874,7 @@
           },
           "compName": {
             "type": "string",
-            "description": "Name of the After Effects composition to render. Required when `type` is `aep`; not applicable to `mogrt`. Composition names within an AEP project must be unique so that `compName` resolves to a single composition."
+            "description": "Name of the After Effects composition to render. Required when `type` is `aep`; not applicable to `mogrt`. This composition name within the AEP project must be unique so that `compName` resolves to a single composition."
           },
           "fonts": {
             "type": "array",
@@ -5084,19 +5084,19 @@
                 },
                 "startLayerId": {
                   "type": "string",
-                  "description": "For `trim_comp`, the layer whose in point sets the start of the comp work area."
+                  "description": "For `trim_comp`, the layer whose in point sets the start of the comp."
                 },
                 "endLayerId": {
                   "type": "string",
-                  "description": "For `trim_comp`, the layer whose out point sets the end of the comp work area."
+                  "description": "For `trim_comp`, the layer whose out point sets the end of the comp."
                 },
                 "startSeconds": {
                   "type": "number",
-                  "description": "For `trim_comp`, the absolute start time of the comp work area, in seconds."
+                  "description": "For `trim_comp`, the absolute start time of the comp, in seconds."
                 },
                 "startFrames": {
                   "type": "integer",
-                  "description": "For `trim_comp`, the absolute start time of the comp work area, in frames."
+                  "description": "For `trim_comp`, the absolute start time of the comp, in frames."
                 },
                 "offsetSeconds": {
                   "type": "number",
@@ -5108,15 +5108,15 @@
                 },
                 "durationSeconds": {
                   "type": "number",
-                  "description": "Duration in seconds for `set_layer_duration` and `stretch_layer`, or the comp work-area duration for `trim_comp`. Takes precedence over `durationFrames`."
+                  "description": "Duration in seconds for `set_layer_duration` and `stretch_layer`, or the comp duration for `trim_comp`. Takes precedence over `durationFrames`."
                 },
                 "durationFrames": {
                   "type": "integer",
-                  "description": "Duration in frames for `set_layer_duration` and `stretch_layer`, or the comp work-area duration for `trim_comp`. Used only when `durationSeconds` is absent."
+                  "description": "Duration in frames for `set_layer_duration` and `stretch_layer`, or the comp duration for `trim_comp`. Used only when `durationSeconds` is absent."
                 },
                 "durationPercent": {
                   "type": "number",
-                  "description": "For `stretch_layer`, the target duration as a percentage of the layer's current (native) duration. Highest priority of the `stretch_layer` duration inputs: `durationPercent` > `durationSeconds` > `durationFrames` > `refLayerId`."
+                  "description": "For `stretch_layer`, the target duration as a percentage of the layer's native duration. Highest priority of the `stretch_layer` duration inputs: `durationPercent` > `durationSeconds` > `durationFrames` > `refLayerId`."
                 }
               }
             }
@@ -5471,7 +5471,7 @@
                     },
                     "layers": {
                       "type": "array",
-                      "description": "Layers of the described AEP composition, in render (top-to-bottom) order. Present only for `aep` elements. Use a layer `id` as the `layerId` in render `layerOperations`.",
+                      "description": "Layers of the described AEP composition, in render order (top-to-bottom). Present only for `aep` elements. Use a layer's composite `id` as the `layerId` in render `layerOperations`.",
                       "items": {
                         "type": "object",
                         "properties": {
@@ -7990,12 +7990,12 @@
                     "label": "Test dropdown",
                     "type": "dropdown",
                     "defaultData": {
-                      "selectedDropdownValue": "0"
+                      "selectedDropdownValue": "1"
                     },
                     "options": {
-                      "0": "Item 1",
-                      "1": "Item 2",
-                      "2": "Item 3"
+                      "1": "Item 1",
+                      "2": "Item 2",
+                      "3": "Item 3"
                     }
                   },
                   {

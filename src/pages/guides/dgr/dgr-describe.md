@@ -183,7 +183,7 @@ When the job has finished successfully, the response returns the editable contro
 
 To describe an After Effects project, set `type` to `aep`, point `source.url` at a `.zip` archive that contains a single `.aep` file and its collected assets, and name the composition to describe with `compName`.
 
-- `compName` is **required** for AEP. Composition names within a project must be unique so that `compName` resolves to a single composition.
+- `compName` is **required** for AEP. This composition name within the project must be unique so that `compName` resolves to a single composition.
 
 In the cURL command below, be sure to update:
 
@@ -215,7 +215,7 @@ As with MOGRT, a successful request returns `202 Accepted` with a `jobId`. Poll 
 For AEP, the element `type` is `aep` and the response includes two collections:
 
 - `controls[]` — the editable controls in the composition. Each `variableId` is a composite ID (for example `c259:l261:media` for a media control or `c169:l193:layer:sourceText` for a text control). Use these IDs in the Render API `variations[].variables[]`.
-- `layers[]` — the composition's layers, in render (top-to-bottom) order. Each layer `id` (for example `c259:l261:layer`) is used as the `layerId` in Render API `layerOperations[]`.
+- `layers[]` — the composition's layers, in render order (top-to-bottom). Each layer's composite `id` (for example `c259:l261:layer`) is used as the `layerId` in Render API `layerOperations[]`.
 
 ```json
 {
@@ -289,12 +289,12 @@ For AEP, the element `type` is `aep` and the response includes two collections:
             "label": "Test dropdown",
             "type": "dropdown",
             "defaultData": {
-              "selectedDropdownValue": "0"
+              "selectedDropdownValue": "1"
             },
             "options": {
-              "0": "Item 1",
-              "1": "Item 2",
-              "2": "Item 3"
+              "1": "Item 1",
+              "2": "Item 2",
+              "3": "Item 3"
             }
           },
           {
