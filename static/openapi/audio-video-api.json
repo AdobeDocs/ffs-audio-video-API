@@ -1219,6 +1219,11 @@
                         "layerId": "c259:l819:layer",
                         "refLayerId": "c259:l265:layer",
                         "refInOut": "out"
+                      },
+                      {
+                        "operation": "enable_layer",
+                        "layerId": "c259:l398:layer",
+                        "graphicsEnabled": false
                       }
                     ],
                     "outputs": [
@@ -5062,7 +5067,8 @@
                     "shift_outpoint",
                     "match_source_duration",
                     "set_layer_duration",
-                    "stretch_layer"
+                    "stretch_layer",
+                    "enable_layer"
                   ],
                   "description": "The layer operation to perform."
                 },
@@ -5117,6 +5123,18 @@
                 "durationPercent": {
                   "type": "number",
                   "description": "For `stretch_layer`, the target duration as a percentage of the layer's native duration. Highest priority of the `stretch_layer` duration inputs: `durationPercent` > `durationSeconds` > `durationFrames` > `refLayerId`."
+                },
+                "graphicsEnabled": {
+                  "type": "boolean",
+                  "description": "For `enable_layer`, turns the target layer's graphics (visuals) on or off. Optional; each `enable_layer` operation must set at least one of `graphicsEnabled`, `audioEnabled`, or `solo`."
+                },
+                "audioEnabled": {
+                  "type": "boolean",
+                  "description": "For `enable_layer`, turns the target layer's audio on or off. Optional; each `enable_layer` operation must set at least one of `graphicsEnabled`, `audioEnabled`, or `solo`."
+                },
+                "solo": {
+                  "type": "boolean",
+                  "description": "For `enable_layer`, solos the target layer within its comp; only soloed layers render. A soloed result renders on a transparent background unless the background layer is also soloed, and to export audio only, solo the audio layer plus at least one graphics-on layer. Optional; each `enable_layer` operation must set at least one of `graphicsEnabled`, `audioEnabled`, or `solo`."
                 }
               }
             }

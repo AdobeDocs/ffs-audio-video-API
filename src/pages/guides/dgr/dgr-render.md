@@ -263,7 +263,7 @@ The 202 response, status polling, output structure, cancel, and list-jobs behavi
 
 ### Layer operations (AEP only)
 
-`layerOperations[]` is a top-level array, applicable only when `type` is `aep`, that adjusts layer and composition timing after variable overrides are applied. Operations run in array order and each targets a layer by its `layerId` — the `layers[].id` value from the Describe response (of the form `c{comp}:l{layer}:layer`).
+`layerOperations[]` is a top-level array, applicable only when `type` is `aep`, that adjusts layer and composition timing and layer visibility after variable overrides are applied. Operations run in array order and each targets a layer by its `layerId` — the `layers[].id` value from the Describe response (of the form `c{comp}:l{layer}:layer`).
 
 | Operation | Purpose | Key fields |
 |-----------|---------|------------|
@@ -275,12 +275,13 @@ The 202 response, status polling, output structure, cancel, and list-jobs behavi
 | `match_source_duration` | Extend a layer to match its source footage duration. | `layerId` |
 | `set_layer_duration` | Set a layer to an absolute duration. | `layerId`, `durationSeconds`/`durationFrames` |
 | `stretch_layer` | Time-stretch a layer to a percentage or duration. | `layerId`, `durationPercent`/`durationSeconds`/`durationFrames` or `refLayerId`, `offsetSeconds`/`offsetFrames` |
+| `enable_layer` | Turn a layer's graphics and/or audio on or off, or solo it (a soloed comp renders only its soloed layers). | `layerId`, at least one of `graphicsEnabled`/`audioEnabled`/`solo` |
 
 Reference times are resolved from `refLayerId` + `refInOut` (which end of the reference layer to read), then adjusted by `offsetSeconds` or `offsetFrames`. When both a seconds and a frames form are given for the same field, the seconds form takes precedence. For `stretch_layer`, the target duration is taken from `durationPercent`, then `durationSeconds`, then `durationFrames`, then `refLayerId` (the reference layer's duration), in that order.
 
 ### Sample request (AEP layer operations)
 
-This request builds a variable-duration timeline: the video layer is extended to its source duration, downstream layers are chained relative to each other, and the composition is trimmed to the resulting range.
+This request builds a variable-duration timeline: the video layer is extended to its source duration, downstream layers are chained relative to each other, and the composition is trimmed to the resulting range. The intro layer is also hidden with `enable_layer`.
 
 ```bash
 curl -X POST \
@@ -362,6 +363,11 @@ curl -X POST \
         "layerId": "c259:l819:layer",
         "refLayerId": "c259:l265:layer",
         "refInOut": "out"
+      },
+      {
+        "operation": "enable_layer",
+        "layerId": "c259:l398:layer",
+        "graphicsEnabled": false
       }
     ],
     "outputs": [
@@ -373,6 +379,8 @@ curl -X POST \
     ]
   }'
 ```
+
+For `enable_layer`, a soloed result renders on a transparent background unless the background layer is also soloed; to export audio only, solo the audio layer plus at least one graphics-on layer.
 
 ### Sample request (Render audio)
 
