@@ -275,7 +275,7 @@ The 202 response, status polling, output structure, cancel, and list-jobs behavi
 | `match_source_duration` | Extend a layer to match its source footage duration. | `layerId` |
 | `set_layer_duration` | Set a layer to an absolute duration. | `layerId`, `durationSeconds`/`durationFrames` |
 | `stretch_layer` | Time-stretch a layer to a percentage or duration. | `layerId`, `durationPercent`/`durationSeconds`/`durationFrames` or `refLayerId`, `offsetSeconds`/`offsetFrames` |
-| `enable_layer` | Turn a layer's graphics and/or audio on or off, or solo it (a soloed comp renders only its soloed layers). | `layerId`, at least one of `graphicsEnabled`/`audioEnabled`/`solo` |
+| `enable_layer` | Turn a layer's graphics and/or audio on or off, and/or solo it (if a comp contains layers that have solo enabled, only those layers will render). | `layerId`, at least one of `videoEnabled`/`audioEnabled`/`solo` |
 
 Reference times are resolved from `refLayerId` + `refInOut` (which end of the reference layer to read), then adjusted by `offsetSeconds` or `offsetFrames`. When both a seconds and a frames form are given for the same field, the seconds form takes precedence. For `stretch_layer`, the target duration is taken from `durationPercent`, then `durationSeconds`, then `durationFrames`, then `refLayerId` (the reference layer's duration), in that order.
 
@@ -367,7 +367,7 @@ curl -X POST \
       {
         "operation": "enable_layer",
         "layerId": "c259:l398:layer",
-        "graphicsEnabled": false
+        "videoEnabled": false
       }
     ],
     "outputs": [
@@ -380,7 +380,9 @@ curl -X POST \
   }'
 ```
 
-For `enable_layer`, a soloed result renders on a transparent background unless the background layer is also soloed; to export audio only, solo the audio layer plus at least one graphics-on layer.
+For `enable_layer`, a comp with solo layers renders against the background color defined in the comp's settings; if the output format supports an alpha channel (such as .mov), a comp with solo layers renders against a transparent background.
+
+If a comp contains graphics layers, and you want to render to a video output format with audio only (no graphics), it's necessary to additionally solo an invisible graphics layer (such as a null), or to set `videoEnabled` to false for all graphics layers; if rendering to an audio output format, it's sufficient to only solo the required audio layers.
 
 ### Sample request (Render audio)
 
