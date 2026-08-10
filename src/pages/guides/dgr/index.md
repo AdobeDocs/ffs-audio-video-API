@@ -4,6 +4,9 @@ description: This page is a quickstart guide to using the Presets API.
 keywords:
   - Dynamic Graphics Render
   - Presets
+  - MOGRT
+  - AEP
+  - After Effects
   - API
   - Quickstart
   - cURL
@@ -28,6 +31,15 @@ Retrieve a catalog of predefined, social-first presets to discover the available
 For a full sample MOGRT project (WKND Product Showcase) with Beginner and Advanced templates, media, and documentation, see [WKND Product Showcase sample MOGRT package](dgr-sample-mogrt-wknd.md).
 
 To subscribe to render job events with Adobe I/O Events and a webhook, see [Setting up Dynamic Graphics Render API events with Adobe I/O Events](dgr-io-events-setup.md).
+
+### Supported template types
+
+The Describe and Render APIs work with two template types, selected with the `type` field:
+
+- **MOGRT** (`type: "mogrt"`, the default) — a Motion Graphics Template packaged as a single `.mogrt` file.
+- **AEP** (`type: "aep"`) — an After Effects project supplied as a `.zip` archive containing one `.aep` file and its collected assets. AEP requests additionally require a `compName` (the composition to render) and support layer-level timing control via `layerOperations[]`.
+
+The presets described on this page apply to both types. For type-specific request and response details, see the [Describe API](dgr-describe.md) and [Render API](dgr-render.md) guides.
 
 ## Prerequisites
 
