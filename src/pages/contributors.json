@@ -88,10 +88,11 @@
     {
       "page": "/guides/dgr/",
       "avatars": [
+        "https://avatars.githubusercontent.com/u/4747009?v=4",
         "https://avatars.githubusercontent.com/u/195011431?v=4",
         "https://avatars.githubusercontent.com/u/8681544?v=4"
       ],
-      "lastUpdated": "5/14/2026"
+      "lastUpdated": "8/10/2026"
     },
     {
       "page": "/guides/dgr/dgr-best-practices",
@@ -103,10 +104,11 @@
     {
       "page": "/guides/dgr/dgr-describe",
       "avatars": [
+        "https://avatars.githubusercontent.com/u/4747009?v=4",
         "https://avatars.githubusercontent.com/u/8681544?v=4",
         "https://avatars.githubusercontent.com/u/195011431?v=4"
       ],
-      "lastUpdated": "2/18/2026"
+      "lastUpdated": "8/10/2026"
     },
     {
       "page": "/guides/dgr/dgr-io-events-setup",
@@ -124,7 +126,7 @@
         "https://avatars.githubusercontent.com/u/278599571?v=4",
         "https://avatars.githubusercontent.com/u/8681544?v=4"
       ],
-      "lastUpdated": "8/5/2026"
+      "lastUpdated": "8/10/2026"
     },
     {
       "page": "/guides/dgr/dgr-sample-mogrt-wknd",
