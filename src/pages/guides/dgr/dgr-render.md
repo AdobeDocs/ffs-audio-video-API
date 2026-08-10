@@ -279,9 +279,9 @@ The 202 response, status polling, output structure, cancel, and list-jobs behavi
 | `trim_outpoint` | Move a layer's out point to a reference time. | `layerId`, `refLayerId`, `refInOut`, `offsetSeconds`/`offsetFrames` |
 | `shift_inpoint` | Shift a layer so its in point aligns to a reference time (keeps duration). | `layerId`, `refLayerId`, `refInOut`, `offsetSeconds`/`offsetFrames` |
 | `shift_outpoint` | Shift a layer so its out point aligns to a reference time (keeps duration). | `layerId`, `refLayerId`, `refInOut`, `offsetSeconds`/`offsetFrames` |
+| `stretch_layer` | Time-stretch a layer to a percentage or duration. | `layerId`, `durationPercent`/`durationSeconds`/`durationFrames` or `refLayerId`, `offsetSeconds`/`offsetFrames` |
 | `match_source_duration` | Extend a layer to match its source footage duration. | `layerId` |
 | `set_layer_duration` | Set a layer to an absolute duration. | `layerId`, `durationSeconds`/`durationFrames` |
-| `stretch_layer` | Time-stretch a layer to a percentage or duration. | `layerId`, `durationPercent`/`durationSeconds`/`durationFrames` or `refLayerId`, `offsetSeconds`/`offsetFrames` |
 | `enable_layer` | Turn a layer's video and/or audio on or off, and/or solo it (if a comp contains layers that have solo enabled, only those layers will render). | `layerId`, at least one of `videoEnabled`/`audioEnabled`/`solo` |
 
 Reference times are resolved from `refLayerId` + `refInOut` (which end of the reference layer to read), then adjusted by `offsetSeconds` or `offsetFrames`. When both a seconds and a frames form are given for the same field, the seconds form takes precedence. For `stretch_layer`, the target duration is taken from `durationPercent`, then `durationSeconds`, then `durationFrames`, then `refLayerId` (the reference layer's duration), in that order.
