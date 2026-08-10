@@ -222,7 +222,8 @@ curl -X POST \
       "url": "<.zip pre-signed URL>"
     },
     "config": {
-      "handleMissingFonts": "use_default"
+      "handleMissingFonts": "use_default",
+      "sidecar": "aep"
     },
     "presets": [
       {
@@ -484,6 +485,9 @@ When the job has succeeded, the response includes signed URLs for each output. T
       "completedDate": "2026-05-20T10:03:45Z",
       "destination": {
         "url": "https://<SIGNED_OUTPUT_URL>.mp4"
+      },
+      "sidecarDestination": {
+        "url": "https://<SIGNED_SIDECAR_URL>.zip"
       }
     },
     {
@@ -688,6 +692,12 @@ The `config.handleMissingFonts` parameter controls behavior when a required font
 - `use_default` – Use Premiere Pro fallback behavior.
 
 If `handleMissingFonts` is not provided, the default is `use_default`.
+
+### Sidecar
+
+For AEP renders, set `config.sidecar` to `"aep"` to also produce the collected After Effects project — a self-contained archive of the `.aep` file and its footage. Each succeeded output then carries a `sidecarDestination` (a signed download URL) alongside its `destination` in the [Get Status response](#get-status-success-response-200).
+
+`config.sidecar` is optional and applies only when `type` is `aep`; `"aep"` is the only supported value.
 
 ## Related guides
 

@@ -4923,6 +4923,13 @@
                 ],
                 "default": "use_default",
                 "description": "How to handle missing fonts. 'fail' will cause the render to fail; 'use_default' will use Premiere Pro fallback behavior."
+              },
+              "sidecar": {
+                "type": "string",
+                "enum": [
+                  "aep"
+                ],
+                "description": "Optional. Applicable only when `type` is `aep`. Set to `aep` to also produce the collected After Effects project (a self-contained archive of the `.aep` file and its footage), returned as `sidecarDestination` on each output. Not supported for `mogrt` renders."
               }
             }
           },
@@ -5271,6 +5278,19 @@
                       "type": "string",
                       "format": "uri",
                       "description": "URL from which the rendered video can be downloaded."
+                    }
+                  }
+                },
+                "sidecarDestination": {
+                  "type": "object",
+                  "required": [
+                    "url"
+                  ],
+                  "properties": {
+                    "url": {
+                      "type": "string",
+                      "format": "uri",
+                      "description": "URL from which the collected After Effects project archive can be downloaded. Present only when `config.sidecar` was set to `aep`."
                     }
                   }
                 },
