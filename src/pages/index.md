@@ -34,7 +34,7 @@ Automatically reframe videos.
 
 <DiscoverBlock slots="link, text"/>
 
-[TLS API](#tls-api)
+[TLS API](#translate-and-lip-sync-api)
 
 The Translate and Lip Sync API creates transcriptions and precise, accurate video dubs.
 

@@ -1,5 +1,5 @@
 ---
-title: Reframe API Feature Guidee
+title: Reframe API Feature Guide
 description: See the features and key parameters for implentations of Firefly's Reframe API.
 hideBreadcrumbNav: true
 keywords:
