@@ -1181,7 +1181,8 @@
                     "layerOperations": [
                       {
                         "operation": "match_source_duration",
-                        "layerId": "c259:l261:layer"
+                        "layerId": "c259:l261:layer",
+                        "layerInOut": "out"
                       },
                       {
                         "operation": "shift_inpoint",
@@ -5176,6 +5177,14 @@
                     "out"
                   ],
                   "description": "Which end of `refLayerId` to read as the reference time."
+                },
+                "layerInOut": {
+                  "type": "string",
+                  "enum": [
+                    "in",
+                    "out"
+                  ],
+                  "description": "For `match_source_duration`, which end of the layer to adjust: `in` matches only the in point, `out` only the out point. Optional; omit to adjust both ends."
                 },
                 "startLayerId": {
                   "type": "string",
