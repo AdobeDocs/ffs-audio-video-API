@@ -2692,6 +2692,37 @@
                             }
                           ]
                         }
+                      },
+                      "layout": {
+                        "type": "object",
+                        "properties": {
+                          "applyLetterboxing": {
+                            "type": "boolean",
+                            "default": false,
+                            "description": "When set to true, applies letterboxing (for vertical output formats) or pillarboxing (for horizontal output formats) instead of cropping to preserve the full source frame."
+                          }
+                        },
+                        "description": "Layout configuration for the output."
+                      },
+                      "sidecarOptions": {
+                        "type": "object",
+                        "properties": {
+                          "delivery": {
+                            "type": "string",
+                            "enum": [
+                              "per_rendition",
+                              "bundled",
+                              "bundled_no_source"
+                            ],
+                            "default": "per_rendition",
+                            "description": "Controls how sidecar files are delivered. `per_rendition` (default) delivers a separate sidecar file for each rendition (current behavior). `bundled` combines all renditions' sidecar data into a single archive, whose location is returned as `sidecarBundleDestination` in the job status response. `bundled_no_source` behaves like `bundled` but excludes the source footage from the archive. Currently only applicable when `output.format.sidecar` is `otio`; using it with any other sidecar type returns a validation error."
+                          },
+                          "bundleDestination": {
+                            "$ref": "#/components/schemas/Destination",
+                            "description": "Job-level upload target for the combined sidecar bundle. Only applicable when `delivery` is `bundled` or `bundled_no_source`. Cannot be used when any rendition specifies its own `sidecarDestination`."
+                          }
+                        },
+                        "description": "Optional configuration controlling how sidecar files across renditions are delivered."
                       }
                     },
                     "required": [
@@ -2796,6 +2827,49 @@
                       ],
                       "layout": {
                         "applyLetterboxing": false
+                      }
+                    }
+                  }
+                },
+                "BundledSidecarExample": {
+                  "summary": "Example requesting a single bundled OTIO sidecar archive for all renditions",
+                  "value": {
+                    "video": {
+                      "source": {
+                        "url": "<pre-signed_URL_to_download_the_video_input>"
+                      }
+                    },
+                    "analysis": {
+                      "sceneEditDetection": true,
+                      "focalPoints": []
+                    },
+                    "output": {
+                      "format": {
+                        "media": "mp4",
+                        "sidecar": "otio"
+                      },
+                      "renditions": [
+                        {
+                          "aspectRatio": {
+                            "x": 1,
+                            "y": 1
+                          },
+                          "mediaDestination": {
+                            "url": "<pre-signed_put_URL_to_upload_the_output_video_to_user_bucket>"
+                          }
+                        },
+                        {
+                          "aspectRatio": {
+                            "x": 16,
+                            "y": 9
+                          }
+                        }
+                      ],
+                      "sidecarOptions": {
+                        "delivery": "bundled",
+                        "bundleDestination": {
+                          "url": "<presigned_upload_URL_for_combined_OTIO_bundle>"
+                        }
                       }
                     }
                   }
@@ -3214,6 +3288,10 @@
                               }
                             ]
                           }
+                        },
+                        "sidecarBundleDestination": {
+                          "$ref": "#/components/schemas/Destination",
+                          "description": "Location of the combined sidecar bundle. Present only when the request's `output.sidecarOptions.delivery` was `bundled` or `bundled_no_source`."
                         }
                       },
                       "required": [
@@ -3301,6 +3379,10 @@
                             ]
                           },
                           "description": "Details of the job's partial success, including successful outputs and any errors encountered."
+                        },
+                        "sidecarBundleDestination": {
+                          "$ref": "#/components/schemas/Destination",
+                          "description": "Location of the combined sidecar bundle. Present only when the request's `output.sidecarOptions.delivery` was `bundled` or `bundled_no_source`."
                         }
                       },
                       "required": [
@@ -6190,7 +6272,7 @@
             "default": [],
             "externalDocs": {
               "description": "See documentation for Semantic Subject Lock.",
-              "url": "https://developer.adobe.com/reframev2/getting-started/semantic-search/"
+              "url": "https://developer.adobe.com/audio-video-firefly-services/getting-started/semantic-search/"
             }
           }
         },

@@ -186,6 +186,30 @@ When this option is enabled, you can download a **.zip archive** containing:
 
 When `applyLetterboxing` is set to `true`, the output may contain letterboxing for vertical formats and pillarboxing for horizontal aspect ratios.
 
+* By default, when requesting an `otio` sidecar (`output.format.sidecar: "otio"`) with multiple renditions, each rendition receives its own sidecar file. To instead receive **one combined sidecar bundle** for all renditions, set `output.sidecarOptions`:
+
+```json
+"output": {
+    "format": {
+        "sidecar": "otio"
+    },
+    "sidecarOptions": {
+        "delivery": "bundled",
+        "bundleDestination": {
+            "url": "<pre-signed_PUT_URL_to_upload_the_combined_sidecar_bundle>"
+        }
+    }
+}
+```
+
+`sidecarOptions.delivery` accepts:
+
+* **`per_rendition`** (default): each rendition receives its own sidecar file — this is the current behavior described above.
+* **`bundled`**: all renditions' sidecar data is bundled into a single archive. The upload location you provide in `bundleDestination` is echoed back as `sidecarBundleDestination` in the job status response.
+* **`bundled_no_source`**: same as `bundled`, but the source footage is excluded from the archive.
+
+This option is currently only supported when `output.format.sidecar` is `"otio"` — using it with any other sidecar type returns a validation error. `bundleDestination` is only valid when `delivery` is `bundled` or `bundled_no_source`, and cannot be combined with a per-rendition `sidecarDestination`.
+
 For full details, [see the API Reference](../../api/index.md).
 
 ## Add video overlays
@@ -427,5 +451,24 @@ A successful response when the processing job is complete contains a secure link
         }
       }
     ]
+}
+```
+
+If the request set `output.sidecarOptions.delivery` to `"bundled"` or `"bundled_no_source"`, the response includes a job-level `sidecarBundleDestination` instead of a per-rendition `sidecarDestination`:
+
+```json
+{
+    "jobId": "<job_ID>",
+    "status": "succeeded",
+    "outputs": [
+      {
+        "mediaDestination": {
+          "url": "<pre-signed_PUT_URL_to_upload_the_output_video_to_user_bucket>"
+        }
+      }
+    ],
+    "sidecarBundleDestination": {
+      "url": "<pre-signed_PUT_URL_to_upload_the_combined_sidecar_bundle>"
+    }
 }
 ```
