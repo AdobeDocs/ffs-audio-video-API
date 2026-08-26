@@ -196,6 +196,12 @@ curl -X POST \
   }'
 ```
 
+<InlineAlert variant="info" slots="heading, text" />
+
+Note
+
+The `outputs` array is currently limited to a maximum of 500 items per request.
+
 A successful request returns `202 Accepted` with a `jobId` and `statusUrl`. Poll the status URL (or the Get Status API) until the job completes.
 
 ## Render an AEP project
