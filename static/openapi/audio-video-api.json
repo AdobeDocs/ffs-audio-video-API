@@ -5529,6 +5529,13 @@
                             ],
                             "description": "Type of the control."
                           },
+                          "editableProperties": {
+                            "type": "array",
+                            "items": {
+                              "type": "string"
+                            },
+                            "description": "Properties of this control that can be overridden in the Render API. Always includes the properties that are guaranteed editable for the control type (e.g., `text` for text controls, `asset` and `scale` for media controls, `selectedCheckboxValue` for checkbox controls). May also include optional properties, such as `fontName` for text controls, when supported by the source MOGRT or AEP project. Not present for `comment` controls, which are not editable."
+                          },
                           "defaultData": {
                             "type": "object",
                             "description": "Default or current values for the control (e.g., text, fontName, selectedCheckboxValue, selectedDropdownValue, selectedSliderValue, scale)."
@@ -7954,6 +7961,10 @@
                     "variableId": "<unique id for template variable>",
                     "label": "Headline",
                     "type": "text",
+                    "editableProperties": [
+                      "text",
+                      "fontName"
+                    ],
                     "defaultData": {
                       "text": "This is your headline.",
                       "fontName": "FranklinGothicURW-Boo"
@@ -7963,6 +7974,9 @@
                     "variableId": "<unique id for template variable>",
                     "label": "Show Extra?",
                     "type": "checkbox",
+                    "editableProperties": [
+                      "selectedCheckboxValue"
+                    ],
                     "defaultData": {
                       "selectedCheckboxValue": true
                     },
@@ -7975,6 +7989,9 @@
                     "variableId": "<unique id for template variable>",
                     "label": "Choices Dropdown",
                     "type": "dropdown",
+                    "editableProperties": [
+                      "selectedDropdownValue"
+                    ],
                     "defaultData": {
                       "selectedDropdownValue": "2"
                     },
@@ -7990,6 +8007,9 @@
                     "variableId": "<unique id for template variable>",
                     "label": "Size selector",
                     "type": "slider",
+                    "editableProperties": [
+                      "selectedSliderValue"
+                    ],
                     "defaultData": {
                       "selectedSliderValue": 1
                     },
@@ -8006,6 +8026,10 @@
                       "width": 1344,
                       "height": 768
                     },
+                    "editableProperties": [
+                      "asset",
+                      "scale"
+                    ],
                     "defaultData": {
                       "scale": "no_scale"
                     },
@@ -8021,6 +8045,10 @@
                     "label": "Mogrt Audio",
                     "type": "audio",
                     "durationInSeconds": 22.3,
+                    "editableProperties": [
+                      "asset",
+                      "audioPreference"
+                    ],
                     "possibleAudioPreferences": [
                       "replace",
                       "mix"
