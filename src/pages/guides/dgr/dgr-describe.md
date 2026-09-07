@@ -205,7 +205,7 @@ When the job has finished successfully, the response returns the editable contro
 Each control (except `comment` controls, which are informational only) includes an `editableProperties` array listing the properties you can override for that control in the Render API. This array always contains at least one entry:
 
 - **Mandatory properties** are always present, regardless of the source template.
-- **Optional properties** are present only when the source MOGRT supports overriding them — for example, `fontName` is only listed for a text control if the MoGRT author made that text's font editable.
+- **Optional properties** are present only when the source MOGRT supports overriding them — for example, `fontName` is only listed for a text control if the MOGRT author made that text's font editable.
 
 | Control type | Mandatory properties | Optional properties |
 | --- | --- | --- |
@@ -216,7 +216,7 @@ Each control (except `comment` controls, which are informational only) includes 
 | `dropdown` | `selectedDropdownValue` | — |
 | `slider` | `selectedSliderValue` | — |
 
-If a text control's `editableProperties` does not include `fontName`, the MoGRT does not support a custom font for that text. Passing `fontName` for that control in the Render API is a no-op — the template's default font is used.
+If a text control's `editableProperties` does not include `fontName`, the MOGRT does not support a custom font for that text. Passing `fontName` for that control in the Render API is a no-op — the template's default font is used.
 
 ## Describe an AEP project
 
@@ -446,4 +446,4 @@ An `audio` control can be used to either replace the full audio track for the ou
 
 If the font is internal to Adobe and free, you do not need to upload the font in the Render API. If the font is licensed (Adobe or third-party), you must upload the font; otherwise, text falls back to the default font per Adobe policy. Use the `uploadRequired` flag to determine whether you need to send `source.url` to upload the font in the Render API.
 
-Before overriding a text control's font in the Render API, check whether `fontName` is listed in that control's `editableProperties`. Not every text control supports a custom font — this depends on how the MoGRT was authored. If `fontName` is not listed, passing a `fontName` override for that control in the Render API is a no-op: the default font is used.
+Before overriding a text control's font in the Render API, check whether `fontName` is listed in that control's `editableProperties`. Not every text control supports a custom font — this depends on how the MOGRT was authored. If `fontName` is not listed, passing a `fontName` override for that control in the Render API is a no-op: the default font is used.
