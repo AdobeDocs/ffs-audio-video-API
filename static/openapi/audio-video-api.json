@@ -2744,7 +2744,8 @@
                     "video": {
                       "source": {
                         "url": "<pre-signed_URL_to_download_the_video_input>"
-                      }
+                      },
+                      "removeLetterboxing": true
                     },
                     "analysis": {
                       "sceneEditDetection": true,
@@ -6251,6 +6252,11 @@
               "url"
             ],
             "description": "Details of the source including a pre-signed URL. See the [list of allowed domains for storage](https://developer.adobe.com/audio-video-firefly-services/getting-started/storage-solutions/)."
+          },
+          "removeLetterboxing": {
+            "type": "boolean",
+            "default": false,
+            "description": "When set to `true`, detects and removes existing letterbox/pillarbox black bars from the source video before reframing (per-scene), so the reframed output contains only real content. `removeLetterboxing` and `output.layout.applyLetterboxing` cannot both be `true` in the same request."
           }
         },
         "required": [
