@@ -127,14 +127,14 @@ When the job has finished successfully, the response returns the editable contro
               "selectedDropdownValue"
             ],
             "defaultData": {
-              "selectedDropdownValue": "2"
+              "selectedDropdownValue": "3"
             },
             "options": {
-              "0": "AAA",
-              "1": "BBB",
-              "2": "CCC",
-              "3": "DDD",
-              "4": "EEE"
+              "1": "AAA",
+              "2": "BBB",
+              "3": "CCC",
+              "4": "DDD",
+              "5": "EEE"
             }
           },
           {
