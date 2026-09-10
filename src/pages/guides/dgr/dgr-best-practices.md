@@ -224,13 +224,13 @@ The DGR API will limit (clamp) values for this control to the range that you spe
 
 ### Dropdown Menu
 
-Value expected by the API: array index (0-index).
+Value expected by the API: array index (1-index).
 
 <InlineAlert variant="info" slots="heading, text" />
 
 Note
 
-This control is 1-indexed within After Effects. Keep this difference in mind when writing any accompanying documentation.
+This control is 1-indexed within After Effects, matching the value expected by the API. The first option has an index of 1.
 
 ### Checkbox
 
@@ -281,11 +281,11 @@ After exporting your MOGRT templates, it can be helpful to provide an accompanyi
 
 It can also be helpful to specify the pixel dimensions and duration of the exported composition.
 
-Also note that Dropdown Menu controls are 1-indexed when referenced in expressions (that is, the first option has an internal value of 1). However, the DGR API interprets Dropdown Menu controls as 0-indexed. Your accompanying guide should reflect this. For example, a Dropdown Menu control with three items could be listed as:
+Also note that Dropdown Menu controls are 1-indexed both when referenced in expressions and by the DGR API (that is, the first option has a value of 1). Your accompanying guide should reflect this. For example, a Dropdown Menu control with three items could be listed as:
 
-- `0`: Apple
-- `1`: Banana
-- `2`: Cherry
+- `1`: Apple
+- `2`: Banana
+- `3`: Cherry
 
 Any comments or groups in the Essential Graphics panel are currently not readable by the API, so don't rely on these as instructions to the end user.
 

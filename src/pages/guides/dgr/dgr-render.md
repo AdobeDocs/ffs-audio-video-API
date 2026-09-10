@@ -117,7 +117,7 @@ curl -X POST \
           },
           {
             "variableId": "<unique template variable id>",
-            "selectedDropdownValue": "0"
+            "selectedDropdownValue": "1"
           },
           {
             "variableId": "<unique template variable id>",
@@ -148,7 +148,7 @@ curl -X POST \
           },
           {
             "variableId": "<unique template variable id>",
-            "selectedDropdownValue": "0"
+            "selectedDropdownValue": "1"
           },
           {
             "variableId": "<unique template variable id>",
