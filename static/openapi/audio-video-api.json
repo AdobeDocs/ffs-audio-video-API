@@ -928,7 +928,7 @@
                           },
                           {
                             "variableId": "<unique template variable id>",
-                            "selectedDropdownValue": "0"
+                            "selectedDropdownValue": "1"
                           },
                           {
                             "variableId": "<unique template variable id>",
@@ -959,7 +959,7 @@
                           },
                           {
                             "variableId": "<unique template variable id>",
-                            "selectedDropdownValue": "0"
+                            "selectedDropdownValue": "1"
                           },
                           {
                             "variableId": "<unique template variable id>",
@@ -5095,7 +5095,7 @@
                       },
                       "selectedDropdownValue": {
                         "type": "string",
-                        "description": "Override for dropdown controls."
+                        "description": "Override for dropdown controls. 1-indexed: the first option has a value of 1."
                       },
                       "selectedSliderValue": {
                         "type": "number",
@@ -7976,14 +7976,14 @@
                     "label": "Choices Dropdown",
                     "type": "dropdown",
                     "defaultData": {
-                      "selectedDropdownValue": "2"
+                      "selectedDropdownValue": "3"
                     },
                     "options": {
-                      "0": "AAA",
-                      "1": "BBB",
-                      "2": "CCC",
-                      "3": "DDD",
-                      "4": "EEE"
+                      "1": "AAA",
+                      "2": "BBB",
+                      "3": "CCC",
+                      "4": "DDD",
+                      "5": "EEE"
                     }
                   },
                   {
