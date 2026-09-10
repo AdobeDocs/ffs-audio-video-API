@@ -174,6 +174,19 @@ When this option is enabled, you can download a **.zip archive** containing:
 * The **source asset**
 * An **`otio` file** (OpenTimeline), which can be opened in **Adobe Premiere Pro (beta)** for final edits.
 
+* Remove existing **letterboxing** or **pillarboxing** from your *source* video before reframing by enabling the `removeLetterboxing` option:
+
+```json
+"video": {
+    "source": {
+        "url": "<pre-signed url for downloading the video input>"
+    },
+    "removeLetterboxing": true
+}
+```
+
+When `removeLetterboxing` is set to `true`, the Reframe API detects and removes existing letterbox/pillarbox black bars from the source video (per scene) before reframing, so the reframed output contains only real content. It defaults to `false`.
+
 * Apply **letterboxing** to your output by enabling the `applyLetterboxing` option:
 
 ```json
@@ -185,6 +198,8 @@ When this option is enabled, you can download a **.zip archive** containing:
 ```
 
 When `applyLetterboxing` is set to `true`, the output may contain letterboxing for vertical formats and pillarboxing for horizontal aspect ratios.
+
+`video.removeLetterboxing` and `output.layout.applyLetterboxing` cannot both be `true` in the same request.
 
 * By default, when requesting an `otio` sidecar (`output.format.sidecar: "otio"`) with multiple renditions, each rendition receives its own sidecar file. To instead receive **one combined sidecar bundle** for all renditions, set `output.sidecarOptions`:
 
