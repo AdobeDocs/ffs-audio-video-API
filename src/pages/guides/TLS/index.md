@@ -128,7 +128,7 @@ curl --location 'https://audio-video-api.adobe.io/v1/transcribe' \
 }'
 ```
 
-### Captions from video
+### Generate captions file from video
 
 ```bash
 curl --location 'https://audio-video-api.adobe.io/v1/transcribe' \
@@ -150,7 +150,7 @@ curl --location 'https://audio-video-api.adobe.io/v1/transcribe' \
 }'
 ```
 
-### Captions from audio
+### Generate captions file from audio
 
 ```bash
 curl --location 'https://audio-video-api.adobe.io/v1/transcribe' \

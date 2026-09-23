@@ -147,7 +147,7 @@ The Translate and Lip Sync (TLS) API uses transcriptions to generate audio and v
 The Translate and Lip Sync (TLS) API allows you to:
 
 - **Transcribe** audio and video.
-- **Generate captions** for audio and video.
+- **Generate captions file** for audio and video.
 - **Automated Dubbing** for audio and video.
 - **Dubbing with edited transcripts**.
 - **Dubbing with pre-existing translations**.
