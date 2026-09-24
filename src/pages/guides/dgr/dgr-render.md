@@ -10,6 +10,9 @@ keywords:
   - AEP
   - After Effects
   - layer operations
+  - captions
+  - subtitles
+  - SRT
   - templates
   - variations
   - presets
@@ -29,7 +32,7 @@ This quickstart guide offers ready-to-use cURL commands for the **Render** API.
 
 The Render API renders one or more video variations by applying overrides and export presets. Submit overrides for a subset of editable layers and receive a signed URL download link to the video file. For layers that are not editable, or for which no override has been provided, the system defaults are automatically applied at export.
 
-The Render API supports two template types, selected with the `type` field: `mogrt` (default) and `aep` (an After Effects project). AEP requests use the same variation and preset model as MOGRT, add a required `compName`, and additionally support `layerOperations[]` for layer-level timing control. See [Render an AEP project](#render-an-aep-project).
+The Render API supports two template types, selected with the `type` field: `mogrt` (default) and `aep` (an After Effects project). AEP requests use the same variation and preset model as MOGRT, add a required `compName`, and additionally support `layerOperations[]` for layer-level timing control and a top-level `captions[]` array for burned-in captions. See [Render an AEP project](#render-an-aep-project) and [Render burned-in captions](#render-burned-in-captions-aep-only).
 
 Before calling the Render API, use the [Describe API](dgr-describe.md) to discover the template's editable controls and variable IDs, and the [Presets API](index.md) to choose export presets.
 
@@ -442,6 +445,137 @@ curl -X POST \
         "variationIndex": 0,
         "presetIndex": 0,
         "fileName": "aep_audio_replace"
+      }
+    ]
+  }'
+```
+
+## Render burned-in captions (AEP only)
+
+**Basic Captions**: Pop-on or line-by-line captions that are burned into the video rather than delivered as a separate, toggleable track. Style parameters include font, fill/outline color, shadow, background box, and margins.
+
+Add a top-level `captions[]` array to burn one or more caption tracks into an AEP render. Each output opts into a track with `options.captionIndex`; outputs that omit it render without captions.
+
+- `captions[].source.url` — pre-signed URL to a caption file. `.srt` is the only supported format today (`captions[].format` defaults to `"srt"`; an explicit unsupported value is rejected).
+- `captions[].style` — optional. Every field defaults to a legible built-in style when omitted — you only need to set the fields you want to override.
+- `outputs[].options.captionIndex` — 0-based index into `captions[]`. Optional per output; omit it to render that output with no captions.
+
+### `captions[].style` fields
+
+All fields are optional.
+
+| Field | Type | Range / format | Default when omitted |
+|-------|------|-----------------|------------------------|
+| `fontName` | string | PostScript font name | `ArialMT` |
+| `fontSize` | number | `1`–`1296` | Renderer default |
+| `fillColor` | string | `#RRGGBB` | `#FFFFFF` (white) |
+| `outlineColor` | string | `#RRGGBB` | `#000000` (black) |
+| `outlineWidth` | number | `0`–`1000` | Renderer default |
+| `shadowDistance` | number | `0`–`120` (px; `0` = no shadow) | `0` |
+| `verticalMargin` | number | `0`–`30000` (px) | Renderer default |
+| `verticalAlignment` | string | `top` \| `center` \| `bottom` (case-insensitive; unrecognized values fall back to `bottom`) | `bottom` |
+| `lineHeight` | number | — | Auto-leading |
+| `backgroundColor` | string | `#RRGGBBAA` (alpha byte sets box opacity; omit for no background box) | No background box |
+| `textDirection` | string | `LTR` \| `RTL` | `LTR` |
+
+### Sample request (Render AEP with captions)
+
+This variation burns in a first caption track with the default style, and a second track selected by a second output that sets every `style` field, for reference.
+
+```bash
+curl -X POST \
+  'https://audio-video-api.adobe.io/v1/templates/render' \
+  --header 'Authorization: Bearer <token>' \
+  --header 'x-api-key: <client_id>' \
+  --header 'Content-Type: application/json' \
+  --data '{
+    "type": "aep",
+    "compName": "A. Variable Duration",
+    "source": {
+      "url": "<.zip pre-signed URL>"
+    },
+    "fonts": [
+      {
+        "name": "DINCondensed-Bold",
+        "source": {
+          "url": "<pre-signed url for font .ttf/otf>"
+        }
+      }
+    ],
+    "config": {
+      "handleMissingFonts": "use_default"
+    },
+    "presets": [
+      {
+        "source": {
+          "presetId": "ffs_video_api_land_1080p_hq"
+        }
+      },
+      {
+        "source": {
+          "presetId": "ffs_video_api_land_1080p_lq"
+        }
+      }
+    ],
+    "assets": [
+      {
+        "source": {
+          "url": "<pre-signed url for video asset>"
+        }
+      }
+    ],
+    "variations": [
+      {
+        "variables": [
+          {
+            "variableId": "c259:l261:media",
+            "assetIndex": 0,
+            "scale": "fill_frame"
+          }
+        ]
+      }
+    ],
+    "outputs": [
+      {
+        "variationIndex": 0,
+        "presetIndex": 0,
+        "options": {
+          "captionIndex": 0
+        },
+        "fileName": "caption_default_style"
+      },
+      {
+        "variationIndex": 0,
+        "presetIndex": 1,
+        "options": {
+          "captionIndex": 1
+        },
+        "fileName": "caption_all_style_fields"
+      }
+    ],
+    "captions": [
+      {
+        "source": {
+          "url": "<pre-signed url for .srt file>"
+        }
+      },
+      {
+        "source": {
+          "url": "<pre-signed url for RTL .srt file>"
+        },
+        "style": {
+          "fontName": "DINCondensed-Bold",
+          "fontSize": 64,
+          "fillColor": "#FFFF00",
+          "outlineColor": "#000000",
+          "outlineWidth": 12,
+          "shadowDistance": 6,
+          "verticalMargin": 120,
+          "verticalAlignment": "top",
+          "lineHeight": 72,
+          "backgroundColor": "#000000CC",
+          "textDirection": "RTL"
+        }
       }
     ]
   }'
