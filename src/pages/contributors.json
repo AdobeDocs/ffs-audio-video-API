@@ -13,7 +13,7 @@
         "https://avatars.githubusercontent.com/u/41382203?v=4",
         "https://avatars.githubusercontent.com/u/200883220?v=4"
       ],
-      "lastUpdated": "8/17/2026"
+      "lastUpdated": "9/24/2026"
     },
     {
       "page": "/api/",
@@ -123,14 +123,14 @@
     {
       "page": "/guides/dgr/dgr-render",
       "avatars": [
-        "https://avatars.githubusercontent.com/u/120120546?v=4",
         "https://avatars.githubusercontent.com/u/4747009?v=4",
+        "https://avatars.githubusercontent.com/u/120120546?v=4",
         "https://avatars.githubusercontent.com/u/144417046?v=4",
         "https://avatars.githubusercontent.com/u/195011431?v=4",
         "https://avatars.githubusercontent.com/u/278599571?v=4",
         "https://avatars.githubusercontent.com/u/8681544?v=4"
       ],
-      "lastUpdated": "9/10/2026"
+      "lastUpdated": "9/24/2026"
     },
     {
       "page": "/guides/dgr/dgr-sample-mogrt-wknd",
@@ -160,10 +160,11 @@
     {
       "page": "/guides/TLS/",
       "avatars": [
+        "https://avatars.githubusercontent.com/u/4747009?v=4",
         "https://avatars.githubusercontent.com/u/41382203?v=4",
         "https://avatars.githubusercontent.com/u/195011431?v=4"
       ],
-      "lastUpdated": "2/5/2026"
+      "lastUpdated": "9/24/2026"
     },
     {
       "page": "/guides/TLS/get-result-quickstart",
