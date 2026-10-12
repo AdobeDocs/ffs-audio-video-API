@@ -274,6 +274,8 @@ The 202 response, status polling, output structure, cancel, and list-jobs behavi
 
 `layerOperations[]` is a top-level array, applicable only when `type` is `aep`, that adjusts layer and composition timing and layer visibility after variable overrides are applied. Operations run in array order and each targets a layer by its `layerId` — the `layers[].id` value from the Describe response (of the form `c{comp}:l{layer}:layer`).
 
+Use `layerIds` (an array of composite layer IDs) to target one or more layers. The deprecated `layerId` string remains accepted for backward compatibility.
+
 | Operation | Purpose | Key fields |
 |-----------|---------|------------|
 | `trim_comp` | Set the comp start time and duration. | `startLayerId` or `startSeconds`/`startFrames`, `endLayerId` or `durationSeconds`/`durationFrames` |
