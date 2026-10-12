@@ -1,4 +1,5 @@
 
+
 ---
 title: Best practices for Dynamic Graphics Render
 description: Best practices and frequently asked questions for motion designers authoring After Effects Projects and Motion Graphics Templates for the Dynamic Graphics Render API.
@@ -62,10 +63,10 @@ In most cases, using DGR with an AEP workflow is the preferred method.
 
 * If your project contains a single main composition that should be rendered, or you would like to explicitly separate compositions into different template files (eg. for 9:16, 16:9, etc.).
 * If your composition and its layers will not need to change their duration or timing.
-* If your template already exists as a MOGRT, you may not need to make any (or many) changes in order to use it with DGR.
-* If you would like to ensure that certain advanced capabilities, such as layer operations, are not made available to the end user.
+* If your template already exists as a MOGRT – in this case, you may not need to make any (or many) changes in order to use it with DGR.
+* If you would like to ensure that certain advanced capabilities, such as layer operations, are *not* made available to the end user.
 * If you would like to discourage editing of templates after their creation.
-* If you would like to packing a specific After Effects composition and its associated assets into a single, easily distributable file.
+* If you would like to package a specific After Effects composition and its associated assets into a single, easily distributable file.
 
 **Note:** MOGRT files can be opened in After Effects by renaming their file extension to `.zip` and expanding to a `.aeproject` file. You can then rename the file extension of this to `.zip` and expand a second time to get a `.aep` file with it's associated footage.
 
@@ -73,9 +74,9 @@ In most cases, using DGR with an AEP workflow is the preferred method.
 
 DGR capabilities include (but are not limited to) text replacement, image and video replacement, and audio replacement (which is a feature not available in standard MOGRT workflows).
 
-When using DGR with an After Effects Project, capabilities additionally include (but are not limited to) dynamic layer operations (retiming comps and layers, and enabling/disabling layers), SRT-driven, burned-in captions. Image, video and audio replacement takes place within the comp, allowing functionality such as re-positioning layers based on a replacement media source's width (which is not possible in standard MOGRT workflows).
+When using DGR with an After Effects Project, capabilities additionally include (but are not limited to) dynamic layer operations (retiming comps and layers, and enabling/disabling layers), SRT-driven, burned-in captions. Image, video and audio replacement takes place within the comp, allowing functionality (such as re-positioning layers based on a replacement media source's width) not possible in standard MOGRT workflows.
 
-Motion designers can design templates in After Effects and export them as `.mogrt` files, or collect projects and compress to a `.zip` file, which contains the project's `.aep` file and all associated assets. The DGR API is able to recognize the exposed Essential Properties controls for data insertion. By providing a dataset to populate these controls, users can generate hundreds or thousands of video variations without manually updating the template in After Effects or Premiere.
+Motion designers can design templates in After Effects and export them as `.mogrt` files, or collect projects and compress to a `.zip` file, which contains the project's `.aep` file and all associated assets. The DGR API is able to recognize exposed Essential Properties controls for data insertion. By providing a dataset to populate these controls, users can generate hundreds or thousands of video variations without manually updating the template in After Effects or Premiere.
 
 End users don't need to have After Effects or Premiere experience. If a user can fill out a spreadsheet or complete an online form, they're able to generate videos with Dynamic Graphics Render.
 
@@ -109,7 +110,9 @@ If third-party effects are unavoidable, consider if you are able to pre-render t
 
 If designing for formats that recommend keeping elements within safe areas (for example, to avoid cut-off in TV broadcasts, or to avoid elements being placed underneath the UI in apps like Instagram or TikTok), be aware that dynamic content might extend beyond the planned area. This is most likely with Text layers set to Point text.
 
-It can be helpful to add expressions to limit or adjust the size or position of your layers to automatically keep them within the safe areas, for example, by [using copyfit expressions](#copyfit-text-fitting) to scale down a text layer if its content exceeds a specified width.
+It can be helpful to add expressions to limit or adjust the size or position of your layers to automatically keep them within the safe areas, for example, by [using copyfit expressions](#) to scale down a text layer if its content exceeds a specified width.
+
+@@@@@ Add link to Copyfit expression section below @@@@@
 
 Recommended safe area guidelines can generally be found on the platform's website or provided by your team's contact at the relevant organization.
 
@@ -133,7 +136,9 @@ For example, rather than using a Slider control to adjust the position of a laye
 
 Be sure to test the template for edge cases within After Effects before exporting the MOGRT.
 
-*(Real-time feedback is supported by the DGR Panel extension, when using DGR with an AEP as the input.)*
+*(Real-time feedback is supported by the [DGR Panel extension](#), when using DGR with an AEP as the input.)*
+
+@@@@@ Link to DGR Panel on Adobe Exchange @@@@@
 
 **Use the Classic 3D renderer:**
 
@@ -161,11 +166,11 @@ This allows the designer to confidently test for edge cases with real and sample
 
 ## Optimizing template file size
 
-Larger file sizes (for both `.mogrt` and collected `.zip` files) can increasing render times. These tips can help you optimize for performance.
+Larger file sizes (for both `.mogrt` and collected `.zip` files) can increase render times. These tips can help you optimize for performance.
 
 **Exclude video preview (MOGRT workflow only):**
 
-When exporting a MOGRT from the Essential Graphics panel, the 'Include video preview' option gives you the choice to embed a video preview in the `.mogrt` file. This is used in Premiere and other software to preview the template; for instance, in Premiere's Graphics Templates panel.
+When exporting a MOGRT from the Essential Graphics panel, the 'Include video preview' option gives you the choice to embed a video preview in the `.mogrt` file. This is used in Adobe Premiere and other software to preview the template; for instance, in Premiere's Graphics Templates panel.
 
 This preview is not used by DGR, so disabling this option before exporting can significantly reduce the file size.
 
@@ -174,33 +179,33 @@ This preview is not used by DGR, so disabling this option before exporting can s
 If your template uses media assets such as video, image or audio files that are not replaceable, you may be able to optimise these. Consider the following examples:
 
 Scale or crop:
-If a video or image is only ever displayed at 50% scale, you could scale the original file to 50% and set the scale in After Effects to 100%. Similarly, if only the top half of a video or image is ever displayed, you might wish to crop the original file to that region.
+If a video or image is only ever displayed at 50% scale, you could scale the original file to 50% and set the scale in After Effects to 100%. If only the top half of a video or image is ever displayed, you might wish to crop the original file to that region.
 
 Duration:
 If a video or audio layer only uses a section of the asset's full duration, you could trim the original file to just that section, and reimport to After Effects. Replace and align the original layer(s) to match.
 
 File format:
-Uncompressed formats, such as `.mov`, `.tiff` or `.wav`, generally have larger file sizes. You can experiment with re-encoding these to compressed formats, such as `.mp4`, `.jpg` or `.mp3`. It's important to note that After Effects will generally process uncompressed formats faster, but smaller file sizes may lead to overall faster job completion in DGR.
+Uncompressed formats, such as `.mov`, `.tiff` or `.wav`, usually have larger file sizes. You can experiment with re-encoding these to compressed formats, such as `.mp4`, `.jpg` or `.mp3`. It's important to note that After Effects will generally process uncompressed formats faster, but smaller file sizes may lead to overall faster job completion in DGR.
 
 Alpha:
 If a video requires an alpha channel (usually requiring a larger `.mov` file), an alternative may be to render a non-alpha version alongside a luma matte, and use the luma matte to reintroduce the alpha channel.
 
 **Optimize media replacement assets:**
 
-You might find that you're including large assets that will always be replaced as part of the DGR job. In this case, you can swap these out for placeholder assets.
+You might find that your template includes large assets that will always be replaced as part of the DGR job. In this case, you can swap these out for placeholder assets with smaller file sizes.
 
-For both video and image layers, you can use an image placeholder (an image control can always receive a video asset, and vice versa). To do this, open the Essential Graphics panel and right-click the video or image control to select the 'Replace Layer with Placeholder' option. This will create a new image file in your Project panel, and replace the layer's source with this.
+For both video and image layers, you can use an image placeholder (note: an image control can always receive a video asset, and vice versa). To do this, open the Essential Graphics panel and right-click the video or image control to select the 'Replace Layer with Placeholder' option. This will create a new image file in your Project panel and replace the layer's source with this.
 
 Alternatively, you can create your own placeholder image at an appropriate size and replace the original asset with this. Import the placeholder, select your assets in the Project or Timeline panel, and – while holding Alt (Windows) or Option (Mac) – drag the placeholder asset from the Project panel onto these.
 
-For audio layers, you can replace the asset with a short, silent audio clip. You can download a suitable placeholder clip here. To do this, either right-click each asset in your Project panel and Replace Footage with this placeholder audio file, or import the audio file and drag-replace using the technique described above.
+For audio layers, you can replace the asset with a short, silent audio clip. You can download a suitable placeholder clip [here](#). To do this, either right-click each asset in your Project panel and Replace Footage with this placeholder audio file, or import the audio file and drag-replace using the technique described above.
 
 @@@@@ Link to silent.wav @@@@@
 
 
 ## Video replacement
 
-When assigning a layer as a Media Replacement property in the Essential Properties panel, be sure to set the Scale option to match the desired Scale to fill, Scale to fit, Stretch to fill, or No scale outcome. While you can override this scaling behaviour via DGR, this ensures that the default, fallback state is correct.
+When assigning a layer as a Media Replacement property in the Essential Properties panel, be sure to set the Scale option to match the desired Scale to fill, Scale to fit, Stretch to fill, or No scale outcome. While you can override this scaling behaviour via DGR, this ensures that the default state in the template is correct.
 
 There is no limit on individual file size. However, the combined size of assets that can be replaced is capped at 5 GB.
 
@@ -211,11 +216,11 @@ There is no limit on individual file size. However, the combined size of assets 
 
 **Notes for MOGRT workflow:**
 * If a replacement video is shorter than the duration of the layer that it is replacing, the last frame of the replacement video will be held until the end of the video layer's duration.
-* Audio in replacement videos will be discarded. See 'Audio replacement' below for advice on changing audio.
+* Audio in replacement videos will be discarded. See 'Audio replacement' below for notes on changing audio.
 
 ## Image replacement
 
-When assigning a layer as a Media Replacement property in the Essential Properties panel, be sure to set the Scale option to match the desired Scale to fill, Scale to fit, Stretch to fill, or No scale outcome. While you can override this scaling behaviour via DGR, this ensures that the default, fallback state is correct.
+When assigning a layer as a Media Replacement property in the Essential Properties panel, be sure to set the Scale option to match the desired Scale to fill, Scale to fit, Stretch to fill, or No scale outcome. While you can override this scaling behaviour via DGR, this ensures that the default state in the template is correct.
 
 We support the file types described in the [API reference](../../api/index.md) and job responses when validation fails, with no limit on individual file size. However, the combined size of assets that can be replaced is capped at 5 GB.
 
@@ -223,11 +228,11 @@ We support the file types described in the [API reference](../../api/index.md) a
 
 ## Audio replacement
 
-There is no need to set this up in After Effects (the Essential Graphics panel currently doesn't support audio replacement).
-
 We support the file types described in the [API reference](../../api/index.md) and job responses when validation fails, with no limit on individual file size. However, the combined size of assets that can be replaced is capped at 5 GB.
 
 ### Audio replacement in MOGRT workflow (Global Audio Replacement):
+
+There is no need to set this up in After Effects, as the Essential Graphics panel currently doesn't support audio replacement.
 
 Currently, only one audio track is replaceable, with the following options:
 
@@ -240,7 +245,9 @@ Audio processing features, like volume adjustment or ducking, are not available.
 
 ### Audio replacement in AEP workflow:
 
-All audio-only layers in your main comp are exposed as audio replacement layers. The source of these layers can be replaced or mixed:
+All audio-only layers in your main comp are exposed as audio replacement layers. You do not need to add these layers to the Essential Graphics panel.
+
+The source of these layers can be replaced or mixed:
 
 - Replace: The layer's existing audio is replaced with the new audio file.
 - Mix: Existing audio is retained, and the new audio is added as an additional layer, with the same in and out points.
@@ -303,7 +310,7 @@ When using DGR with an AEP workflow, you are able to apply various layer operati
 
 * Extend/shorten comp duration based on replacement video duration: If you replace a video with one that is longer than the original, you can apply layer operations to extend the duration of this layer and its comp, and shift any subsequent layers accordingly.
 * Maintain rendered video duration and fill gaps: If you replace a video with one that is shorter than the original, you can apply layer operations to shift and/or stretch existing layers to fill the gap.
-* Maintain a single comp and use the `enable_layer` layer operation to turn on/off various layers to render stems.
+* Maintain a single comp and use the `enable_layer` layer operation to turn on/off various layers to generate stems.
 
 A full list of layer operations and their descriptions can be found here:
 https://developer.adobe.com/audio-video-firefly-services/guides/dgr/dgr-render#layer-operations-aep-only
@@ -317,15 +324,13 @@ It can be difficult to visualize how layer operations will affect a composition.
 2. Click the **Export Motion Graphics Template…** button in the bottom-right corner.
 3. Save your project when prompted to do so.
 4. **Destination:** Choose a folder to save your `.mogrt` file to.
-5. **Include video preview:** You can choose whether or not to embed a video preview in the `.mogrt` file. DGR currently doesn't make use of this, so it's recommendedto disable this option to significantly reduce the size of the MOGRT.
+5. **Include video preview:** You can choose whether or not to embed a video preview in the `.mogrt` file. DGR currently doesn't make use of this, so it's recommended to disable this option to reduce the size of the MOGRT.
 6. Click **OK**.
 
 DGR is currently compatible with MOGRTs created in After Effects 2026 or earlier. If you have created your After Effects project in a later version:
 
 1. Save to a version compatible with After Effects 2026 via **File** > **Save As…** > **Save a Copy As 26.x…**.
 2. Then open that file in After Effects 2026 and export the MOGRT from the Essential Graphics panel.
-
-It's recommended to disable the **Include video preview** option to significantly reduce the size of the `.mogrt` file.
 
 ## How to export a project for DGR (AEP workflow)
 
@@ -345,11 +350,11 @@ After exporting your MOGRT or AEP templates, it can be helpful to provide an acc
 
 - The type and range of values that each control should expect.
 - A relevant description of each control.
-- **For AEP workflow:** The required layer operations. Ideally, you can provide the JSON payload generated with the DGR Panel extension. [link to the reference above]
+- **For AEP workflow:** The required layer operations. Ideally, you can provide the JSON payload generated with the [DGR Panel extension](https://exchange.adobe.com/apps/cc/205794/dgr-panel).
 
 It can also be helpful to specify the pixel dimensions and duration of the exported composition.
 
-Also note that Dropdown Menu controls are 1-indexed both when referenced in expressions and by the DGR API (that is, the first option has a value of 1). Your accompanying guide should reflect this. For example, a Dropdown Menu control with three items could be listed as:
+Note that Dropdown Menu controls are 1-indexed, both when referenced in expressions and by the DGR API (that is, the first option has a value of 1). Your accompanying guide should reflect this. For example, a Dropdown Menu control with three items could be listed as:
 
 - `1`: Apple
 - `2`: Banana
@@ -563,7 +568,7 @@ Tip
 
 When pickwhipping to reference an effect's property in your expression, hold the Alt/Option (Windows/macOS) key to reference the property by index, rather than by name.
 
-Watch out for processing-heavy expressions like `sourceRectAtTime()`. When used without a time parameter, the results are calculated for every frame. When using a time parameter (for example, `sourceRectAtTime(0)`) the results are calculated for the defined frame only, which can improve performance.
+Watch out for processing-heavy expressions like `sourceRectAtTime()`. When used without a time parameter, the results are calculated for every frame. When using a time parameter (for example, `sourceRectAtTime(0)`) the results are calculated for the defined frame at that time only, which can improve performance.
 
 ## Support for Expression Control effects
 
@@ -642,11 +647,11 @@ This ensures that dynamic content always automatically fits within the intended 
 
 **Paragraph Text** (or Box Text) is text that has an area of pre-determined height and width into which text can flow. You can create this in After Effect by dragging an area in a composition with the Text tool.
 
-Depending on the length of the copy, you should use this when including text that should wrap onto multiple lines.
+Depending on the length of the copy, you should usually choose to use this when including text that should wrap onto multiple lines.
 
 **@@@@@ Add Paragraph Text image @@@@@**
 
-**Point Text** is text that does not have a pre-defined area, but that instead is as wide as the text content, with text only moving onto additional lines when line- or paragraph-break characters are inserted (eg. by pressing Return). The height and width of the text layer are not limited. You can create this in After Effects by clicking in a composition with the Text tool.
+**Point Text** is text that does not have a pre-defined area, but that is instead as wide as the text content, with text only moving onto additional lines when line- or paragraph-break characters are inserted (eg. by pressing Return). The height and width of the text layer are not limited. You can create this in After Effects by clicking in a composition with the Text tool.
 
 You should use this for text that should be single-line (or (or for which you want to manually specify where line breaks should occur).
 
@@ -654,7 +659,9 @@ You should use this for text that should be single-line (or (or for which you wa
 
 ### Expression: Center-align to the layer’s Position
 
-To center your text layer horizontally and vertically to its Position value, apply the _‘Center Align to Layer Position.ffx’_ preset to the text layer.
+To center your text layer horizontally and vertically to its Position value, apply the _[Center Align to Layer Position.ffx](#)_ preset to the text layer.
+
+@@@@@ Link to preset file @@@@@
 
 Alternatively, you can apply the following expression to the text layer’s Anchor Point:
 
@@ -679,7 +686,7 @@ const x = value[0];
 
 ### Script: Vertically align Paragraph text
 
-Another option to vertically align Paragraph text is to use this script, which utilises scripting attributes added to After Effects v24.6 and later. With this, you can select a Paragraph text layer and select “Read from Selected Layer”, then select your desired alignment (top, center, bottom or justify) and click “Apply to Selected Text Layers”.
+Another option to vertically align Paragraph text is to use this script, which utilises scripting attributes added to After Effects v24.6 and later. With this, you can select a Paragraph text layer and select 'Read from Selected Layer', then select your desired alignment (top, center, bottom or justify) and click 'Apply to Selected Text Layers'.
 
 [https://github.com/AdobeDocs/after-effects/blob/main/samples/ComposeBoxTextOptions_ScriptUISample.jsx](https://github.com/AdobeDocs/after-effects/blob/main/samples/ComposeBoxTextOptions_ScriptUISample.jsx)
 
@@ -687,7 +694,9 @@ Another option to vertically align Paragraph text is to use this script, which u
 
 This expression will scale down your text layer if it exceeds a specified width or height. That width or height could be a value defined in your expression (or in a Slider control), or could be based on the width or height of another layer in your project.
 
-Move the text layer’s Anchor Point to its vertical center (or align automatically using the above preset or expression), then apply the _‘Copyfit Text.ffx’_ preset to the text layer
+Move the text layer’s Anchor Point to its vertical center (or align automatically using the above preset or expression), then apply the _[Copyfit Text.ffx](#)_ preset to the text layer.
+
+@@@@@ Link to the preset file @@@@@
 
 Alternatively, you can apply this expression to your text layer’s Scale property:
 
@@ -722,15 +731,17 @@ const heightMax = guideSize.height * guideScale[1]/100; // Maximum height in pix
 
 Now, if the size or scale of the guide layer is adjusted, the copyfit bounds will match. This can make it easier to update without later needing to modify expressions.
 
-Typical use cases of this are for any text sitting inside a resizable shape/pill/badge – for example, a date stamp, a price callout, a call-to-action – where the text’s width should track the guide instead of a hardcoded value.
+Typical use cases of this are for any text sitting inside a resizable shape/pill/badge – for example, a date stamp, a price callout, a call-to-action – where the text’s width should conform to that of the guide, instead of a hardcoded value.
 
 **Note:** The `false` at the end of `sourceRectAtTime(time, false)` matters. A `false` value here measures the letters actually visible at the reference time (so it tracks the copy as it changes). A `true` value measures the size of the Paragraph text box itself, which stays the same no matter what the copy says – if your scale value looks ‘stuck’ and doesn't react when you change the text, this likely the cause. Swap in a shorter/longer word and confirm the behaviour before trusting it.
 
 ### Expression: Text Box automatically sized to a text layer
 
-To create a box that matches the shape of a specified text layer, create an empty shape layer, and apply the _‘Autofit Text Box.ffx’_ preset to it. This will create a rectangle shape, with the required expressions. Ensure that you select the relevant layer on the ‘Text Layer’ property of the ‘Autofit Text Box’ effect. You can further customise the box after its creation (for example, by changing the color or applying additional effects or layer styles).
+To create a box that matches the shape of a specified text layer, create an empty shape layer, and apply the _[Autofit Text Box.ffx](#)_ preset to it. This will create a rectangle shape, with the required expressions. Ensure that you select the relevant layer on the ‘Text Layer’ property of the ‘Autofit Text Box’ effect. You can further customise the box after its creation (for example, by changing the color or applying additional effects or layer styles).
 
-Alternatively, create a parametric rectangle with the Rectangle tool, match the Position of the shape layer to that of the text layer, and apply this expression to the rectangle’s Size property (making sure to update the textLayer reference to point to your text layer):
+@@@@@ Link to preset file @@@@@
+
+Alternatively, create a parametric rectangle with the Rectangle tool, match the Position of the shape layer to that of the text layer, and apply this expression to the rectangle’s Size property (making sure to update the `textLayer` reference to point to your text layer):
 
 ```javascript
 const textLayer = thisComp.layer("Text Layer 1");
@@ -744,7 +755,7 @@ const y = (textLayerSize.height * textLayerScale) + (padding[1] * 2);
 
 ### Expression: Show/hide layers based on a Slider or Dropdown value
 
-If you would like to dynamically turn on/off layers – for example, you have a number of different layouts in your template, and you’d like to show a specific one based on the value selected for a Slider or Dropdown control – you can apply the following expression to each layer’s Opacity property, making sure to change the value after `==` for each layer.
+If you would like to dynamically turn on/off layers – for example, you have a number of different logos in your template, and you’d like to show a specific one based on the value selected for a Slider or Dropdown control – you can apply the following expression to each layer’s Opacity property, making sure to change the value after `==` for each layer.
 
 ```javascript
 const sliderOrDropdownValue = thisComp.layer("Controls").effect("Slider/Dropdown Control")(1); // Connect this to your slider or dropdown control
@@ -787,7 +798,9 @@ Typical use cases are for a simple on/off element, such as a ‘Show Badge?’ o
 
 When using DGR with an AEP template, you can replace audio and videos layers with sources of different durations, as well as apply layer operations to adjust layer timing. You can use expressions to read the start and end times of these layers and automatically adjust the volume of those layers to get a smooth fade-in and -out.
 
-Select your layers and apply the _'Auto-Fade Audio.ffx'_ preset. This will add a number of Slider controls and a Stereo Mixer effect. Expressions applied to the Stereo Mixer effect will, beginning from a layer's start time, fade the audio up from minimum to maximum volume over a specified number of seconds. The audio will then fade down over a specified number of seconds at the end of the layer's duration. You can adjust the slider values to change these settings.
+Select your layers and apply the _[Auto-Fade Audio.ffx](#)_ preset. This will add a number of Slider controls and a Stereo Mixer effect. Expressions applied to the Stereo Mixer effect will, beginning from a layer's start time, fade the audio up from minimum to maximum volume over a specified number of seconds. The audio will then fade down over a specified number of seconds at the end of the layer's duration. You can adjust the slider values to change these settings.
+
+@@@@@ Link to preset file @@@@@
 
 Alternatively, create four Slider expression controls and name them as follows:
 
@@ -823,7 +836,7 @@ else {
 
 ### How to save and apply animation presets
 
-Animation presets are a great way to save effect stacks and expressions to a user library, so that they can be applied to other layers at a later time. In addition to reducing duplication of effort, it also helps to cut down on user error, ensuring that effects and expressions are applied as expected.
+Animation presets are a great way to save effect stacks and expressions to a user library, so that they can be applied to other layers at a later time. In addition to reducing duplication of effort, it also helps to cut down on user error, ensuring that effects and expressions are always applied as expected.
 
 To save an animation preset file, select one or more properties, effects or layer styles and/or the Effects or Layer Styles section of your layer(s). Go to 'Animation > Save Animation Preset…', choose your desired save location, then click 'Save'.
 
@@ -835,7 +848,7 @@ If you have saved your preset files to the User Presets folder for your version 
 
 If your project ever ends up with two comps that share the same name (easy to do by accident when duplicating a template comp), a direct reference to that comp in an expression – eg. `var logo = comp("Logo")` – becomes ambiguous. After Effects will always refer to the first comp it finds with that name, which may not be the one being used in your main comp.
 
-The safer method references the pre-comp layer that’s actually placed in your timeline:
+If renaming one of the comps is not an option, this safer method references the pre-comp layer that’s actually placed in your timeline:
 
 ```javascript
 var logo = thisComp.layer("Logo")
