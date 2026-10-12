@@ -159,7 +159,7 @@ Instead of guessing how a render batch will turn out, you can see exactly how re
 
 This allows the designer to confidently test for edge cases with real and sample data, build an array of layer operations, and send test renders to the DGR API.
 
-## Optimize template file size
+## Optimizing template file size
 
 Larger file sizes (for both `.mogrt` and collected `.zip` files) can increasing render times. These tips can help you optimize for performance.
 
