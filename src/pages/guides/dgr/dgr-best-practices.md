@@ -1,3 +1,4 @@
+
 ---
 title: Best practices for Dynamic Graphics Render
 description: Best practices and frequently asked questions for motion designers authoring After Effects Projects and Motion Graphics Templates for the Dynamic Graphics Render API.
@@ -96,9 +97,13 @@ For example, if you have a "Text" property in both an "Intro" and an "Outro" gro
 
 It can often be beneficial to pre-render the parts of your composition that won't change, or that won't interact with any customizable elements. This reduces the processing requirements when rendering, for a faster output.
 
+This can also be helpful when your template contains effect-heavy layers that render slowly. You can check for these layers by enabling the Render Time column. To enable this, right-click in the header row of the Timeline panel and select Columns > Render Time, or click the snail icon in the bottom-left of the Timeline panel.
+
 **Avoid third-party effects and plug-ins:**
 
 It's not currently possible to install third-party effects or plug-ins. Please avoid using these in your templates. If third-party effects or plug-ins are used, your DGR exports may fail, or may not render as expected.
+
+If third-party effects are unavoidable, consider if you are able to pre-render those layers before exporting the template.
 
 **Include safeguards for safe areas:**
 
@@ -153,6 +158,44 @@ You can install the [DGR Panel extension](https://exchange.adobe.com/apps/cc/205
 Instead of guessing how a render batch will turn out, you can see exactly how replacement data resolves in your template, how layer operations reshape your composition, generate the matching render payload, and run test renders against the DGR API — all without leaving After Effects.
 
 This allows the designer to confidently test for edge cases with real and sample data, build an array of layer operations, and send test renders to the DGR API.
+
+## Optimize template file size
+
+Larger file sizes (for both `.mogrt` and collected `.zip` files) can increasing render times. These tips can help you optimize for performance.
+
+**Exclude video preview (MOGRT workflow only):**
+
+When exporting a MOGRT from the Essential Graphics panel, the 'Include video preview' option gives you the choice to embed a video preview in the `.mogrt` file. This is used in Premiere and other software to preview the template; for instance, in Premiere's Graphics Templates panel.
+
+This preview is not used by DGR, so disabling this option before exporting can significantly reduce the file size.
+
+**Optimize non-replaceable media assets:**
+
+If your template uses media assets such as video, image or audio files that are not replaceable, you may be able to optimise these. Consider the following examples:
+
+Scale or crop:
+If a video or image is only ever displayed at 50% scale, you could scale the original file to 50% and set the scale in After Effects to 100%. Similarly, if only the top half of a video or image is ever displayed, you might wish to crop the original file to that region.
+
+Duration:
+If a video or audio layer only uses a section of the asset's full duration, you could trim the original file to just that section, and reimport to After Effects. Replace and align the original layer(s) to match.
+
+File format:
+Uncompressed formats, such as `.mov`, `.tiff` or `.wav`, generally have larger file sizes. You can experiment with re-encoding these to compressed formats, such as `.mp4`, `.jpg` or `.mp3`. It's important to note that After Effects will generally process uncompressed formats faster, but smaller file sizes may lead to overall faster job completion in DGR.
+
+Alpha:
+If a video requires an alpha channel (usually requiring a larger `.mov` file), an alternative may be to render a non-alpha version alongside a luma matte, and use the luma matte to reintroduce the alpha channel.
+
+**Optimize media replacement assets:**
+
+You might find that you're including large assets that will always be replaced as part of the DGR job. In this case, you can swap these out for placeholder assets.
+
+For both video and image layers, you can use an image placeholder (an image control can always receive a video asset, and vice versa). To do this, open the Essential Graphics panel and right-click the video or image control to select the 'Replace Layer with Placeholder' option. This will create a new image file in your Project panel, and replace the layer's source with this.
+
+Alternatively, you can create your own placeholder image at an appropriate size and replace the original asset with this. Import the placeholder, select your assets in the Project or Timeline panel, and – while holding Alt (Windows) or Option (Mac) – drag the placeholder asset from the Project panel onto these.
+
+For audio layers, you can replace the asset with a short, silent audio clip. You can download a suitable placeholder clip here. To do this, either right-click each asset in your Project panel and Replace Footage with this placeholder audio file, or import the audio file and drag-replace using the technique described above.
+
+@@@@@ Link to silent.wav @@@@@
 
 
 ## Video replacement
