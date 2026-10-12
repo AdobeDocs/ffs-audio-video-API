@@ -5165,7 +5165,7 @@
                 "layerId": {
                   "type": "string",
                   "deprecated": true,
-                  "description": "Deprecated; use `layerIds` instead. A single target layer ID (`c{comp}:l{layer}:layer`), accepted for backward compatibility."
+                  "description": "Deprecated; use `layerIds` instead. A single target composite layer ID (`c{comp}:l{layer}:layer`), accepted for backward compatibility."
                 },
                 "layerIds": {
                   "type": "array",
@@ -5173,7 +5173,7 @@
                   "items": {
                     "type": "string"
                   },
-                  "description": "Target layer IDs (`c{comp}:l{layer}:layer`). The operation is applied to each layer in array order. Used by all operations except `trim_comp`."
+                  "description": "Target composite layer IDs (`c{comp}:l{layer}:layer`). The operation is applied to each layer in array order. Used by all operations except `trim_comp`."
                 },
                 "refLayerId": {
                   "type": "string",
