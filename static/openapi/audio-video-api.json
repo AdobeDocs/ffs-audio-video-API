@@ -5175,6 +5175,11 @@
                   },
                   "description": "Target composite layer IDs (`c{comp}:l{layer}:layer`). The operation is applied to each layer in array order. Used by all operations except `trim_comp`."
                 },
+                "operateAsGroup": {
+                  "type": "boolean",
+                  "default": false,
+                  "description": "Optional; applies to `shift_inpoint` and `shift_outpoint`. When true, shifts all layers in `layerIds` by the same offset, preserving their relative timing and durations. `shift_inpoint` aligns the earliest in point to the resolved reference time; `shift_outpoint` aligns the latest out point. When false or omitted, shifts each layer independently."
+                },
                 "refLayerId": {
                   "type": "string",
                   "description": "Reference layer for `shift_inpoint`, `shift_outpoint`, `trim_inpoint`, and `trim_outpoint` (its in/out time, selected by `refInOut`, anchors the move) and for `stretch_layer` (its duration becomes the target duration when no `duration*` field is provided)."
