@@ -1,5 +1,6 @@
 
 
+
 ---
 title: Best practices for Dynamic Graphics Render
 description: Best practices and frequently asked questions for motion designers authoring After Effects Projects and Motion Graphics Templates for the Dynamic Graphics Render API.
@@ -202,6 +203,9 @@ For audio layers, you can replace the asset with a short, silent audio clip. You
 
 @@@@@ Link to silent.wav @@@@@
 
+**Reduce project**
+
+Select your top-level comps in the Project panel and go to File > Dependencies > Reduce Project. This will remove any comps or assets that are not within the selected comps (or their children).
 
 ## Video replacement
 
@@ -253,6 +257,8 @@ The source of these layers can be replaced or mixed:
 - Mix: Existing audio is retained, and the new audio is added as an additional layer, with the same in and out points.
 
 Replacement audio files will inherit the trimming of the original layer. For example, if the first second of the audio is trimmed, this first second will still be trimmed after audio replacement. You can use layer operations to adjust the timing of the audio layer, if needed.
+
+If you add a new audio track to the template using the 'mix' option above, but would like to also perform layer operations on this new track within the same call, it's recommended to instead add an additional audio track to your template and use the 'replace' option on this layer's described control. That way, the layer will be described and targetable by layer operations. Alternatively, you could use the 'mix' option, [download the modified AEP via the sidecar option](https://developer.adobe.com/audio-video-firefly-services/guides/dgr/dgr-render#sidecar), and run a subsequent job with this new template.
 
 ## Data files inside MOGRT or AEP
 
