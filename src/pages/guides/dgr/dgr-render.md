@@ -275,21 +275,25 @@ The 202 response, status polling, output structure, cancel, and list-jobs behavi
 
 ### Layer operations (AEP only)
 
-`layerOperations[]` is a top-level array, applicable only when `type` is `aep`, that adjusts layer and composition timing and layer visibility after variable overrides are applied. Operations run in array order and each targets a layer by its `layerId` — the `layers[].id` value from the Describe response (of the form `c{comp}:l{layer}:layer`).
+`layerOperations[]` is a top-level array, applicable only when `type` is `aep`, that adjusts layer and composition timing and layer visibility after variable overrides are applied. Operations run in array order and target layers using `layerIds` — an array of `layers[].id` values from the Describe response (of the form `c{comp}:l{layer}:layer`).
+
+Use `layerIds` (an array of composite layer IDs) to target one or more layers. The deprecated `layerId` string remains accepted for backward compatibility.
 
 | Operation | Purpose | Key fields |
 |-----------|---------|------------|
-| `trim_comp` | Set the comp start time and duration. | `startLayerId` or `startSeconds`/`startFrames`, `endLayerId` or `durationSeconds`/`durationFrames` |
-| `trim_inpoint` | Trim a layer's in point to a reference time. | `layerId`, `refLayerId`, `refInOut`, `offsetSeconds`/`offsetFrames` |
-| `trim_outpoint` | Trim a layer's out point to a reference time. | `layerId`, `refLayerId`, `refInOut`, `offsetSeconds`/`offsetFrames` |
-| `shift_inpoint` | Shift a layer so its in point aligns to a reference time (keeps duration). | `layerId`, `refLayerId`, `refInOut`, `offsetSeconds`/`offsetFrames` |
-| `shift_outpoint` | Shift a layer so its out point aligns to a reference time (keeps duration). | `layerId`, `refLayerId`, `refInOut`, `offsetSeconds`/`offsetFrames` |
-| `stretch_layer` | Time-stretch a layer to an absolute percentage or duration, or to match the duration of a reference layer. | `layerId`, `durationPercent`/`durationSeconds`/`durationFrames` or `refLayerId`, `offsetSeconds`/`offsetFrames` |
-| `match_source_duration` | Extend a layer to match its source footage duration. | `layerId` |
-| `set_layer_duration` | Set a layer to an absolute duration. | `layerId`, `durationSeconds`/`durationFrames` |
-| `enable_layer` | Turn a layer's video and/or audio on or off, and/or solo it (if a comp contains layers that have solo enabled, only those layers will render). | `layerId`, `videoEnabled`, `audioEnabled`, `solo` |
+| `trim_comp` | Set the comp start time and duration. | `startLayerId`/`startSeconds`/`startFrames`, `endLayerId`/`durationSeconds`/`durationFrames` |
+| `trim_inpoint` | Trim a layer's in point to a reference time. | `layerIds`, `refLayerId`, `refInOut`, `offsetSeconds`/`offsetFrames` |
+| `trim_outpoint` | Trim a layer's out point to a reference time. | `layerIds`, `refLayerId`, `refInOut`, `offsetSeconds`/`offsetFrames` |
+| `shift_inpoint` | Shift a layer so its in point aligns to a reference time (keeps duration). | `layerIds`, `refLayerId`, `refInOut`, `offsetSeconds`/`offsetFrames`, `operateAsGroup` (optional) |
+| `shift_outpoint` | Shift a layer so its out point aligns to a reference time (keeps duration). | `layerIds`, `refLayerId`, `refInOut`, `offsetSeconds`/`offsetFrames`, `operateAsGroup` (optional) |
+| `stretch_layer` | Time-stretch a layer to an absolute percentage or duration, or to match the duration of a reference layer. | `layerIds`, `durationPercent`/`durationSeconds`/`durationFrames`/`refLayerId`, `offsetSeconds`/`offsetFrames` |
+| `match_source_duration` | Extend a layer to match its source footage duration. | `layerIds` |
+| `set_layer_duration` | Set a layer to an absolute duration. | `layerIds`, `durationSeconds`/`durationFrames` |
+| `enable_layer` | Turn a layer's video and/or audio on or off, and/or solo it (if a comp contains layers that have solo enabled, only those layers will render). | `layerIds`, `videoEnabled`, `audioEnabled`, `solo` |
 
 Reference times are resolved from `refLayerId` + `refInOut` (which end of the reference layer to read), then adjusted by `offsetSeconds` or `offsetFrames`. When both a seconds and a frames form are given for the same field, the seconds form takes precedence. For `stretch_layer`, the target duration is taken from `durationPercent`, then `durationSeconds`, then `durationFrames`, then `refLayerId` (the reference layer's duration), in that order. For `enable_layer`, set at least one of `videoEnabled`, `audioEnabled`, or `solo`.
+
+For `shift_inpoint` and `shift_outpoint`, `operateAsGroup` defaults to `false`, shifting each target layer independently. Set it to `true` to shift all layers in `layerIds` by the same offset, preserving their relative timing and durations: `shift_inpoint` aligns the group's earliest in point to the reference time, while `shift_outpoint` aligns its latest out point.
 
 ### Sample request (AEP layer operations)
 

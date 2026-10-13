@@ -5164,7 +5164,21 @@
                 },
                 "layerId": {
                   "type": "string",
-                  "description": "Target layer ID (`c{comp}:l{layer}:layer`). Used by all operations except `trim_comp`."
+                  "deprecated": true,
+                  "description": "Deprecated; use `layerIds` instead. A single target composite layer ID (`c{comp}:l{layer}:layer`), accepted for backward compatibility."
+                },
+                "layerIds": {
+                  "type": "array",
+                  "minItems": 1,
+                  "items": {
+                    "type": "string"
+                  },
+                  "description": "Target composite layer IDs (`c{comp}:l{layer}:layer`). The operation is applied to each layer in array order. Used by all operations except `trim_comp`."
+                },
+                "operateAsGroup": {
+                  "type": "boolean",
+                  "default": false,
+                  "description": "Optional; applies to `shift_inpoint` and `shift_outpoint`. When true, shifts all layers in `layerIds` by the same offset, preserving their relative timing and durations. `shift_inpoint` aligns the earliest in point to the resolved reference time; `shift_outpoint` aligns the latest out point. When false or omitted, shifts each layer independently."
                 },
                 "refLayerId": {
                   "type": "string",
