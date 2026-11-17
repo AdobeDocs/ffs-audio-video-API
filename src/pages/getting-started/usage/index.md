@@ -334,4 +334,4 @@ When preparing *.mogrt* files for API automation, consider these guidelines:
 3. Audio handling
     - The Render API supports **global audio replacement** when the template exposes an audio control: set `audioPreference` to `"replace"` or `"mix"` in the request. See [Audio control](../../guides/dgr/dgr-render.md#audio-control) in [Using the Render API](../../guides/dgr/dgr-render.md).
     - The Essential Graphics panel in After Effects does not configure audio replacement; use the Describe API to discover controls and supply assets in the Render request.
-    - For duration behavior, supported file types, and preprocessing (for example in Adobe Audition), see [Best practices for Dynamic Graphics Render and MOGRTs](../../guides/dgr/dgr-best-practices.md).
+    - For duration behavior, supported file types, and preprocessing (for example in Adobe Audition), see [Best practices for Dynamic Graphics Render](../../guides/dgr/dgr-best-practices.md).
