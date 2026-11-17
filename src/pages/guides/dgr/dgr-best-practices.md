@@ -290,14 +290,17 @@ You can find examples of copyfitting expressions and animation presets in the [E
 
 ## How to pass blank text values
 
-When passing data to the API directly (via a JSON call or similar), controls can be overwritten on a per-variation basis. By omitting a control for a particular variation, the control will fall back to its default value. Passing a string value of `""` will set a blank (empty) string for that text control.
+For each variation, a text control's value works as follows:
 
-However, when passing data via CSV or similar, where the data for multiple variations is defined within a single table, omitting a control on a per-variation basis is not possible. In this case, a blank value would make that control fall back to its default value. Currently, there is no way to denote that a table cell should set a blank (empty) string.
+- **Omit the variable** to keep the template's default text.
+- **Pass `""`** to clear the text.
+- **Don't pass `null`**: a `null` or missing `text` value is rejected.
 
-The following workarounds may help where this behavior is required:
+```json
+{ "variableId": "<text control variableId>", "text": "" }
+```
 
-1. Provide a single space character (`" "`) as the value. In most cases, this will work without issue. However, take note that if any expressions rely on a character count, this may lead to unexpected results.
-2. Before exporting the `.mogrt` or collecting the `.aep` file, set the control's value to a blank string in the Essential Graphics panel. This means that if a control falls back to its default value, it will be blank.
+When data comes from a CSV file or spreadsheet, a blank cell usually means "no value", so the control falls back to its default. To get blank text from a table, map those cells to `""` when building the request. Alternatively, set the control's default to a blank string in the Essential Graphics panel before exporting the `.mogrt` or collecting the `.aep` file.
 
 ## Layer operations
 
