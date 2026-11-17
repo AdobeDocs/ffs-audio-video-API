@@ -14,6 +14,7 @@ contributors:
   - https://github.com/aeabreu-hub
   - https://github.com/sandeepy-gh
   - https://github.com/schhatwalgitacc
+  - https://github.com/rahulkumar1573
 ---
 
 # Best practices for Dynamic Graphics Render
