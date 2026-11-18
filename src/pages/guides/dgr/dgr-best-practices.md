@@ -87,7 +87,7 @@ End users don't need to have Adobe After Effects or Adobe Premiere experience. I
 
 These tips will help you prepare your templates to be DGR-ready.
 
-**Create separate templates for different aspect ratios and durations:**
+**Create separate templates or comps for different aspect ratios:**
 
 When creating videos for multiple aspect ratios (for example, 9:16 portrait; 16:9 landscape), a separate MOGRT or comp should be created for each.
 
@@ -159,7 +159,7 @@ To replace audio in layers that also contain graphics, expose these layers as re
 
 You can install the [DGR Panel extension](https://exchange.adobe.com/apps/cc/205794/dgr-panel) from Adobe Exchange to add a panel to Adobe After Effects which allows you to test dynamic changes to your templates in real-time.
 
-Instead of guessing how a render batch will turn out, you can see exactly how replacement data resolves in your template, how layer operations reshape your composition, generate the matching render payload, and run test renders against the DGR API — all without leaving Adobe After Effects.
+Instead of guessing how a render batch will turn out, you can see exactly how replacement data resolves in your template, how layer operations reshape your composition, generate the matching render payload, and run test renders against the DGR API – all without leaving Adobe After Effects.
 
 This allows the designer to confidently test for edge cases with real and sample data, build an array of layer operations, and send test renders to the DGR API.
 
@@ -186,7 +186,7 @@ If your template uses media assets such as video, image or audio files that are 
 
 You might find that your template includes large assets that will always be replaced as part of the DGR job. In this case, you can swap these out for placeholder assets with smaller file sizes.
 
-For both video and image layers, you can use an image placeholder (note: an image control can always receive a video asset, and vice versa). To do this, open the Essential Graphics panel and right-click the video or image control to select the **Replace Layer with Placeholder** option. This will create a new image file in your Project panel and replace the layer's source with this.
+For both video and image layers, you can use an image placeholder (in AEP templates, a media layer can be replaced with either an image or a video; for MOGRT templates, test the replacement with your template). To do this, open the Essential Graphics panel and right-click the video or image control to select the **Replace Layer with Placeholder** option. This will create a new image file in your Project panel and replace the layer's source with this.
 
 Alternatively, you can create your own placeholder image at an appropriate size and replace the original asset with this. Import the placeholder, select your assets in the Project or Timeline panel, and – while holding Alt (Windows) or Option (macOS) – drag the placeholder asset from the Project panel onto these.
 
@@ -569,7 +569,7 @@ Tip
 
 When pickwhipping to reference an effect's property in your expression, hold the Alt/Option (Windows/macOS) key to reference the property by index, rather than by name.
 
-Watch out for processing-heavy expressions like `sourceRectAtTime()`. When used without a time parameter, the results are calculated for every frame. When using a time parameter (for example, `sourceRectAtTime(0)`) the results are calculated for the defined frame at that time only, which can improve performance.
+Watch out for processing-heavy expressions like `sourceRectAtTime()`. Passing a time parameter (for example, `sourceRectAtTime(0)`) returns the same result on every frame, but the expression is still evaluated on every frame. To evaluate an expression only once, add `posterizeTime(0);` at the start of the expression (Adobe After Effects 16.0 and later). This can improve render time for text that doesn't change during the render.
 
 ## Support for Expression Control effects
 
@@ -581,7 +581,7 @@ The following Expression Control effects are currently supported by the DGR API:
 
 ### Slider
 
-Value expected by the API: floating-point value, provided as a string (for example, `"2.54"`).
+Value expected by the API: a number (for example, `2.54`).
 
 <InlineAlert variant="info" slots="heading, text" />
 
@@ -601,7 +601,7 @@ This control is 1-indexed within Adobe After Effects, matching the value expecte
 
 ### Checkbox
 
-Value expected by the API: `"true"` or `"false"`, provided as a string.
+Value expected by the API: `true` or `false` (boolean).
 
 The following Expression Control effects are **not** currently supported by the DGR API:
 
@@ -696,15 +696,14 @@ Alternatively, you can apply this expression to your text layer's Scale property
 ```javascript
 const widthMax = 500; // Maximum width in pixels
 const heightMax = 200; // Maximum height in pixels
-const widthCurrent = sourceRectAtTime().width;
-const heightCurrent = sourceRectAtTime().height;
-const widthScale = (widthCurrent > widthMax) ? (widthMax / widthCurrent) * 100 : value[0]; // Calculate width scaling, if text is wider than the maximum
-const heightScale = (heightCurrent > heightMax) ? (heightMax / heightCurrent) * 100 : value[1]; // Calculate height scaling, if text is taller than the maximum
-const newScale = Math.min(widthScale, heightScale); // Use the smallest of the widthScale and heightScale to set the scale
-[newScale, newScale]
+const rect = sourceRectAtTime();
+const widthCurrent = rect.width * Math.abs(value[0]) / 100; // Width at the layer's current scale
+const heightCurrent = rect.height * Math.abs(value[1]) / 100; // Height at the layer's current scale
+const fit = Math.min(1, widthMax / widthCurrent, heightMax / heightCurrent); // Shrink only, never enlarge
+mul(value, fit)
 ```
 
-With either approach, you're effectively defining a box within which the text should scale to fit.
+With either approach, you're effectively defining a box within which the text should scale to fit. The text is only ever scaled down from its current scale, never enlarged.
 
 <InlineAlert variant="info" slots="heading, text" />
 
@@ -734,22 +733,32 @@ Typical use cases of this are for any text sitting inside a resizable shape/pill
 
 Note
 
-The `false` at the end of `sourceRectAtTime(time, false)` matters. A `false` value here measures the letters actually visible at the reference time (so it tracks the copy as it changes). A `true` value measures the size of the Paragraph text box itself, which stays the same no matter what the copy says – if your scale value looks 'stuck' and doesn't react when you change the text, this is likely the cause. Swap in a shorter/longer word and confirm the behavior before trusting it.
+The `false` at the end of `sourceRectAtTime(time, false)` matters. A `false` value measures the guide layer's visible content. A `true` value adds the stroke width for a shape layer, and returns the text box itself (rather than the text) for a Paragraph text layer, which stays the same no matter what the copy says. If you use a Paragraph text layer as the guide and the copyfit bounds don't react when you change its text, this is likely the cause.
 
 ### Expression: Text Box automatically sized to a text layer
 
 To create a box that matches the shape of a specified text layer, create an empty shape layer, and apply the *[Autofit Text Box.ffx](./assets/autofit-text-box.ffx)* preset to it. This will create a rectangle shape, with the required expressions. Ensure that you select the relevant layer on the **Text Layer** property of the **Autofit Text Box** effect. You can further customize the box after its creation (for example, by changing the color or applying additional effects or layer styles).
 
-Alternatively, create a parametric rectangle with the Rectangle tool, match the Position of the shape layer to that of the text layer, and apply this expression to the rectangle's Size property (making sure to update the `textLayer` reference to point to your text layer):
+Alternatively, create a parametric rectangle with the Rectangle tool and add the following expressions to its **Rectangle Path 1** properties, making sure to update the `textLayer` reference to point to your text layer. Leave the rectangle group's own Transform properties at their defaults.
+
+On the **Size** property:
 
 ```javascript
 const textLayer = thisComp.layer("Text Layer 1");
 const textLayerSize = textLayer.sourceRectAtTime();
-const textLayerScale = textLayer.transform.scale[0] / 100;
+const textLayerScale = textLayer.transform.scale;
 const padding = [20, 10];
-const x = (textLayerSize.width * textLayerScale) + (padding[0] * 2);
-const y = (textLayerSize.height * textLayerScale) + (padding[1] * 2);
-[x,y]
+const x = (textLayerSize.width * Math.abs(textLayerScale[0]) / 100) + (padding[0] * 2);
+const y = (textLayerSize.height * Math.abs(textLayerScale[1]) / 100) + (padding[1] * 2);
+[x, y]
+```
+
+On the **Position** property, to center the box on the text's visible bounds (this accounts for the text layer's anchor point and transforms):
+
+```javascript
+const textLayer = thisComp.layer("Text Layer 1");
+const r = textLayer.sourceRectAtTime();
+fromComp(textLayer.toComp([r.left + r.width / 2, r.top + r.height / 2]))
 ```
 
 ### Expression: Show/hide layers based on a Slider or Dropdown value
@@ -786,11 +795,11 @@ When showing/hiding a layer via expressions, make sure that the layer is enabled
 
 This is the simpler sibling of the pattern above – use it when there are only ever two states (for example, show/hide or on/off), rather than several named options. A Checkbox control gives you a true/false switch instead of a numbered menu.
 
-The following expression applied to a layer's Opacity property will set the Opacity to 100% when the checkbox is true, and 0% when it is false.
+The following expression applied to a layer's Opacity property will keep the layer's Opacity when the checkbox is true, and set it to 0% when it is false.
 
 ```javascript
 const checkboxValue = thisComp.layer("Controls").effect("Checkbox Control")(1); // Connect this to your checkbox control
-(checkboxValue == true) ? 100 : 0;
+checkboxValue ? value : 0
 ```
 
 Typical use cases are for a simple on/off element, such as a **Show Badge?** or **Show CTA?** control.
@@ -805,7 +814,7 @@ As above, when showing/hiding a layer via expressions, make sure that the layer 
 
 When using DGR with an AEP template, you can replace audio and video layers with sources of different durations, as well as apply layer operations to adjust layer timing. You can use expressions to read the start and end times of these layers and automatically adjust the volume of those layers to get a smooth fade-in and -out.
 
-Select your layers and apply the *[Auto-Fade Audio.ffx](./assets/auto-fade-audio.ffx)* preset. This will add a number of Slider controls and a Stereo Mixer effect. Expressions applied to the Stereo Mixer effect will, beginning from a layer's start time, fade the audio up from minimum to maximum volume over a specified number of seconds. The audio will then fade down over a specified number of seconds at the end of the layer's duration. You can adjust the slider values to change these settings.
+Select your layers and apply the *[Auto-Fade Audio.ffx](./assets/auto-fade-audio.ffx)* preset. This will add a number of Slider controls and a Stereo Mixer effect. Expressions applied to the Stereo Mixer effect will, beginning from a layer's start time, fade the audio up from minimum to maximum volume over a specified number of seconds. The audio will then fade down over a specified number of seconds at the end of the layer's duration. You can adjust the slider values to change these settings (by default, 1-second fades between 0% and 100% volume).
 
 Alternatively, create four Slider expression controls and name them as follows:
 
@@ -820,7 +829,7 @@ Add a **Stereo Mixer** effect and rename it to **Stereo Mixer (Auto-Fade)**. On 
 effect("Stereo Mixer (Auto-Fade)")(1)
 ```
 
-Then, on the **Left Level** property, add the following expression. If the time is before the start of the layer plus the fade in duration, the audio will increase from min to max. Otherwise, it will decrease from max to min at the end of the layer.
+Then, on the **Left Level** property, add the following expression. If the time is before the start of the layer plus the fade in duration, the audio will increase from min to max. Otherwise, it will decrease from max to min at the end of the layer. The end is the earlier of the layer's out point and the point where the audio source runs out, which accounts for trimmed and time-stretched layers (for example, after a `stretch_layer` layer operation).
 
 ```javascript
 const fadeInDuration = effect("Fade In Duration (Seconds)")(1);
@@ -828,7 +837,10 @@ const fadeOutDuration = effect("Fade Out Duration (Seconds)")(1);
 const volumeMin = effect("Minimum Volume (%)")(1);
 const volumeMax = effect("Maximum Volume (%)")(1);
 const layerStart = inPoint;
-const layerEnd = (outPoint > layerStart + source.duration) ? layerStart + source.duration : outPoint;
+// Comp time at which the source audio runs out (handles trimmed and time-stretched layers)
+const rate = sourceTime(inPoint + 1) - sourceTime(inPoint);
+const sourceEnd = (rate > 0) ? startTime + source.duration / rate : outPoint;
+const layerEnd = Math.min(outPoint, sourceEnd, thisComp.duration);
 // Fade In
 if (time < layerStart + fadeInDuration) {
   ease(time, layerStart, layerStart + fadeInDuration, volumeMin, volumeMax)
@@ -851,13 +863,15 @@ If you have saved your preset files to the User Presets folder for your version 
 
 ### Referencing a sub-composition safely
 
-If your project ever ends up with two comps that share the same name (easy to do by accident when duplicating a template comp), a direct reference to that comp in an expression – for example, `var logo = comp("Logo")` – becomes ambiguous. Adobe After Effects will always refer to the first comp it finds with that name, which may not be the one being used in your main comp.
+If your project ever ends up with two comps that share the same name (easy to do by accident when duplicating a template comp), a direct reference to that comp in an expression – for example, `const logo = comp("Logo")` – becomes ambiguous. Adobe After Effects will always refer to the first comp it finds with that name, which may not be the one being used in your main comp.
 
-If renaming one of the comps is not an option, this safer method references the pre-comp layer that's actually placed in your timeline:
+If renaming one of the comps is not an option, this safer method references the composition used by the pre-comp layer that's actually placed in your timeline:
 
 ```javascript
-var logo = thisComp.layer("Logo")
+const logo = thisComp.layer("Logo").source;
 ```
+
+`.source` returns the composition itself, so existing expressions such as `logo.layer("Title")` keep working.
 
 ## See also
 
