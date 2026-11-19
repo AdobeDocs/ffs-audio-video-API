@@ -186,7 +186,7 @@ If your template uses media assets such as video, image or audio files that are 
 
 You might find that your template includes large assets that will always be replaced as part of the DGR job. In this case, you can swap these out for placeholder assets with smaller file sizes.
 
-For both video and image layers, you can use an image placeholder (in AEP templates, a media layer can be replaced with either an image or a video; for MOGRT templates, test the replacement with your template). To do this, open the Essential Graphics panel and right-click the video or image control to select the **Replace Layer with Placeholder** option. This will create a new image file in your Project panel and replace the layer's source with this.
+For both video and image layers, you can use an image placeholder (note: a media replacement control can receive either an image or a video, in both MOGRT and AEP templates). To do this, open the Essential Graphics panel and right-click the video or image control to select the **Replace Layer with Placeholder** option. This will create a new image file in your Project panel and replace the layer's source with this.
 
 Alternatively, you can create your own placeholder image at an appropriate size and replace the original asset with this. Import the placeholder, select your assets in the Project or Timeline panel, and – while holding Alt (Windows) or Option (macOS) – drag the placeholder asset from the Project panel onto these.
 
