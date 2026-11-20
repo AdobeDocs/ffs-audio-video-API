@@ -52,7 +52,7 @@ Properties called out for **Advanced only** in the PDF (highlighted rows in the 
 ## See also
 
 - [Authentication and setup](../../getting-started/index.md)
-- [Best practices for Dynamic Graphics Render and MOGRTs](dgr-best-practices.md)
+- [Best practices for Dynamic Graphics Render](dgr-best-practices.md)
 - [Using the Presets API](index.md)
 - [Using the Describe API](dgr-describe.md)
 - [Using the Render API](dgr-render.md)
