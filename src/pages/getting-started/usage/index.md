@@ -324,7 +324,7 @@ When preparing *.mogrt* files for API automation, consider these guidelines:
 1. Avoid these unsupported features:
     - Cinema 4D and Ray-traced 3D renderers are *not* supported.
     - Adobe After Effects (AE) effects (like Camera-Shake Deblur, Synthetic Aperture Color Finesse, Maxon CINEWARE, Puppet, and Warp Stabilizer) are *not* supported.
-    - Any AE composition editing capabilities such as variable length footage replacement or shifting layers dynamically based on footage length are *not* supported.
+    - For MOGRTs, composition editing such as variable-length footage replacement or shifting layers based on footage length is *not* supported; use an After Effects project (`type: "aep"`) with [layer operations](../../guides/dgr/dgr-render.md#layer-operations-aep-only) instead.
     - Dynamic Link footage is *not* supported (for example, Premiere Pro sequences or Character Animator scenes embedded in the comp).
     - Avoid FLV footage.
     - Avoid all third party plugins.
