@@ -216,7 +216,7 @@ Each item in `variations[].variables[]` overrides one control from the [Describe
 | `dropdown` | `selectedDropdownValue` (string, the index of the selected option as listed in `options`) |
 | `slider` | `selectedSliderValue` (number) |
 
-- Setting a property that isn't editable for a control isn't an error; the change isn't applied.
+- Setting a property that isn't listed in a control's `editableProperties` in the Describe response isn't an error; the change isn't applied.
 - To use a new font for a text control, add it to `fonts[]` and set `fontName` to its name. To keep a licensed font that the template uses, also pass it in `fonts[]`; the Describe response's `uploadRequired` flag shows which fonts must be uploaded.
 
 ## Render an AEP project
@@ -315,7 +315,7 @@ The reference time for `trim_*` and `shift_*` operations is resolved from one of
 | A layer | `refLayerId` + `refInOut` (`in` or `out`) | That layer's in point or out point |
 | The comp | `refInOut` only (omit `refLayerId`) | The comp's start (`in`) or end (`out`) |
 
-When both a seconds and a frames form are given for the same field, the seconds form takes precedence. For `stretch_layer`, the target duration is taken from `durationPercent`, then `durationSeconds`, then `durationFrames`, then `refLayerId` (the reference layer's duration), in that order; for example, `durationPercent: 150` makes a 4-second layer last 6 seconds. For `enable_layer`, set at least one of `videoEnabled`, `audioEnabled`, or `solo`; `solo` can't be applied to a layer whose video and audio are both off.
+When both a seconds and a frames form are given for the same field, the seconds form takes precedence. For `stretch_layer`, the target duration is taken from `durationPercent`, then `durationSeconds`, then `durationFrames`, then `refLayerId` (the reference layer's duration), in that order; `durationPercent` is relative to the layer's duration at normal speed, so `150` makes a layer that lasts 4 seconds at normal speed last 6 seconds. For `enable_layer`, set at least one of `videoEnabled`, `audioEnabled`, or `solo`; `solo` can't be applied to a layer whose video and audio are both off.
 
 For `shift_inpoint` and `shift_outpoint`, `operateAsGroup` defaults to `false`, shifting each target layer independently. Set it to `true` to shift all layers in `layerIds` by the same offset, preserving their relative timing and durations: `shift_inpoint` aligns the group's earliest in point to the reference time, while `shift_outpoint` aligns its latest out point.
 
