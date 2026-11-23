@@ -5172,7 +5172,6 @@
                     "match_source_duration",
                     "set_layer_duration",
                     "stretch_layer",
-                    "use_part_of_media",
                     "enable_layer"
                   ],
                   "description": "The layer operation to perform."
@@ -5250,18 +5249,6 @@
                 "durationPercent": {
                   "type": "number",
                   "description": "For `stretch_layer`, the target duration as a percentage of the layer's native duration. Highest priority of the `stretch_layer` duration inputs: `durationPercent` > `durationSeconds` > `durationFrames` > `refLayerId`."
-                },
-                "sourceInSeconds": {
-                  "type": "number",
-                  "description": "For `use_part_of_media`, where the window starts inside the source footage, in seconds."
-                },
-                "sourceDurationSeconds": {
-                  "type": "number",
-                  "description": "For `use_part_of_media`, the duration of the window taken from the source footage, in seconds."
-                },
-                "compInPoint": {
-                  "type": "number",
-                  "description": "For `use_part_of_media`, where the window is placed on the comp timeline, in seconds. Optional."
                 },
                 "videoEnabled": {
                   "type": "boolean",

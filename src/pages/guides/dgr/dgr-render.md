@@ -293,7 +293,7 @@ The 202 response, status polling, output structure, cancel, and list-jobs behavi
 
 `layerOperations[]` is a top-level array, applicable only when `type` is `aep`, that adjusts layer and composition timing and layer visibility after variable overrides are applied. Operations run in array order and target layers using `layerIds` — an array of one or more `layers[].id` values from the Describe response (of the form `c{comp}:l{layer}:layer`). The operation is applied to each layer in the order listed.
 
-The deprecated `layerId` string remains accepted for backward compatibility; if both are given, `layerIds` is used. `trim_comp` doesn't take `layerIds`.
+The deprecated `layerId` string remains accepted for backward compatibility; if both are given, `layerIds` is used. `trim_comp` doesn't take `layerId` or `layerIds`.
 
 | Operation | Purpose | Key fields |
 |-----------|---------|------------|
@@ -305,7 +305,6 @@ The deprecated `layerId` string remains accepted for backward compatibility; if 
 | `stretch_layer` | Time-stretch a layer (change its playback speed) to an absolute percentage or duration, or to match the duration of a reference layer. The in point stays fixed. | `layerIds`, `durationPercent`/`durationSeconds`/`durationFrames`/`refLayerId`, `offsetSeconds`/`offsetFrames` |
 | `match_source_duration` | Set a layer's duration to its source footage duration, typically after replacing media. Set `layerInOut` to `in` or `out` to adjust only that end; omit it to adjust both. | `layerIds`, `layerInOut` (optional) |
 | `set_layer_duration` | Set a layer's duration from its current in point (out point = in point + duration). | `layerIds`, `durationSeconds`/`durationFrames` |
-| `use_part_of_media` | Use a window of the layer's source footage: `sourceDurationSeconds` seconds starting at `sourceInSeconds` in the footage, placed at `compInPoint` on the comp timeline. | `layerIds`, `sourceInSeconds`, `sourceDurationSeconds`, `compInPoint` (optional) |
 | `enable_layer` | Turn a layer's video and/or audio on or off, and/or solo it (if a comp contains layers that have solo enabled, only those layers will render). | `layerIds`, `videoEnabled`, `audioEnabled`, `solo` |
 
 The reference time for `trim_*` and `shift_*` operations is resolved from one of the following, then adjusted by `offsetSeconds` or `offsetFrames` (for example, `refInOut: "out"` with `offsetSeconds: -1` is 1 second before the reference layer ends):
@@ -413,25 +412,6 @@ curl -X POST \
       }
     ]
   }'
-```
-
-To play only part of a replacement clip, use `use_part_of_media`. This example uses the 3 seconds that start 1 second into the clip, places them 2 seconds into the comp, and then moves the outro so that it ends at the end of the comp (no `refLayerId`, so the comp is the reference):
-
-```json
-"layerOperations": [
-  {
-    "operation": "use_part_of_media",
-    "layerIds": ["c259:l261:layer"],
-    "sourceInSeconds": 1,
-    "sourceDurationSeconds": 3,
-    "compInPoint": 2
-  },
-  {
-    "operation": "shift_outpoint",
-    "layerIds": ["c259:l265:layer"],
-    "refInOut": "out"
-  }
-]
 ```
 
 For `enable_layer`, a comp with solo layers renders against the background color defined in the comp's settings; if the output format supports an alpha channel (such as .mov), a comp with solo layers renders against a transparent background.
