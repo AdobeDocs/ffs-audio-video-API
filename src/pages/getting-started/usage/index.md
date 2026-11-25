@@ -148,6 +148,10 @@ Dubbing is supported for the following languages:
 | Hindi (India) | `hi-IN` |
 | Japanese (Japan) | `ja-JP` |
 | Korean (South Korea) | `ko-KR` |
+| Dutch (Netherlands) | `nl-NL` |
+| Swedish (Sweden) | `sv-SE` |
+| Chinese (Simplified, China) | `zh-CN` |
+
 
 ### Input video support
 
