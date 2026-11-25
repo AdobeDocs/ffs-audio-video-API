@@ -45,5 +45,5 @@
     - [Using the Describe API](/guides/dgr/dgr-describe.md)
     - [Using the Render API](/guides/dgr/dgr-render.md)
     - [Setting up DGR events with Adobe I/O Events](/guides/dgr/dgr-io-events-setup.md)
-    - [Best practices for Dynamic Graphics Render and MOGRTs](/guides/dgr/dgr-best-practices.md)
+    - [Best practices for Dynamic Graphics Render](/guides/dgr/dgr-best-practices.md)
     - [Sample MOGRT Project](/guides/dgr/dgr-sample-mogrt-wknd.md)
