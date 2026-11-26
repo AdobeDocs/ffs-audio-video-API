@@ -254,7 +254,7 @@ As with MOGRT, a successful request returns `202 Accepted` with a `jobId`. Poll 
 For AEP, the element `type` is `aep` and the response includes two collections:
 
 - `controls[]` — the editable controls in the composition. Each `variableId` is a composite ID (for example `c259:l261:media` for a media control or `c169:l193:layer:sourceText` for a text control). Use these IDs in the Render API `variations[].variables[]`.
-- `layers[]` — the composition's layers, in render order (top-to-bottom). Each layer's composite `id` (for example `c259:l261:layer`) is used as the `layerId` in Render API `layerOperations[]`.
+- `layers[]` — the composition's layers, in render order (top-to-bottom). Each layer's composite `id` (for example `c259:l261:layer`) is used in `layerIds` in Render API `layerOperations[]`.
 
 ```json
 {
@@ -440,7 +440,7 @@ A job can complete successfully (HTTP 200) with a payload status of `"succeeded"
 
 ### Audio controls
 
-An `audio` control can be used to either replace the full audio track for the output or mix the track with existing MOGRT audio. Only one `audio` control is allowed per Render API input variation. The `durationInSeconds` property for an audio-type control is informational only and is not required in the Render API request.
+For MOGRT, an `audio` control can be used to either replace the full audio track for the output or mix the track with existing MOGRT audio, and only one `audio` control is allowed per Render API input variation. For AEP, each `audio` control can be replaced or mixed independently. The `durationInSeconds` property for an audio-type control is informational only and is not required in the Render API request.
 
 ### Fonts
 

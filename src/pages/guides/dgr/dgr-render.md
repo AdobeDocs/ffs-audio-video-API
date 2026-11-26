@@ -203,12 +203,28 @@ The `outputs` array is currently limited to a maximum of 500 items per request.
 
 A successful request returns `202 Accepted` with a `jobId` and `statusUrl`. Poll the status URL (or the Get Status API) until the job completes.
 
+## Variables
+
+Each item in `variations[].variables[]` overrides one control from the [Describe API](dgr-describe.md) response, for both MOGRT and AEP. Set `variableId` to the control's `variableId`, and add the properties for its type:
+
+| Control type | Properties |
+|--------------|------------|
+| `text` | `text` (string); `fontName` (string, font PostScript name) |
+| `media` | `assetIndex` (number, 0-based index into `assets[]`); `scale` (one of the `possibleScaleValues` in the Describe response) |
+| `audio` | `assetIndex` (number); `audioPreference` (`replace` or `mix`, default `replace`) |
+| `checkbox` | `selectedCheckboxValue` (boolean) |
+| `dropdown` | `selectedDropdownValue` (string, the index of the selected option as listed in `options`) |
+| `slider` | `selectedSliderValue` (number) |
+
+- Setting a property that isn't listed in a control's `editableProperties` in the Describe response isn't an error; the change isn't applied.
+- To use a new font for a text control, add it to `fonts[]` and set `fontName` to its name. To keep a licensed font that the template uses, also pass it in `fonts[]`; the Describe response's `uploadRequired` flag shows which fonts must be uploaded.
+
 ## Render an AEP project
 
 To render an After Effects project, set `type` to `aep`, point `source.url` at a `.zip` archive that contains a single `.aep` file and its collected assets, and name the composition with `compName`.
 
 - `compName` is **required** for AEP. This composition name within the project must be unique so that `compName` resolves to a single composition.
-- Each `variations[].variables[].variableId` is a control ID from the [Describe API](dgr-describe.md) `controls[]` (for example `c259:l261:media`, `c169:l193:layer:sourceText`). Use these IDs verbatim.
+- Each `variations[].variables[].variableId` is a control ID from the [Describe API](dgr-describe.md) `controls[]` (for example `c259:l261:media`, `c169:l193:layer:sourceText`). Use these IDs verbatim, with the properties listed in [Variables](#variables).
 
 In the AEP sample requests below, be sure to update:
 
@@ -275,29 +291,36 @@ The 202 response, status polling, output structure, cancel, and list-jobs behavi
 
 ### Layer operations (AEP only)
 
-`layerOperations[]` is a top-level array, applicable only when `type` is `aep`, that adjusts layer and composition timing and layer visibility after variable overrides are applied. Operations run in array order and target layers using `layerIds` — an array of `layers[].id` values from the Describe response (of the form `c{comp}:l{layer}:layer`).
+`layerOperations[]` is a top-level array, applicable only when `type` is `aep`, that adjusts layer and composition timing and layer visibility after variable overrides are applied. Operations run in array order and target layers using `layerIds` — an array of one or more `layers[].id` values from the Describe response (of the form `c{comp}:l{layer}:layer`). The operation is applied to each layer in the order listed.
 
-Use `layerIds` (an array of composite layer IDs) to target one or more layers. The deprecated `layerId` string remains accepted for backward compatibility.
+The deprecated `layerId` string remains accepted for backward compatibility; if both are given, `layerIds` is used. `trim_comp` doesn't take `layerId` or `layerIds`.
 
 | Operation | Purpose | Key fields |
 |-----------|---------|------------|
-| `trim_comp` | Set the comp start time and duration. | `startLayerId`/`startSeconds`/`startFrames`, `endLayerId`/`durationSeconds`/`durationFrames` |
-| `trim_inpoint` | Trim a layer's in point to a reference time. | `layerIds`, `refLayerId`, `refInOut`, `offsetSeconds`/`offsetFrames` |
-| `trim_outpoint` | Trim a layer's out point to a reference time. | `layerIds`, `refLayerId`, `refInOut`, `offsetSeconds`/`offsetFrames` |
-| `shift_inpoint` | Shift a layer so its in point aligns to a reference time (keeps duration). | `layerIds`, `refLayerId`, `refInOut`, `offsetSeconds`/`offsetFrames`, `operateAsGroup` (optional) |
-| `shift_outpoint` | Shift a layer so its out point aligns to a reference time (keeps duration). | `layerIds`, `refLayerId`, `refInOut`, `offsetSeconds`/`offsetFrames`, `operateAsGroup` (optional) |
-| `stretch_layer` | Time-stretch a layer to an absolute percentage or duration, or to match the duration of a reference layer. | `layerIds`, `durationPercent`/`durationSeconds`/`durationFrames`/`refLayerId`, `offsetSeconds`/`offsetFrames` |
-| `match_source_duration` | Extend a layer to match its source footage duration. | `layerIds` |
-| `set_layer_duration` | Set a layer to an absolute duration. | `layerIds`, `durationSeconds`/`durationFrames` |
+| `trim_comp` | Set the comp's work area (render window); only this range is rendered. The end is `endLayerId`'s out point or the start plus the duration. Defaults to the full comp. | `startLayerId`/`startSeconds`/`startFrames`, `endLayerId`/`durationSeconds`/`durationFrames` |
+| `trim_inpoint` | Move a layer's in point to a reference time. The out point stays fixed, so the layer gets longer or shorter. | `layerIds`, `refLayerId`, `refInOut`, `offsetSeconds`/`offsetFrames` |
+| `trim_outpoint` | Move a layer's out point to a reference time. The in point stays fixed, so the layer gets longer or shorter. | `layerIds`, `refLayerId`, `refInOut`, `offsetSeconds`/`offsetFrames` |
+| `shift_inpoint` | Move the whole layer so its in point aligns to a reference time (keeps duration). | `layerIds`, `refLayerId`, `refInOut`, `offsetSeconds`/`offsetFrames`, `operateAsGroup` (optional) |
+| `shift_outpoint` | Move the whole layer so its out point aligns to a reference time (keeps duration). | `layerIds`, `refLayerId`, `refInOut`, `offsetSeconds`/`offsetFrames`, `operateAsGroup` (optional) |
+| `stretch_layer` | Time-stretch a layer (change its playback speed) to an absolute percentage or duration, or to match the duration of a reference layer. The in point stays fixed. | `layerIds`, `durationPercent`/`durationSeconds`/`durationFrames`/`refLayerId`, `offsetSeconds`/`offsetFrames` |
+| `match_source_duration` | Set a layer's duration to its source footage duration, typically after replacing media. Set `layerInOut` to `in` or `out` to adjust only that end; omit it to adjust both. | `layerIds`, `layerInOut` (optional) |
+| `set_layer_duration` | Set a layer's duration from its current in point (out point = in point + duration). | `layerIds`, `durationSeconds`/`durationFrames` |
 | `enable_layer` | Turn a layer's video and/or audio on or off, and/or solo it (if a comp contains layers that have solo enabled, only those layers will render). | `layerIds`, `videoEnabled`, `audioEnabled`, `solo` |
 
-Reference times are resolved from `refLayerId` + `refInOut` (which end of the reference layer to read), then adjusted by `offsetSeconds` or `offsetFrames`. When both a seconds and a frames form are given for the same field, the seconds form takes precedence. For `stretch_layer`, the target duration is taken from `durationPercent`, then `durationSeconds`, then `durationFrames`, then `refLayerId` (the reference layer's duration), in that order. For `enable_layer`, set at least one of `videoEnabled`, `audioEnabled`, or `solo`.
+The reference time for `trim_*` and `shift_*` operations is resolved from one of the following, then adjusted by `offsetSeconds` or `offsetFrames` (for example, `refInOut: "out"` with `offsetSeconds: -1` is 1 second before the reference layer ends):
+
+| Reference | Fields | Resolves to |
+|-----------|--------|-------------|
+| A layer | `refLayerId` + `refInOut` (`in` or `out`) | That layer's in point or out point |
+| The comp | `refInOut` only (omit `refLayerId`) | The comp's start (`in`) or end (`out`) |
+
+When both a seconds and a frames form are given for the same field, the seconds form takes precedence. For `stretch_layer`, the target duration is taken from `durationPercent`, then `durationSeconds`, then `durationFrames`, then `refLayerId` (the reference layer's duration), in that order; `durationPercent` is relative to the layer's duration at normal speed, so `150` makes a layer that lasts 4 seconds at normal speed last 6 seconds. For `enable_layer`, set at least one of `videoEnabled`, `audioEnabled`, or `solo`; `solo` can't be applied to a layer whose video and audio are both off.
 
 For `shift_inpoint` and `shift_outpoint`, `operateAsGroup` defaults to `false`, shifting each target layer independently. Set it to `true` to shift all layers in `layerIds` by the same offset, preserving their relative timing and durations: `shift_inpoint` aligns the group's earliest in point to the reference time, while `shift_outpoint` aligns its latest out point.
 
 ### Sample request (AEP layer operations)
 
-This request builds a variable-duration timeline: the video layer is extended to its source duration, downstream layers are chained relative to each other, and the composition is trimmed to the resulting range. The intro layer is also hidden with `enable_layer`.
+This request builds a variable-duration timeline: the video layer's out point is extended to the end of its source footage, downstream layers are chained relative to each other, and the composition is trimmed to the resulting range. The intro layer is also hidden with `enable_layer`.
 
 ```bash
 curl -X POST \
@@ -341,18 +364,19 @@ curl -X POST \
     "layerOperations": [
       {
         "operation": "match_source_duration",
-        "layerId": "c259:l261:layer"
+        "layerIds": ["c259:l261:layer"],
+        "layerInOut": "out"
       },
       {
         "operation": "shift_inpoint",
-        "layerId": "c259:l263:layer",
+        "layerIds": ["c259:l263:layer"],
         "refLayerId": "c259:l261:layer",
         "refInOut": "out",
         "offsetSeconds": -1
       },
       {
         "operation": "shift_inpoint",
-        "layerId": "c259:l265:layer",
+        "layerIds": ["c259:l265:layer"],
         "refLayerId": "c259:l263:layer",
         "refInOut": "in",
         "offsetFrames": 90
@@ -364,25 +388,19 @@ curl -X POST \
       },
       {
         "operation": "trim_outpoint",
-        "layerId": "c259:l263:layer",
+        "layerIds": ["c259:l263:layer", "c259:l819:layer"],
         "refLayerId": "c259:l265:layer",
         "refInOut": "out"
       },
       {
         "operation": "trim_outpoint",
-        "layerId": "c259:l262:layer",
+        "layerIds": ["c259:l262:layer"],
         "refLayerId": "c259:l261:layer",
         "refInOut": "out"
       },
       {
-        "operation": "trim_outpoint",
-        "layerId": "c259:l819:layer",
-        "refLayerId": "c259:l265:layer",
-        "refInOut": "out"
-      },
-      {
         "operation": "enable_layer",
-        "layerId": "c259:l398:layer",
+        "layerIds": ["c259:l398:layer"],
         "videoEnabled": false
       }
     ],

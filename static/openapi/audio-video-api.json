@@ -1187,18 +1187,25 @@
                     "layerOperations": [
                       {
                         "operation": "match_source_duration",
-                        "layerId": "c259:l261:layer"
+                        "layerIds": [
+                          "c259:l261:layer"
+                        ],
+                        "layerInOut": "out"
                       },
                       {
                         "operation": "shift_inpoint",
-                        "layerId": "c259:l263:layer",
+                        "layerIds": [
+                          "c259:l263:layer"
+                        ],
                         "refLayerId": "c259:l261:layer",
                         "refInOut": "out",
                         "offsetSeconds": -1
                       },
                       {
                         "operation": "shift_inpoint",
-                        "layerId": "c259:l265:layer",
+                        "layerIds": [
+                          "c259:l265:layer"
+                        ],
                         "refLayerId": "c259:l263:layer",
                         "refInOut": "in",
                         "offsetFrames": 90
@@ -1210,25 +1217,26 @@
                       },
                       {
                         "operation": "trim_outpoint",
-                        "layerId": "c259:l263:layer",
+                        "layerIds": [
+                          "c259:l263:layer",
+                          "c259:l819:layer"
+                        ],
                         "refLayerId": "c259:l265:layer",
                         "refInOut": "out"
                       },
                       {
                         "operation": "trim_outpoint",
-                        "layerId": "c259:l262:layer",
+                        "layerIds": [
+                          "c259:l262:layer"
+                        ],
                         "refLayerId": "c259:l261:layer",
                         "refInOut": "out"
                       },
                       {
-                        "operation": "trim_outpoint",
-                        "layerId": "c259:l819:layer",
-                        "refLayerId": "c259:l265:layer",
-                        "refInOut": "out"
-                      },
-                      {
                         "operation": "enable_layer",
-                        "layerId": "c259:l398:layer",
+                        "layerIds": [
+                          "c259:l398:layer"
+                        ],
                         "videoEnabled": false
                       }
                     ],
@@ -5146,7 +5154,7 @@
           },
           "layerOperations": {
             "type": "array",
-            "description": "Layer-level timing operations applied after variable overrides, in array order. Applicable only when `type` is `aep`; ignored for `mogrt`. Each operation targets a layer by its `layerId` (the `layers[].id` value from the describe response, of the form `c{comp}:l{layer}:layer`). The exact field set depends on `operation`; see the Render guide for the per-operation field reference.",
+            "description": "Layer-level timing and visibility operations applied after variable overrides, in array order. Applicable only when `type` is `aep`; ignored for `mogrt`. Each operation targets layers by `layerIds` (`layers[].id` values from the describe response, of the form `c{comp}:l{layer}:layer`). The exact field set depends on `operation`; see the Render guide for the per-operation field reference.",
             "items": {
               "type": "object",
               "required": [
@@ -5188,7 +5196,7 @@
                 },
                 "refLayerId": {
                   "type": "string",
-                  "description": "Reference layer for `shift_inpoint`, `shift_outpoint`, `trim_inpoint`, and `trim_outpoint` (its in/out time, selected by `refInOut`, anchors the move) and for `stretch_layer` (its duration becomes the target duration when no `duration*` field is provided)."
+                  "description": "Reference layer for `shift_inpoint`, `shift_outpoint`, `trim_inpoint`, and `trim_outpoint` (its in/out time, selected by `refInOut`, anchors the move) and for `stretch_layer` (its duration becomes the target duration when no `duration*` field is provided). Omit it on `shift_*` and `trim_*` operations to use the comp instead: `refInOut` `in` resolves to the comp start and `out` to the comp end."
                 },
                 "refInOut": {
                   "type": "string",
@@ -5196,7 +5204,15 @@
                     "in",
                     "out"
                   ],
-                  "description": "Which end of `refLayerId` to read as the reference time."
+                  "description": "Which end of `refLayerId` (or of the comp, when `refLayerId` is omitted) to read as the reference time."
+                },
+                "layerInOut": {
+                  "type": "string",
+                  "enum": [
+                    "in",
+                    "out"
+                  ],
+                  "description": "For `match_source_duration`, which end of the layer to adjust to match its source footage duration. Omit to adjust both."
                 },
                 "startLayerId": {
                   "type": "string",
@@ -5618,7 +5634,7 @@
                     },
                     "layers": {
                       "type": "array",
-                      "description": "Layers of the described AEP composition, in render order (top-to-bottom). Present only for `aep` elements. Use a layer's composite `id` as the `layerId` in render `layerOperations`.",
+                      "description": "Layers of the described AEP composition, in render order (top-to-bottom). Present only for `aep` elements. Use a layer's composite `id` in `layerIds` in render `layerOperations`.",
                       "items": {
                         "type": "object",
                         "properties": {
