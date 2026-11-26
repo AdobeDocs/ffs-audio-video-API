@@ -150,7 +150,7 @@ Dubbing is supported for the following languages:
 | Korean (South Korea) | `ko-KR` |
 | Dutch (Netherlands) | `nl-NL` |
 | Swedish (Sweden) | `sv-SE` |
-| Chinese (Simplified, China) | `zh-CN` |
+| Chinese (China) | `zh-CN` |
 
 
 ### Input video support
