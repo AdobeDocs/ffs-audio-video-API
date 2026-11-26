@@ -134,6 +134,8 @@ Dubbing is supported for the following languages:
 | English (Indian) | `en-IN` |
 | English (American) | `en-US` |
 | English (British) | `en-GB` |
+| English (Australian) | `en-AU` |
+| English (US Southern) | `en-SO` |
 | Spanish (Spanish) | `es-ES` |
 | Spanish (Argentina) | `es-AR` |
 | Spanish (Latin America) | `es-419` |
@@ -151,6 +153,8 @@ Dubbing is supported for the following languages:
 | Dutch (Netherlands) | `nl-NL` |
 | Swedish (Sweden) | `sv-SE` |
 | Chinese (China) | `zh-CN` |
+| Cantonese (Hong Kong) | `zh-HK` |
+| Russian (Russia) | `ru-RU` |
 
 
 ### Input video support
