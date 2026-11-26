@@ -134,6 +134,8 @@ Dubbing is supported for the following languages:
 | English (Indian) | `en-IN` |
 | English (American) | `en-US` |
 | English (British) | `en-GB` |
+| English (Australian) | `en-AU` |
+| English (US Southern) | `en-SO` |
 | Spanish (Spanish) | `es-ES` |
 | Spanish (Argentina) | `es-AR` |
 | Spanish (Latin America) | `es-419` |
@@ -148,12 +150,19 @@ Dubbing is supported for the following languages:
 | Hindi (India) | `hi-IN` |
 | Japanese (Japan) | `ja-JP` |
 | Korean (South Korea) | `ko-KR` |
+| Dutch (Netherlands) | `nl-NL` |
+| Swedish (Sweden) | `sv-SE` |
+| Chinese (China) | `zh-CN` |
+| Cantonese (Hong Kong) | `zh-HK` |
+| Russian (Russia) | `ru-RU` |
+
 
 ### Input video support
 
 Technical details for videos used as input:
 
 - **Duration (max):** 30 mins
+- **Max Size:** 2GiB
 - **FPS:** 24 fps, 25 fps, 29.97, 30, 50, 59.94, 60
 - **Resolution (max):** Full HD `1920*1080px` or `1080*1920px`
 - **CODEC**: `H.264, HEVC`
@@ -168,6 +177,7 @@ Technical details for videos used as input:
 Technical details for audio used as input:
 
 - **Duration (max):** 30 mins
+- **Max Size:** 2GiB
 - **CODEC:** `MPEG, PCM`
 - **Formats/container:** .mp3, .wav, .aac
 - **Input medium:** Pre-signed URL
